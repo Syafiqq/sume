@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404,render
 
 from django.http import HttpResponse
+from filetransfers.api import serve_file
 
 from .models import Dokumen
 
@@ -14,13 +15,7 @@ def index(request):
 
 def detail(request, question_id):
     dokumen = get_object_or_404(Dokumen, pk=question_id)
-    # return render(request, 'app/detail.html', {'dokumen':dokumen})
-
-    filename = dokumen.filenya.name.split('/')[-1]
-    response = HttpResponse(Dokumen.filenya, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename=%s' % filename
-
-    return response
+    return serve_file(request, dokumen.filenya)
 
 def results(request, question_id):
     response = "You're looking at the results of question %s."
