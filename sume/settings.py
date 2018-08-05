@@ -12,6 +12,13 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
+# noinspection PyPackageRequirements
+import environ
+
+root = environ.Path(__file__) - 3  # three folder back (/a/b/c/ - 3 = /)
+env = environ.Env(DEBUG=(bool, False), )  # set default values and casting
+environ.Env.read_env()  # reading .env file
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -19,10 +26,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'sywxn^2wazst0z(96v(as9#ywq(z&jvn71dh#*!+7lz0&2nwd='
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['localhost']
 
@@ -72,18 +79,7 @@ WSGI_APPLICATION = 'sume.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sume',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
+    'default': env.db(),  # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
 }
 
 # Password validation
@@ -109,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = env('TIME_ZONE')
 
 USE_I18N = True
 
