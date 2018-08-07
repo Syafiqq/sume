@@ -20,6 +20,13 @@ def login(request):
     }
     return render(request, 'app/login.html', context)
 
+def register(request):
+    latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
+    context = {
+        'latest_dokumen_list': latest_dokumen_list,
+    }
+    return render(request, 'app/register.html', context)
+
 def detail(request, question_id):
     dokumen = get_object_or_404(Dokumen, pk=question_id)
     return serve_file(request, dokumen.filenya)
