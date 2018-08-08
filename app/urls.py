@@ -9,6 +9,7 @@ urlpatterns = [
 
     path('login', views.login, name='login'),
     path('register', views.register, name='register'),
+    path('user', views.user, name='user'),
     # ex: /polls/5/
     path('detail/<int:question_id>/', views.detail, name='detail'),
     # ex: /polls/5/results/
