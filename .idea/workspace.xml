@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7466d9f8-0dda-437d-8da1-443b62ec11f5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/templates/app/user.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/app/kelas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/app/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/app/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/app/user.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout/head.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/head.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout/js.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/js.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/nav.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/layout/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout/sidebar.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,29 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base-login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/layout/base-login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/app/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
-              <caret line="72" column="6" selection-start-line="72" selection-start-column="6" selection-end-line="73" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="nav.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/layout/nav.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="227" column="38" selection-start-line="227" selection-start-column="38" selection-end-line="227" selection-end-column="38" />
+            <state relative-caret-position="15">
+              <caret line="137" column="17" selection-start-line="137" selection-start-column="17" selection-end-line="137" selection-end-column="17" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#a#0;n#li#6;n#ul#0;n#li#2;n#ul#0;n#div#0;n#nav#0;n#!!top" expanded="true" />
               </folding>
@@ -52,44 +38,71 @@
       <file leaf-file-name="sidebar.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/layout/sidebar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+            <state relative-caret-position="236">
+              <caret line="41" column="119" selection-start-line="41" selection-start-column="114" selection-end-line="41" selection-end-column="119" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="kelas.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/app/kelas.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="39" column="43" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="js.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/layout/js.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="386">
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/templates/app/user.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="238" column="6" selection-start-line="238" selection-start-column="6" selection-end-line="238" selection-end-column="6" />
+            <state relative-caret-position="70">
+              <caret line="65" column="26" lean-forward="true" selection-start-line="65" selection-start-column="26" selection-end-line="65" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="register.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/app/register.html">
+      <file leaf-file-name="head.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/layout/head.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
+            <state relative-caret-position="165">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/app/detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="24" lean-forward="true" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="progressbars.html" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Downloads/ample-admin/ample-admin/html/ampleadmin-horizontal-nav/progressbars.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="8130">
+              <caret line="542" column="42" selection-start-line="540" selection-start-column="36" selection-end-line="542" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4515">
-              <caret line="301" column="6" selection-start-line="301" selection-start-column="6" selection-end-line="301" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/layout/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="44" column="30" lean-forward="true" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+            <state relative-caret-position="306">
+              <caret line="58" column="32" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -107,10 +120,22 @@
     <findStrings>
       <find>../../</find>
       <find>dash</find>
+      <find>manage user</find>
+      <find>DEFAULT BLOCKQUOTE</find>
+      <find>order</find>
+      <find>ANIMATED BARS</find>
+      <find>Paid</find>
+      <find>table</find>
+      <find>Dropzone</find>
       <find>../</find>
+      <find>mega</find>
+      <find>contact</find>
     </findStrings>
     <replaceStrings>
+      <replace>Task</replace>
       <replace>/static/app/</replace>
+      <replace>Done</replace>
+      <replace>User</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -121,15 +146,19 @@
       <list>
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/sume/assets/app/css/style.css" />
-        <option value="$PROJECT_DIR$/templates/layout/nav.html" />
         <option value="$PROJECT_DIR$/app/templates/app/login.html" />
         <option value="$PROJECT_DIR$/app/templates/app/register.html" />
-        <option value="$PROJECT_DIR$/app/templates/app/user.html" />
+        <option value="$PROJECT_DIR$/templates/layout/base.html" />
+        <option value="$PROJECT_DIR$/app/templates/app/class.html" />
         <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/app/urls.py" />
         <option value="$PROJECT_DIR$/templates/layout/sidebar.html" />
-        <option value="$PROJECT_DIR$/templates/layout/base.html" />
         <option value="$PROJECT_DIR$/app/templates/app/index.html" />
+        <option value="$PROJECT_DIR$/templates/layout/nav.html" />
+        <option value="$PROJECT_DIR$/app/templates/app/kelas.html" />
+        <option value="$PROJECT_DIR$/templates/layout/head.html" />
+        <option value="$PROJECT_DIR$/templates/layout/js.html" />
+        <option value="$PROJECT_DIR$/app/templates/app/user.html" />
       </list>
     </option>
   </component>
@@ -216,6 +245,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -236,9 +266,9 @@
     <frame x="0" y="0" width="1360" height="725" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24981302" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24981302" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info anchor="bottom" id="Python Console" order="8" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -256,6 +286,110 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/templates/layout/nav.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3405">
+          <caret line="227" column="38" selection-start-line="227" selection-start-column="38" selection-end-line="227" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#a#0;n#li#6;n#ul#0;n#li#2;n#ul#0;n#div#0;n#nav#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layout/sidebar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3570">
+          <caret line="238" column="6" selection-start-line="238" selection-start-column="6" selection-end-line="238" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layout/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="44" column="30" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4515">
+          <caret line="301" column="6" selection-start-line="301" selection-start-column="6" selection-end-line="301" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layout/base-login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="72" column="6" selection-start-line="72" selection-start-column="6" selection-end-line="73" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layout/nav.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3405">
+          <caret line="227" column="38" selection-start-line="227" selection-start-column="38" selection-end-line="227" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#a#0;n#li#6;n#ul#0;n#li#2;n#ul#0;n#div#0;n#nav#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layout/sidebar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3570">
+          <caret line="238" column="6" selection-start-line="238" selection-start-column="6" selection-end-line="238" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layout/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="44" column="30" lean-forward="true" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4515">
+          <caret line="301" column="6" selection-start-line="301" selection-start-column="6" selection-end-line="301" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/layout/base-login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -274,9 +408,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="27" column="40" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#53#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -284,9 +415,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -339,9 +467,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="37" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#53#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -349,9 +474,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -406,75 +528,125 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/app/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
+        <state relative-caret-position="506">
           <caret line="72" column="6" selection-start-line="72" selection-start-column="6" selection-end-line="73" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/ample-admin/ample-admin/html/ampleadmin-horizontal-nav/basic-table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10935">
+          <caret line="729" column="22" selection-start-line="556" selection-start-column="16" selection-end-line="729" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layout/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="44" column="30" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/ample-admin/ample-admin/html/ampleadmin-horizontal-nav/typography.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7890">
+          <caret line="526" column="36" selection-start-line="526" selection-start-column="36" selection-end-line="529" selection-end-column="226" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/ample-admin/ample-admin/html/ampleadmin-horizontal-nav/progressbars.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8130">
+          <caret line="542" column="42" selection-start-line="540" selection-start-column="36" selection-end-line="542" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="58" column="32" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/layout/nav.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="227" column="38" selection-start-line="227" selection-start-column="38" selection-end-line="227" selection-end-column="38" />
+        <state relative-caret-position="15">
+          <caret line="137" column="17" selection-start-line="137" selection-start-column="17" selection-end-line="137" selection-end-column="17" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#a#0;n#li#6;n#ul#0;n#li#2;n#ul#0;n#div#0;n#nav#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/user.html">
+    <entry file="file://$PROJECT_DIR$/app/templates/app/detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="238" column="6" selection-start-line="238" selection-start-column="6" selection-end-line="238" selection-end-column="6" />
+        <state relative-caret-position="15">
+          <caret line="1" column="24" lean-forward="true" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/urls.py">
+    <entry file="file://$PROJECT_DIR$/templates/layout/head.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="11" column="39" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/layout/sidebar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+        <state relative-caret-position="236">
+          <caret line="41" column="119" selection-start-line="41" selection-start-column="114" selection-end-line="41" selection-end-column="119" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/layout/base.html">
+    <entry file="file://$PROJECT_DIR$/templates/layout/js.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="44" column="30" lean-forward="true" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+        <state relative-caret-position="386">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
+    <entry file="file://$USER_HOME$/Downloads/ample-admin/ample-admin/html/ampleadmin-horizontal-nav/contact.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4515">
-          <caret line="301" column="6" selection-start-line="301" selection-start-column="6" selection-end-line="301" selection-end-column="6" />
+        <state relative-caret-position="223">
+          <caret line="16" column="102" lean-forward="true" selection-start-line="16" selection-start-column="102" selection-end-line="18" selection-end-column="114" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/kelas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="39" column="43" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="65" column="26" lean-forward="true" selection-start-line="65" selection-start-column="26" selection-end-line="65" selection-end-column="26" />
         </state>
       </provider>
     </entry>
