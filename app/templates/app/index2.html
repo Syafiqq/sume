@@ -1,10 +1,12 @@
 {% if latest_dokumen_list %}
     <ul>
-    {% for question in latest_dokumen_list %}
-        <li><a href="{% url 'app:detail' question.id %}">{{ question.filenya.name }}</a></li>
+        {% for question in latest_dokumen_list %}
+            <li>
+                <a href="{% url 'app:detail' question.id %}">{{ question.filenya.name }}</a>
+            </li>
 
-        <!-- <li><a href="{{question.filenya.path}}">{{ question.filenya.name }}</a></li> -->
-    {% endfor %}
+            <!-- <li><a href="{{question.filenya.path}}">{{ question.filenya.name }}</a></li> -->
+        {% endfor %}
     </ul>
 {% else %}
     <p>No polls are available.</p>
