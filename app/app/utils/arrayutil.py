@@ -6,7 +6,7 @@ def array_except(array, excepts):
     if not isinstance(array, dict):
         return array
     if not isinstance(excepts, list):
-        excepts = list(excepts)
+        excepts = [excepts]
     for exp in excepts:
         del array[exp]
     return array
