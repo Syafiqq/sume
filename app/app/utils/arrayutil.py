@@ -3,7 +3,7 @@ def first_or_default(array, default=''):
 
 
 def array_except(array, excepts):
-    if not isinstance(array, list):
+    if not isinstance(array, dict):
         return array
     if not isinstance(excepts, list):
         excepts = list(excepts)
