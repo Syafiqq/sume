@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 {% endif %}
-                {% if errors.password_conf_conf %}
+                {% if errors.password_conf %}
                     <div class="form-group has-error">
                         <div class="col-xs-12">
                             <input class="form-control" type="password" required name="password_conf" placeholder="Password" value="{{ password_conf|first_or_default:"" }}">
