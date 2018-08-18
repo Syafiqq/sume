@@ -1,6 +1,9 @@
 import logging
 
 from django.contrib.auth import authenticate, login as do_login
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
+from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 
@@ -41,8 +44,32 @@ def login(request):
 
 
 def register(request):
-    context = {}
-    return render(request, 'app/register.html', context)
+    if request.method == 'POST':
+        form = auth.Register(request.POST)
+        data = array_except(dict(form.data), 'csrfmiddlewaretoken')
+        if form.is_valid():
+            if form.cleaned_data.get('password') != form.cleaned_data.get('password_conf'):
+                data['errors'] = {'password': 'Password Unequal', 'password_conf': 'Password Unequal'}
+                return render(request, 'app/register.html', data)
+            elif len(User.objects.filter(email=form.cleaned_data.get('email'))) > 0:
+                data['errors'] = {'email': 'Email exists'}
+                return render(request, 'app/register.html', data)
+            else:
+                account = User(username=form.cleaned_data.get('username'),
+                               firstname=form.cleaned_data.get('username'),
+                               email=form.cleaned_data.get('email'),
+                               password=make_password(form.cleaned_data.get('password')))
+                try:
+                    account.save()
+                except IntegrityError:
+                    data['errors'] = {'username': 'Username is already taken'}
+                    return render(request, 'app/register.html', data)
+                return render(request, 'app/register.html')
+        else:
+            data['errors'] = dict(form.errors)
+            return render(request, 'app/register.html', data)
+    else:
+        return render(request, 'app/register.html', dict(auth.Register().data))
 
 
 def user(request):
