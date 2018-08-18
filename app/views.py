@@ -56,7 +56,6 @@ def register(request):
                 return render(request, 'app/register.html', data)
             else:
                 account = User(username=form.cleaned_data.get('username'),
-                               firstname=form.cleaned_data.get('username'),
                                email=form.cleaned_data.get('email'),
                                password=make_password(form.cleaned_data.get('password')))
                 try:
