@@ -22,7 +22,7 @@ protobuf==3.6.0
 psycopg2==2.7.5
 psycopg2-binary==2.7.5
 python-dateutil==2.7.3
-pytz==2018.4
+pytz==2018.5
 PyYAML==3.12
 scikit-learn==0.19.1
 scipy==1.1.0
