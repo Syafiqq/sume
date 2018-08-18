@@ -1,8 +1,12 @@
+import codecs
 import logging
+import pickle
 
+from django.contrib import messages
 from django.contrib.auth import authenticate, login as do_login
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
+from django.contrib.messages import get_messages
 from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
@@ -63,6 +67,18 @@ def register(request):
                 except IntegrityError:
                     data['errors'] = {'username': 'Username is already taken'}
                     return render(request, 'app/register.html', data)
+                pickled = pickle.dumps({
+                    'message': {
+                        'notif': {
+                            'Registration Complete'
+                        },
+                    },
+                    'data': {
+                        'email': form.cleaned_data.get('email'),
+                        'password': form.cleaned_data.get('password')
+                    }
+                })
+                messages.add_message(request, messages.INFO, codecs.encode(pickled, "base64").decode(), 'callback')
                 return redirect('/login')
         else:
             data['errors'] = dict(form.errors)
