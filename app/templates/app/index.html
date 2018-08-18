@@ -1,11 +1,284 @@
-{% if latest_dokumen_list %}
-    <ul>
-    {% for question in latest_dokumen_list %}
-        <li><a href="{% url 'app:detail' question.id %}">{{ question.filenya.name }}</a></li>
+{% extends "layout/base.html" %}
+{% block content %}
 
-        <!-- <li><a href="{{question.filenya.path}}">{{ question.filenya.name }}</a></li> -->
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+<!-- ============================================================== -->
+<!-- Other sales widgets -->
+<!-- ============================================================== -->
+<!-- .row -->
+<div class="row">
+    <div class="col-lg-3 col-sm-6 col-xs-12">
+        <div class="white-box">
+            <h3 class="box-title">NEW DOCUMENTS</h3>
+            <ul class="list-inline two-part">
+                <li><i class="icon-folder text-purple"></i></li>
+                <li class="text-right"><span class="counter">169</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6 col-xs-12">
+        <div class="white-box">
+            <h3 class="box-title">DOCUMENTS</h3>
+            <ul class="list-inline two-part">
+                <li><i class="icon-folder-alt text-danger"></i></li>
+                <li class="text-right"><span class="">311</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6 col-xs-12">
+        <div class="white-box">
+            <h3 class="box-title">NEW CLIENTS</h3>
+            <ul class="list-inline two-part">
+                <li><i class="icon-people text-info"></i></li>
+                <li class="text-right"><span class="counter">23</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6 col-xs-12">
+        <div class="white-box">
+            <h3 class="box-title">GROUPS</h3>
+            <ul class="list-inline two-part">
+                <li><i class="ti-wallet text-success"></i></li>
+                <li class="text-right"><span class="">117</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<!--/.row -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="white-box">
+            <h3 class="box-title">TASK</h3>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>User</th>
+                        <th>Date</th>
+                        <th>Progess</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Score</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><a href="javascript:void(0)" class="btn-link"> Task #53431</a></td>
+                        <td>Steve N. Horton</td>
+                        <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 22, 2014</span></td>
+                        <td>
+                            <div class="progress progress-md">
+                                <div class="progress-bar progress-bar-warning active progress-bar-striped"
+                                     aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%"
+                                     role="progressbar"><span class="sr-only">85% Complete (success)</span></div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="label label-table label-success">Done</div>
+                        </td>
+                        <td class="text-center">-</td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:void(0)" class="btn-link"> Task #53432</a></td>
+                        <td>Charles S Boyle</td>
+                        <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 24, 2014</span></td>
+                        <td>
+                            <div class="progress progress-md">
+                                <div class="progress-bar progress-bar-warning active progress-bar-striped"
+                                     aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%"
+                                     role="progressbar"><span class="sr-only">85% Complete (success)</span></div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="label label-table label-info">Waiting</div>
+                        </td>
+                        <td class="text-center"><i class="fa fa-plane"></i> CGX0089734531</td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:void(0)" class="btn-link"> Task #53433</a></td>
+                        <td>Lucy Doe</td>
+                        <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 24, 2014</span></td>
+                        <td>
+                            <div class="progress progress-md">
+                                <div class="progress-bar progress-bar-warning active progress-bar-striped"
+                                     aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%"
+                                     role="progressbar"><span class="sr-only">85% Complete (success)</span></div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="label label-table label-info">Waiting</div>
+                        </td>
+                        <td class="text-center"><i class="fa fa-plane"></i> CGX0089934571</td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:void(0)" class="btn-link"> Task #53434</a></td>
+                        <td>Teresa L. Doe</td>
+                        <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 15, 2014</span></td>
+                        <td>
+                            <div class="progress progress-md">
+                                <div class="progress-bar progress-bar-warning active progress-bar-striped"
+                                     aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%"
+                                     role="progressbar"><span class="sr-only">85% Complete (success)</span></div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="label label-table label-info">Waiting</div>
+                        </td>
+                        <td class="text-center"><i class="fa fa-plane"></i> CGX0089734574</td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:void(0)" class="btn-link"> Task #53435</a></td>
+                        <td>Teresa L. Doe</td>
+                        <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 12, 2014</span></td>
+                        <td>
+                            <div class="progress progress-md">
+                                <div class="progress-bar progress-bar-warning active progress-bar-striped"
+                                     aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%"
+                                     role="progressbar"><span class="sr-only">85% Complete (success)</span></div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="label label-table label-success">Done</div>
+                        </td>
+                        <td class="text-center">-</td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:void(0)" class="btn-link">Task #53437</a></td>
+                        <td>Charles S Boyle</td>
+                        <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 17, 2014</span></td>
+                        <td>
+                            <div class="progress progress-md">
+                                <div class="progress-bar progress-bar-warning active progress-bar-striped"
+                                     aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%"
+                                     role="progressbar"><span class="sr-only">85% Complete (success)</span></div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="label label-table label-danger">Failed</div>
+                        </td>
+                        <td class="text-center">-</td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:void(0)" class="btn-link">Task #536584</a></td>
+                        <td>Scott S. Calabrese</td>
+                        <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 19, 2014</span></td>
+                        <td>
+                            <div class="progress progress-md">
+                                <div class="progress-bar progress-bar-warning active progress-bar-striped"
+                                     aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%"
+                                     role="progressbar"><span class="sr-only">85% Complete (success)</span></div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="label label-table label-warning">Review</div>
+                        </td>
+                        <td class="text-center">-</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- Extra-component -->
+<!-- ============================================================== -->
+<!-- .row -->
+<div class="row">
+    <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="white-box">
+            <button class="login-sukses btn btn-success">Success Message</button>
+            <h3 class="box-title">Quote Of The Day {{username}}</h3>
+            <blockquote>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+            </blockquote>
+
+            <blockquote>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+            </blockquote>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="white-box">
+            <h3 class="box-title">User Activity</h3>
+            <div class="steamline">
+                <div class="sl-item">
+                    <div class="sl-left"><img class="img-circle" alt="user"
+                                              src="/static/app/plugins/images/users/genu.jpg">
+                    </div>
+                    <div class="sl-right">
+                        <div><a href="javascript:void(0)">Gohn Doe</a> <span class="sl-date">5 minutes ago</span>
+                        </div>
+                        <p>Contrary to popular belief</p>
+                    </div>
+                </div>
+                <div class="sl-item">
+                    <div class="sl-left"><img class="img-circle" alt="user"
+                                              src="/static/app/plugins/images/users/ritesh.jpg"></div>
+                    <div class="sl-right">
+                        <div><a href="javascript:void(0)">Gohn Doe</a> <span class="sl-date">5 minutes ago</span>
+                        </div>
+                        <p>Lorem Ipsum is simply dummy</p>
+                    </div>
+                </div>
+                <div class="sl-item">
+                    <div class="sl-left"><img class="img-circle" alt="user"
+                                              src="/static/app/plugins/images/users/sonu.jpg">
+                    </div>
+                    <div class="sl-right">
+                        <div><a href="javascript:void(0)">Gohn Doe</a> <span class="sl-date">5 minutes ago</span>
+                        </div>
+                        <p>The standard chunk of ipsum </p>
+                    </div>
+                </div>
+                <div class="sl-item">
+                    <div class="sl-left"><img class="img-circle" alt="user"
+                                              src="/static/app/plugins/images/users/ritesh.jpg"></div>
+                    <div class="sl-right">
+                        <div><a href="javascript:void(0)">Gohn Doe</a> <span class="sl-date">5 minutes ago</span>
+                        </div>
+                        <p>Contrary to popular belief</p>
+                    </div>
+                </div>
+                <div class="sl-item">
+                    <div class="sl-left"><img class="img-circle" alt="user"
+                                              src="/static/app/plugins/images/users/govinda.jpg"></div>
+                    <div class="sl-right">
+                        <div><a href="javascript:void(0)">Gohn Doe</a> <span class="sl-date">5 minutes ago</span>
+                        </div>
+                        <p>The generated lorem ipsum</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="white-box">
+            <h3 class="box-title">Feeds</h3>
+            <ul class="feeds">
+                <li>
+                    <div class="bg-info"><i class="far fa-bell text-white"></i></div>
+                    You have 4 pending tasks. <span class="text-muted">Just Now</span></li>
+                <li>
+                    <div class="bg-success"><i class="ti-server text-white"></i></div>
+                    Server #1 overloaded.<span class="text-muted">2 Hours ago</span></li>
+                <li>
+                    <div class="bg-warning"><i class="ti-shopping-cart text-white"></i></div>
+                    New Task received.<span class="text-muted">31 May</span></li>
+                <li>
+                    <div class="bg-danger"><i class="ti-user text-white"></i></div>
+                    New user registered.<span class="text-muted">30 May</span></li>
+                <li>
+                    <div class="bg-inverse"><i class="far fa-bell text-white"></i></div>
+                    New Version just arrived. <span class="text-muted">27 May</span></li>
+                <li>
+                    <div class="bg-purple"><i class="ti-settings text-white"></i></div>
+                    You have 4 pending tasks. <span class="text-muted">27 May</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

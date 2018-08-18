@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% include "layout/head.html" %}
+
+</head>
+
+<body>
+<!-- Preloader -->
+<div class="preloader">
+    <div class="cssload-speeding-wheel"></div>
+</div>
+<section id="wrapper" class="login-register">
+
+    {% block content %}
+    {% endblock %}
+
+</section>
+    <!-- /#wrapper -->
+
+    {% include "layout/js.html" %}
+
+    {% block inline_js %}
+    {% endblock %}
+</body>
+
+</html>

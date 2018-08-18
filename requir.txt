@@ -1,0 +1,9 @@
+dj-database-url==0.4.0
+Django==2.0.7
+django-filetransfers==0.1.0
+django-heroku==0.3.1
+gunicorn==19.5.0
+psycopg2==2.7.1
+pytz==2018.5
+whitenoise==4.0b4
+django-widget-tweaks==1.4.2

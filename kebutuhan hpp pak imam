@@ -1,0 +1,40 @@
+user
+1. bisa login dan register
+2. bisa scan dokumen pdf
+3. melihat riwayat scan
+4. melihat hasil scan
+5. enrol ke kelas
+
+
+admin
+1. bisa login
+2. manage user
+3. melihat dashboard statistik jumlah dokumen yang telah di scan
+4. persentase jumlah plagiasi keseluruhan
+5. persentase salah ketik keseluruhan
+6. melihat server lagi menangani dokumen apa saja 
+7. membuat class user tertentu
+
+
+menu
+user
+	dashboard
+	riwayat dokumen
+	kelas
+		upload dokumen
+		
+admin
+	dashboard
+	kelas
+		tambah kelas
+		edit kelas
+		delete kelas
+		detail kelas
+			tambah user 
+			copy enrol key
+			lihat dokumen 
+		setting kelas
+	server
+		antrian dokument
+		statistik
+	
