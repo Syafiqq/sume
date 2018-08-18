@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -129,7 +130,8 @@ USE_TZ = True
 STATIC_ROOT = '/var/www/html/sume.com/static/'
 STATIC_URL = '/static/'
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/login'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "assets"),
