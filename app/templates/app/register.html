@@ -1,7 +1,7 @@
 {% extends "layout/base-login.html" %}
 {% load arraytag %}
 {% block content %}
-    <div class="login-box login-sidebar">
+    <div class="login-box login-sidebar" style="overflow-y: auto">
         <div class="white-box">
             <form class="form-horizontal form-material" id="registerform" action="/register" method="POST">
                 {% csrf_token %}
