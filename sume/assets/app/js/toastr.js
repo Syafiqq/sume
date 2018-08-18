@@ -24,9 +24,9 @@ $(document).ready(function () {
         });
 
     });
-    $(".tst3").on("click", function () {
+    $(".login-sukses").on("click", function () {
         $.toast({
-            heading: 'Welcome to my Elite admin',
+            heading: 'Welcome to Sume',
             text: 'Use the predefined ones, or specify a custom position object.',
             position: 'top-right',
             loaderBg: '#ff6849',

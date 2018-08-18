@@ -1,7 +1,7 @@
 {% extends "layout/base.html" %}
 {% block content %}
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12">\
         <div class="white-box p-0">
             <!-- .left-right-aside-column-->
             <div class="page-aside">
@@ -9,12 +9,13 @@
                 <div class="left-aside">
                     <div class="scrollable">
                         <ul class="list-style-none">
-                            <li class="box-label"><a href="javascript:void(0)">All Users <span>123</span></a></li>
+                            <li class="box-label"><a href="javascript:void(0)">All Admins <span>123</span></a></li>
                             <li class="divider"></li>
                             <li><a href="javascript:void(0)">Work <span>103</span></a></li>
                             <li><a href="javascript:void(0)">Family <span>19</span></a></li>
                             <li><a href="javascript:void(0)">Friends <span>623</span></a></li>
                             <li><a href="javascript:void(0)">Private <span>53</span></a></li>
+
                             <li class="box-label"><a href="javascript:void(0)" data-toggle="modal"
                                                      data-target="#myModal">+ Create New Label</a></li>
                             <div id="myModal" class="modal fade in" tabindex="-1" role="dialog"
@@ -38,7 +39,7 @@
                                                     <label class="col-md-12">Select Number of people</label>
                                                     <div class="col-md-12">
                                                         <select class="form-control">
-                                                            <option>All Users</option>
+                                                            <option>All Admins</option>
                                                             <option>10</option>
                                                             <option>20</option>
                                                             <option>30</option>
@@ -72,7 +73,7 @@
                             <input type="text" id="demo-input-search2" placeholder="search contacts"
                                    class="form-control">
                         </div>
-                        <h3>User / Employee List </h3></div>
+                        <h3>Admin / Employee List </h3></div>
                     <div class="clearfix"></div>
                     <div class="scrollable">
                         <div class="table-responsive">
@@ -383,7 +384,7 @@
                                 <tr>
                                     <td colspan="2">
                                         <button type="button" class="btn btn-info btn-rounded" data-toggle="modal"
-                                                data-target="#add-contact">Add New User
+                                                data-target="#add-contact">Add New Admin
                                         </button>
                                     </td>
                                     <div id="add-contact" class="modal fade in" tabindex="-1" role="dialog"
@@ -394,7 +395,7 @@
                                                     <button type="button" class="close" data-dismiss="modal"
                                                             aria-hidden="true">×
                                                     </button>
-                                                    <h4 class="modal-title" id="myModalLabel">Add New User</h4></div>
+                                                    <h4 class="modal-title" id="myModalLabel">Add New Admin</h4></div>
                                                 <div class="modal-body">
                                                     <from class="form-horizontal form-material">
                                                         <div class="form-group">
@@ -421,7 +422,7 @@
                                                                        placeholder="Salary"></div>
                                                             <div class="col-md-12 m-b-20">
                                                                 <div class="fileupload btn btn-danger btn-rounded waves-effect waves-light">
-                                                                    <span><i class="ion-upload m-r-5"></i>Upload User Image</span>
+                                                                    <span><i class="ion-upload m-r-5"></i>Upload Admin Image</span>
                                                                     <input type="file" class="upload"></div>
                                                             </div>
                                                         </div>
@@ -456,4 +457,5 @@
             <!-- /.left-right-aside-column-->
         </div>
     </div>
+</div>
 {% endblock %}
