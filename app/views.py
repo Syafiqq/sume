@@ -80,18 +80,18 @@ def register(request):
                 except IntegrityError:
                     data['errors'] = {'username': 'Username is already taken'}
                     return render(request, 'app/register.html', data)
-                pickled = pickle.dumps({
+                callback = pickle.dumps({
                     'message': {
-                        'notif': {
-                            'Registration Complete'
-                        },
+                        'alert': [
+                            {'msg': 'Registration Complete', 'level': 'info'}
+                        ]
                     },
                     'data': {
                         'email': form.cleaned_data.get('email'),
                         'password': form.cleaned_data.get('password')
                     }
                 })
-                messages.add_message(request, messages.INFO, codecs.encode(pickled, "base64").decode(), 'callback')
+                messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
                 return redirect('/login')
         else:
             data['errors'] = dict(form.errors)
