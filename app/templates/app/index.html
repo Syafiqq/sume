@@ -1,49 +1,65 @@
 {% extends "layout/base.html" %}
 {% block content %}
 
-<!-- ============================================================== -->
-<!-- Other sales widgets -->
-<!-- ============================================================== -->
-<!-- .row -->
-<div class="row">
-    <div class="col-lg-3 col-sm-6 col-xs-12">
-        <div class="white-box">
-            <h3 class="box-title">NEW DOCUMENTS</h3>
-            <ul class="list-inline two-part">
-                <li><i class="icon-folder text-purple"></i></li>
-                <li class="text-right"><span class="counter">169</span></li>
-            </ul>
+    <!-- ============================================================== -->
+    <!-- Other sales widgets -->
+    <!-- ============================================================== -->
+    <!-- .row -->
+    <div class="row">
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="white-box">
+                <h3 class="box-title">NEW DOCUMENTS</h3>
+                <ul class="list-inline two-part">
+                    <li>
+                        <i class="icon-folder text-purple"></i>
+                    </li>
+                    <li class="text-right">
+                        <span class="counter">169</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="white-box">
+                <h3 class="box-title">DOCUMENTS</h3>
+                <ul class="list-inline two-part">
+                    <li>
+                        <i class="icon-folder-alt text-danger"></i>
+                    </li>
+                    <li class="text-right">
+                        <span class="">311</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="white-box">
+                <h3 class="box-title">NEW CLIENTS</h3>
+                <ul class="list-inline two-part">
+                    <li>
+                        <i class="icon-people text-info"></i>
+                    </li>
+                    <li class="text-right">
+                        <span class="counter">23</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="white-box">
+                <h3 class="box-title">GROUPS</h3>
+                <ul class="list-inline two-part">
+                    <li>
+                        <i class="ti-wallet text-success"></i>
+                    </li>
+                    <li class="text-right">
+                        <span class="">117</span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="col-lg-3 col-sm-6 col-xs-12">
-        <div class="white-box">
-            <h3 class="box-title">DOCUMENTS</h3>
-            <ul class="list-inline two-part">
-                <li><i class="icon-folder-alt text-danger"></i></li>
-                <li class="text-right"><span class="">311</span></li>
-            </ul>
-        </div>
-    </div>
-    <div class="col-lg-3 col-sm-6 col-xs-12">
-        <div class="white-box">
-            <h3 class="box-title">NEW CLIENTS</h3>
-            <ul class="list-inline two-part">
-                <li><i class="icon-people text-info"></i></li>
-                <li class="text-right"><span class="counter">23</span></li>
-            </ul>
-        </div>
-    </div>
-    <div class="col-lg-3 col-sm-6 col-xs-12">
-        <div class="white-box">
-            <h3 class="box-title">GROUPS</h3>
-            <ul class="list-inline two-part">
-                <li><i class="ti-wallet text-success"></i></li>
-                <li class="text-right"><span class="">117</span></li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!-- /.row -->
+    <!-- /.row -->
 
 <!--/.row -->
 <div class="row">
@@ -200,85 +216,126 @@
                 <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
             </blockquote>
         </div>
-    </div>
-    <div class="col-md-4 col-sm-12 col-xs-12">
-        <div class="white-box">
-            <h3 class="box-title">User Activity</h3>
-            <div class="steamline">
-                <div class="sl-item">
-                    <div class="sl-left"><img class="img-circle" alt="user"
-                                              src="/static/app/plugins/images/users/genu.jpg">
-                    </div>
-                    <div class="sl-right">
-                        <div><a href="javascript:void(0)">Gohn Doe</a> <span class="sl-date">5 minutes ago</span>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="white-box">
+                <h3 class="box-title">User Activity</h3>
+                <div class="steamline">
+                    <div class="sl-item">
+                        <div class="sl-left">
+                            <img class="img-circle" alt="user"
+                                 src="/static/app/plugins/images/users/genu.jpg">
                         </div>
-                        <p>Contrary to popular belief</p>
-                    </div>
-                </div>
-                <div class="sl-item">
-                    <div class="sl-left"><img class="img-circle" alt="user"
-                                              src="/static/app/plugins/images/users/ritesh.jpg"></div>
-                    <div class="sl-right">
-                        <div><a href="javascript:void(0)">Gohn Doe</a> <span class="sl-date">5 minutes ago</span>
+                        <div class="sl-right">
+                            <div>
+                                <a href="javascript:void(0)">Gohn Doe</a>
+                                <span class="sl-date">5 minutes ago</span>
+                            </div>
+                            <p>Contrary to popular belief</p>
                         </div>
-                        <p>Lorem Ipsum is simply dummy</p>
                     </div>
-                </div>
-                <div class="sl-item">
-                    <div class="sl-left"><img class="img-circle" alt="user"
-                                              src="/static/app/plugins/images/users/sonu.jpg">
-                    </div>
-                    <div class="sl-right">
-                        <div><a href="javascript:void(0)">Gohn Doe</a> <span class="sl-date">5 minutes ago</span>
+                    <div class="sl-item">
+                        <div class="sl-left">
+                            <img class="img-circle" alt="user"
+                                 src="/static/app/plugins/images/users/ritesh.jpg">
                         </div>
-                        <p>The standard chunk of ipsum </p>
-                    </div>
-                </div>
-                <div class="sl-item">
-                    <div class="sl-left"><img class="img-circle" alt="user"
-                                              src="/static/app/plugins/images/users/ritesh.jpg"></div>
-                    <div class="sl-right">
-                        <div><a href="javascript:void(0)">Gohn Doe</a> <span class="sl-date">5 minutes ago</span>
+                        <div class="sl-right">
+                            <div>
+                                <a href="javascript:void(0)">Gohn Doe</a>
+                                <span class="sl-date">5 minutes ago</span>
+                            </div>
+                            <p>Lorem Ipsum is simply dummy</p>
                         </div>
-                        <p>Contrary to popular belief</p>
                     </div>
-                </div>
-                <div class="sl-item">
-                    <div class="sl-left"><img class="img-circle" alt="user"
-                                              src="/static/app/plugins/images/users/govinda.jpg"></div>
-                    <div class="sl-right">
-                        <div><a href="javascript:void(0)">Gohn Doe</a> <span class="sl-date">5 minutes ago</span>
+                    <div class="sl-item">
+                        <div class="sl-left">
+                            <img class="img-circle" alt="user"
+                                 src="/static/app/plugins/images/users/sonu.jpg">
                         </div>
-                        <p>The generated lorem ipsum</p>
+                        <div class="sl-right">
+                            <div>
+                                <a href="javascript:void(0)">Gohn Doe</a>
+                                <span class="sl-date">5 minutes ago</span>
+                            </div>
+                            <p>The standard chunk of ipsum </p>
+                        </div>
+                    </div>
+                    <div class="sl-item">
+                        <div class="sl-left">
+                            <img class="img-circle" alt="user"
+                                 src="/static/app/plugins/images/users/ritesh.jpg">
+                        </div>
+                        <div class="sl-right">
+                            <div>
+                                <a href="javascript:void(0)">Gohn Doe</a>
+                                <span class="sl-date">5 minutes ago</span>
+                            </div>
+                            <p>Contrary to popular belief</p>
+                        </div>
+                    </div>
+                    <div class="sl-item">
+                        <div class="sl-left">
+                            <img class="img-circle" alt="user"
+                                 src="/static/app/plugins/images/users/govinda.jpg">
+                        </div>
+                        <div class="sl-right">
+                            <div>
+                                <a href="javascript:void(0)">Gohn Doe</a>
+                                <span class="sl-date">5 minutes ago</span>
+                            </div>
+                            <p>The generated lorem ipsum</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-4 col-sm-12 col-xs-12">
-        <div class="white-box">
-            <h3 class="box-title">Feeds</h3>
-            <ul class="feeds">
-                <li>
-                    <div class="bg-info"><i class="far fa-bell text-white"></i></div>
-                    You have 4 pending tasks. <span class="text-muted">Just Now</span></li>
-                <li>
-                    <div class="bg-success"><i class="ti-server text-white"></i></div>
-                    Server #1 overloaded.<span class="text-muted">2 Hours ago</span></li>
-                <li>
-                    <div class="bg-warning"><i class="ti-shopping-cart text-white"></i></div>
-                    New Task received.<span class="text-muted">31 May</span></li>
-                <li>
-                    <div class="bg-danger"><i class="ti-user text-white"></i></div>
-                    New user registered.<span class="text-muted">30 May</span></li>
-                <li>
-                    <div class="bg-inverse"><i class="far fa-bell text-white"></i></div>
-                    New Version just arrived. <span class="text-muted">27 May</span></li>
-                <li>
-                    <div class="bg-purple"><i class="ti-settings text-white"></i></div>
-                    You have 4 pending tasks. <span class="text-muted">27 May</span></li>
-            </ul>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="white-box">
+                <h3 class="box-title">Feeds</h3>
+                <ul class="feeds">
+                    <li>
+                        <div class="bg-info">
+                            <i class="far fa-bell text-white"></i>
+                        </div>
+                        You have 4 pending tasks.
+                        <span class="text-muted">Just Now</span>
+                    </li>
+                    <li>
+                        <div class="bg-success">
+                            <i class="ti-server text-white"></i>
+                        </div>
+                        Server #1 overloaded.
+                        <span class="text-muted">2 Hours ago</span>
+                    </li>
+                    <li>
+                        <div class="bg-warning">
+                            <i class="ti-shopping-cart text-white"></i>
+                        </div>
+                        New order received.
+                        <span class="text-muted">31 May</span>
+                    </li>
+                    <li>
+                        <div class="bg-danger">
+                            <i class="ti-user text-white"></i>
+                        </div>
+                        New user registered.
+                        <span class="text-muted">30 May</span>
+                    </li>
+                    <li>
+                        <div class="bg-inverse">
+                            <i class="far fa-bell text-white"></i>
+                        </div>
+                        New Version just arrived.
+                        <span class="text-muted">27 May</span>
+                    </li>
+                    <li>
+                        <div class="bg-purple">
+                            <i class="ti-settings text-white"></i>
+                        </div>
+                        You have 4 pending tasks.
+                        <span class="text-muted">27 May</span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}

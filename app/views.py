@@ -1,24 +1,131 @@
+import codecs
+import logging
+import pickle
+
+from django.contrib import messages
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
+from django.contrib.messages import get_messages
+from django.db import IntegrityError
 from django.shortcuts import get_object_or_404, render, redirect
 
+from django.contrib.auth import authenticate, login as do_login, logout
 from django.http import HttpResponse
 from filetransfers.api import serve_file
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
+from app.app.forms import auth
+from app.app.utils.arrayutil import array_except, array_merge
 from .models import Dokumen
 from .forms import LoginForm
 
+logger = logging.getLogger('debug')
+
+
+# from filetransfers.api import serve_file
+
+
 @login_required()
 def index(request):
-    latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
-    context = {
-        'latest_dokumen_list': latest_dokumen_list,
-    }
+    context = {}
     return render(request, 'app/index.html', context)
 
 
-def dologin(request):
+def login(request):
     logout(request)
+    context = {}
+
+    storage = get_messages(request)
+    for message in storage:
+        if message.extra_tags == 'callback':
+            callback = pickle.loads(codecs.decode(message.message.encode(), "base64"))
+            context = {
+                'email': callback['data']['email'] if 'data' in callback and 'email' in callback['data'] else "",
+                'password': callback['data']['password'] if 'data' in callback and 'password' in callback[
+                    'data'] else "",
+                'callback': callback
+            }
+
+    if request.method == 'POST':
+        form = auth.Login(request.POST)
+        context = array_merge(context, array_except(dict(form.data), 'csrfmiddlewaretoken'))
+        if form.is_valid():
+            user_data = authenticate(request,
+                                     username=form.cleaned_data.get('email'),
+                                     password=form.cleaned_data.get('password'))
+            if user_data is not None:
+                do_login(request, user_data)
+                callback = pickle.dumps({
+                    'message': {
+                        'notification': [
+                            {'msg': 'Login Success', 'level': 'success'}
+                        ]
+                    }})
+                messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
+                return redirect('/')
+            else:
+                context['errors'] = {'email': 'Account does not exists.'}
+                return render(request, 'app/login.html', context)
+        else:
+            context['errors'] = dict(form.errors)
+            return render(request, 'app/login.html', context)
+    else:
+        return render(request, 'app/login.html', context)
+
+
+def register(request):
+    context = {}
+
+    storage = get_messages(request)
+    for message in storage:
+        if message.extra_tags == 'callback':
+            callback = pickle.loads(codecs.decode(message.message.encode(), "base64"))
+            context = {
+                'callback': callback
+            }
+
+    if request.method == 'POST':
+        form = auth.Register(request.POST)
+        context = array_merge(context, array_except(dict(form.data), 'csrfmiddlewaretoken'))
+        if form.is_valid():
+            if form.cleaned_data.get('password') != form.cleaned_data.get('password_conf'):
+                context['errors'] = {'password': 'Password Unequal', 'password_conf': 'Password Unequal'}
+                return render(request, 'app/register.html', context)
+            elif len(User.objects.filter(email=form.cleaned_data.get('email'))) > 0:
+                context['errors'] = {'email': 'Email exists'}
+                return render(request, 'app/register.html', context)
+            else:
+                account = User(username=form.cleaned_data.get('username'),
+                               email=form.cleaned_data.get('email'),
+                               password=make_password(form.cleaned_data.get('password')))
+                try:
+                    account.save()
+                except IntegrityError:
+                    context['errors'] = {'username': 'Username is already taken'}
+                    return render(request, 'app/register.html', context)
+                callback = pickle.dumps({
+                    'message': {
+                        'alert': [
+                            {'msg': 'Registration Success', 'level': 'success'}
+                        ]
+                    },
+                    'data': {
+                        'email': form.cleaned_data.get('email'),
+                        'password': form.cleaned_data.get('password')
+                    }
+                })
+                messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
+                return redirect('/login')
+        else:
+            context['errors'] = dict(form.errors)
+            return render(request, 'app/register.html', context)
+    else:
+        return render(request, 'app/register.html', context)
+
+  
+def dologin(request):
+    
+    (request)
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -37,22 +144,6 @@ def dologin(request):
         form = LoginForm()
     return render(request, 'app/login.html', {'form': form})
 
-
-def register(request):
-    latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
-    context = {
-        'latest_dokumen_list': latest_dokumen_list,
-    }
-    return render(request, 'app/register.html', context)
-
-@login_required()
-def user(request):
-    latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
-    context = {
-        'latest_dokumen_list': latest_dokumen_list,
-    }
-    return render(request, 'app/user.html', context)
-
 @login_required()
 def kelas(request):
     latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
@@ -60,6 +151,11 @@ def kelas(request):
         'latest_dokumen_list': latest_dokumen_list,
     }
     return render(request, 'app/kelas.html', context)
+
+@login_required()
+def user(request):
+    context = {}
+    return render(request, 'app/user.html', context)
 
 @login_required()
 def admin(request):
@@ -78,6 +174,7 @@ def detail(request, question_id):
         'latest_dokumen_list': latest_dokumen_list,
     }
     return render(request, 'app/detail.html', context)
+
 
 
 def results(request, question_id):
