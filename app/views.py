@@ -49,7 +49,14 @@ def login(request):
                                      password=form.cleaned_data.get('password'))
             if user_data is not None:
                 do_login(request, user_data)
-                return render(request, 'app/login.html')
+                callback = pickle.dumps({
+                    'message': {
+                        'notification': [
+                            {'msg': 'Login Success', 'level': 'success'}
+                        ]
+                    }})
+                messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
+                return redirect('/')
             else:
                 context['errors'] = {'email': 'Account does not exists.'}
                 return render(request, 'app/login.html', context)
@@ -83,7 +90,7 @@ def register(request):
                 callback = pickle.dumps({
                     'message': {
                         'alert': [
-                            {'msg': 'Registration Complete', 'level': 'info'}
+                            {'msg': 'Registration Success', 'level': 'success'}
                         ]
                     },
                     'data': {
