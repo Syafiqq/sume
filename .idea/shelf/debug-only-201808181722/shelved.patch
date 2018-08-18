@@ -1,0 +1,1591 @@
+Index: .idea/dataSources/dd8d1b95-fc68-4bb7-af2c-b8b19b879e12.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<dataSource name=\"sume@localhost\">\n  <database-model serializer=\"dbm\" rdbms=\"POSTGRES\" format-version=\"4.9\">\n    <root id=\"1\">\n      <ServerVersion>9.6.9</ServerVersion>\n    </root>\n    <database id=\"2\" parent=\"1\" name=\"gogs\">\n      <ObjectId>16384</ObjectId>\n    </database>\n    <database id=\"3\" parent=\"1\" name=\"postgres\">\n      <ObjectId>12443</ObjectId>\n      <Comment>default administrative connection database</Comment>\n    </database>\n    <database id=\"4\" parent=\"1\" name=\"sume\">\n      <ObjectId>16789</ObjectId>\n      <IntrospectionStateNumber>105</IntrospectionStateNumber>\n      <Current>1</Current>\n      <Visible>1</Visible>\n    </database>\n    <role id=\"5\" parent=\"1\" name=\"pg_signal_backend\">\n      <ObjectId>4200</ObjectId>\n      <Inherit>1</Inherit>\n      <ConnectionLimit>-1</ConnectionLimit>\n    </role>\n    <role id=\"6\" parent=\"1\" name=\"postgres\">\n      <ObjectId>10</ObjectId>\n      <SuperRole>1</SuperRole>\n      <Inherit>1</Inherit>\n      <CreateRole>1</CreateRole>\n      <CreateDb>1</CreateDb>\n      <CanLogin>1</CanLogin>\n      <Replication>1</Replication>\n      <ConnectionLimit>-1</ConnectionLimit>\n      <BypassRls>1</BypassRls>\n    </role>\n    <schema id=\"7\" parent=\"4\" name=\"information_schema\">\n      <ObjectId>12155</ObjectId>\n    </schema>\n    <schema id=\"8\" parent=\"4\" name=\"pg_catalog\">\n      <ObjectId>11</ObjectId>\n      <Comment>system catalog schema</Comment>\n    </schema>\n    <schema id=\"9\" parent=\"4\" name=\"pg_temp_1\">\n      <ObjectId>11848</ObjectId>\n    </schema>\n    <schema id=\"10\" parent=\"4\" name=\"pg_toast\">\n      <ObjectId>99</ObjectId>\n      <Comment>reserved schema for TOAST tables</Comment>\n    </schema>\n    <schema id=\"11\" parent=\"4\" name=\"pg_toast_temp_1\">\n      <ObjectId>11849</ObjectId>\n    </schema>\n    <schema id=\"12\" parent=\"4\" name=\"public\">\n      <ObjectId>2200</ObjectId>\n      <Comment>standard public schema</Comment>\n      <IntrospectionTimestamp>2018-08-05.19:09:49.209</IntrospectionTimestamp>\n      <IntrospectionStateNumber>2066</IntrospectionStateNumber>\n      <Current>1</Current>\n      <Visible>1</Visible>\n    </schema>\n    <access-method id=\"13\" parent=\"4\" name=\"btree\">\n      <ObjectId>403</ObjectId>\n      <Comment>b-tree index access method</Comment>\n      <Handler>pg_catalog.bthandler</Handler>\n      <HandlerId>330</HandlerId>\n      <Type>index</Type>\n    </access-method>\n    <access-method id=\"14\" parent=\"4\" name=\"hash\">\n      <ObjectId>405</ObjectId>\n      <Comment>hash index access method</Comment>\n      <Handler>pg_catalog.hashhandler</Handler>\n      <HandlerId>331</HandlerId>\n      <Type>index</Type>\n    </access-method>\n    <access-method id=\"15\" parent=\"4\" name=\"gist\">\n      <ObjectId>783</ObjectId>\n      <Comment>GiST index access method</Comment>\n      <Handler>pg_catalog.gisthandler</Handler>\n      <HandlerId>332</HandlerId>\n      <Type>index</Type>\n    </access-method>\n    <access-method id=\"16\" parent=\"4\" name=\"gin\">\n      <ObjectId>2742</ObjectId>\n      <Comment>GIN index access method</Comment>\n      <Handler>pg_catalog.ginhandler</Handler>\n      <HandlerId>333</HandlerId>\n      <Type>index</Type>\n    </access-method>\n    <access-method id=\"17\" parent=\"4\" name=\"spgist\">\n      <ObjectId>4000</ObjectId>\n      <Comment>SP-GiST index access method</Comment>\n      <Handler>pg_catalog.spghandler</Handler>\n      <HandlerId>334</HandlerId>\n      <Type>index</Type>\n    </access-method>\n    <access-method id=\"18\" parent=\"4\" name=\"brin\">\n      <ObjectId>3580</ObjectId>\n      <Comment>block range index (BRIN) access method</Comment>\n      <Handler>pg_catalog.brinhandler</Handler>\n      <HandlerId>335</HandlerId>\n      <Type>index</Type>\n    </access-method>\n    <sequence id=\"19\" parent=\"12\" name=\"app_dokumen_id_seq\">\n      <ObjectId>29681</ObjectId>\n      <StateNumber>2066</StateNumber>\n      <SequenceIdentity>1</SequenceIdentity>\n      <BelongsToColumn>1</BelongsToColumn>\n      <CacheSize>1</CacheSize>\n    </sequence>\n    <sequence id=\"20\" parent=\"12\" name=\"auth_group_id_seq\">\n      <ObjectId>16819</ObjectId>\n      <StateNumber>977</StateNumber>\n      <SequenceIdentity>1</SequenceIdentity>\n      <BelongsToColumn>1</BelongsToColumn>\n      <CacheSize>1</CacheSize>\n    </sequence>\n    <sequence id=\"21\" parent=\"12\" name=\"auth_group_permissions_id_seq\">\n      <ObjectId>16829</ObjectId>\n      <StateNumber>977</StateNumber>\n      <SequenceIdentity>1</SequenceIdentity>\n      <BelongsToColumn>1</BelongsToColumn>\n      <CacheSize>1</CacheSize>\n    </sequence>\n    <sequence id=\"22\" parent=\"12\" name=\"auth_permission_id_seq\">\n      <ObjectId>16811</ObjectId>\n      <StateNumber>977</StateNumber>\n      <SequenceIdentity>1</SequenceIdentity>\n      <BelongsToColumn>1</BelongsToColumn>\n      <CacheSize>1</CacheSize>\n    </sequence>\n    <sequence id=\"23\" parent=\"12\" name=\"auth_user_groups_id_seq\">\n      <ObjectId>16847</ObjectId>\n      <StateNumber>977</StateNumber>\n      <SequenceIdentity>1</SequenceIdentity>\n      <BelongsToColumn>1</BelongsToColumn>\n      <CacheSize>1</CacheSize>\n    </sequence>\n    <sequence id=\"24\" parent=\"12\" name=\"auth_user_id_seq\">\n      <ObjectId>16837</ObjectId>\n      <StateNumber>977</StateNumber>\n      <SequenceIdentity>1</SequenceIdentity>\n      <BelongsToColumn>1</BelongsToColumn>\n      <CacheSize>1</CacheSize>\n    </sequence>\n    <sequence id=\"25\" parent=\"12\" name=\"auth_user_user_permissions_id_seq\">\n      <ObjectId>16855</ObjectId>\n      <StateNumber>977</StateNumber>\n      <SequenceIdentity>1</SequenceIdentity>\n      <BelongsToColumn>1</BelongsToColumn>\n      <CacheSize>1</CacheSize>\n    </sequence>\n    <sequence id=\"26\" parent=\"12\" name=\"django_admin_log_id_seq\">\n      <ObjectId>16915</ObjectId>\n      <StateNumber>979</StateNumber>\n      <SequenceIdentity>1</SequenceIdentity>\n      <BelongsToColumn>1</BelongsToColumn>\n      <CacheSize>1</CacheSize>\n    </sequence>\n    <sequence id=\"27\" parent=\"12\" name=\"django_content_type_id_seq\">\n      <ObjectId>16801</ObjectId>\n      <StateNumber>975</StateNumber>\n      <SequenceIdentity>1</SequenceIdentity>\n      <BelongsToColumn>1</BelongsToColumn>\n      <CacheSize>1</CacheSize>\n    </sequence>\n    <sequence id=\"28\" parent=\"12\" name=\"django_migrations_id_seq\">\n      <ObjectId>16790</ObjectId>\n      <StateNumber>974</StateNumber>\n      <SequenceIdentity>1</SequenceIdentity>\n      <BelongsToColumn>1</BelongsToColumn>\n      <CacheSize>1</CacheSize>\n    </sequence>\n    <sequence id=\"29\" parent=\"12\" name=\"polls_choice_id_seq\">\n      <ObjectId>16945</ObjectId>\n      <StateNumber>997</StateNumber>\n      <SequenceIdentity>1</SequenceIdentity>\n      <BelongsToColumn>1</BelongsToColumn>\n      <CacheSize>1</CacheSize>\n    </sequence>\n    <sequence id=\"30\" parent=\"12\" name=\"polls_question_id_seq\">\n      <ObjectId>16953</ObjectId>\n      <StateNumber>997</StateNumber>\n      <SequenceIdentity>1</SequenceIdentity>\n      <BelongsToColumn>1</BelongsToColumn>\n      <CacheSize>1</CacheSize>\n    </sequence>\n    <table id=\"31\" parent=\"12\" name=\"app_dokumen\">\n      <ObjectId>29683</ObjectId>\n      <StateNumber>2066</StateNumber>\n    </table>\n    <table id=\"32\" parent=\"12\" name=\"auth_group\">\n      <ObjectId>16821</ObjectId>\n      <StateNumber>977</StateNumber>\n    </table>\n    <table id=\"33\" parent=\"12\" name=\"auth_group_permissions\">\n      <ObjectId>16831</ObjectId>\n      <StateNumber>977</StateNumber>\n    </table>\n    <table id=\"34\" parent=\"12\" name=\"auth_permission\">\n      <ObjectId>16813</ObjectId>\n      <StateNumber>977</StateNumber>\n    </table>\n    <table id=\"35\" parent=\"12\" name=\"auth_user\">\n      <ObjectId>16839</ObjectId>\n      <StateNumber>2066</StateNumber>\n    </table>\n    <table id=\"36\" parent=\"12\" name=\"auth_user_groups\">\n      <ObjectId>16849</ObjectId>\n      <StateNumber>977</StateNumber>\n    </table>\n    <table id=\"37\" parent=\"12\" name=\"auth_user_user_permissions\">\n      <ObjectId>16857</ObjectId>\n      <StateNumber>977</StateNumber>\n    </table>\n    <table id=\"38\" parent=\"12\" name=\"django_admin_log\">\n      <ObjectId>16917</ObjectId>\n      <StateNumber>979</StateNumber>\n    </table>\n    <table id=\"39\" parent=\"12\" name=\"django_content_type\">\n      <ObjectId>16803</ObjectId>\n      <StateNumber>979</StateNumber>\n    </table>\n    <table id=\"40\" parent=\"12\" name=\"django_migrations\">\n      <ObjectId>16792</ObjectId>\n      <StateNumber>974</StateNumber>\n    </table>\n    <table id=\"41\" parent=\"12\" name=\"django_session\">\n      <ObjectId>16967</ObjectId>\n      <StateNumber>999</StateNumber>\n    </table>\n    <table id=\"42\" parent=\"12\" name=\"polls_choice\">\n      <ObjectId>16947</ObjectId>\n      <StateNumber>997</StateNumber>\n    </table>\n    <table id=\"43\" parent=\"12\" name=\"polls_question\">\n      <ObjectId>16955</ObjectId>\n      <StateNumber>997</StateNumber>\n    </table>\n    <column id=\"44\" parent=\"31\" name=\"id\">\n      <Position>1</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>2066</StateNumber>\n      <DefaultExpression>nextval(&apos;app_dokumen_id_seq&apos;::regclass)</DefaultExpression>\n      <TypeId>23</TypeId>\n      <SequenceName>app_dokumen_id_seq</SequenceName>\n    </column>\n    <column id=\"45\" parent=\"31\" name=\"nama_file\">\n      <Position>2</Position>\n      <DataType>varchar(200)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>2066</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <column id=\"46\" parent=\"31\" name=\"pub_date\">\n      <Position>3</Position>\n      <DataType>timestamp with time zone|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>2066</StateNumber>\n      <TypeId>1184</TypeId>\n    </column>\n    <column id=\"47\" parent=\"31\" name=\"filenya\">\n      <Position>4</Position>\n      <DataType>varchar(100)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>2066</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <column id=\"48\" parent=\"31\" name=\"user_id\">\n      <Position>5</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>2066</StateNumber>\n      <TypeId>23</TypeId>\n    </column>\n    <index id=\"49\" parent=\"31\" name=\"app_dokumen_pkey\">\n      <ObjectId>29687</ObjectId>\n      <ColNames>id</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <index id=\"50\" parent=\"31\" name=\"app_dokumen_user_id_00f80f4e\">\n      <ObjectId>29694</ObjectId>\n      <ColNames>user_id</ColNames>\n    </index>\n    <key id=\"51\" parent=\"31\" name=\"app_dokumen_pkey\">\n      <ObjectId>29688</ObjectId>\n      <ColNames>id</ColNames>\n      <UnderlyingIndexName>app_dokumen_pkey</UnderlyingIndexName>\n      <Primary>1</Primary>\n    </key>\n    <foreign-key id=\"52\" parent=\"31\" name=\"app_dokumen_user_id_00f80f4e_fk_auth_user_id\">\n      <ObjectId>29689</ObjectId>\n      <Deferrable>1</Deferrable>\n      <InitiallyDeferred>1</InitiallyDeferred>\n      <ColNames>user_id</ColNames>\n      <RefTableId>16839</RefTableId>\n      <RefColPositions>1</RefColPositions>\n      <RefTableName>auth_user</RefTableName>\n      <RefKeyName>auth_user_pkey</RefKeyName>\n      <RefColNames>id</RefColNames>\n    </foreign-key>\n    <column id=\"53\" parent=\"32\" name=\"id\">\n      <Position>1</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <DefaultExpression>nextval(&apos;auth_group_id_seq&apos;::regclass)</DefaultExpression>\n      <TypeId>23</TypeId>\n      <SequenceName>auth_group_id_seq</SequenceName>\n    </column>\n    <column id=\"54\" parent=\"32\" name=\"name\">\n      <Position>2</Position>\n      <DataType>varchar(80)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <index id=\"55\" parent=\"32\" name=\"auth_group_pkey\">\n      <ObjectId>16825</ObjectId>\n      <ColNames>id</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <index id=\"56\" parent=\"32\" name=\"auth_group_name_key\">\n      <ObjectId>16827</ObjectId>\n      <ColNames>name</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <index id=\"57\" parent=\"32\" name=\"auth_group_name_a6ea08ec_like\">\n      <ObjectId>16871</ObjectId>\n      <ColNames>name</ColNames>\n    </index>\n    <key id=\"58\" parent=\"32\" name=\"auth_group_pkey\">\n      <ObjectId>16826</ObjectId>\n      <ColNames>id</ColNames>\n      <UnderlyingIndexName>auth_group_pkey</UnderlyingIndexName>\n      <Primary>1</Primary>\n    </key>\n    <key id=\"59\" parent=\"32\" name=\"auth_group_name_key\">\n      <ObjectId>16828</ObjectId>\n      <ColNames>name</ColNames>\n      <UnderlyingIndexName>auth_group_name_key</UnderlyingIndexName>\n    </key>\n    <column id=\"60\" parent=\"33\" name=\"id\">\n      <Position>1</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <DefaultExpression>nextval(&apos;auth_group_permissions_id_seq&apos;::regclass)</DefaultExpression>\n      <TypeId>23</TypeId>\n      <SequenceName>auth_group_permissions_id_seq</SequenceName>\n    </column>\n    <column id=\"61\" parent=\"33\" name=\"group_id\">\n      <Position>2</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <TypeId>23</TypeId>\n    </column>\n    <column id=\"62\" parent=\"33\" name=\"permission_id\">\n      <Position>3</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <TypeId>23</TypeId>\n    </column>\n    <index id=\"63\" parent=\"33\" name=\"auth_group_permissions_pkey\">\n      <ObjectId>16835</ObjectId>\n      <ColNames>id</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <index id=\"64\" parent=\"33\" name=\"auth_group_permissions_group_id_permission_id_0cd325b0_uniq\">\n      <ObjectId>16882</ObjectId>\n      <ColNames>group_id\npermission_id</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <index id=\"65\" parent=\"33\" name=\"auth_group_permissions_group_id_b120cbf9\">\n      <ObjectId>16884</ObjectId>\n      <ColNames>group_id</ColNames>\n    </index>\n    <index id=\"66\" parent=\"33\" name=\"auth_group_permissions_permission_id_84c5c92e\">\n      <ObjectId>16885</ObjectId>\n      <ColNames>permission_id</ColNames>\n    </index>\n    <key id=\"67\" parent=\"33\" name=\"auth_group_permissions_pkey\">\n      <ObjectId>16836</ObjectId>\n      <ColNames>id</ColNames>\n      <UnderlyingIndexName>auth_group_permissions_pkey</UnderlyingIndexName>\n      <Primary>1</Primary>\n    </key>\n    <key id=\"68\" parent=\"33\" name=\"auth_group_permissions_group_id_permission_id_0cd325b0_uniq\">\n      <ObjectId>16883</ObjectId>\n      <ColNames>group_id\npermission_id</ColNames>\n      <UnderlyingIndexName>auth_group_permissions_group_id_permission_id_0cd325b0_uniq</UnderlyingIndexName>\n    </key>\n    <foreign-key id=\"69\" parent=\"33\" name=\"auth_group_permissions_group_id_b120cbf9_fk_auth_group_id\">\n      <ObjectId>16872</ObjectId>\n      <Deferrable>1</Deferrable>\n      <InitiallyDeferred>1</InitiallyDeferred>\n      <ColNames>group_id</ColNames>\n      <RefTableId>16821</RefTableId>\n      <RefColPositions>1</RefColPositions>\n      <RefTableName>auth_group</RefTableName>\n      <RefKeyName>auth_group_pkey</RefKeyName>\n      <RefColNames>id</RefColNames>\n    </foreign-key>\n    <foreign-key id=\"70\" parent=\"33\" name=\"auth_group_permissio_permission_id_84c5c92e_fk_auth_perm\">\n      <ObjectId>16877</ObjectId>\n      <Deferrable>1</Deferrable>\n      <InitiallyDeferred>1</InitiallyDeferred>\n      <ColNames>permission_id</ColNames>\n      <RefTableId>16813</RefTableId>\n      <RefColPositions>1</RefColPositions>\n      <RefTableName>auth_permission</RefTableName>\n      <RefKeyName>auth_permission_pkey</RefKeyName>\n      <RefColNames>id</RefColNames>\n    </foreign-key>\n    <column id=\"71\" parent=\"34\" name=\"id\">\n      <Position>1</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <DefaultExpression>nextval(&apos;auth_permission_id_seq&apos;::regclass)</DefaultExpression>\n      <TypeId>23</TypeId>\n      <SequenceName>auth_permission_id_seq</SequenceName>\n    </column>\n    <column id=\"72\" parent=\"34\" name=\"name\">\n      <Position>2</Position>\n      <DataType>varchar(255)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>984</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <column id=\"73\" parent=\"34\" name=\"content_type_id\">\n      <Position>3</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <TypeId>23</TypeId>\n    </column>\n    <column id=\"74\" parent=\"34\" name=\"codename\">\n      <Position>4</Position>\n      <DataType>varchar(100)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <index id=\"75\" parent=\"34\" name=\"auth_permission_pkey\">\n      <ObjectId>16817</ObjectId>\n      <ColNames>id</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <index id=\"76\" parent=\"34\" name=\"auth_permission_content_type_id_codename_01ab375a_uniq\">\n      <ObjectId>16868</ObjectId>\n      <ColNames>content_type_id\ncodename</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <index id=\"77\" parent=\"34\" name=\"auth_permission_content_type_id_2f476e4b\">\n      <ObjectId>16870</ObjectId>\n      <ColNames>content_type_id</ColNames>\n    </index>\n    <key id=\"78\" parent=\"34\" name=\"auth_permission_pkey\">\n      <ObjectId>16818</ObjectId>\n      <ColNames>id</ColNames>\n      <UnderlyingIndexName>auth_permission_pkey</UnderlyingIndexName>\n      <Primary>1</Primary>\n    </key>\n    <key id=\"79\" parent=\"34\" name=\"auth_permission_content_type_id_codename_01ab375a_uniq\">\n      <ObjectId>16869</ObjectId>\n      <ColNames>content_type_id\ncodename</ColNames>\n      <UnderlyingIndexName>auth_permission_content_type_id_codename_01ab375a_uniq</UnderlyingIndexName>\n    </key>\n    <foreign-key id=\"80\" parent=\"34\" name=\"auth_permission_content_type_id_2f476e4b_fk_django_co\">\n      <ObjectId>16863</ObjectId>\n      <Deferrable>1</Deferrable>\n      <InitiallyDeferred>1</InitiallyDeferred>\n      <ColNames>content_type_id</ColNames>\n      <RefTableId>16803</RefTableId>\n      <RefColPositions>1</RefColPositions>\n      <RefTableName>django_content_type</RefTableName>\n      <RefKeyName>django_content_type_pkey</RefKeyName>\n      <RefColNames>id</RefColNames>\n    </foreign-key>\n    <column id=\"81\" parent=\"35\" name=\"id\">\n      <Position>1</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <DefaultExpression>nextval(&apos;auth_user_id_seq&apos;::regclass)</DefaultExpression>\n      <TypeId>23</TypeId>\n      <SequenceName>auth_user_id_seq</SequenceName>\n    </column>\n    <column id=\"82\" parent=\"35\" name=\"password\">\n      <Position>2</Position>\n      <DataType>varchar(128)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <column id=\"83\" parent=\"35\" name=\"last_login\">\n      <Position>3</Position>\n      <DataType>timestamp with time zone|0s</DataType>\n      <StateNumber>989</StateNumber>\n      <TypeId>1184</TypeId>\n    </column>\n    <column id=\"84\" parent=\"35\" name=\"is_superuser\">\n      <Position>4</Position>\n      <DataType>boolean|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <TypeId>16</TypeId>\n    </column>\n    <column id=\"85\" parent=\"35\" name=\"username\">\n      <Position>5</Position>\n      <DataType>varchar(150)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>993</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <column id=\"86\" parent=\"35\" name=\"first_name\">\n      <Position>6</Position>\n      <DataType>varchar(30)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <column id=\"87\" parent=\"35\" name=\"last_name\">\n      <Position>7</Position>\n      <DataType>varchar(150)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>995</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <column id=\"88\" parent=\"35\" name=\"email\">\n      <Position>8</Position>\n      <DataType>varchar(254)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>986</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <column id=\"89\" parent=\"35\" name=\"is_staff\">\n      <Position>9</Position>\n      <DataType>boolean|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <TypeId>16</TypeId>\n    </column>\n    <column id=\"90\" parent=\"35\" name=\"is_active\">\n      <Position>10</Position>\n      <DataType>boolean|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <TypeId>16</TypeId>\n    </column>\n    <column id=\"91\" parent=\"35\" name=\"date_joined\">\n      <Position>11</Position>\n      <DataType>timestamp with time zone|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <TypeId>1184</TypeId>\n    </column>\n    <index id=\"92\" parent=\"35\" name=\"auth_user_pkey\">\n      <ObjectId>16843</ObjectId>\n      <ColNames>id</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <index id=\"93\" parent=\"35\" name=\"auth_user_username_key\">\n      <ObjectId>16939</ObjectId>\n      <ColNames>username</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <index id=\"94\" parent=\"35\" name=\"auth_user_username_6821ab7c_like\">\n      <ObjectId>16941</ObjectId>\n      <ColNames>username</ColNames>\n    </index>\n    <key id=\"95\" parent=\"35\" name=\"auth_user_pkey\">\n      <ObjectId>16844</ObjectId>\n      <ColNames>id</ColNames>\n      <UnderlyingIndexName>auth_user_pkey</UnderlyingIndexName>\n      <Primary>1</Primary>\n    </key>\n    <key id=\"96\" parent=\"35\" name=\"auth_user_username_key\">\n      <ObjectId>16940</ObjectId>\n      <ColNames>username</ColNames>\n      <UnderlyingIndexName>auth_user_username_key</UnderlyingIndexName>\n    </key>\n    <column id=\"97\" parent=\"36\" name=\"id\">\n      <Position>1</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <DefaultExpression>nextval(&apos;auth_user_groups_id_seq&apos;::regclass)</DefaultExpression>\n      <TypeId>23</TypeId>\n      <SequenceName>auth_user_groups_id_seq</SequenceName>\n    </column>\n    <column id=\"98\" parent=\"36\" name=\"user_id\">\n      <Position>2</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <TypeId>23</TypeId>\n    </column>\n    <column id=\"99\" parent=\"36\" name=\"group_id\">\n      <Position>3</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <TypeId>23</TypeId>\n    </column>\n    <index id=\"100\" parent=\"36\" name=\"auth_user_groups_pkey\">\n      <ObjectId>16853</ObjectId>\n      <ColNames>id</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <index id=\"101\" parent=\"36\" name=\"auth_user_groups_user_id_group_id_94350c0c_uniq\">\n      <ObjectId>16897</ObjectId>\n      <ColNames>user_id\ngroup_id</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <index id=\"102\" parent=\"36\" name=\"auth_user_groups_user_id_6a12ed8b\">\n      <ObjectId>16899</ObjectId>\n      <ColNames>user_id</ColNames>\n    </index>\n    <index id=\"103\" parent=\"36\" name=\"auth_user_groups_group_id_97559544\">\n      <ObjectId>16900</ObjectId>\n      <ColNames>group_id</ColNames>\n    </index>\n    <key id=\"104\" parent=\"36\" name=\"auth_user_groups_pkey\">\n      <ObjectId>16854</ObjectId>\n      <ColNames>id</ColNames>\n      <UnderlyingIndexName>auth_user_groups_pkey</UnderlyingIndexName>\n      <Primary>1</Primary>\n    </key>\n    <key id=\"105\" parent=\"36\" name=\"auth_user_groups_user_id_group_id_94350c0c_uniq\">\n      <ObjectId>16898</ObjectId>\n      <ColNames>user_id\ngroup_id</ColNames>\n      <UnderlyingIndexName>auth_user_groups_user_id_group_id_94350c0c_uniq</UnderlyingIndexName>\n    </key>\n    <foreign-key id=\"106\" parent=\"36\" name=\"auth_user_groups_user_id_6a12ed8b_fk_auth_user_id\">\n      <ObjectId>16887</ObjectId>\n      <Deferrable>1</Deferrable>\n      <InitiallyDeferred>1</InitiallyDeferred>\n      <ColNames>user_id</ColNames>\n      <RefTableId>16839</RefTableId>\n      <RefColPositions>1</RefColPositions>\n      <RefTableName>auth_user</RefTableName>\n      <RefKeyName>auth_user_pkey</RefKeyName>\n      <RefColNames>id</RefColNames>\n    </foreign-key>\n    <foreign-key id=\"107\" parent=\"36\" name=\"auth_user_groups_group_id_97559544_fk_auth_group_id\">\n      <ObjectId>16892</ObjectId>\n      <Deferrable>1</Deferrable>\n      <InitiallyDeferred>1</InitiallyDeferred>\n      <ColNames>group_id</ColNames>\n      <RefTableId>16821</RefTableId>\n      <RefColPositions>1</RefColPositions>\n      <RefTableName>auth_group</RefTableName>\n      <RefKeyName>auth_group_pkey</RefKeyName>\n      <RefColNames>id</RefColNames>\n    </foreign-key>\n    <column id=\"108\" parent=\"37\" name=\"id\">\n      <Position>1</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <DefaultExpression>nextval(&apos;auth_user_user_permissions_id_seq&apos;::regclass)</DefaultExpression>\n      <TypeId>23</TypeId>\n      <SequenceName>auth_user_user_permissions_id_seq</SequenceName>\n    </column>\n    <column id=\"109\" parent=\"37\" name=\"user_id\">\n      <Position>2</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <TypeId>23</TypeId>\n    </column>\n    <column id=\"110\" parent=\"37\" name=\"permission_id\">\n      <Position>3</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>977</StateNumber>\n      <TypeId>23</TypeId>\n    </column>\n    <index id=\"111\" parent=\"37\" name=\"auth_user_user_permissions_pkey\">\n      <ObjectId>16861</ObjectId>\n      <ColNames>id</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <index id=\"112\" parent=\"37\" name=\"auth_user_user_permissions_user_id_permission_id_14a6b632_uniq\">\n      <ObjectId>16911</ObjectId>\n      <ColNames>user_id\npermission_id</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <index id=\"113\" parent=\"37\" name=\"auth_user_user_permissions_user_id_a95ead1b\">\n      <ObjectId>16913</ObjectId>\n      <ColNames>user_id</ColNames>\n    </index>\n    <index id=\"114\" parent=\"37\" name=\"auth_user_user_permissions_permission_id_1fbb5f2c\">\n      <ObjectId>16914</ObjectId>\n      <ColNames>permission_id</ColNames>\n    </index>\n    <key id=\"115\" parent=\"37\" name=\"auth_user_user_permissions_pkey\">\n      <ObjectId>16862</ObjectId>\n      <ColNames>id</ColNames>\n      <UnderlyingIndexName>auth_user_user_permissions_pkey</UnderlyingIndexName>\n      <Primary>1</Primary>\n    </key>\n    <key id=\"116\" parent=\"37\" name=\"auth_user_user_permissions_user_id_permission_id_14a6b632_uniq\">\n      <ObjectId>16912</ObjectId>\n      <ColNames>user_id\npermission_id</ColNames>\n      <UnderlyingIndexName>auth_user_user_permissions_user_id_permission_id_14a6b632_uniq</UnderlyingIndexName>\n    </key>\n    <foreign-key id=\"117\" parent=\"37\" name=\"auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id\">\n      <ObjectId>16901</ObjectId>\n      <Deferrable>1</Deferrable>\n      <InitiallyDeferred>1</InitiallyDeferred>\n      <ColNames>user_id</ColNames>\n      <RefTableId>16839</RefTableId>\n      <RefColPositions>1</RefColPositions>\n      <RefTableName>auth_user</RefTableName>\n      <RefKeyName>auth_user_pkey</RefKeyName>\n      <RefColNames>id</RefColNames>\n    </foreign-key>\n    <foreign-key id=\"118\" parent=\"37\" name=\"auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm\">\n      <ObjectId>16906</ObjectId>\n      <Deferrable>1</Deferrable>\n      <InitiallyDeferred>1</InitiallyDeferred>\n      <ColNames>permission_id</ColNames>\n      <RefTableId>16813</RefTableId>\n      <RefColPositions>1</RefColPositions>\n      <RefTableName>auth_permission</RefTableName>\n      <RefKeyName>auth_permission_pkey</RefKeyName>\n      <RefColNames>id</RefColNames>\n    </foreign-key>\n    <column id=\"119\" parent=\"38\" name=\"id\">\n      <Position>1</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>979</StateNumber>\n      <DefaultExpression>nextval(&apos;django_admin_log_id_seq&apos;::regclass)</DefaultExpression>\n      <TypeId>23</TypeId>\n      <SequenceName>django_admin_log_id_seq</SequenceName>\n    </column>\n    <column id=\"120\" parent=\"38\" name=\"action_time\">\n      <Position>2</Position>\n      <DataType>timestamp with time zone|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>979</StateNumber>\n      <TypeId>1184</TypeId>\n    </column>\n    <column id=\"121\" parent=\"38\" name=\"object_id\">\n      <Position>3</Position>\n      <DataType>text|0s</DataType>\n      <StateNumber>979</StateNumber>\n      <TypeId>25</TypeId>\n    </column>\n    <column id=\"122\" parent=\"38\" name=\"object_repr\">\n      <Position>4</Position>\n      <DataType>varchar(200)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>979</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <column id=\"123\" parent=\"38\" name=\"action_flag\">\n      <Position>5</Position>\n      <DataType>smallint|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>979</StateNumber>\n      <TypeId>21</TypeId>\n    </column>\n    <column id=\"124\" parent=\"38\" name=\"change_message\">\n      <Position>6</Position>\n      <DataType>text|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>979</StateNumber>\n      <TypeId>25</TypeId>\n    </column>\n    <column id=\"125\" parent=\"38\" name=\"content_type_id\">\n      <Position>7</Position>\n      <DataType>integer|0s</DataType>\n      <StateNumber>979</StateNumber>\n      <TypeId>23</TypeId>\n    </column>\n    <column id=\"126\" parent=\"38\" name=\"user_id\">\n      <Position>8</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>979</StateNumber>\n      <TypeId>23</TypeId>\n    </column>\n    <index id=\"127\" parent=\"38\" name=\"django_admin_log_pkey\">\n      <ObjectId>16925</ObjectId>\n      <ColNames>id</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <index id=\"128\" parent=\"38\" name=\"django_admin_log_content_type_id_c4bce8eb\">\n      <ObjectId>16937</ObjectId>\n      <ColNames>content_type_id</ColNames>\n    </index>\n    <index id=\"129\" parent=\"38\" name=\"django_admin_log_user_id_c564eba6\">\n      <ObjectId>16938</ObjectId>\n      <ColNames>user_id</ColNames>\n    </index>\n    <key id=\"130\" parent=\"38\" name=\"django_admin_log_pkey\">\n      <ObjectId>16926</ObjectId>\n      <ColNames>id</ColNames>\n      <UnderlyingIndexName>django_admin_log_pkey</UnderlyingIndexName>\n      <Primary>1</Primary>\n    </key>\n    <foreign-key id=\"131\" parent=\"38\" name=\"django_admin_log_content_type_id_c4bce8eb_fk_django_co\">\n      <ObjectId>16927</ObjectId>\n      <Deferrable>1</Deferrable>\n      <InitiallyDeferred>1</InitiallyDeferred>\n      <ColNames>content_type_id</ColNames>\n      <RefTableId>16803</RefTableId>\n      <RefColPositions>1</RefColPositions>\n      <RefTableName>django_content_type</RefTableName>\n      <RefKeyName>django_content_type_pkey</RefKeyName>\n      <RefColNames>id</RefColNames>\n    </foreign-key>\n    <foreign-key id=\"132\" parent=\"38\" name=\"django_admin_log_user_id_c564eba6_fk_auth_user_id\">\n      <ObjectId>16932</ObjectId>\n      <Deferrable>1</Deferrable>\n      <InitiallyDeferred>1</InitiallyDeferred>\n      <ColNames>user_id</ColNames>\n      <RefTableId>16839</RefTableId>\n      <RefColPositions>1</RefColPositions>\n      <RefTableName>auth_user</RefTableName>\n      <RefKeyName>auth_user_pkey</RefKeyName>\n      <RefColNames>id</RefColNames>\n    </foreign-key>\n    <check id=\"133\" parent=\"38\" name=\"django_admin_log_action_flag_check\">\n      <ObjectId>16921</ObjectId>\n      <ColNames>action_flag</ColNames>\n      <Predicate>action_flag &gt;= 0</Predicate>\n    </check>\n    <column id=\"134\" parent=\"39\" name=\"id\">\n      <Position>1</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>975</StateNumber>\n      <DefaultExpression>nextval(&apos;django_content_type_id_seq&apos;::regclass)</DefaultExpression>\n      <TypeId>23</TypeId>\n      <SequenceName>django_content_type_id_seq</SequenceName>\n    </column>\n    <column id=\"135\" parent=\"39\" name=\"app_label\">\n      <Position>3</Position>\n      <DataType>varchar(100)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>975</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <column id=\"136\" parent=\"39\" name=\"model\">\n      <Position>4</Position>\n      <DataType>varchar(100)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>975</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <index id=\"137\" parent=\"39\" name=\"django_content_type_pkey\">\n      <ObjectId>16807</ObjectId>\n      <ColNames>id</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <index id=\"138\" parent=\"39\" name=\"django_content_type_app_label_model_76bd3d3b_uniq\">\n      <ObjectId>16809</ObjectId>\n      <ColNames>app_label\nmodel</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <key id=\"139\" parent=\"39\" name=\"django_content_type_pkey\">\n      <ObjectId>16808</ObjectId>\n      <ColNames>id</ColNames>\n      <UnderlyingIndexName>django_content_type_pkey</UnderlyingIndexName>\n      <Primary>1</Primary>\n    </key>\n    <key id=\"140\" parent=\"39\" name=\"django_content_type_app_label_model_76bd3d3b_uniq\">\n      <ObjectId>16810</ObjectId>\n      <ColNames>app_label\nmodel</ColNames>\n      <UnderlyingIndexName>django_content_type_app_label_model_76bd3d3b_uniq</UnderlyingIndexName>\n    </key>\n    <column id=\"141\" parent=\"40\" name=\"id\">\n      <Position>1</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>974</StateNumber>\n      <DefaultExpression>nextval(&apos;django_migrations_id_seq&apos;::regclass)</DefaultExpression>\n      <TypeId>23</TypeId>\n      <SequenceName>django_migrations_id_seq</SequenceName>\n    </column>\n    <column id=\"142\" parent=\"40\" name=\"app\">\n      <Position>2</Position>\n      <DataType>varchar(255)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>974</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <column id=\"143\" parent=\"40\" name=\"name\">\n      <Position>3</Position>\n      <DataType>varchar(255)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>974</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <column id=\"144\" parent=\"40\" name=\"applied\">\n      <Position>4</Position>\n      <DataType>timestamp with time zone|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>974</StateNumber>\n      <TypeId>1184</TypeId>\n    </column>\n    <index id=\"145\" parent=\"40\" name=\"django_migrations_pkey\">\n      <ObjectId>16799</ObjectId>\n      <ColNames>id</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <key id=\"146\" parent=\"40\" name=\"django_migrations_pkey\">\n      <ObjectId>16800</ObjectId>\n      <ColNames>id</ColNames>\n      <UnderlyingIndexName>django_migrations_pkey</UnderlyingIndexName>\n      <Primary>1</Primary>\n    </key>\n    <column id=\"147\" parent=\"41\" name=\"session_key\">\n      <Position>1</Position>\n      <DataType>varchar(40)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>999</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <column id=\"148\" parent=\"41\" name=\"session_data\">\n      <Position>2</Position>\n      <DataType>text|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>999</StateNumber>\n      <TypeId>25</TypeId>\n    </column>\n    <column id=\"149\" parent=\"41\" name=\"expire_date\">\n      <Position>3</Position>\n      <DataType>timestamp with time zone|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>999</StateNumber>\n      <TypeId>1184</TypeId>\n    </column>\n    <index id=\"150\" parent=\"41\" name=\"django_session_pkey\">\n      <ObjectId>16973</ObjectId>\n      <ColNames>session_key</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <index id=\"151\" parent=\"41\" name=\"django_session_session_key_c0390e0f_like\">\n      <ObjectId>16975</ObjectId>\n      <ColNames>session_key</ColNames>\n    </index>\n    <index id=\"152\" parent=\"41\" name=\"django_session_expire_date_a5c62663\">\n      <ObjectId>16976</ObjectId>\n      <ColNames>expire_date</ColNames>\n    </index>\n    <key id=\"153\" parent=\"41\" name=\"django_session_pkey\">\n      <ObjectId>16974</ObjectId>\n      <ColNames>session_key</ColNames>\n      <UnderlyingIndexName>django_session_pkey</UnderlyingIndexName>\n      <Primary>1</Primary>\n    </key>\n    <column id=\"154\" parent=\"42\" name=\"id\">\n      <Position>1</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>997</StateNumber>\n      <DefaultExpression>nextval(&apos;polls_choice_id_seq&apos;::regclass)</DefaultExpression>\n      <TypeId>23</TypeId>\n      <SequenceName>polls_choice_id_seq</SequenceName>\n    </column>\n    <column id=\"155\" parent=\"42\" name=\"choice_text\">\n      <Position>2</Position>\n      <DataType>varchar(200)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>997</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <column id=\"156\" parent=\"42\" name=\"votes\">\n      <Position>3</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>997</StateNumber>\n      <TypeId>23</TypeId>\n    </column>\n    <column id=\"157\" parent=\"42\" name=\"question_id\">\n      <Position>4</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>997</StateNumber>\n      <TypeId>23</TypeId>\n    </column>\n    <index id=\"158\" parent=\"42\" name=\"polls_choice_pkey\">\n      <ObjectId>16951</ObjectId>\n      <ColNames>id</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <index id=\"159\" parent=\"42\" name=\"polls_choice_question_id_c5b4b260\">\n      <ObjectId>16961</ObjectId>\n      <ColNames>question_id</ColNames>\n    </index>\n    <key id=\"160\" parent=\"42\" name=\"polls_choice_pkey\">\n      <ObjectId>16952</ObjectId>\n      <ColNames>id</ColNames>\n      <UnderlyingIndexName>polls_choice_pkey</UnderlyingIndexName>\n      <Primary>1</Primary>\n    </key>\n    <foreign-key id=\"161\" parent=\"42\" name=\"polls_choice_question_id_c5b4b260_fk_polls_question_id\">\n      <ObjectId>16962</ObjectId>\n      <Deferrable>1</Deferrable>\n      <InitiallyDeferred>1</InitiallyDeferred>\n      <ColNames>question_id</ColNames>\n      <RefTableId>16955</RefTableId>\n      <RefColPositions>1</RefColPositions>\n      <RefTableName>polls_question</RefTableName>\n      <RefKeyName>polls_question_pkey</RefKeyName>\n      <RefColNames>id</RefColNames>\n    </foreign-key>\n    <column id=\"162\" parent=\"43\" name=\"id\">\n      <Position>1</Position>\n      <DataType>integer|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>997</StateNumber>\n      <DefaultExpression>nextval(&apos;polls_question_id_seq&apos;::regclass)</DefaultExpression>\n      <TypeId>23</TypeId>\n      <SequenceName>polls_question_id_seq</SequenceName>\n    </column>\n    <column id=\"163\" parent=\"43\" name=\"question_text\">\n      <Position>2</Position>\n      <DataType>varchar(200)|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>997</StateNumber>\n      <TypeId>1043</TypeId>\n    </column>\n    <column id=\"164\" parent=\"43\" name=\"pub_date\">\n      <Position>3</Position>\n      <DataType>timestamp with time zone|0s</DataType>\n      <NotNull>1</NotNull>\n      <StateNumber>997</StateNumber>\n      <TypeId>1184</TypeId>\n    </column>\n    <index id=\"165\" parent=\"43\" name=\"polls_question_pkey\">\n      <ObjectId>16959</ObjectId>\n      <ColNames>id</ColNames>\n      <Unique>1</Unique>\n    </index>\n    <key id=\"166\" parent=\"43\" name=\"polls_question_pkey\">\n      <ObjectId>16960</ObjectId>\n      <ColNames>id</ColNames>\n      <UnderlyingIndexName>polls_question_pkey</UnderlyingIndexName>\n      <Primary>1</Primary>\n    </key>\n  </database-model>\n</dataSource>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/dataSources/dd8d1b95-fc68-4bb7-af2c-b8b19b879e12.xml	(date 1534587343000)
++++ .idea/dataSources/dd8d1b95-fc68-4bb7-af2c-b8b19b879e12.xml	(date 1534559736000)
+@@ -1,18 +1,21 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <dataSource name="sume@localhost">
+-  <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.9">
++  <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.10">
+     <root id="1">
+       <ServerVersion>9.6.9</ServerVersion>
+     </root>
+     <database id="2" parent="1" name="gogs">
+       <ObjectId>16384</ObjectId>
++      <Owner>postgres</Owner>
+     </database>
+     <database id="3" parent="1" name="postgres">
+       <ObjectId>12443</ObjectId>
+       <Comment>default administrative connection database</Comment>
++      <Owner>postgres</Owner>
+     </database>
+     <database id="4" parent="1" name="sume">
+       <ObjectId>16789</ObjectId>
++      <Owner>postgres</Owner>
+       <IntrospectionStateNumber>105</IntrospectionStateNumber>
+       <Current>1</Current>
+       <Visible>1</Visible>
+@@ -35,25 +38,31 @@
+     </role>
+     <schema id="7" parent="4" name="information_schema">
+       <ObjectId>12155</ObjectId>
++      <Owner>postgres</Owner>
+     </schema>
+     <schema id="8" parent="4" name="pg_catalog">
+       <ObjectId>11</ObjectId>
+       <Comment>system catalog schema</Comment>
++      <Owner>postgres</Owner>
+     </schema>
+     <schema id="9" parent="4" name="pg_temp_1">
+       <ObjectId>11848</ObjectId>
++      <Owner>postgres</Owner>
+     </schema>
+     <schema id="10" parent="4" name="pg_toast">
+       <ObjectId>99</ObjectId>
+       <Comment>reserved schema for TOAST tables</Comment>
++      <Owner>postgres</Owner>
+     </schema>
+     <schema id="11" parent="4" name="pg_toast_temp_1">
+       <ObjectId>11849</ObjectId>
++      <Owner>postgres</Owner>
+     </schema>
+     <schema id="12" parent="4" name="public">
+       <ObjectId>2200</ObjectId>
+       <Comment>standard public schema</Comment>
+-      <IntrospectionTimestamp>2018-08-05.19:09:49.209</IntrospectionTimestamp>
++      <Owner>postgres</Owner>
++      <IntrospectionTimestamp>2018-08-18.09:35:36.010</IntrospectionTimestamp>
+       <IntrospectionStateNumber>2066</IntrospectionStateNumber>
+       <Current>1</Current>
+       <Visible>1</Visible>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"7466d9f8-0dda-437d-8da1-443b62ec11f5\" name=\"Default\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources/dd8d1b95-fc68-4bb7-af2c-b8b19b879e12.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/dataSources/dd8d1b95-fc68-4bb7-af2c-b8b19b879e12.xml\" afterDir=\"false\" />\n    </list>\n    <option name=\"EXCLUDED_CONVERTED_TO_IGNORED\" value=\"true\" />\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"CoverageDataManager\">\n    <SUITE FILE_PATH=\"coverage/sume$Test__app_tests_database_seeder_UserSeederTest_UserSeederTest_test_run.coverage\" NAME=\"Test: app.tests.database.seeder.UserSeederTest.UserSeederTest.test_run Coverage Results\" MODIFIED=\"1534046679400\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"\" />\n    <SUITE FILE_PATH=\"coverage/sume$tests.coverage\" NAME=\"tests Coverage Results\" MODIFIED=\"1534064852919\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/app\" />\n    <SUITE FILE_PATH=\"coverage/sume$Test__app_tests_TestC_test_abc.coverage\" NAME=\"Test: app.tests.TestC.test_abc Coverage Results\" MODIFIED=\"1534048427723\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"\" />\n    <SUITE FILE_PATH=\"coverage/sume$Test__app_tests_database_seeder_UserSeederTest_UserSeederTest.coverage\" NAME=\"Test: app.tests.database.seeder.UserSeederTest.UserSeederTest Coverage Results\" MODIFIED=\"1534044873763\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"\" />\n    <SUITE FILE_PATH=\"coverage/sume$Test__app_tests_database_seeder_Test_TestC_test_abc.coverage\" NAME=\"Test: app.tests.database.seeder.Test.TestC.test_abc Coverage Results\" MODIFIED=\"1534048037790\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"\" />\n    <SUITE FILE_PATH=\"coverage/sume$Test__app_tests_database_seeder_UserSeeder_UserSeederTest_test_generate_user.coverage\" NAME=\"Test: app.tests.database.seeder.UserSeeder.UserSeederTest.test_generate_user Coverage Results\" MODIFIED=\"1534077072595\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"\" />\n    <SUITE FILE_PATH=\"coverage/sume$Unittests_for_UserSeederTest_UserSeederTest_test_run.coverage\" NAME=\"Unittests for UserSeederTest.UserSeederTest.test_run Coverage Results\" MODIFIED=\"1534044841124\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/app/tests/database/seeder\" />\n    <SUITE FILE_PATH=\"coverage/sume$Test__app_tests_TestAbc_test_abc.coverage\" NAME=\"Test: app.tests.TestAbc.test_abc Coverage Results\" MODIFIED=\"1534068976269\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"\" />\n    <SUITE FILE_PATH=\"coverage/sume$UserSeeder.coverage\" NAME=\"UserSeeder Coverage Results\" MODIFIED=\"1534064689910\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/app/database/seeder\" />\n    <SUITE FILE_PATH=\"coverage/sume$Test__app_tests_TestAbc.coverage\" NAME=\"Test: app.tests.TestAbc Coverage Results\" MODIFIED=\"1534066106122\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"\" />\n    <SUITE FILE_PATH=\"coverage/sume$Test__dlnn_tests.coverage\" NAME=\"Test: dlnn.tests Coverage Results\" MODIFIED=\"1533472467028\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"coverage.py\" COVERAGE_BY_TEST_ENABLED=\"true\" COVERAGE_TRACING_ENABLED=\"false\" WORKING_DIRECTORY=\"$PROJECT_DIR$/dlnn/tests\" />\n  </component>\n  <component name=\"DatabaseView\">\n    <option name=\"SHOW_INTERMEDIATE\" value=\"true\" />\n    <option name=\"GROUP_DATA_SOURCES\" value=\"true\" />\n    <option name=\"GROUP_SCHEMA\" value=\"true\" />\n    <option name=\"GROUP_CONTENTS\" value=\"false\" />\n    <option name=\"SORT_POSITIONED\" value=\"false\" />\n    <option name=\"SHOW_EMPTY_GROUPS\" value=\"false\" />\n    <option name=\"AUTO_SCROLL_FROM_SOURCE\" value=\"false\" />\n    <option name=\"HIDDEN_KINDS\">\n      <set />\n    </option>\n    <expand />\n    <select />\n  </component>\n  <component name=\"FUSProjectUsageTrigger\">\n    <session id=\"-1712375414\">\n      <usages-collector id=\"statistics.lifecycle.project\">\n        <counts>\n          <entry key=\"project.closed\" value=\"1\" />\n          <entry key=\"project.open.time.7\" value=\"1\" />\n          <entry key=\"project.opened\" value=\"1\" />\n        </counts>\n      </usages-collector>\n      <usages-collector id=\"statistics.file.extensions.open\">\n        <counts>\n          <entry key=\"env\" value=\"1\" />\n          <entry key=\"html\" value=\"5\" />\n          <entry key=\"txt\" value=\"2\" />\n        </counts>\n      </usages-collector>\n      <usages-collector id=\"statistics.file.types.open\">\n        <counts>\n          <entry key=\".env file\" value=\"1\" />\n          <entry key=\"HTML\" value=\"5\" />\n          <entry key=\"PLAIN_TEXT\" value=\"2\" />\n        </counts>\n      </usages-collector>\n      <usages-collector id=\"statistics.file.extensions.edit\">\n        <counts>\n          <entry key=\"txt\" value=\"13\" />\n        </counts>\n      </usages-collector>\n      <usages-collector id=\"statistics.file.types.edit\">\n        <counts>\n          <entry key=\"PLAIN_TEXT\" value=\"13\" />\n        </counts>\n      </usages-collector>\n    </session>\n  </component>\n  <component name=\"FileEditorManager\">\n    <leaf />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"HTML File\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"FindInProjectRecents\">\n    <findStrings>\n      <find>../../</find>\n      <find>dash</find>\n      <find>../</find>\n    </findStrings>\n    <replaceStrings>\n      <replace>/static/app/</replace>\n    </replaceStrings>\n  </component>\n  <component name=\"Git.Rebase.Settings\">\n    <option name=\"ONTO\" value=\"refs/heads/master\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\n      </map>\n    </option>\n  </component>\n  <component name=\"IdeDocumentHistory\">\n    <option name=\"CHANGED_PATHS\">\n      <list>\n        <option value=\"$PROJECT_DIR$/.gitignore\" />\n        <option value=\"$PROJECT_DIR$/sume/assets/app/css/style.css\" />\n        <option value=\"$PROJECT_DIR$/templates/layout/nav.html\" />\n        <option value=\"$PROJECT_DIR$/app/templates/app/login.html\" />\n        <option value=\"$PROJECT_DIR$/app/templates/app/register.html\" />\n        <option value=\"$PROJECT_DIR$/app/templates/app/user.html\" />\n        <option value=\"$PROJECT_DIR$/app/views.py\" />\n        <option value=\"$PROJECT_DIR$/app/urls.py\" />\n        <option value=\"$PROJECT_DIR$/templates/layout/sidebar.html\" />\n        <option value=\"$PROJECT_DIR$/templates/layout/base.html\" />\n        <option value=\"$PROJECT_DIR$/app/templates/app/index.html\" />\n        <option value=\"$PROJECT_DIR$/requirements.txt\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"JsBuildToolGruntFileManager\" detection-done=\"true\" sorting=\"DEFINITION_ORDER\" />\n  <component name=\"JsBuildToolPackageJson\" detection-done=\"true\" sorting=\"DEFINITION_ORDER\" />\n  <component name=\"JsFlowSettings\">\n    <service-enabled>true</service-enabled>\n    <exe-path />\n    <other-services-enabled>true</other-services-enabled>\n    <auto-save>true</auto-save>\n  </component>\n  <component name=\"JsGulpfileManager\">\n    <detection-done>true</detection-done>\n    <sorting>DEFINITION_ORDER</sorting>\n  </component>\n  <component name=\"NodePackageJsonFileManager\">\n    <packageJsonPaths>\n      <path value=\"$PROJECT_DIR$/sume/assets/app/bootstrap/package.json\" />\n      <path value=\"$PROJECT_DIR$/sume/assets/app/plugins/bower_components/Magnific-Popup-master/package.json\" />\n      <path value=\"$PROJECT_DIR$/sume/assets/app/plugins/bower_components/bootstrap-old/package.json\" />\n      <path value=\"$PROJECT_DIR$/sume/assets/app/plugins/bower_components/bootstrap-treeview-master/package.json\" />\n      <path value=\"$PROJECT_DIR$/sume/assets/app/plugins/bower_components/chartist-plugin-tooltip-master/package.json\" />\n      <path value=\"$PROJECT_DIR$/sume/assets/app/plugins/bower_components/custom-select/package.json\" />\n      <path value=\"$PROJECT_DIR$/sume/assets/app/plugins/bower_components/dropify/package.json\" />\n      <path value=\"$PROJECT_DIR$/sume/assets/app/plugins/bower_components/dropzone-master/package.json\" />\n      <path value=\"$PROJECT_DIR$/sume/assets/app/plugins/bower_components/flot/package.json\" />\n      <path value=\"$PROJECT_DIR$/sume/assets/app/plugins/bower_components/holderjs/package.json\" />\n      <path value=\"$PROJECT_DIR$/sume/assets/app/plugins/bower_components/jquery-asColor/package.json\" />\n      <path value=\"$PROJECT_DIR$/sume/assets/app/plugins/bower_components/jquery-asColorPicker-master/package.json\" />\n      <path value=\"$PROJECT_DIR$/sume/assets/app/plugins/bower_components/jquery-asGradient/package.json\" />\n      <path value=\"$PROJECT_DIR$/sume/assets/app/plugins/bower_components/morrisjs/package.json\" />\n      <path value=\"$PROJECT_DIR$/sume/assets/app/plugins/bower_components/node_modules/bootstrap/package.json\" />\n      <path value=\"$PROJECT_DIR$/sume/assets/app/plugins/bower_components/sidebar-nav/package.json\" />\n      <path value=\"$PROJECT_DIR$/sume/assets/app/plugins/bower_components/tablesaw-master/package.json\" />\n      <path value=\"$PROJECT_DIR$/sume/assets/app/plugins/bower_components/typeahead.js-master/package.json\" />\n    </packageJsonPaths>\n  </component>\n  <component name=\"ProjectFrameBounds\" extendedState=\"6\">\n    <option name=\"x\" value=\"12\" />\n    <option name=\"y\" value=\"19\" />\n    <option name=\"width\" value=\"1320\" />\n    <option name=\"height\" value=\"697\" />\n  </component>\n  <component name=\"ProjectInspectionProfilesVisibleTreeState\">\n    <entry key=\"Project Default\">\n      <profile-state>\n        <expanded-state>\n          <State />\n          <State>\n            <id>Python</id>\n          </State>\n        </expanded-state>\n        <selected-state>\n          <State>\n            <id>PyPackageRequirementsInspection</id>\n          </State>\n        </selected-state>\n      </profile-state>\n    </entry>\n  </component>\n  <component name=\"ProjectView\">\n    <navigator proportions=\"\" version=\"1\">\n      <foldersAlwaysOnTop value=\"true\" />\n    </navigator>\n    <panes>\n      <pane id=\"ProjectPane\">\n        <subPane>\n          <expand>\n            <path>\n              <item name=\"sume\" type=\"b2602c69:ProjectViewProjectNode\" />\n              <item name=\"sume\" type=\"462c0819:PsiDirectoryNode\" />\n            </path>\n          </expand>\n          <select />\n        </subPane>\n        <option name=\"show-excluded-files\" value=\"false\" />\n      </pane>\n      <pane id=\"Scope\" />\n      <pane id=\"Course\" />\n    </panes>\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"DefaultHtmlFileTemplate\" value=\"HTML File\" />\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\n    <property name=\"add_unversioned_files\" value=\"$PROJECT_DIR$/sume/.env\" />\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/sume/settings.py\" />\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\n    <property name=\"settings.editor.selected.configurable\" value=\"zielu.svntoolbox.prj.config\" />\n  </component>\n  <component name=\"PyConsoleOptionsProvider\">\n    <option name=\"myPythonConsoleState\">\n      <console-settings module-name=\"Django\" is-module-sdk=\"true\">\n        <option name=\"myUseModuleSdk\" value=\"true\" />\n        <option name=\"myModuleName\" value=\"Django\" />\n      </console-settings>\n    </option>\n  </component>\n  <component name=\"RunDashboard\">\n    <option name=\"ruleStates\">\n      <list>\n        <RuleState>\n          <option name=\"name\" value=\"ConfigurationTypeDashboardGroupingRule\" />\n        </RuleState>\n        <RuleState>\n          <option name=\"name\" value=\"StatusDashboardGroupingRule\" />\n        </RuleState>\n      </list>\n    </option>\n  </component>\n  <component name=\"RunManager\" selected=\"Django tests.Test: app.tests.database.seeder.UserSeeder.UserSeederTest.test_generate_user\">\n    <configuration name=\"Test: app.tests.TestAbc\" type=\"DjangoTestsConfigurationType\" factoryName=\"Django tests\" temporary=\"true\">\n      <module name=\"Django\" />\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\n      <option name=\"PARENT_ENVS\" value=\"true\" />\n      <envs>\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\n      </envs>\n      <option name=\"SDK_HOME\" value=\"\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\n      <option name=\"TARGET\" value=\"app.tests.TestAbc\" />\n      <option name=\"SETTINGS_FILE\" value=\"\" />\n      <option name=\"CUSTOM_SETTINGS\" value=\"false\" />\n      <option name=\"USE_OPTIONS\" value=\"false\" />\n      <option name=\"OPTIONS\" value=\"\" />\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Test: app.tests.TestAbc.test_abc\" type=\"DjangoTestsConfigurationType\" factoryName=\"Django tests\" temporary=\"true\">\n      <module name=\"Django\" />\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\n      <option name=\"PARENT_ENVS\" value=\"true\" />\n      <envs>\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\n      </envs>\n      <option name=\"SDK_HOME\" value=\"\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\n      <option name=\"TARGET\" value=\"app.tests.TestAbc.test_abc\" />\n      <option name=\"SETTINGS_FILE\" value=\"\" />\n      <option name=\"CUSTOM_SETTINGS\" value=\"false\" />\n      <option name=\"USE_OPTIONS\" value=\"false\" />\n      <option name=\"OPTIONS\" value=\"\" />\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Test: app.tests.TestC.test_abc\" type=\"DjangoTestsConfigurationType\" factoryName=\"Django tests\" temporary=\"true\">\n      <module name=\"Django\" />\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\n      <option name=\"PARENT_ENVS\" value=\"true\" />\n      <envs>\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\n      </envs>\n      <option name=\"SDK_HOME\" value=\"\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\n      <option name=\"TARGET\" value=\"app.tests.TestC.test_abc\" />\n      <option name=\"SETTINGS_FILE\" value=\"\" />\n      <option name=\"CUSTOM_SETTINGS\" value=\"false\" />\n      <option name=\"USE_OPTIONS\" value=\"false\" />\n      <option name=\"OPTIONS\" value=\"\" />\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Test: app.tests.database.seeder.Test.TestC.test_abc\" type=\"DjangoTestsConfigurationType\" factoryName=\"Django tests\" temporary=\"true\">\n      <module name=\"Django\" />\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\n      <option name=\"PARENT_ENVS\" value=\"true\" />\n      <envs>\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\n      </envs>\n      <option name=\"SDK_HOME\" value=\"\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\n      <option name=\"TARGET\" value=\"app.tests.database.seeder.Test.TestC.test_abc\" />\n      <option name=\"SETTINGS_FILE\" value=\"\" />\n      <option name=\"CUSTOM_SETTINGS\" value=\"false\" />\n      <option name=\"USE_OPTIONS\" value=\"false\" />\n      <option name=\"OPTIONS\" value=\"\" />\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Test: app.tests.database.seeder.UserSeeder.UserSeederTest.test_generate_user\" type=\"DjangoTestsConfigurationType\" factoryName=\"Django tests\" temporary=\"true\">\n      <module name=\"Django\" />\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\n      <option name=\"PARENT_ENVS\" value=\"true\" />\n      <envs>\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\n      </envs>\n      <option name=\"SDK_HOME\" value=\"\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\n      <EXTENSION ID=\"PythonCoverageRunConfigurationExtension\" runner=\"coverage.py\" />\n      <option name=\"TARGET\" value=\"app.tests.database.seeder.UserSeeder.UserSeederTest.test_generate_user\" />\n      <option name=\"SETTINGS_FILE\" value=\"\" />\n      <option name=\"CUSTOM_SETTINGS\" value=\"false\" />\n      <option name=\"USE_OPTIONS\" value=\"false\" />\n      <option name=\"OPTIONS\" value=\"\" />\n      <method v=\"2\" />\n    </configuration>\n    <list>\n      <item itemvalue=\"Django tests.Test: app.tests.database.seeder.Test.TestC.test_abc\" />\n      <item itemvalue=\"Django tests.Test: app.tests.TestC.test_abc\" />\n      <item itemvalue=\"Django tests.Test: app.tests.TestAbc.test_abc\" />\n      <item itemvalue=\"Django tests.Test: app.tests.TestAbc\" />\n      <item itemvalue=\"Django tests.Test: app.tests.database.seeder.UserSeeder.UserSeederTest.test_generate_user\" />\n    </list>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Django tests.Test: app.tests.database.seeder.UserSeeder.UserSeederTest.test_generate_user\" />\n        <item itemvalue=\"Django tests.Test: app.tests.TestAbc\" />\n        <item itemvalue=\"Django tests.Test: app.tests.TestAbc.test_abc\" />\n        <item itemvalue=\"Django tests.Test: app.tests.TestC.test_abc\" />\n        <item itemvalue=\"Django tests.Test: app.tests.database.seeder.Test.TestC.test_abc\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SvnConfiguration\">\n    <configuration />\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <created>1533454368607</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1533454368607</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"Update pytz\">\n      <created>1533946615442</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1533946615442</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"Rename to settings\">\n      <created>1533468059069</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1533468059069</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"Rename to settings\">\n      <created>1533468077561</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1533468077561</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"Add example environtment\">\n      <created>1533469221817</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1533469221817</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"Update settings\">\n      <created>1533469232077</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1533469232077</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"Add Static files directory\">\n      <created>1533469772699</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1533469772699</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"Add whiterose static file storage\">\n      <created>1533470795092</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1533470795092</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"Add dlnn module\">\n      <created>1533472706254</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1533472706254</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"Update gitignore\">\n      <created>1533472730827</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1533472730827</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"Remove setting\">\n      <created>1533596735435</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1533596735435</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"Fix model\">\n      <created>1533598546972</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1533598546972</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"Fix model\">\n      <created>1533598563446</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1533598563446</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"Add 0002 migration\">\n      <created>1533598673869</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1533598673869</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"Remove unnecessary generated\">\n      <created>1533598945959</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1533598945959</updated>\n    </task>\n    <task id=\"LOCAL-00015\" summary=\"Add gitignore module based\">\n      <created>1533598963270</created>\n      <option name=\"number\" value=\"00015\" />\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1533598963270</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"2\" />\n    <servers />\n  </component>\n  <component name=\"ToolWindowManager\">\n    <frame x=\"0\" y=\"22\" width=\"1366\" height=\"746\" extended-state=\"6\" />\n    <layout>\n      <window_info content_ui=\"combo\" id=\"Project\" order=\"0\" visible=\"true\" weight=\"0.21903323\" />\n      <window_info id=\"Structure\" order=\"1\" weight=\"0.25\" />\n      <window_info id=\"Favorites\" order=\"2\" side_tool=\"true\" />\n      <window_info anchor=\"bottom\" id=\"Message\" order=\"0\" />\n      <window_info anchor=\"bottom\" id=\"Find\" order=\"1\" />\n      <window_info anchor=\"bottom\" id=\"Run\" order=\"2\" />\n      <window_info anchor=\"bottom\" id=\"Debug\" order=\"3\" weight=\"0.4\" />\n      <window_info anchor=\"bottom\" id=\"Cvs\" order=\"4\" weight=\"0.25\" />\n      <window_info anchor=\"bottom\" id=\"Inspection\" order=\"5\" weight=\"0.4\" />\n      <window_info anchor=\"bottom\" id=\"TODO\" order=\"6\" />\n      <window_info active=\"true\" anchor=\"bottom\" id=\"Version Control\" order=\"7\" visible=\"true\" weight=\"0.7680921\" />\n      <window_info anchor=\"bottom\" id=\"Python Console\" order=\"8\" />\n      <window_info anchor=\"bottom\" id=\"Docker\" order=\"9\" show_stripe_button=\"false\" />\n      <window_info anchor=\"bottom\" id=\"Database Changes\" order=\"10\" />\n      <window_info anchor=\"bottom\" id=\"Regex Tester\" order=\"11\" />\n      <window_info anchor=\"bottom\" id=\"Terminal\" order=\"12\" weight=\"0.32894737\" />\n      <window_info anchor=\"bottom\" id=\"Event Log\" order=\"13\" side_tool=\"true\" weight=\"0.32894737\" />\n      <window_info anchor=\"right\" id=\"Commander\" internal_type=\"SLIDING\" order=\"0\" type=\"SLIDING\" weight=\"0.4\" />\n      <window_info anchor=\"right\" id=\"Ant Build\" order=\"1\" weight=\"0.25\" />\n      <window_info anchor=\"right\" content_ui=\"combo\" id=\"Hierarchy\" order=\"2\" weight=\"0.25\" />\n      <window_info anchor=\"right\" id=\"SciView\" order=\"3\" />\n      <window_info anchor=\"right\" id=\"Database\" order=\"4\" weight=\"0.32930514\" />\n    </layout>\n    <layout-to-restore>\n      <window_info active=\"true\" content_ui=\"combo\" id=\"Project\" order=\"0\" visible=\"true\" weight=\"0.21331316\" />\n      <window_info id=\"Structure\" order=\"1\" weight=\"0.25\" />\n      <window_info id=\"Favorites\" order=\"2\" side_tool=\"true\" />\n      <window_info anchor=\"bottom\" id=\"Message\" order=\"0\" />\n      <window_info anchor=\"bottom\" id=\"Find\" order=\"1\" sideWeight=\"0.49924356\" weight=\"0.32894737\" />\n      <window_info anchor=\"bottom\" id=\"Run\" order=\"2\" weight=\"0.38980263\" />\n      <window_info anchor=\"bottom\" id=\"Debug\" order=\"3\" weight=\"0.39967105\" />\n      <window_info anchor=\"bottom\" id=\"Cvs\" order=\"4\" weight=\"0.25\" />\n      <window_info anchor=\"bottom\" id=\"Inspection\" order=\"5\" weight=\"0.4\" />\n      <window_info anchor=\"bottom\" id=\"TODO\" order=\"6\" />\n      <window_info anchor=\"bottom\" id=\"Version Control\" order=\"7\" sideWeight=\"0.49621785\" weight=\"0.57894737\" />\n      <window_info anchor=\"bottom\" id=\"Database Changes\" order=\"8\" weight=\"0.32894737\" />\n      <window_info anchor=\"bottom\" id=\"Python Console\" order=\"9\" />\n      <window_info anchor=\"bottom\" id=\"Docker\" order=\"10\" show_stripe_button=\"false\" />\n      <window_info anchor=\"bottom\" id=\"Terminal\" order=\"11\" sideWeight=\"0.4977307\" weight=\"0.65296054\" />\n      <window_info anchor=\"bottom\" id=\"Event Log\" order=\"12\" sideWeight=\"0.50378215\" side_tool=\"true\" weight=\"0.57894737\" />\n      <window_info anchor=\"bottom\" id=\"Regex Tester\" order=\"13\" />\n      <window_info anchor=\"bottom\" id=\"Messages\" order=\"14\" />\n      <window_info anchor=\"bottom\" id=\"Database Console\" order=\"15\" weight=\"0.32894737\" />\n      <window_info anchor=\"right\" id=\"Commander\" internal_type=\"SLIDING\" order=\"0\" type=\"SLIDING\" weight=\"0.4\" />\n      <window_info anchor=\"right\" id=\"Ant Build\" order=\"1\" weight=\"0.25\" />\n      <window_info anchor=\"right\" content_ui=\"combo\" id=\"Hierarchy\" order=\"2\" weight=\"0.25\" />\n      <window_info anchor=\"right\" id=\"Database\" order=\"3\" weight=\"0.25037822\" />\n      <window_info anchor=\"right\" id=\"SciView\" order=\"4\" />\n    </layout-to-restore>\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"1\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"RECENTLY_FILTERED_USER_GROUPS\">\n                <collection />\n              </option>\n              <option name=\"RECENTLY_FILTERED_BRANCH_GROUPS\">\n                <collection />\n              </option>\n              <option name=\"COLUMN_ORDER\">\n                <list>\n                  <option value=\"0\" />\n                  <option value=\"1\" />\n                  <option value=\"2\" />\n                  <option value=\"3\" />\n                </list>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsContentAnnotationSettings\">\n    <option name=\"myLimit\" value=\"2678400000\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"Update pytz\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Update pytz\" />\n  </component>\n  <component name=\"editorHistoryManager\">\n    <entry file=\"file://$PROJECT_DIR$/db.sqlite3\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\" />\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/templates/layout/base-login.html\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"240\">\n          <caret line=\"16\" column=\"23\" selection-start-line=\"16\" selection-start-column=\"23\" selection-end-line=\"16\" selection-end-column=\"23\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/sume/assets/app/css/style.css\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"60\">\n          <caret column=\"487\" selection-start-column=\"487\" selection-end-column=\"487\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/templates/layout/nav.html\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"281\">\n          <caret line=\"227\" column=\"38\" selection-start-line=\"227\" selection-start-column=\"38\" selection-end-line=\"227\" selection-end-column=\"38\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/urls.py\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"165\">\n          <caret line=\"11\" column=\"39\" selection-start-line=\"11\" selection-start-column=\"39\" selection-end-line=\"11\" selection-end-column=\"39\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/templates/layout/sidebar.html\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"225\">\n          <caret line=\"33\" column=\"34\" selection-start-line=\"33\" selection-start-column=\"34\" selection-end-line=\"33\" selection-end-column=\"34\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/templates/layout/base.html\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"371\">\n          <caret line=\"44\" column=\"30\" lean-forward=\"true\" selection-start-line=\"44\" selection-start-column=\"30\" selection-end-line=\"44\" selection-end-column=\"30\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/templates/app/index.html\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"4515\">\n          <caret line=\"301\" column=\"6\" selection-start-line=\"301\" selection-start-column=\"6\" selection-end-line=\"301\" selection-end-column=\"6\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/models.py\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"45\">\n          <caret line=\"5\" column=\"26\" selection-start-line=\"5\" selection-start-column=\"26\" selection-end-line=\"5\" selection-end-column=\"26\" />\n          <folding>\n            <element signature=\"e#0#43#0\" expanded=\"true\" />\n          </folding>\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/migrations/0001_initial.py\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"45\">\n          <caret line=\"5\" selection-start-line=\"5\" selection-end-line=\"5\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/.gitignore\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"855\">\n          <caret line=\"57\" column=\"10\" selection-start-line=\"57\" selection-start-column=\"10\" selection-end-line=\"57\" selection-end-column=\"10\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/tensor.py\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"540\">\n          <caret line=\"41\" column=\"16\" selection-start-line=\"41\" selection-start-column=\"16\" selection-end-line=\"41\" selection-end-column=\"16\" />\n          <folding>\n            <element signature=\"e#0#37#0\" expanded=\"true\" />\n          </folding>\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/views.py\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"175\">\n          <caret line=\"17\" column=\"15\" selection-start-line=\"17\" selection-start-column=\"15\" selection-end-line=\"17\" selection-end-column=\"15\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/templates/app/detail.html\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\" />\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/templates/app/index2.html\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\" />\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/templates/app/login.html\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"559\">\n          <caret line=\"72\" column=\"6\" selection-start-line=\"72\" selection-start-column=\"6\" selection-end-line=\"73\" selection-end-column=\"14\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/templates/app/register.html\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"484\">\n          <caret line=\"53\" column=\"14\" selection-start-line=\"53\" selection-start-column=\"14\" selection-end-line=\"53\" selection-end-column=\"14\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/templates/app/user.html\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"124\">\n          <caret line=\"161\" column=\"40\" selection-start-line=\"161\" selection-start-column=\"40\" selection-end-line=\"161\" selection-end-column=\"40\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/.gitignore\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"15\">\n          <caret line=\"1\" selection-start-line=\"1\" selection-end-line=\"1\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/sume/.env\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"60\">\n          <caret line=\"4\" selection-start-line=\"4\" selection-end-line=\"4\" />\n        </state>\n      </provider>\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/app/migrations/0002_auto_20180807_0637.py\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\" />\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/requir.txt\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\" />\n    </entry>\n    <entry file=\"file://$PROJECT_DIR$/requirements.txt\">\n      <provider selected=\"true\" editor-type-id=\"text-editor\">\n        <state relative-caret-position=\"510\">\n          <caret line=\"34\" selection-start-line=\"34\" selection-end-line=\"34\" />\n        </state>\n      </provider>\n    </entry>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(date 1534587343000)
++++ .idea/workspace.xml	(date 1534587587000)
+@@ -1,15 +1,30 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="7466d9f8-0dda-437d-8da1-443b62ec11f5" name="Default" comment="">
++    <list default="true" id="7466d9f8-0dda-437d-8da1-443b62ec11f5" name="Default" comment="Add login message">
++      <change beforePath="$PROJECT_DIR$/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/views.py" afterDir="false" />
++    </list>
++    <list id="86fc94de-adcd-45b4-a1fb-ae259c8eeb10" name="Debug" comment="Debug">
++      <change beforePath="$PROJECT_DIR$/.idea/Django.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Django.iml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/dataSources/dd8d1b95-fc68-4bb7-af2c-b8b19b879e12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dd8d1b95-fc68-4bb7-af2c-b8b19b879e12.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/templates/app/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/app/login.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/templates/app/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/app/register.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/views.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/sume/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/sume/settings.py" afterDir="false" />
+     </list>
++    <ignored path="$PROJECT_DIR$/.idea/shelf/" />
+     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
++  <component name="ChangesViewManager">
++    <option name="groupingKeys">
++      <option value="directory" />
++    </option>
++  </component>
+   <component name="CoverageDataManager">
+     <SUITE FILE_PATH="coverage/sume$Test__app_tests_database_seeder_UserSeederTest_UserSeederTest_test_run.coverage" NAME="Test: app.tests.database.seeder.UserSeederTest.UserSeederTest.test_run Coverage Results" MODIFIED="1534046679400" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+     <SUITE FILE_PATH="coverage/sume$tests.coverage" NAME="tests Coverage Results" MODIFIED="1534064852919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+@@ -34,51 +49,195 @@
+     <option name="HIDDEN_KINDS">
+       <set />
+     </option>
+-    <expand />
++    <expand>
++      <path>
++        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
++        <item name="sume@localhost" type="feb32156:DbDataSourceImpl" />
++      </path>
++      <path>
++        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
++        <item name="sume@localhost" type="feb32156:DbDataSourceImpl" />
++        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
++      </path>
++      <path>
++        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
++        <item name="sume@localhost" type="feb32156:DbDataSourceImpl" />
++        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
++        <item name="sume: database" type="6d9b600a:PostgresImplModel$Database" />
++      </path>
++      <path>
++        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
++        <item name="sume@localhost" type="feb32156:DbDataSourceImpl" />
++        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
++        <item name="sume: database" type="6d9b600a:PostgresImplModel$Database" />
++        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
++      </path>
++      <path>
++        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
++        <item name="sume@localhost" type="feb32156:DbDataSourceImpl" />
++        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
++        <item name="sume: database" type="6d9b600a:PostgresImplModel$Database" />
++        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
++        <item name="public: schema" type="a16502c0:PostgresImplModel$Schema" />
++      </path>
++      <path>
++        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
++        <item name="sume@localhost" type="feb32156:DbDataSourceImpl" />
++        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
++        <item name="sume: database" type="6d9b600a:PostgresImplModel$Database" />
++        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
++        <item name="public: schema" type="a16502c0:PostgresImplModel$Schema" />
++        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
++      </path>
++    </expand>
+     <select />
+   </component>
++  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" module-name="Django" is-module-sdk="true">
++    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
++    <option name="myUseModuleSdk" value="true" />
++    <option name="myModuleName" value="Django" />
++  </component>
+   <component name="FUSProjectUsageTrigger">
+     <session id="-1712375414">
+       <usages-collector id="statistics.lifecycle.project">
+         <counts>
+-          <entry key="project.closed" value="1" />
+-          <entry key="project.open.time.7" value="1" />
+-          <entry key="project.opened" value="1" />
++          <entry key="project.closed" value="11" />
++          <entry key="project.open.time.0" value="1" />
++          <entry key="project.open.time.10" value="1" />
++          <entry key="project.open.time.21" value="1" />
++          <entry key="project.open.time.7" value="2" />
++          <entry key="project.open.time.8" value="2" />
++          <entry key="project.open.time.9" value="5" />
++          <entry key="project.opened" value="12" />
+         </counts>
+       </usages-collector>
+       <usages-collector id="statistics.file.extensions.open">
+         <counts>
+-          <entry key="env" value="1" />
+-          <entry key="html" value="5" />
++          <entry key="__init__" value="1" />
++          <entry key="app_dokumen" value="1" />
++          <entry key="auth_permission" value="1" />
++          <entry key="auth_user" value="9" />
++          <entry key="env" value="3" />
++          <entry key="gitignore" value="3" />
++          <entry key="gitkeep" value="1" />
++          <entry key="html" value="36" />
++          <entry key="iml" value="2" />
++          <entry key="kebutuhan hpp pak imam" value="1" />
++          <entry key="log" value="32" />
++          <entry key="meta" value="2" />
++          <entry key="png" value="1" />
++          <entry key="py" value="93" />
++          <entry key="pyi" value="1" />
+           <entry key="txt" value="2" />
++          <entry key="xml" value="1" />
+         </counts>
+       </usages-collector>
+       <usages-collector id="statistics.file.types.open">
+         <counts>
+-          <entry key=".env file" value="1" />
+-          <entry key="HTML" value="5" />
+-          <entry key="PLAIN_TEXT" value="2" />
++          <entry key=".env file" value="3" />
++          <entry key="Database Element" value="11" />
++          <entry key="Git file" value="3" />
++          <entry key="HTML" value="36" />
++          <entry key="IDEA_MODULE" value="2" />
++          <entry key="Image" value="1" />
++          <entry key="Log" value="32" />
++          <entry key="PLAIN_TEXT" value="7" />
++          <entry key="Python" value="93" />
++          <entry key="PythonStub" value="1" />
++          <entry key="XML" value="1" />
+         </counts>
+       </usages-collector>
+       <usages-collector id="statistics.file.extensions.edit">
+         <counts>
+-          <entry key="txt" value="13" />
++          <entry key="__init__" value="1" />
++          <entry key="cell" value="12" />
++          <entry key="dummy" value="28" />
++          <entry key="gitignore" value="10" />
++          <entry key="html" value="637" />
++          <entry key="log" value="26" />
++          <entry key="py" value="5337" />
++          <entry key="txt" value="1215" />
+         </counts>
+       </usages-collector>
+       <usages-collector id="statistics.file.types.edit">
+         <counts>
+-          <entry key="PLAIN_TEXT" value="13" />
++          <entry key="Git file" value="10" />
++          <entry key="HTML" value="637" />
++          <entry key="Log" value="26" />
++          <entry key="PLAIN_TEXT" value="1244" />
++          <entry key="Python" value="5337" />
++          <entry key="Scratch" value="12" />
+         </counts>
+       </usages-collector>
++      <usages-collector id="statistics.js.language.service.starts" />
+     </session>
+   </component>
+   <component name="FileEditorManager">
+-    <leaf />
++    <splitter split-orientation="horizontal" split-proportion="0.87356323">
++      <split-first>
++        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
++          <file pinned="false" current-in-tab="true">
++            <entry file="file://$PROJECT_DIR$/app/views.py">
++              <provider selected="true" editor-type-id="text-editor">
++                <state relative-caret-position="148">
++                  <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
++                  <folding>
++                    <element signature="e#0#13#0" expanded="true" />
++                    <marker date="1534587587042" expanded="true" signature="655:729" ph="..." />
++                  </folding>
++                </state>
++              </provider>
++            </entry>
++          </file>
++          <file pinned="false" current-in-tab="false">
++            <entry file="das://dd8d1b95-fc68-4bb7-af2c-b8b19b879e12/database/sume/schema/public/table/auth_user">
++              <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
++                <state>
++                  <filtering enabled="true" />
++                </state>
++              </provider>
++            </entry>
++          </file>
++          <file pinned="false" current-in-tab="false">
++            <entry file="file://$PROJECT_DIR$/app/app/utils/arrayutil.py">
++              <provider selected="true" editor-type-id="text-editor">
++                <state relative-caret-position="150">
++                  <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
++                </state>
++              </provider>
++            </entry>
++          </file>
++        </leaf>
++      </split-first>
++      <split-second>
++        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
++          <file pinned="false" current-in-tab="false">
++            <entry file="file://$PROJECT_DIR$/app/templates/app/register.html">
++              <provider selected="true" editor-type-id="text-editor">
++                <state relative-caret-position="1125">
++                  <caret line="75" column="9" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
++                </state>
++              </provider>
++            </entry>
++          </file>
++          <file pinned="false" current-in-tab="true">
++            <entry file="file://$PROJECT_DIR$/debug.log">
++              <provider selected="true" editor-type-id="LogFileEditorProvider">
++                <state relative-caret-position="435">
++                  <caret line="29" selection-start-line="29" selection-end-line="29" />
++                </state>
++              </provider>
++            </entry>
++          </file>
++        </leaf>
++      </split-second>
++    </splitter>
+   </component>
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
+         <option value="HTML File" />
++        <option value="Python Script" />
+       </list>
+     </option>
+   </component>
+@@ -87,9 +246,28 @@
+       <find>../../</find>
+       <find>dash</find>
+       <find>../</find>
++      <find>fix-he</find>
++      <find>BASE_DIR</find>
++      <find>form</find>
++      <find>&lt;form</find>
++      <find>Log</find>
++      <find>for</find>
++      <find>req</find>
++      <find>Authentication</find>
++      <find>BACKEND</find>
++      <find>Rememberme</find>
++      <find>.email</find>
++      <find>password</find>
++      <find>required</find>
++      <find>conf_conf</find>
++      <find>login.html</find>
++      <find>logger</find>
+     </findStrings>
+     <replaceStrings>
+       <replace>/static/app/</replace>
++      <replace>.username</replace>
++      <replace>password_conf</replace>
++      <replace>register.html</replace>
+     </replaceStrings>
+   </component>
+   <component name="Git.Rebase.Settings">
+@@ -97,27 +275,42 @@
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-    <option name="RECENT_BRANCH_BY_REPOSITORY">
+-      <map>
+-        <entry key="$PROJECT_DIR$" value="master" />
+-      </map>
+-    </option>
++    <option name="RESET_MODE" value="MIXED" />
+   </component>
+   <component name="IdeDocumentHistory">
+     <option name="CHANGED_PATHS">
+       <list>
+-        <option value="$PROJECT_DIR$/.gitignore" />
+         <option value="$PROJECT_DIR$/sume/assets/app/css/style.css" />
+         <option value="$PROJECT_DIR$/templates/layout/nav.html" />
+-        <option value="$PROJECT_DIR$/app/templates/app/login.html" />
+-        <option value="$PROJECT_DIR$/app/templates/app/register.html" />
+         <option value="$PROJECT_DIR$/app/templates/app/user.html" />
+-        <option value="$PROJECT_DIR$/app/views.py" />
+         <option value="$PROJECT_DIR$/app/urls.py" />
+         <option value="$PROJECT_DIR$/templates/layout/sidebar.html" />
+         <option value="$PROJECT_DIR$/templates/layout/base.html" />
++        <option value="$PROJECT_DIR$/requirements.txt" />
+         <option value="$PROJECT_DIR$/app/templates/app/index.html" />
+-        <option value="$PROJECT_DIR$/requirements.txt" />
++        <option value="$PROJECT_DIR$/app/migrations/0001_initial.py" />
++        <option value="$PROJECT_DIR$/app/app/forms/login.py" />
++        <option value="$PROJECT_DIR$/.gitignore" />
++        <option value="$PROJECT_DIR$/app/app/util.py" />
++        <option value="$PROJECT_DIR$/app/templates/tagutil.py" />
++        <option value="$PROJECT_DIR$/app/templates/app/tagutil.py" />
++        <option value="$PROJECT_DIR$/app/templates/app/tag.py" />
++        <option value="$PROJECT_DIR$/app/templatetags/arraytag.py" />
++        <option value="$PROJECT_DIR$/app/tests/database/seeder/UserSeederTest.py" />
++        <option value="$PROJECT_DIR$/app/tests/database/seeder/Test.py" />
++        <option value="$PROJECT_DIR$/app/database/seeder/__init__.py" />
++        <option value="$PROJECT_DIR$/app/database/seeder/UserSeeder.py" />
++        <option value="$PROJECT_DIR$/sume/settings.py" />
++        <option value="$PROJECT_DIR$/app/app/backend/EmailBackend.py" />
++        <option value="$PROJECT_DIR$/app/app/__init__.py" />
++        <option value="$PROJECT_DIR$/app/tests.py" />
++        <option value="$PROJECT_DIR$/app/tests/database/seeder/UserSeeder.py" />
++        <option value="$PROJECT_DIR$/app/templates/app/login.html" />
++        <option value="$PROJECT_DIR$/app/app/forms/auth.py" />
++        <option value="$PROJECT_DIR$/app/templates/app/register.html" />
++        <option value="$PROJECT_DIR$/debug.log" />
++        <option value="$PROJECT_DIR$/app/app/utils/arrayutil.py" />
++        <option value="$PROJECT_DIR$/app/views.py" />
+       </list>
+     </option>
+   </component>
+@@ -132,6 +325,23 @@
+   <component name="JsGulpfileManager">
+     <detection-done>true</detection-done>
+     <sorting>DEFINITION_ORDER</sorting>
++  </component>
++  <component name="LineStatusTrackerManager">
++    <file path="$PROJECT_DIR$/app/views.py">
++      <ranges>
++        <range start1="70" end1="70" start2="70" end2="80" changelist="7466d9f8-0dda-437d-8da1-443b62ec11f5" />
++        <range start1="72" end1="73" start2="82" end2="83" changelist="7466d9f8-0dda-437d-8da1-443b62ec11f5" />
++        <range start1="75" end1="77" start2="85" end2="87" changelist="7466d9f8-0dda-437d-8da1-443b62ec11f5" />
++        <range start1="78" end1="80" start2="88" end2="90" changelist="7466d9f8-0dda-437d-8da1-443b62ec11f5" />
++        <range start1="85" end1="86" start2="95" end2="97" changelist="86fc94de-adcd-45b4-a1fb-ae259c8eeb10" />
++        <range start1="87" end1="89" start2="98" end2="100" changelist="7466d9f8-0dda-437d-8da1-443b62ec11f5" />
++        <range start1="103" end1="105" start2="114" end2="116" changelist="7466d9f8-0dda-437d-8da1-443b62ec11f5" />
++        <range start1="106" end1="107" start2="117" end2="118" changelist="7466d9f8-0dda-437d-8da1-443b62ec11f5" />
++        <range start1="116" end1="117" start2="127" end2="129" changelist="86fc94de-adcd-45b4-a1fb-ae259c8eeb10" />
++        <range start1="130" end1="132" start2="142" end2="144" changelist="86fc94de-adcd-45b4-a1fb-ae259c8eeb10" />
++        <range start1="133" end1="134" start2="145" end2="147" changelist="86fc94de-adcd-45b4-a1fb-ae259c8eeb10" />
++      </ranges>
++    </file>
+   </component>
+   <component name="NodePackageJsonFileManager">
+     <packageJsonPaths>
+@@ -166,13 +376,25 @@
+       <profile-state>
+         <expanded-state>
+           <State />
++          <State>
++            <id>Django</id>
++          </State>
++          <State>
++            <id>ECMAScript 6 migration aidsJavaScript</id>
++          </State>
++          <State>
++            <id>General</id>
++          </State>
++          <State>
++            <id>JavaScript</id>
++          </State>
+           <State>
+             <id>Python</id>
+           </State>
+         </expanded-state>
+         <selected-state>
+           <State>
+-            <id>PyPackageRequirementsInspection</id>
++            <id>DjangoUnresolvedLoadInspection</id>
+           </State>
+         </selected-state>
+       </profile-state>
+@@ -202,10 +424,11 @@
+   <component name="PropertiesComponent">
+     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+-    <property name="add_unversioned_files" value="$PROJECT_DIR$/sume/.env" />
++    <property name="add_unversioned_files" value="$PROJECT_DIR$/debug.log&#10;/home/syafiq/Documents/python/repos/Daneswara/sume/sume/.env" />
++    <property name="database.console.LAST_STATE" value="false" />
+     <property name="last_opened_file_path" value="$PROJECT_DIR$/sume/settings.py" />
+     <property name="nodejs_package_manager_path" value="npm" />
+-    <property name="settings.editor.selected.configurable" value="zielu.svntoolbox.prj.config" />
++    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Gherkin" />
+   </component>
+   <component name="PyConsoleOptionsProvider">
+     <option name="myPythonConsoleState">
+@@ -214,6 +437,12 @@
+         <option name="myModuleName" value="Django" />
+       </console-settings>
+     </option>
++  </component>
++  <component name="RecentsManager">
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="$PROJECT_DIR$/app/templatetags" />
++      <recent name="$PROJECT_DIR$/app/templates/app" />
++    </key>
+   </component>
+   <component name="RunDashboard">
+     <option name="ruleStates">
+@@ -350,144 +579,419 @@
+   </component>
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
++      <changelist id="86fc94de-adcd-45b4-a1fb-ae259c8eeb10" name="Debug" comment="" />
+       <created>1533454368607</created>
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+       <updated>1533454368607</updated>
+     </task>
+-    <task id="LOCAL-00001" summary="Update pytz">
+-      <created>1533946615442</created>
+-      <option name="number" value="00001" />
+-      <option name="presentableId" value="LOCAL-00001" />
++    <task id="LOCAL-00012" summary="Add array util">
++      <created>1534040330073</created>
++      <option name="number" value="00012" />
++      <option name="presentableId" value="LOCAL-00012" />
++      <option name="project" value="LOCAL" />
++      <updated>1534040330073</updated>
++    </task>
++    <task id="LOCAL-00013" summary="Add array util">
++      <created>1534040642891</created>
++      <option name="number" value="00013" />
++      <option name="presentableId" value="LOCAL-00013" />
+       <option name="project" value="LOCAL" />
+-      <updated>1533946615442</updated>
++      <updated>1534040642891</updated>
+     </task>
+-    <task id="LOCAL-00002" summary="Rename to settings">
+-      <created>1533468059069</created>
+-      <option name="number" value="00002" />
+-      <option name="presentableId" value="LOCAL-00002" />
++    <task id="LOCAL-00014" summary="Fixing login ui">
++      <created>1534040830084</created>
++      <option name="number" value="00014" />
++      <option name="presentableId" value="LOCAL-00014" />
+       <option name="project" value="LOCAL" />
+-      <updated>1533468059069</updated>
++      <updated>1534040830084</updated>
+     </task>
+-    <task id="LOCAL-00003" summary="Rename to settings">
+-      <created>1533468077561</created>
+-      <option name="number" value="00003" />
+-      <option name="presentableId" value="LOCAL-00003" />
++    <task id="LOCAL-00015" summary="Fixing login ui">
++      <created>1534041236014</created>
++      <option name="number" value="00015" />
++      <option name="presentableId" value="LOCAL-00015" />
+       <option name="project" value="LOCAL" />
+-      <updated>1533468077561</updated>
++      <updated>1534041236014</updated>
+     </task>
+-    <task id="LOCAL-00004" summary="Add example environtment">
+-      <created>1533469221817</created>
+-      <option name="number" value="00004" />
+-      <option name="presentableId" value="LOCAL-00004" />
++    <task id="LOCAL-00016" summary="Add array except">
++      <created>1534041288204</created>
++      <option name="number" value="00016" />
++      <option name="presentableId" value="LOCAL-00016" />
+       <option name="project" value="LOCAL" />
+-      <updated>1533469221817</updated>
++      <updated>1534041288204</updated>
+     </task>
+-    <task id="LOCAL-00005" summary="Update settings">
+-      <created>1533469232077</created>
+-      <option name="number" value="00005" />
+-      <option name="presentableId" value="LOCAL-00005" />
++    <task id="LOCAL-00017" summary="Add templatetags package">
++      <created>1534041335587</created>
++      <option name="number" value="00017" />
++      <option name="presentableId" value="LOCAL-00017" />
+       <option name="project" value="LOCAL" />
+-      <updated>1533469232077</updated>
++      <updated>1534041335587</updated>
+     </task>
+-    <task id="LOCAL-00006" summary="Add Static files directory">
+-      <created>1533469772699</created>
+-      <option name="number" value="00006" />
+-      <option name="presentableId" value="LOCAL-00006" />
++    <task id="LOCAL-00018" summary="add arraytag">
++      <created>1534041342579</created>
++      <option name="number" value="00018" />
++      <option name="presentableId" value="LOCAL-00018" />
+       <option name="project" value="LOCAL" />
+-      <updated>1533469772699</updated>
++      <updated>1534041342579</updated>
+     </task>
+-    <task id="LOCAL-00007" summary="Add whiterose static file storage">
+-      <created>1533470795092</created>
+-      <option name="number" value="00007" />
+-      <option name="presentableId" value="LOCAL-00007" />
++    <task id="LOCAL-00019" summary="add arraytag">
++      <created>1534041364137</created>
++      <option name="number" value="00019" />
++      <option name="presentableId" value="LOCAL-00019" />
+       <option name="project" value="LOCAL" />
+-      <updated>1533470795092</updated>
++      <updated>1534041364137</updated>
+     </task>
+-    <task id="LOCAL-00008" summary="Add dlnn module">
+-      <created>1533472706254</created>
+-      <option name="number" value="00008" />
+-      <option name="presentableId" value="LOCAL-00008" />
++    <task id="LOCAL-00020" summary="Add database package">
++      <created>1534043676588</created>
++      <option name="number" value="00020" />
++      <option name="presentableId" value="LOCAL-00020" />
+       <option name="project" value="LOCAL" />
+-      <updated>1533472706254</updated>
++      <updated>1534043676588</updated>
+     </task>
+-    <task id="LOCAL-00009" summary="Update gitignore">
+-      <created>1533472730827</created>
+-      <option name="number" value="00009" />
+-      <option name="presentableId" value="LOCAL-00009" />
++    <task id="LOCAL-00021" summary="Add seeder">
++      <created>1534043711983</created>
++      <option name="number" value="00021" />
++      <option name="presentableId" value="LOCAL-00021" />
+       <option name="project" value="LOCAL" />
+-      <updated>1533472730827</updated>
++      <updated>1534043711983</updated>
+     </task>
+-    <task id="LOCAL-00010" summary="Remove setting">
+-      <created>1533596735435</created>
+-      <option name="number" value="00010" />
+-      <option name="presentableId" value="LOCAL-00010" />
++    <task id="LOCAL-00022" summary="Add user Seeder">
++      <created>1534044365594</created>
++      <option name="number" value="00022" />
++      <option name="presentableId" value="LOCAL-00022" />
+       <option name="project" value="LOCAL" />
+-      <updated>1533596735435</updated>
++      <updated>1534044365594</updated>
+     </task>
+-    <task id="LOCAL-00011" summary="Fix model">
+-      <created>1533598546972</created>
+-      <option name="number" value="00011" />
+-      <option name="presentableId" value="LOCAL-00011" />
++    <task id="LOCAL-00023" summary="Add tests package">
++      <created>1534044390788</created>
++      <option name="number" value="00023" />
++      <option name="presentableId" value="LOCAL-00023" />
+       <option name="project" value="LOCAL" />
+-      <updated>1533598546972</updated>
++      <updated>1534044390788</updated>
+     </task>
+-    <task id="LOCAL-00012" summary="Fix model">
+-      <created>1533598563446</created>
+-      <option name="number" value="00012" />
+-      <option name="presentableId" value="LOCAL-00012" />
++    <task id="LOCAL-00024" summary="Add database test">
++      <created>1534044431031</created>
++      <option name="number" value="00024" />
++      <option name="presentableId" value="LOCAL-00024" />
++      <option name="project" value="LOCAL" />
++      <updated>1534044431031</updated>
++    </task>
++    <task id="LOCAL-00025" summary="Add database seeder test">
++      <created>1534044448360</created>
++      <option name="number" value="00025" />
++      <option name="presentableId" value="LOCAL-00025" />
++      <option name="project" value="LOCAL" />
++      <updated>1534044448360</updated>
++    </task>
++    <task id="LOCAL-00026" summary="Add django seed">
++      <created>1534047200056</created>
++      <option name="number" value="00026" />
++      <option name="presentableId" value="LOCAL-00026" />
++      <option name="project" value="LOCAL" />
++      <updated>1534047200056</updated>
++    </task>
++    <task id="LOCAL-00027" summary="Add User Seeder">
++      <created>1534067981978</created>
++      <option name="number" value="00027" />
++      <option name="presentableId" value="LOCAL-00027" />
++      <option name="project" value="LOCAL" />
++      <updated>1534067981978</updated>
++    </task>
++    <task id="LOCAL-00028" summary="Add User Seeder">
++      <created>1534076103655</created>
++      <option name="number" value="00028" />
++      <option name="presentableId" value="LOCAL-00028" />
+       <option name="project" value="LOCAL" />
+-      <updated>1533598563446</updated>
++      <updated>1534076103655</updated>
+     </task>
+-    <task id="LOCAL-00013" summary="Add 0002 migration">
+-      <created>1533598673869</created>
+-      <option name="number" value="00013" />
+-      <option name="presentableId" value="LOCAL-00013" />
++    <task id="LOCAL-00029" summary="Add backend package">
++      <created>1534076130353</created>
++      <option name="number" value="00029" />
++      <option name="presentableId" value="LOCAL-00029" />
+       <option name="project" value="LOCAL" />
+-      <updated>1533598673869</updated>
++      <updated>1534076130353</updated>
+     </task>
+-    <task id="LOCAL-00014" summary="Remove unnecessary generated">
+-      <created>1533598945959</created>
+-      <option name="number" value="00014" />
+-      <option name="presentableId" value="LOCAL-00014" />
++    <task id="LOCAL-00030" summary="Add Email backend">
++      <created>1534076256761</created>
++      <option name="number" value="00030" />
++      <option name="presentableId" value="LOCAL-00030" />
+       <option name="project" value="LOCAL" />
+-      <updated>1533598945959</updated>
++      <updated>1534076256761</updated>
+     </task>
+-    <task id="LOCAL-00015" summary="Add gitignore module based">
+-      <created>1533598963270</created>
+-      <option name="number" value="00015" />
+-      <option name="presentableId" value="LOCAL-00015" />
++    <task id="LOCAL-00031" summary="Register email backend">
++      <created>1534076310597</created>
++      <option name="number" value="00031" />
++      <option name="presentableId" value="LOCAL-00031" />
++      <option name="project" value="LOCAL" />
++      <updated>1534076310597</updated>
++    </task>
++    <task id="LOCAL-00032" summary="Register email backend">
++      <created>1534076600817</created>
++      <option name="number" value="00032" />
++      <option name="presentableId" value="LOCAL-00032" />
++      <option name="project" value="LOCAL" />
++      <updated>1534076600817</updated>
++    </task>
++    <task id="LOCAL-00033" summary="Add tests package">
++      <created>1534076979559</created>
++      <option name="number" value="00033" />
++      <option name="presentableId" value="LOCAL-00033" />
++      <option name="project" value="LOCAL" />
++      <updated>1534076979559</updated>
++    </task>
++    <task id="LOCAL-00034" summary="Add database test package">
++      <created>1534077002233</created>
++      <option name="number" value="00034" />
++      <option name="presentableId" value="LOCAL-00034" />
++      <option name="project" value="LOCAL" />
++      <updated>1534077002233</updated>
++    </task>
++    <task id="LOCAL-00035" summary="Add seeder test package">
++      <created>1534077022842</created>
++      <option name="number" value="00035" />
++      <option name="presentableId" value="LOCAL-00035" />
++      <option name="project" value="LOCAL" />
++      <updated>1534077022842</updated>
++    </task>
++    <task id="LOCAL-00036" summary="Add users seeder test">
++      <created>1534077089681</created>
++      <option name="number" value="00036" />
++      <option name="presentableId" value="LOCAL-00036" />
++      <option name="project" value="LOCAL" />
++      <updated>1534077089681</updated>
++    </task>
++    <task id="LOCAL-00037" summary="Check if array is dict type">
++      <created>1534189151437</created>
++      <option name="number" value="00037" />
++      <option name="presentableId" value="LOCAL-00037" />
++      <option name="project" value="LOCAL" />
++      <updated>1534189151438</updated>
++    </task>
++    <task id="LOCAL-00038" summary="Enclose excepts in array">
++      <created>1534189169069</created>
++      <option name="number" value="00038" />
++      <option name="presentableId" value="LOCAL-00038" />
++      <option name="project" value="LOCAL" />
++      <updated>1534189169069</updated>
++    </task>
++    <task id="LOCAL-00039" summary="Add required property">
++      <created>1534189218670</created>
++      <option name="number" value="00039" />
++      <option name="presentableId" value="LOCAL-00039" />
++      <option name="project" value="LOCAL" />
++      <updated>1534189218670</updated>
++    </task>
++    <task id="LOCAL-00040" summary="Disable remember me">
++      <created>1534189338457</created>
++      <option name="number" value="00040" />
++      <option name="presentableId" value="LOCAL-00040" />
++      <option name="project" value="LOCAL" />
++      <updated>1534189338457</updated>
++    </task>
++    <task id="LOCAL-00041" summary="Disable remember me">
++      <created>1534189441749</created>
++      <option name="number" value="00041" />
++      <option name="presentableId" value="LOCAL-00041" />
++      <option name="project" value="LOCAL" />
++      <updated>1534189441749</updated>
++    </task>
++    <task id="LOCAL-00042" summary="Disable social login">
++      <created>1534189477796</created>
++      <option name="number" value="00042" />
++      <option name="presentableId" value="LOCAL-00042" />
++      <option name="project" value="LOCAL" />
++      <updated>1534189477796</updated>
++    </task>
++    <task id="LOCAL-00043" summary="Finishing register layout">
++      <created>1534288722277</created>
++      <option name="number" value="00043" />
++      <option name="presentableId" value="LOCAL-00043" />
++      <option name="project" value="LOCAL" />
++      <updated>1534288722277</updated>
++    </task>
++    <task id="LOCAL-00044" summary="Finishing register layout">
++      <created>1534288762449</created>
++      <option name="number" value="00044" />
++      <option name="presentableId" value="LOCAL-00044" />
++      <option name="project" value="LOCAL" />
++      <updated>1534288762449</updated>
++    </task>
++    <task id="LOCAL-00045" summary="Change action route">
++      <created>1534288881511</created>
++      <option name="number" value="00045" />
++      <option name="presentableId" value="LOCAL-00045" />
++      <option name="project" value="LOCAL" />
++      <updated>1534288881511</updated>
++    </task>
++    <task id="LOCAL-00046" summary="Change to password conf">
++      <created>1534479550354</created>
++      <option name="number" value="00046" />
++      <option name="presentableId" value="LOCAL-00046" />
++      <option name="project" value="LOCAL" />
++      <updated>1534479550354</updated>
++    </task>
++    <task id="LOCAL-00047" summary="Add register form">
++      <created>1534556380733</created>
++      <option name="number" value="00047" />
++      <option name="presentableId" value="LOCAL-00047" />
++      <option name="project" value="LOCAL" />
++      <updated>1534556380733</updated>
++    </task>
++    <task id="LOCAL-00048" summary="Add csrf token">
++      <created>1534557213027</created>
++      <option name="number" value="00048" />
++      <option name="presentableId" value="LOCAL-00048" />
++      <option name="project" value="LOCAL" />
++      <updated>1534557213027</updated>
++    </task>
++    <task id="LOCAL-00049" summary="Add ability to scroll">
++      <created>1534557419612</created>
++      <option name="number" value="00049" />
++      <option name="presentableId" value="LOCAL-00049" />
++      <option name="project" value="LOCAL" />
++      <updated>1534557419612</updated>
++    </task>
++    <task id="LOCAL-00050" summary="Fix password conf type">
++      <created>1534558000173</created>
++      <option name="number" value="00050" />
++      <option name="presentableId" value="LOCAL-00050" />
++      <option name="project" value="LOCAL" />
++      <updated>1534558000173</updated>
++    </task>
++    <task id="LOCAL-00051" summary="Remove firstname">
++      <created>1534563973726</created>
++      <option name="number" value="00051" />
++      <option name="presentableId" value="LOCAL-00051" />
++      <option name="project" value="LOCAL" />
++      <updated>1534563973727</updated>
++    </task>
++    <task id="LOCAL-00052" summary="Redirect to login">
++      <created>1534564458349</created>
++      <option name="number" value="00052" />
++      <option name="presentableId" value="LOCAL-00052" />
+       <option name="project" value="LOCAL" />
+-      <updated>1533598963270</updated>
++      <updated>1534564458350</updated>
+     </task>
+-    <option name="localTasksCounter" value="2" />
++    <task id="LOCAL-00053" summary="Add callback message">
++      <created>1534574565926</created>
++      <option name="number" value="00053" />
++      <option name="presentableId" value="LOCAL-00053" />
++      <option name="project" value="LOCAL" />
++      <updated>1534574565926</updated>
++    </task>
++    <task id="LOCAL-00054" summary="Add callback message">
++      <created>1534574616416</created>
++      <option name="number" value="00054" />
++      <option name="presentableId" value="LOCAL-00054" />
++      <option name="project" value="LOCAL" />
++      <updated>1534574616416</updated>
++    </task>
++    <task id="LOCAL-00055" summary="Add callback message">
++      <created>1534577465596</created>
++      <option name="number" value="00055" />
++      <option name="presentableId" value="LOCAL-00055" />
++      <option name="project" value="LOCAL" />
++      <updated>1534577465596</updated>
++    </task>
++    <task id="LOCAL-00056" summary="Add callback message">
++      <created>1534578246851</created>
++      <option name="number" value="00056" />
++      <option name="presentableId" value="LOCAL-00056" />
++      <option name="project" value="LOCAL" />
++      <updated>1534578246852</updated>
++    </task>
++    <task id="LOCAL-00057" summary="Add array merge">
++      <created>1534578938993</created>
++      <option name="number" value="00057" />
++      <option name="presentableId" value="LOCAL-00057" />
++      <option name="project" value="LOCAL" />
++      <updated>1534578938993</updated>
++    </task>
++    <task id="LOCAL-00058" summary="Finishing login add callback">
++      <created>1534578976159</created>
++      <option name="number" value="00058" />
++      <option name="presentableId" value="LOCAL-00058" />
++      <option name="project" value="LOCAL" />
++      <updated>1534578976159</updated>
++    </task>
++    <task id="LOCAL-00059" summary="fix callback message">
++      <created>1534587172032</created>
++      <option name="number" value="00059" />
++      <option name="presentableId" value="LOCAL-00059" />
++      <option name="project" value="LOCAL" />
++      <updated>1534587172033</updated>
++    </task>
++    <task id="LOCAL-00060" summary="Add login message">
++      <created>1534587343037</created>
++      <option name="number" value="00060" />
++      <option name="presentableId" value="LOCAL-00060" />
++      <option name="project" value="LOCAL" />
++      <updated>1534587343037</updated>
++    </task>
++    <option name="localTasksCounter" value="61" />
+     <servers />
+   </component>
++  <component name="TestHistory">
++    <history-entry file="Test__app_tests_TestAbc - 2018.08.12 at 16h 28m 27s.xml">
++      <configuration name="Test: app.tests.TestAbc" configurationId="DjangoTestsConfigurationType" />
++    </history-entry>
++    <history-entry file="Test__app_tests_TestAbc_test_abc - 2018.08.12 at 16h 53m 04s.xml">
++      <configuration name="Test: app.tests.TestAbc.test_abc" configurationId="DjangoTestsConfigurationType" />
++    </history-entry>
++    <history-entry file="Test__app_tests_TestAbc_test_abc - 2018.08.12 at 16h 54m 33s.xml">
++      <configuration name="Test: app.tests.TestAbc.test_abc" configurationId="DjangoTestsConfigurationType" />
++    </history-entry>
++    <history-entry file="Test__app_tests_TestAbc_test_abc - 2018.08.12 at 16h 55m 00s.xml">
++      <configuration name="Test: app.tests.TestAbc.test_abc" configurationId="DjangoTestsConfigurationType" />
++    </history-entry>
++    <history-entry file="Test__app_tests_TestAbc_test_abc - 2018.08.12 at 16h 56m 17s.xml">
++      <configuration name="Test: app.tests.TestAbc.test_abc" configurationId="DjangoTestsConfigurationType" />
++    </history-entry>
++    <history-entry file="Test__app_tests_TestAbc_test_abc - 2018.08.12 at 16h 56m 48s.xml">
++      <configuration name="Test: app.tests.TestAbc.test_abc" configurationId="DjangoTestsConfigurationType" />
++    </history-entry>
++    <history-entry file="Test__app_tests_TestAbc_test_abc - 2018.08.12 at 16h 58m 51s.xml">
++      <configuration name="Test: app.tests.TestAbc.test_abc" configurationId="DjangoTestsConfigurationType" />
++    </history-entry>
++    <history-entry file="Test__app_tests_TestAbc_test_abc - 2018.08.12 at 16h 59m 18s.xml">
++      <configuration name="Test: app.tests.TestAbc.test_abc" configurationId="DjangoTestsConfigurationType" />
++    </history-entry>
++    <history-entry file="Test__app_tests_TestAbc_test_abc - 2018.08.12 at 17h 16m 18s.xml">
++      <configuration name="Test: app.tests.TestAbc.test_abc" configurationId="DjangoTestsConfigurationType" />
++    </history-entry>
++    <history-entry file="Test__app_tests_database_seeder_UserSeeder_UserSeederTest_test_generate_user - 2018.08.12 at 19h 31m 15s.xml">
++      <configuration name="Test: app.tests.database.seeder.UserSeeder.UserSeederTest.test_generate_user" configurationId="DjangoTestsConfigurationType" />
++    </history-entry>
++  </component>
+   <component name="ToolWindowManager">
+-    <frame x="0" y="22" width="1366" height="746" extended-state="6" />
++    <frame x="-1" y="21" width="1368" height="748" extended-state="6" />
++    <editor active="true" />
+     <layout>
+-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21903323" />
++      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2375189" />
+       <window_info id="Structure" order="1" weight="0.25" />
+       <window_info id="Favorites" order="2" side_tool="true" />
+       <window_info anchor="bottom" id="Message" order="0" />
+-      <window_info anchor="bottom" id="Find" order="1" />
+-      <window_info anchor="bottom" id="Run" order="2" />
+-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
++      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49924356" weight="0.32894737" />
++      <window_info anchor="bottom" id="Run" order="2" weight="0.38980263" />
++      <window_info anchor="bottom" id="Debug" order="3" weight="0.39967105" />
+       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+       <window_info anchor="bottom" id="TODO" order="6" />
+-      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.7680921" />
+-      <window_info anchor="bottom" id="Python Console" order="8" />
+-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+-      <window_info anchor="bottom" id="Database Changes" order="10" />
+-      <window_info anchor="bottom" id="Regex Tester" order="11" />
+-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32894737" />
+-      <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" weight="0.32894737" />
++      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49621785" weight="0.49671054" />
++      <window_info anchor="bottom" id="Database Changes" order="8" weight="0.32894737" />
++      <window_info anchor="bottom" id="Python Console" order="9" weight="0.32894737" />
++      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
++      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4977307" weight="0.64638156" />
++      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50378215" side_tool="true" weight="0.57894737" />
++      <window_info anchor="bottom" id="Messages" order="13" />
++      <window_info anchor="bottom" id="Database Console" order="14" weight="0.32894737" />
++      <window_info anchor="bottom" id="manage.py@Django" order="15" weight="0.32894737" />
++      <window_info anchor="bottom" id="Regex Tester" order="16" weight="0.32894737" />
+       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+-      <window_info anchor="right" id="SciView" order="3" />
+-      <window_info anchor="right" id="Database" order="4" weight="0.32930514" />
++      <window_info anchor="right" id="Database" order="3" weight="0.23524962" />
++      <window_info anchor="right" id="SciView" order="4" />
+     </layout>
+     <layout-to-restore>
+       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21331316" />
+@@ -549,156 +1053,314 @@
+     <option name="myLimit" value="2678400000" />
+   </component>
+   <component name="VcsManagerConfiguration">
+-    <MESSAGE value="Update pytz" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Update pytz" />
++    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
++    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
++    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
++    <MESSAGE value="Register email backend" />
++    <MESSAGE value="Add tests package" />
++    <MESSAGE value="Add database test package" />
++    <MESSAGE value="Add seeder test package" />
++    <MESSAGE value="Add users seeder test" />
++    <MESSAGE value="Check if array is dict type" />
++    <MESSAGE value="Enclose excepts in array" />
++    <MESSAGE value="Add required property" />
++    <MESSAGE value="Disable remember me" />
++    <MESSAGE value="Disable social login" />
++    <MESSAGE value="m" />
++    <MESSAGE value="Finishing register layout" />
++    <MESSAGE value="Change action route" />
++    <MESSAGE value="Change to password conf" />
++    <MESSAGE value="Add register form" />
++    <MESSAGE value="Add csrf token" />
++    <MESSAGE value="Add ability to scroll" />
++    <MESSAGE value="Fix password conf type" />
++    <MESSAGE value="Remove firstname" />
++    <MESSAGE value="Redirect to login" />
++    <MESSAGE value="Add callback message" />
++    <MESSAGE value="Add array merge" />
++    <MESSAGE value="Finishing login add callback" />
++    <MESSAGE value="fix callback message" />
++    <MESSAGE value="Add login message" />
++    <option name="LAST_COMMIT_MESSAGE" value="Add login message" />
++    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
++    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
++    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+   </component>
+   <component name="editorHistoryManager">
+-    <entry file="file://$PROJECT_DIR$/db.sqlite3">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/detail.html">
+       <provider selected="true" editor-type-id="text-editor" />
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/templates/layout/base-login.html">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="15">
++          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/app/templates/app/index2.html">
++      <provider selected="true" editor-type-id="text-editor" />
++    </entry>
++    <entry file="file://$PROJECT_DIR$/.idea/Django.iml">
++      <provider selected="true" editor-type-id="text-editor" />
++    </entry>
++    <entry file="file://$PROJECT_DIR$/app/app/forms/login.py" />
++    <entry file="file://$USER_HOME$/anaconda2/envs/tensorflow3690/lib/python3.6/site-packages/django/http/response.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="240">
+-          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
++        <state relative-caret-position="174">
++          <caret line="281" column="8" selection-start-line="281" selection-start-column="8" selection-end-line="281" selection-end-column="8" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/sume/assets/app/css/style.css">
++    <entry file="file://$PROJECT_DIR$/APPNAME.log" />
++    <entry file="file://$PROJECT_DIR$/.gitignore">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="60">
+-          <caret column="487" selection-start-column="487" selection-end-column="487" />
++          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="6" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/templates/layout/nav.html">
++    <entry file="file://$USER_HOME$/anaconda2/envs/tensorflow3690/lib/python3.6/site-packages/django/forms/forms.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="281">
+-          <caret line="227" column="38" selection-start-line="227" selection-start-column="38" selection-end-line="227" selection-end-column="38" />
++        <state relative-caret-position="110">
++          <caret line="80" column="18" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/urls.py">
++    <entry file="file://$PROJECT_DIR$/templates/layout/base-login.html">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="165">
+-          <caret line="11" column="39" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
++        <state relative-caret-position="45">
++          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/templates/layout/sidebar.html">
++    <entry file="file://$PROJECT_DIR$/app/app/util.py" />
++    <entry file="file://$USER_HOME$/anaconda2/envs/tensorflow3690/lib/python3.6/site-packages/django/template/library.py">
++      <provider selected="true" editor-type-id="text-editor" />
++    </entry>
++    <entry file="file://$PROJECT_DIR$/app/templates/app/__init__.py" />
++    <entry file="file://$PROJECT_DIR$/app/tests/database/seeder/UserSeederTest.py" />
++    <entry file="file://$PROJECT_DIR$/app/tests/database/seeder/__init__.py" />
++    <entry file="file://$PROJECT_DIR$/app/tests/database/seeder/Test.py" />
++    <entry file="file://$USER_HOME$/anaconda2/envs/tensorflow3690/lib/python3.6/site-packages/django_seed/seeder.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="225">
+-          <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
++        <state relative-caret-position="-198">
++          <caret line="140" column="8" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/templates/layout/base.html">
++    <entry file="file://$PROJECT_DIR$/app/models.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="371">
+-          <caret line="44" column="30" lean-forward="true" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
++        <state relative-caret-position="165">
++          <caret line="13" selection-start-line="13" selection-end-line="13" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
++    <entry file="file://$PROJECT_DIR$/app/admin.py">
++      <provider selected="true" editor-type-id="text-editor" />
++    </entry>
++    <entry file="file://$PROJECT_DIR$/app/apps.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="4515">
+-          <caret line="301" column="6" selection-start-line="301" selection-start-column="6" selection-end-line="301" selection-end-column="6" />
++        <state relative-caret-position="15">
++          <caret line="1" selection-start-line="1" selection-end-line="1" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/models.py">
++    <entry file="das://dd8d1b95-fc68-4bb7-af2c-b8b19b879e12/database/sume/schema/public/table/app_dokumen">
++      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
++        <state>
++          <filtering enabled="true" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="das://dd8d1b95-fc68-4bb7-af2c-b8b19b879e12/database/sume/schema/public/table/auth_permission">
++      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
++        <state>
++          <filtering enabled="true" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$USER_HOME$/anaconda2/envs/tensorflow3690/lib/python3.6/site-packages/django/apps/registry.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="45">
+-          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+-          <folding>
+-            <element signature="e#0#43#0" expanded="true" />
+-          </folding>
++        <state relative-caret-position="160">
++          <caret line="129" column="50" lean-forward="true" selection-start-line="129" selection-start-column="50" selection-end-line="129" selection-end-column="51" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/migrations/0001_initial.py">
++    <entry file="file://$PROJECT_DIR$/app/database/seeder/__init__.py">
++      <provider selected="true" editor-type-id="text-editor" />
++    </entry>
++    <entry file="file://$USER_HOME$/anaconda2/envs/tensorflow3690/lib/python3.6/site-packages/django/contrib/auth/backends.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="45">
+-          <caret line="5" selection-start-line="5" selection-end-line="5" />
++        <state relative-caret-position="150">
++          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/.gitignore">
++    <entry file="file://$PROJECT_DIR$/app/database/__init__.py">
++      <provider selected="true" editor-type-id="text-editor" />
++    </entry>
++    <entry file="file://$USER_HOME$/anaconda2/envs/tensorflow3690/lib/python3.6/site-packages/django/contrib/auth/__init__.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="855">
+-          <caret line="57" column="10" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
++        <state relative-caret-position="58">
++          <caret line="22" selection-start-line="22" selection-end-line="22" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/tensor.py">
++    <entry file="file://$PROJECT_DIR$/app/app/__init__" />
++    <entry file="file://$PROJECT_DIR$/app/app/backend/__init__.py">
++      <provider selected="true" editor-type-id="text-editor" />
++    </entry>
++    <entry file="file://$PROJECT_DIR$/app/app/__init__.py" />
++    <entry file="file://$PROJECT_DIR$/app/app/backend/EmailBackend.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="540">
+-          <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
+-          <folding>
+-            <element signature="e#0#37#0" expanded="true" />
+-          </folding>
++        <state relative-caret-position="60">
++          <caret line="4" column="33" lean-forward="true" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/views.py">
++    <entry file="file://$PROJECT_DIR$/app/urls.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="175">
+-          <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
++        <state relative-caret-position="90">
++          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/detail.html">
++    <entry file="file://$PROJECT_DIR$/app/tests.py">
+       <provider selected="true" editor-type-id="text-editor" />
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/index2.html">
++    <entry file="file://$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
++    <entry file="file://$PROJECT_DIR$/app/templatetags/arraytag.py">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="120">
++          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/app/templatetags/__init__.py">
+       <provider selected="true" editor-type-id="text-editor" />
+     </entry>
+     <entry file="file://$PROJECT_DIR$/app/templates/app/login.html">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="559">
+-          <caret line="72" column="6" selection-start-line="72" selection-start-column="6" selection-end-line="73" selection-end-column="14" />
++        <state relative-caret-position="-585">
++          <caret line="24" column="51" lean-forward="true" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/register.html">
++    <entry file="file://$USER_HOME$/anaconda2/envs/tensorflow3690/lib/python3.6/site-packages/django/contrib/auth/models.py">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="78">
++          <caret line="359" lean-forward="true" selection-start-line="359" selection-end-line="359" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/sume/.env">
++      <provider selected="true" editor-type-id="text-editor" />
++    </entry>
++    <entry file="file://$PROJECT_DIR$/app/database/seeder/UserSeeder.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="484">
+-          <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
++        <state relative-caret-position="105">
++          <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/user.html">
++    <entry file="file://$PROJECT_DIR$/app/tests/database/seeder/UserSeeder.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="124">
+-          <caret line="161" column="40" selection-start-line="161" selection-start-column="40" selection-end-line="161" selection-end-column="40" />
++        <state relative-caret-position="105">
++          <caret line="9" selection-start-line="9" selection-end-line="9" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/.gitignore">
++    <entry file="file://$USER_HOME$/anaconda2/envs/tensorflow3690/lib/python3.6/site-packages/django/contrib/messages/storage/base.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="15">
+-          <caret line="1" selection-start-line="1" selection-end-line="1" />
++        <state relative-caret-position="190">
++          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/sume/.env">
++    <entry file="file://$USER_HOME$/anaconda2/envs/tensorflow3690/lib/python3.6/site-packages/django/contrib/messages/storage/fallback.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="60">
+-          <caret line="4" selection-start-line="4" selection-end-line="4" />
++        <state>
++          <caret line="2" column="66" lean-forward="true" selection-start-line="2" selection-start-column="66" selection-end-line="2" selection-end-column="66" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/migrations/0002_auto_20180807_0637.py">
+-      <provider selected="true" editor-type-id="text-editor" />
++    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/typing.pyi">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="185">
++          <caret line="344" column="8" selection-start-line="344" selection-start-column="8" selection-end-line="344" selection-end-column="8" />
++        </state>
++      </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/requir.txt">
+-      <provider selected="true" editor-type-id="text-editor" />
++    <entry file="file://$PROJECT_DIR$/app/app/forms/auth.py">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="45">
++          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
++          <folding>
++            <marker date="1534556376087" expanded="true" signature="145:146" ph="..." />
++            <marker date="1534556376087" expanded="true" signature="145:150" ph="..." />
++          </folding>
++        </state>
++      </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/requirements.txt">
++    <entry file="file://$PROJECT_DIR$/sume/settings.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="510">
+-          <caret line="34" selection-start-line="34" selection-end-line="34" />
++        <state relative-caret-position="-1243">
++          <caret line="58" column="1" lean-forward="true" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
++          <folding>
++            <element signature="e#0#303#1" />
++            <element signature="e#706#768#0" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
++    <entry file="file://$PROJECT_DIR$/app/app/utils/arrayutil.py">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="150">
++          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/app/templates/app/register.html">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="1125">
++          <caret line="75" column="9" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/debug.log">
++      <provider selected="true" editor-type-id="LogFileEditorProvider">
++        <state relative-caret-position="435">
++          <caret line="29" selection-start-line="29" selection-end-line="29" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="das://dd8d1b95-fc68-4bb7-af2c-b8b19b879e12/database/sume/schema/public/table/auth_user">
++      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
++        <state>
++          <filtering enabled="true" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/app/views.py">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="148">
++          <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
++          <folding>
++            <element signature="e#0#13#0" expanded="true" />
++            <marker date="1534587587042" expanded="true" signature="655:729" ph="..." />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++  </component>
++  <component name="regexState">
++    <option name="map">
++      <map>
++        <entry key="flags" value="0" />
++        <entry key="mode" value="0" />
++        <entry key="regex" value="(19||20)\d\d([- /.])(0[1-9]||1[012])\2(0[1-9]||[12][0-9]||3[01])" />
++        <entry key="text" value="1900-01-01 2007/08/13 1900.01.01 1900 01 01 1900-01.01 1900 13 01 1900 02 31" />
++      </map>
++    </option>
+   </component>
+ </project>
+\ No newline at end of file
+Index: app/templates/app/register.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{% extends \"layout/base-login.html\" %}\n{% load arraytag %}\n{% block content %}\n    <div class=\"login-box login-sidebar\" style=\"overflow-y: auto\">\n        <div class=\"white-box\">\n            <form class=\"form-horizontal form-material\" id=\"registerform\" action=\"/register\" method=\"POST\">\n                {% csrf_token %}\n                <a href=\"javascript:void(0)\" class=\"text-center db\">\n                    <img src=\"/static/app/plugins/images/admin-logo-dark.png\"\n                         alt=\"Home\"/>\n                    <br/>\n                    <img\n                            src=\"/static/app/plugins/images/admin-text-dark.png\" alt=\"Home\"/>\n                </a>\n                <h3 class=\"box-title m-t-40 m-b-0\">Register Now</h3>\n                <small>Create your account and enjoy</small>\n                {% if errors.username %}\n                    <div class=\"form-group m-t-20 has-error\">\n                        <div class=\"col-xs-12\">\n                            <input class=\"form-control\" type=\"text\" required name=\"username\" placeholder=\"Username\" value=\"{{ username|first_or_default:\"\" }}\">\n                            <span class=\"help-block\">{{ errors.username|first_or_default:\"\" }}</span>\n                        </div>\n                    </div>\n                {% else %}\n                    <div class=\"form-group m-t-20\">\n                        <div class=\"col-xs-12\">\n                            <input class=\"form-control\" type=\"text\" required name=\"username\" placeholder=\"Username\" value=\"{{ username|first_or_default:\"\" }}\">\n                        </div>\n                    </div>\n                {% endif %}\n                {% if errors.email %}\n                    <div class=\"form-group has-error\">\n                        <div class=\"col-xs-12\">\n                            <input class=\"form-control\" type=\"email\" required name=\"email\" placeholder=\"Email\" value=\"{{ email|first_or_default:\"\" }}\">\n                            <span class=\"help-block\">{{ errors.email|first_or_default:\"\" }}</span>\n                        </div>\n                    </div>\n                {% else %}\n                    <div class=\"form-group\">\n                        <div class=\"col-xs-12\">\n                            <input class=\"form-control\" type=\"email\" required name=\"email\" placeholder=\"Email\" value=\"{{ email|first_or_default:\"\" }}\">\n                        </div>\n                    </div>\n                {% endif %}\n                {% if errors.password %}\n                    <div class=\"form-group has-error\">\n                        <div class=\"col-xs-12\">\n                            <input class=\"form-control\" type=\"password\" required name=\"password\" placeholder=\"Password\" value=\"{{ password|first_or_default:\"\" }}\">\n                            <span class=\"help-block\">{{ errors.password|first_or_default:\"\" }}</span>\n                        </div>\n                    </div>\n                {% else %}\n                    <div class=\"form-group\">\n                        <div class=\"col-xs-12\">\n                            <input class=\"form-control\" type=\"password\" required name=\"password\" placeholder=\"Password\" value=\"{{ password|first_or_default:\"\" }}\">\n                        </div>\n                    </div>\n                {% endif %}\n                {% if errors.password_conf %}\n                    <div class=\"form-group has-error\">\n                        <div class=\"col-xs-12\">\n                            <input class=\"form-control\" type=\"password\" required name=\"password_conf\" placeholder=\"Password\" value=\"{{ password_conf|first_or_default:\"\" }}\">\n                            <span class=\"help-block\">{{ errors.password_conf|first_or_default:\"\" }}</span>\n                        </div>\n                    </div>\n                {% else %}\n                    <div class=\"form-group\">\n                        <div class=\"col-xs-12\">\n                            <input class=\"form-control\" type=\"password\" required name=\"password_conf\" placeholder=\"Confirm Password\" value=\"{{ password_conf|first_or_default:\"\" }}\">\n                        </div>\n                    </div>\n                {% endif %}\n                <div class=\"form-group\">\n                    <div class=\"col-md-12\">\n                        <div class=\"checkbox checkbox-primary p-t-0\">\n                            <input id=\"checkbox-signup\" type=\"checkbox\" required>\n                            <label for=\"checkbox-signup\"> I agree to all\n                                <a href=\"javascript:void(0)\">Terms</a>\n                            </label>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"form-group text-center m-t-20\">\n                    <div class=\"col-xs-12\">\n                        <button class=\"btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light\" type=\"submit\">\n                            Sign Up\n                        </button>\n                    </div>\n                </div>\n                <div class=\"form-group m-b-0\">\n                    <div class=\"col-sm-12 text-center\">\n                        <p>Already have an account?\n                            <a href=\"login\" class=\"text-primary m-l-5\">\n                                <b>Sign In</b>\n                            </a>\n                        </p>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n{% endblock %}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/templates/app/register.html	(date 1534587343000)
++++ app/templates/app/register.html	(date 1534558010000)
+@@ -17,63 +17,63 @@
+                 {% if errors.username %}
+                     <div class="form-group m-t-20 has-error">
+                         <div class="col-xs-12">
+-                            <input class="form-control" type="text" required name="username" placeholder="Username" value="{{ username|first_or_default:"" }}">
++                            <input class="form-control" type="text" name="username" placeholder="Username" value="{{ username|first_or_default:"" }}">
+                             <span class="help-block">{{ errors.username|first_or_default:"" }}</span>
+                         </div>
+                     </div>
+                 {% else %}
+                     <div class="form-group m-t-20">
+                         <div class="col-xs-12">
+-                            <input class="form-control" type="text" required name="username" placeholder="Username" value="{{ username|first_or_default:"" }}">
++                            <input class="form-control" type="text" name="username" placeholder="Username" value="{{ username|first_or_default:"" }}">
+                         </div>
+                     </div>
+                 {% endif %}
+                 {% if errors.email %}
+                     <div class="form-group has-error">
+                         <div class="col-xs-12">
+-                            <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ email|first_or_default:"" }}">
++                            <input class="form-control" type="email" name="email" placeholder="Email" value="{{ email|first_or_default:"" }}">
+                             <span class="help-block">{{ errors.email|first_or_default:"" }}</span>
+                         </div>
+                     </div>
+                 {% else %}
+                     <div class="form-group">
+                         <div class="col-xs-12">
+-                            <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ email|first_or_default:"" }}">
++                            <input class="form-control" type="email" name="email" placeholder="Email" value="{{ email|first_or_default:"" }}">
+                         </div>
+                     </div>
+                 {% endif %}
+                 {% if errors.password %}
+                     <div class="form-group has-error">
+                         <div class="col-xs-12">
+-                            <input class="form-control" type="password" required name="password" placeholder="Password" value="{{ password|first_or_default:"" }}">
++                            <input class="form-control" type="password" name="password" placeholder="Password" value="{{ password|first_or_default:"" }}">
+                             <span class="help-block">{{ errors.password|first_or_default:"" }}</span>
+                         </div>
+                     </div>
+                 {% else %}
+                     <div class="form-group">
+                         <div class="col-xs-12">
+-                            <input class="form-control" type="password" required name="password" placeholder="Password" value="{{ password|first_or_default:"" }}">
++                            <input class="form-control" type="password" name="password" placeholder="Password" value="{{ password|first_or_default:"" }}">
+                         </div>
+                     </div>
+                 {% endif %}
+                 {% if errors.password_conf %}
+                     <div class="form-group has-error">
+                         <div class="col-xs-12">
+-                            <input class="form-control" type="password" required name="password_conf" placeholder="Password" value="{{ password_conf|first_or_default:"" }}">
++                            <input class="form-control" type="password" name="password_conf" placeholder="Password" value="{{ password_conf|first_or_default:"" }}">
+                             <span class="help-block">{{ errors.password_conf|first_or_default:"" }}</span>
+                         </div>
+                     </div>
+                 {% else %}
+                     <div class="form-group">
+                         <div class="col-xs-12">
+-                            <input class="form-control" type="password" required name="password_conf" placeholder="Confirm Password" value="{{ password_conf|first_or_default:"" }}">
++                            <input class="form-control" type="password" name="password_conf" placeholder="Confirm Password" value="{{ password_conf|first_or_default:"" }}">
+                         </div>
+                     </div>
+                 {% endif %}
+                 <div class="form-group">
+                     <div class="col-md-12">
+                         <div class="checkbox checkbox-primary p-t-0">
+-                            <input id="checkbox-signup" type="checkbox" required>
++                            <input id="checkbox-signup" type="checkbox">
+                             <label for="checkbox-signup"> I agree to all
+                                 <a href="javascript:void(0)">Terms</a>
+                             </label>
+Index: app/templates/app/login.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{% extends \"layout/base-login.html\" %}\n{% load arraytag %}\n{% block content %}\n    {{ result }}\n    <div class=\"login-box login-sidebar\">\n        <div class=\"white-box\">\n            <form class=\"form-horizontal form-material\" id=\"loginform\" action=\"/login\" method=\"POST\">\n                {% csrf_token %}\n                <a href=\"javascript:void(0)\" class=\"text-center db\">\n                    <img src=\"/static/app/plugins/images/admin-logo-dark.png\"\n                         alt=\"Home\"/>\n                    <br/>\n                    <img src=\"/static/app/plugins/images/admin-text-dark.png\"\n                         alt=\"Home\"/>\n                </a>\n\n                {% if errors.email %}\n                    <div class=\"form-group has-error m-t-40\">\n                        <div class=\"col-xs-12\">\n                            <input class=\"form-control\" type=\"email\" required name=\"email\" placeholder=\"Email\" value=\"{{ email|first_or_default:\"\" }}\">\n                            <span class=\"help-block\">{{ errors.email|first_or_default:\"\" }}</span>\n                        </div>\n                    </div>\n                {% else %}\n                    <div class=\"form-group m-t-40\">\n                        <div class=\"col-xs-12\">\n                            <input class=\"form-control\" type=\"email\" required name=\"email\" placeholder=\"Email\" value=\"{{ email|first_or_default:\"\" }}\">\n                        </div>\n                    </div>\n                {% endif %}\n                {% if errors.password %}\n                    <div class=\"form-group has-error m-t-40\">\n                        <div class=\"col-xs-12\">\n                            <input class=\"form-control\" type=\"password\" required name=\"password\" placeholder=\"Password\" value=\"{{ password|first_or_default:\"\" }}\">\n                            <span class=\"help-block\">{{ errors.password|first_or_default:\"\" }}</span>\n                        </div>\n                    </div>\n                {% else %}\n                    <div class=\"form-group m-t-40\">\n                        <div class=\"col-xs-12\">\n                            <input class=\"form-control\" type=\"password\" required name=\"password\" placeholder=\"Password\" value=\"{{ password|first_or_default:\"\" }}\">\n                        </div>\n                    </div>\n                {% endif %}\n                <div class=\"form-group\">\n                    <div class=\"col-md-12\">\n{#                        <div class=\"checkbox checkbox-primary pull-left p-t-0\">#}\n{#                            <input id=\"checkbox-signup\" type=\"checkbox\">#}\n{#                            <label for=\"checkbox-signup\"> Remember me</label>#}\n{#                        </div>#}\n                        <a href=\"javascript:void(0)\" id=\"to-recover\" class=\"text-dark pull-right\">\n                            <i\n                                    class=\"fa fa-lock m-r-5\"></i>\n                            Forgot pwd?\n                        </a>\n                    </div>\n                </div>\n                <div class=\"form-group text-center m-t-20\">\n                    <div class=\"col-xs-12\">\n                        <button class=\"btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light\" type=\"submit\">\n                            Log In\n                        </button>\n                    </div>\n                </div>\n{#                <div class=\"row\">#}\n{#                    <div class=\"col-xs-12 col-sm-12 col-md-12 m-t-10 text-center\">#}\n{#                        <div class=\"social\">#}\n{#                            <a href=\"javascript:void(0)\" class=\"btn  btn-facebook\" data-toggle=\"tooltip\"#}\n{#                               title=\"Login with Facebook\">#}\n{#                                <i aria-hidden=\"true\"#}\n{#                                   class=\"fab fa-facebook-f\"></i>#}\n{#                            </a>#}\n{#                            <a#}\n{#                                    href=\"javascript:void(0)\" class=\"btn btn-googleplus\" data-toggle=\"tooltip\"#}\n{#                                    title=\"Login with Google\">#}\n{#                                <i aria-hidden=\"true\" class=\"fab fa-google-plus-g\"></i>#}\n{#                            </a>#}\n{#                        </div>#}\n{#                    </div>#}\n{#                </div>#}\n                <div class=\"form-group m-b-0\">\n                    <div class=\"col-sm-12 text-center\">\n                        <p>Don't have an account?\n                            <a href=\"register\" class=\"text-primary m-l-5\">\n                                <b>Sign Up</b>\n                            </a>\n                        </p>\n                    </div>\n                </div>\n            </form>\n            <form class=\"form-horizontal\" id=\"recoverform\" action=\"index.html\">\n                <div class=\"form-group \">\n                    <div class=\"col-xs-12\">\n                        <h3>Recover Password</h3>\n                        <p class=\"text-muted\">Enter your Email and instructions will be sent to you! </p>\n                    </div>\n                </div>\n                <div class=\"form-group \">\n                    <div class=\"col-xs-12\">\n                        <input class=\"form-control\" type=\"text\" required=\"\" placeholder=\"Email\">\n                    </div>\n                </div>\n                <div class=\"form-group text-center m-t-20\">\n                    <div class=\"col-xs-12\">\n                        <button class=\"btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light\"\n                                type=\"submit\">Reset\n                        </button>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n{% endblock %}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/templates/app/login.html	(date 1534587343000)
++++ app/templates/app/login.html	(date 1534189466000)
+@@ -17,28 +17,28 @@
+                 {% if errors.email %}
+                     <div class="form-group has-error m-t-40">
+                         <div class="col-xs-12">
+-                            <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ email|first_or_default:"" }}">
++                            <input class="form-control" type="email" name="email" placeholder="Email" value="{{ email|first_or_default:"" }}">
+                             <span class="help-block">{{ errors.email|first_or_default:"" }}</span>
+                         </div>
+                     </div>
+                 {% else %}
+                     <div class="form-group m-t-40">
+                         <div class="col-xs-12">
+-                            <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ email|first_or_default:"" }}">
++                            <input class="form-control" type="email" name="email" placeholder="Email" value="{{ email|first_or_default:"" }}">
+                         </div>
+                     </div>
+                 {% endif %}
+                 {% if errors.password %}
+                     <div class="form-group has-error m-t-40">
+                         <div class="col-xs-12">
+-                            <input class="form-control" type="password" required name="password" placeholder="Password" value="{{ password|first_or_default:"" }}">
++                            <input class="form-control" type="password" name="password" placeholder="Password" value="{{ password|first_or_default:"" }}">
+                             <span class="help-block">{{ errors.password|first_or_default:"" }}</span>
+                         </div>
+                     </div>
+                 {% else %}
+                     <div class="form-group m-t-40">
+                         <div class="col-xs-12">
+-                            <input class="form-control" type="password" required name="password" placeholder="Password" value="{{ password|first_or_default:"" }}">
++                            <input class="form-control" type="password" name="password" placeholder="Password" value="{{ password|first_or_default:"" }}">
+                         </div>
+                     </div>
+                 {% endif %}
+Index: .idea/Django.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<module type=\"PYTHON_MODULE\" version=\"4\">\n  <component name=\"FacetManager\">\n    <facet type=\"django\" name=\"Django\">\n      <configuration>\n        <option name=\"rootFolder\" value=\"$MODULE_DIR$\" />\n        <option name=\"settingsModule\" value=\"sume/settings.py\" />\n        <option name=\"manageScript\" value=\"manage.py\" />\n        <option name=\"environment\" value=\"&lt;map/&gt;\" />\n        <option name=\"doNotUseTestRunner\" value=\"true\" />\n        <option name=\"trackFilePattern\" value=\"\" />\n      </configuration>\n    </facet>\n  </component>\n  <component name=\"NewModuleRootManager\">\n    <content url=\"file://$MODULE_DIR$\" />\n    <orderEntry type=\"jdk\" jdkName=\"Python 3.6 (tensorflow3690)\" jdkType=\"Python SDK\" />\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\n  </component>\n  <component name=\"TemplatesService\">\n    <option name=\"TEMPLATE_CONFIGURATION\" value=\"Django\" />\n  </component>\n  <component name=\"TestRunnerService\">\n    <option name=\"PROJECT_TEST_RUNNER\" value=\"Unittests\" />\n  </component>\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/Django.iml	(date 1534587343000)
++++ .idea/Django.iml	(date 1534165445000)
+@@ -7,20 +7,27 @@
+         <option name="settingsModule" value="sume/settings.py" />
+         <option name="manageScript" value="manage.py" />
+         <option name="environment" value="&lt;map/&gt;" />
+-        <option name="doNotUseTestRunner" value="true" />
++        <option name="doNotUseTestRunner" value="false" />
+         <option name="trackFilePattern" value="" />
+       </configuration>
+     </facet>
+   </component>
+   <component name="NewModuleRootManager">
+-    <content url="file://$MODULE_DIR$" />
++    <content url="file://$MODULE_DIR$">
++      <excludeFolder url="file://$MODULE_DIR$/static" />
++    </content>
+     <orderEntry type="jdk" jdkName="Python 3.6 (tensorflow3690)" jdkType="Python SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+   <component name="TemplatesService">
+     <option name="TEMPLATE_CONFIGURATION" value="Django" />
++    <option name="TEMPLATE_FOLDERS">
++      <list>
++        <option value="$MODULE_DIR$/templates" />
++      </list>
++    </option>
+   </component>
+   <component name="TestRunnerService">
+     <option name="PROJECT_TEST_RUNNER" value="Unittests" />
+   </component>
+-</module>
+\ No newline at end of file
++</module>
+Index: app/views.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import codecs\nimport logging\nimport pickle\n\nfrom django.contrib import messages\nfrom django.contrib.auth import authenticate, login as do_login\nfrom django.contrib.auth.hashers import make_password\nfrom django.contrib.auth.models import User\nfrom django.contrib.messages import get_messages\nfrom django.db import IntegrityError\nfrom django.http import HttpResponse\nfrom django.shortcuts import get_object_or_404, render, redirect\n\nfrom app.app.forms import auth\nfrom app.app.utils.arrayutil import array_except, array_merge\nfrom .models import Dokumen\n\nlogger = logging.getLogger('debug')\n\n\n# from filetransfers.api import serve_file\n\n\ndef index(request):\n    context = {}\n    return render(request, 'app/index.html', context)\n\n\ndef login(request):\n    context = {}\n\n    storage = get_messages(request)\n    for message in storage:\n        if message.extra_tags == 'callback':\n            callback = pickle.loads(codecs.decode(message.message.encode(), \"base64\"))\n            context = {\n                'email': callback['data']['email'] if 'data' in callback and 'email' in callback['data'] else \"\",\n                'password': callback['data']['password'] if 'data' in callback and 'password' in callback[\n                    'data'] else \"\",\n                'callback': callback\n            }\n\n    if request.method == 'POST':\n        form = auth.Login(request.POST)\n        context = array_merge(context, array_except(dict(form.data), 'csrfmiddlewaretoken'))\n        if form.is_valid():\n            user_data = authenticate(request,\n                                     username=form.cleaned_data.get('email'),\n                                     password=form.cleaned_data.get('password'))\n            if user_data is not None:\n                do_login(request, user_data)\n                callback = pickle.dumps({\n                    'message': {\n                        'notification': [\n                            {'msg': 'Login Success', 'level': 'success'}\n                        ]\n                    }})\n                messages.add_message(request, messages.INFO, codecs.encode(callback, \"base64\").decode(), 'callback')\n                return redirect('/')\n            else:\n                context['errors'] = {'email': 'Account does not exists.'}\n                return render(request, 'app/login.html', context)\n        else:\n            context['errors'] = dict(form.errors)\n            return render(request, 'app/login.html', context)\n    else:\n        return render(request, 'app/login.html', context)\n\n\ndef register(request):\n    context = {}\n\n    storage = get_messages(request)\n    for message in storage:\n        if message.extra_tags == 'callback':\n            callback = pickle.loads(codecs.decode(message.message.encode(), \"base64\"))\n            context = {\n                'callback': callback\n            }\n\n    if request.method == 'POST':\n        form = auth.Register(request.POST)\n        context = array_merge(context, array_except(dict(form.data), 'csrfmiddlewaretoken'))\n        if form.is_valid():\n            if form.cleaned_data.get('password') != form.cleaned_data.get('password_conf'):\n                context['errors'] = {'password': 'Password Unequal', 'password_conf': 'Password Unequal'}\n                return render(request, 'app/register.html', context)\n            elif len(User.objects.filter(email=form.cleaned_data.get('email'))) > 0:\n                context['errors'] = {'email': 'Email exists'}\n                return render(request, 'app/register.html', context)\n            else:\n                account = User(username=form.cleaned_data.get('username'),\n                               email=form.cleaned_data.get('email'),\n                               password=make_password(form.cleaned_data.get('password')))\n                try:\n                    account.save()\n                except IntegrityError:\n                    context['errors'] = {'username': 'Username is already taken'}\n                    return render(request, 'app/register.html', context)\n                callback = pickle.dumps({\n                    'message': {\n                        'alert': [\n                            {'msg': 'Registration Success', 'level': 'success'}\n                        ]\n                    },\n                    'data': {\n                        'email': form.cleaned_data.get('email'),\n                        'password': form.cleaned_data.get('password')\n                    }\n                })\n                messages.add_message(request, messages.INFO, codecs.encode(callback, \"base64\").decode(), 'callback')\n                return redirect('/login')\n        else:\n            context['errors'] = dict(form.errors)\n            return render(request, 'app/register.html', context)\n    else:\n        return render(request, 'app/register.html', context)\n\n\ndef user(request):\n    context = {}\n    return render(request, 'app/user.html', context)\n\n\ndef detail(request, question_id):\n    dokumen = get_object_or_404(Dokumen, pk=question_id)\n    return serve_file(request, dokumen.filenya)\n\n\ndef results(request, question_id):\n    response = \"You're looking at the results of question %s.\"\n    return HttpResponse(response % question_id)\n\n\ndef vote(request, question_id):\n    return HttpResponse(\"You're voting on question %s.\" % question_id)\n\n\ndef openfile(request, question_id):\n    filename = Dokumen.filenya.name.split('/')[-1]\n    response = HttpResponse(object_name.file, content_type='text/plain')\n    response['Content-Disposition'] = 'attachment; filename=%s' % filename\n\n    return response\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/views.py	(date 1534587643000)
++++ app/views.py	(date 1534587587000)
+@@ -93,7 +93,8 @@
+                                email=form.cleaned_data.get('email'),
+                                password=make_password(form.cleaned_data.get('password')))
+                 try:
+-                    account.save()
++                    # account.save()
++                    pass
+                 except IntegrityError:
+                     context['errors'] = {'username': 'Username is already taken'}
+                     return render(request, 'app/register.html', context)
+@@ -124,7 +125,8 @@
+ 
+ def detail(request, question_id):
+     dokumen = get_object_or_404(Dokumen, pk=question_id)
+-    return serve_file(request, dokumen.filenya)
++    # return serve_file(request, dokumen.filenya)
++    return None
+ 
+ 
+ def results(request, question_id):
+@@ -138,7 +140,8 @@
+ 
+ def openfile(request, question_id):
+     filename = Dokumen.filenya.name.split('/')[-1]
+-    response = HttpResponse(object_name.file, content_type='text/plain')
+-    response['Content-Disposition'] = 'attachment; filename=%s' % filename
++    # response = HttpResponse(object_name.file, content_type='text/plain')
++    # response['Content-Disposition'] = 'attachment; filename=%s' % filename
+ 
+-    return response
++    # return response
++    return None
+Index: sume/settings.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\"\"\"\nDjango settings for sume project.\n\nGenerated by 'django-admin startproject' using Django 2.0.6.\n\nFor more information on this file, see\nhttps://docs.djangoproject.com/en/2.0/topics/settings/\n\nFor the full list of settings and their values, see\nhttps://docs.djangoproject.com/en/2.0/ref/settings/\n\"\"\"\n\nimport os\n\n# noinspection PyPackageRequirements\nimport environ\n\nroot = environ.Path(__file__) - 3  # three folder back (/a/b/c/ - 3 = /)\nenv = environ.Env(DEBUG=(bool, False), )  # set default values and casting\nenviron.Env.read_env()  # reading .env file\n\n# Build paths inside the project like this: os.path.join(BASE_DIR, ...)\nBASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\n\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/\n\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = env('SECRET_KEY')\n\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = env('DEBUG')\n\nALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'sume-deploy.herokuapp.com']\n\n# Application definition\n\nINSTALLED_APPS = [\n    'django_seed',\n    'app.apps.AppConfig',\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'whitenoise.runserver_nostatic',\n    'django.contrib.staticfiles',\n]\n\nMIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'whitenoise.middleware.WhiteNoiseMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n]\n\nAUTHENTICATION_BACKENDS = [\n    'app.app.backend.EmailBackend.EmailBackend'\n]\n\nROOT_URLCONF = 'sume.urls'\n\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': ['templates'],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',\n                'django.contrib.auth.context_processors.auth',\n                'django.contrib.messages.context_processors.messages',\n            ],\n        },\n    },\n]\n\nWSGI_APPLICATION = 'sume.wsgi.application'\n\n# Database\n# https://docs.djangoproject.com/en/2.0/ref/settings/#databases\n\nDATABASES = {\n    'default': env.db(),  # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ\n}\n\nSECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')\n# Password validation\n# https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators\n\nAUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',\n    },\n]\n\n# Internationalization\n# https://docs.djangoproject.com/en/2.0/topics/i18n/\n\nLANGUAGE_CODE = 'en-us'\n\nTIME_ZONE = env('TIME_ZONE')\n\nUSE_I18N = True\n\nUSE_L10N = True\n\nUSE_TZ = True\n\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/2.0/howto/static-files/\n\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')\nSTATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'\n\n# STATIC_URL = '/static/'\n\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, \"assets\"),\n)\n\nSTATIC_HOST = 'https://sume-deploy.herokuapp.com' if not DEBUG else ''\nSTATIC_URL = STATIC_HOST + '/static/'\n\nLOGGING = {\n    'version': 1,\n    'disable_existing_loggers': False,\n    'filters': {\n        'require_debug_false': {\n            '()': 'django.utils.log.RequireDebugFalse'\n        }\n    },\n    'handlers': {\n        'mail_admins': {\n            'level': 'ERROR',\n            'filters': ['require_debug_false'],\n            'class': 'django.utils.log.AdminEmailHandler'\n        },\n        'debug': {\n            'level': 'DEBUG',\n            'class': 'logging.handlers.RotatingFileHandler',\n            'filename': os.path.join(BASE_DIR, 'debug.log'),\n            'maxBytes': 1024 * 1024 * 15,  # 15MB\n            'backupCount': 10,\n        },\n    },\n    'loggers': {\n        'django.request': {\n            'handlers': ['mail_admins'],\n            'level': 'ERROR',\n            'propagate': True,\n        },\n        'debug': {\n            'handlers': ['debug', ],\n            'level': 'DEBUG',\n            'propagate': True,\n        },\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sume/settings.py	(date 1534587343000)
++++ sume/settings.py	(date 1534165523000)
+@@ -130,7 +130,7 @@
+ # STATIC_URL = '/static/'
+ 
+ STATICFILES_DIRS = (
+-    os.path.join(BASE_DIR, "assets"),
++    os.path.join(BASE_DIR, "sume/assets"),
+ )
+ 
+ STATIC_HOST = 'https://sume-deploy.herokuapp.com' if not DEBUG else ''
