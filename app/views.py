@@ -5,7 +5,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 
 from app.app.forms import auth
 from app.app.utils.arrayutil import array_except
@@ -63,7 +63,7 @@ def register(request):
                 except IntegrityError:
                     data['errors'] = {'username': 'Username is already taken'}
                     return render(request, 'app/register.html', data)
-                return render(request, 'app/register.html')
+                return redirect('/login')
         else:
             data['errors'] = dict(form.errors)
             return render(request, 'app/register.html', data)
