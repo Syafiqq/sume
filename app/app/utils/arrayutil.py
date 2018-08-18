@@ -10,3 +10,12 @@ def array_except(array, excepts):
     for exp in excepts:
         del array[exp]
     return array
+
+
+def array_merge(*dict_args):
+    if isinstance(dict_args[0], dict):
+        result = {}
+        for dictionary in dict_args:
+            result.update(dictionary)
+        return result
+    return None
