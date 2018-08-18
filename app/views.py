@@ -68,16 +68,26 @@ def login(request):
 
 
 def register(request):
+    context = {}
+
+    storage = get_messages(request)
+    for message in storage:
+        if message.extra_tags == 'callback':
+            callback = pickle.loads(codecs.decode(message.message.encode(), "base64"))
+            context = {
+                'callback': callback
+            }
+
     if request.method == 'POST':
         form = auth.Register(request.POST)
-        data = array_except(dict(form.data), 'csrfmiddlewaretoken')
+        context = array_merge(context, array_except(dict(form.data), 'csrfmiddlewaretoken'))
         if form.is_valid():
             if form.cleaned_data.get('password') != form.cleaned_data.get('password_conf'):
-                data['errors'] = {'password': 'Password Unequal', 'password_conf': 'Password Unequal'}
-                return render(request, 'app/register.html', data)
+                context['errors'] = {'password': 'Password Unequal', 'password_conf': 'Password Unequal'}
+                return render(request, 'app/register.html', context)
             elif len(User.objects.filter(email=form.cleaned_data.get('email'))) > 0:
-                data['errors'] = {'email': 'Email exists'}
-                return render(request, 'app/register.html', data)
+                context['errors'] = {'email': 'Email exists'}
+                return render(request, 'app/register.html', context)
             else:
                 account = User(username=form.cleaned_data.get('username'),
                                email=form.cleaned_data.get('email'),
@@ -85,8 +95,8 @@ def register(request):
                 try:
                     account.save()
                 except IntegrityError:
-                    data['errors'] = {'username': 'Username is already taken'}
-                    return render(request, 'app/register.html', data)
+                    context['errors'] = {'username': 'Username is already taken'}
+                    return render(request, 'app/register.html', context)
                 callback = pickle.dumps({
                     'message': {
                         'alert': [
@@ -101,10 +111,10 @@ def register(request):
                 messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
                 return redirect('/login')
         else:
-            data['errors'] = dict(form.errors)
-            return render(request, 'app/register.html', data)
+            context['errors'] = dict(form.errors)
+            return render(request, 'app/register.html', context)
     else:
-        return render(request, 'app/register.html', dict(auth.Register().data))
+        return render(request, 'app/register.html', context)
 
 
 def user(request):
