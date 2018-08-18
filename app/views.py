@@ -12,7 +12,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 
 from app.app.forms import auth
-from app.app.utils.arrayutil import array_except
+from app.app.utils.arrayutil import array_except, array_merge
 from .models import Dokumen
 
 logger = logging.getLogger('debug')
@@ -27,9 +27,22 @@ def index(request):
 
 
 def login(request):
+    context = {}
+
+    storage = get_messages(request)
+    for message in storage:
+        if message.extra_tags == 'callback':
+            callback = pickle.loads(codecs.decode(message.message.encode(), "base64"))
+            context = {
+                'email': callback['data']['email'] if 'data' in callback and 'email' in callback['data'] else "",
+                'password': callback['data']['password'] if 'data' in callback and 'password' in callback[
+                    'data'] else "",
+                'callback': callback
+            }
+
     if request.method == 'POST':
         form = auth.Login(request.POST)
-        data = array_except(dict(form.data), 'csrfmiddlewaretoken')
+        context = array_merge(context, array_except(dict(form.data), 'csrfmiddlewaretoken'))
         if form.is_valid():
             user_data = authenticate(request,
                                      username=form.cleaned_data.get('email'),
@@ -38,13 +51,13 @@ def login(request):
                 do_login(request, user_data)
                 return render(request, 'app/login.html')
             else:
-                data['errors'] = {'email': 'Account does not exists.'}
-                return render(request, 'app/login.html', data)
+                context['errors'] = {'email': 'Account does not exists.'}
+                return render(request, 'app/login.html', context)
         else:
-            data['errors'] = dict(form.errors)
-            return render(request, 'app/login.html', data)
+            context['errors'] = dict(form.errors)
+            return render(request, 'app/login.html', context)
     else:
-        return render(request, 'app/login.html', dict(auth.Login().data))
+        return render(request, 'app/login.html', context)
 
 
 def register(request):
