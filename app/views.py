@@ -5,7 +5,6 @@ import pickle
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as do_login
 # from filetransfers.api import serve_file
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.contrib.messages import get_messages
@@ -15,6 +14,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 
 from app.app.forms import auth
 from app.app.utils.arrayutil import array_except, array_merge
+from app.app.utils.custom.decorators import login_required
 from .forms import LoginForm
 from .models import Dokumen
 
@@ -24,7 +24,7 @@ logger = logging.getLogger('debug')
 # from filetransfers.api import serve_file
 
 
-@login_required()
+@login_required(login_url='/login')
 def index(request):
     context = {}
     return render(request, 'app/index.html', context)
@@ -143,7 +143,7 @@ def dologin(request):
     return render(request, 'app/login.html', {'form': form})
 
 
-@login_required()
+@login_required(login_url='/login')
 def kelas(request):
     latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
     context = {
@@ -152,13 +152,13 @@ def kelas(request):
     return render(request, 'app/kelas.html', context)
 
 
-@login_required()
+@login_required(login_url='/login')
 def user(request):
     context = {}
     return render(request, 'app/user.html', context)
 
 
-@login_required()
+@login_required(login_url='/login')
 def admin(request):
     latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
     context = {
@@ -167,7 +167,7 @@ def admin(request):
     return render(request, 'app/admin.html', context)
 
 
-@login_required()
+@login_required(login_url='/login')
 def detail(request, question_id):
     # dokumen = get_object_or_404(Dokumen, pk=question_id)
     # return serve_file(request, dokumen.filenya)
