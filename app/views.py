@@ -3,21 +3,20 @@ import logging
 import pickle
 
 from django.contrib import messages
+from django.contrib.auth import authenticate, login as do_login
+# from filetransfers.api import serve_file
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.contrib.messages import get_messages
 from django.db import IntegrityError
-from django.shortcuts import get_object_or_404, render, redirect
-
-from django.contrib.auth import authenticate, login as do_login, logout
 from django.http import HttpResponse
-from filetransfers.api import serve_file
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, render, redirect
 
 from app.app.forms import auth
 from app.app.utils.arrayutil import array_except, array_merge
-from .models import Dokumen
 from .forms import LoginForm
+from .models import Dokumen
 
 logger = logging.getLogger('debug')
 
@@ -144,6 +143,7 @@ def dologin(request):
         form = LoginForm()
     return render(request, 'app/login.html', {'form': form})
 
+
 @login_required()
 def kelas(request):
     latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
@@ -152,10 +152,12 @@ def kelas(request):
     }
     return render(request, 'app/kelas.html', context)
 
+
 @login_required()
 def user(request):
     context = {}
     return render(request, 'app/user.html', context)
+
 
 @login_required()
 def admin(request):
@@ -164,6 +166,7 @@ def admin(request):
         'latest_dokumen_list': latest_dokumen_list,
     }
     return render(request, 'app/admin.html', context)
+
 
 @login_required()
 def detail(request, question_id):
