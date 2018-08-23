@@ -4,3 +4,4 @@ sume/settings/local.py
 !/staticfiles/.gitkeep
 dlnn/resources/*.h5
 /debug.log
+env

@@ -171,3 +171,5 @@ LOGGING = {
         },
     }
 }
+STATIC_HOST = 'https://sume-deploy.herokuapp.com' if not DEBUG else ''
+STATIC_URL = STATIC_HOST + '/static/'
