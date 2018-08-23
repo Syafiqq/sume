@@ -31,7 +31,6 @@ def index(request):
 
 
 def login(request):
-    logout(request)
     context = {}
 
     storage = get_messages(request)
