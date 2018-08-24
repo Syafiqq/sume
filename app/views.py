@@ -125,8 +125,7 @@ def register(request):
 
   
 def dologin(request):
-    
-    (request)
+
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
