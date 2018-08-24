@@ -60,7 +60,8 @@ def login(request):
                         ]
                     }})
                 messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
-                return redirect('/')
+                return redirect(
+                    request.POST.get('next') if (request.POST.get('next') and request.POST.get('next') != "") else '/')
             else:
                 context['errors'] = {'email': 'Account does not exists.'}
                 return render(request, 'app/login.html', context)
@@ -68,6 +69,8 @@ def login(request):
             context['errors'] = dict(form.errors)
             return render(request, 'app/login.html', context)
     else:
+        if request.GET.get('next') and request.GET.get('next') != "":
+            context['next'] = request.GET.get('next')
         return render(request, 'app/login.html', context)
 
 
