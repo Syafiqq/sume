@@ -18,3 +18,18 @@ def fetch_message(request, custom_callback=None, custom_context=None):
             if custom_context is not None:
                 context = array_merge(context, custom_context(callback))
     return context
+
+
+def initialize_form_context():
+    return {
+        'form': {
+            'data': {},
+            'errors': {}
+        },
+        'message': {
+            'notification': {},
+            'alert': {},
+            'custom': {}
+        },
+        'data': {}
+    }
