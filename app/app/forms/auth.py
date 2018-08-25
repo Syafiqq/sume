@@ -11,3 +11,7 @@ class Register(forms.Form):
     email = forms.EmailField()
     password = forms.CharField()
     password_conf = forms.CharField()
+
+
+class Forgot(forms.Form):
+    email = forms.EmailField()
