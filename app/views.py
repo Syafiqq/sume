@@ -7,13 +7,13 @@ from django.contrib.auth import authenticate, login as do_login
 # from filetransfers.api import serve_file
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
-from django.contrib.messages import get_messages
 from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 
 from app.app.forms import auth
 from app.app.utils.arrayutil import array_except, array_merge
+from app.app.utils.commonutil import fetch_message
 from app.app.utils.custom.decorators import login_required
 from .forms import LoginForm
 from .models import Dokumen
@@ -31,18 +31,10 @@ def index(request):
 
 
 def login(request):
-    context = {}
-
-    storage = get_messages(request)
-    for message in storage:
-        if message.extra_tags == 'callback':
-            callback = pickle.loads(codecs.decode(message.message.encode(), "base64"))
-            context = {
-                'email': callback['data']['email'] if 'data' in callback and 'email' in callback['data'] else "",
-                'password': callback['data']['password'] if 'data' in callback and 'password' in callback[
-                    'data'] else "",
-                'callback': callback
-            }
+    context = fetch_message(request, custom_context=lambda cbk: {
+        'email': cbk['data']['email'] if 'data' in cbk and 'email' in cbk['data'] else "",
+        'password': cbk['data']['password'] if 'data' in cbk and 'password' in cbk['data'] else "",
+    })
 
     if request.method == 'POST':
         form = auth.Login(request.POST)
@@ -75,15 +67,7 @@ def login(request):
 
 
 def register(request):
-    context = {}
-
-    storage = get_messages(request)
-    for message in storage:
-        if message.extra_tags == 'callback':
-            callback = pickle.loads(codecs.decode(message.message.encode(), "base64"))
-            context = {
-                'callback': callback
-            }
+    context = fetch_message(request)
 
     if request.method == 'POST':
         form = auth.Register(request.POST)
@@ -125,7 +109,6 @@ def register(request):
 
   
 def dologin(request):
-
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
