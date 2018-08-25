@@ -7,6 +7,7 @@ from app.app.utils.arrayutil import array_merge
 
 
 def fetch_message(request, custom_callback=None, custom_context=None):
+    context = {}
     storage = get_messages(request)
     for message in storage:
         if message.extra_tags == 'callback':
@@ -18,4 +19,4 @@ def fetch_message(request, custom_callback=None, custom_context=None):
             }
             if custom_context is not None:
                 context = array_merge(context, custom_context(callback))
-            return context
+    return context
