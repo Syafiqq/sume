@@ -14,9 +14,7 @@ def fetch_message(request, custom_callback=None, custom_context=None):
             callback = pickle.loads(codecs.decode(message.message.encode(), "base64"))
             if custom_callback is not None:
                 callback = custom_callback(callback)
-            context = {
-                'callback': callback
-            }
+            context = callback
             if custom_context is not None:
                 context = array_merge(context, custom_context(callback))
     return context
