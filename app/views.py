@@ -31,10 +31,7 @@ def index(request):
 
 
 def login(request):
-    context = fetch_message(request, custom_context=lambda cbk: {
-        'email': cbk['data']['email'] if 'data' in cbk and 'email' in cbk['data'] else "",
-        'password': cbk['data']['password'] if 'data' in cbk and 'password' in cbk['data'] else "",
-    })
+    context = fetch_message(request)
 
     if request.method == 'POST':
         form = auth.Login(request.POST)
