@@ -14,32 +14,32 @@
                          alt="Home"/>
                 </a>
 
-                <input type="hidden" name="next" value="{{ next|first_or_default:"" }}">
-                {% if errors.email %}
+                <input type="hidden" name="next" value="{{ form.data.next|first_or_default:"" }}">
+                {% if form.errors.email %}
                     <div class="form-group has-error m-t-40">
                         <div class="col-xs-12">
-                            <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ email|first_or_default:"" }}">
-                            <span class="help-block">{{ errors.email|first_or_default:"" }}</span>
+                            <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ form.data.email|first_or_default:"" }}">
+                            <span class="help-block">{{ form.errors.email|first_or_default:"" }}</span>
                         </div>
                     </div>
                 {% else %}
                     <div class="form-group m-t-40">
                         <div class="col-xs-12">
-                            <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ email|first_or_default:"" }}">
+                            <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ form.data.email|first_or_default:"" }}">
                         </div>
                     </div>
                 {% endif %}
-                {% if errors.password %}
+                {% if form.errors.password %}
                     <div class="form-group has-error m-t-40">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" required name="password" placeholder="Password" value="{{ password|first_or_default:"" }}">
-                            <span class="help-block">{{ errors.password|first_or_default:"" }}</span>
+                            <input class="form-control" type="password" required name="password" placeholder="Password" value="{{ form.data.password|first_or_default:"" }}">
+                            <span class="help-block">{{ form.errors.password|first_or_default:"" }}</span>
                         </div>
                     </div>
                 {% else %}
                     <div class="form-group m-t-40">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" required name="password" placeholder="Password" value="{{ password|first_or_default:"" }}">
+                            <input class="form-control" type="password" required name="password" placeholder="Password" value="{{ form.data.password|first_or_default:"" }}">
                         </div>
                     </div>
                 {% endif %}
@@ -81,17 +81,17 @@
                         {% endif %}
                     </div>
                 </div>
-                {% if errors.email %}
+                {% if form.errors.email %}
                     <div class="form-group has-error m-t-40">
                         <div class="col-xs-12">
-                            <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ email|first_or_default:"" }}">
-                            <span class="help-block">{{ errors.email|first_or_default:"" }}</span>
+                            <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ form.data.email|first_or_default:"" }}">
+                            <span class="help-block">{{ form.errors.email|first_or_default:"" }}</span>
                         </div>
                     </div>
                 {% else %}
                     <div class="form-group m-t-40">
                         <div class="col-xs-12">
-                            <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ email|first_or_default:"" }}">
+                            <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ form.data.email|first_or_default:"" }}">
                         </div>
                     </div>
                 {% endif %}
