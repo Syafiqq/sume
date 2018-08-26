@@ -11,13 +11,15 @@ from django.core.mail import send_mail
 from django.db import IntegrityError
 from django.http import HttpResponse, BadHeaderError
 from django.shortcuts import get_object_or_404, render, redirect
+from django.utils.crypto import get_random_string
+from django.utils.timezone import now
 
 from app.app.forms import auth
 from app.app.utils.arrayutil import array_except, array_merge
-from app.app.utils.commonutil import fetch_message, initialize_form_context
+from app.app.utils.commonutil import fetch_message, initialize_form_context, base_url
 from app.app.utils.custom.decorators import login_required
 from .forms import LoginForm
-from .models import Dokumen
+from .models import Dokumen, ResetPassword
 
 logger = logging.getLogger('debug')
 
@@ -117,12 +119,27 @@ def forgot(request):
         if form.is_valid():
             account = User.objects.filter(email=form.cleaned_data.get('email'))
             if account.exists():
+                account = account.first()
+                token = get_random_string(length=80)
+                if ResetPassword.objects.filter(user_id=account.id).exists():
+                    ResetPassword.objects.filter(user_id=account.id).update(token=token)
+                else:
+                    ResetPassword.objects.create(token=token, created_at=now(), user_id=account.id)
                 subject = 'Password Recover Request'
-                message = 'Here your password recover link address'
+                message = f"""
+                <doctype html>
+                <html>
+                    <head>
+                    </head>
+                    <body>
+                        Here your password recover link address <a href="{base_url(request)}/recover?token={token}" target="_blank">Click</a>
+                    </body>
+                </html>
+                """
                 from_email = 'sume@noreply.com'
                 if subject and message and from_email:
                     try:
-                        send_mail(subject, message, from_email, [form.cleaned_data.get('email')])
+                        send_mail(subject, message, from_email, [form.cleaned_data.get('email')], html_message=message)
                     except BadHeaderError:
                         context['form']['errors'] = {'email': 'Server Error, Try Again'}
                         return render(request, 'app/login.html', context)
