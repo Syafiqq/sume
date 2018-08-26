@@ -33,3 +33,16 @@ def initialize_form_context():
         },
         'data': {}
     }
+
+
+def base_url(request):
+    """
+    @see https://gist.github.com/crackjack/8120686
+    Return a BASE_URL template context for the current request.
+    """
+    if request.is_secure():
+        scheme = 'https://'
+    else:
+        scheme = 'http://'
+
+    return scheme + request.get_host()
