@@ -105,7 +105,39 @@ def register(request):
     else:
         return render(request, 'app/register.html', context)
 
-  
+
+def forgot(request):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+
+    if request.method == 'POST':
+        form = auth.Forgot(request.POST)
+        context['form']['data'] = array_except(dict(form.data), ['csrfmiddlewaretoken'])
+        context['form']['data']['forgot_concern'] = True
+        if form.is_valid():
+            account = User.objects.filter(email=form.cleaned_data.get('email'))
+            if account.exists():
+                context['message']['custom'] = {
+                    'recover_success': 'Your recover form has been sent to your email account'}
+                context['form']['data']['email'] = ''
+                return render(request, 'app/login.html', context)
+            else:
+                context['form']['errors'] = {'email': 'Account does not exists.'}
+                return render(request, 'app/login.html', context)
+        else:
+            context['form']['errors'] = dict(form.errors)
+            return render(request, 'app/login.html', context)
+    else:
+        callback = pickle.dumps({
+            'form': {
+                'data': {
+                    'forgot_concern': True,
+                }
+            }
+        })
+        messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
+        return redirect('/login')
+
+
 def dologin(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
