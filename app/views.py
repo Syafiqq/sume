@@ -7,8 +7,9 @@ from django.contrib.auth import authenticate, login as do_login
 # from filetransfers.api import serve_file
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.db import IntegrityError
-from django.http import HttpResponse
+from django.http import HttpResponse, BadHeaderError
 from django.shortcuts import get_object_or_404, render, redirect
 
 from app.app.forms import auth
@@ -116,10 +117,22 @@ def forgot(request):
         if form.is_valid():
             account = User.objects.filter(email=form.cleaned_data.get('email'))
             if account.exists():
-                context['message']['custom'] = {
-                    'recover_success': 'Your recover form has been sent to your email account'}
-                context['form']['data']['email'] = ''
-                return render(request, 'app/login.html', context)
+                subject = 'Password Recover Request'
+                message = 'Here your password recover link address'
+                from_email = 'sume@noreply.com'
+                if subject and message and from_email:
+                    try:
+                        send_mail(subject, message, from_email, [form.cleaned_data.get('email')])
+                    except BadHeaderError:
+                        context['form']['errors'] = {'email': 'Server Error, Try Again'}
+                        return render(request, 'app/login.html', context)
+                    context['message']['custom'] = {
+                        'recover_success': 'Your recover form has been sent to your email account'}
+                    context['form']['data']['email'] = ''
+                    return render(request, 'app/login.html', context)
+                else:
+                    context['form']['errors'] = {'email': 'Server Error, Try Again'}
+                    return render(request, 'app/login.html', context)
             else:
                 context['form']['errors'] = {'email': 'Account does not exists.'}
                 return render(request, 'app/login.html', context)
