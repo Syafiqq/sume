@@ -168,6 +168,53 @@ def forgot(request):
         return redirect('/login')
 
 
+def recover(request):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+    token = request.GET.get('token') if request.GET.get('token') and request.GET.get('token') else request.POST.get(
+        'token')
+    if token and token != "":
+        data = ResetPassword.objects.filter(token=token)
+        if data.exists():
+            recover_data = data.first()
+        else:
+            callback = pickle.dumps({'message': {'notification': [{'msg': 'Bad Token', 'level': 'warning'}]}})
+            messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
+            return redirect('/login')
+    else:
+        callback = pickle.dumps({'message': {'notification': [{'msg': 'Token Not Provided', 'level': 'info'}]}})
+        messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
+        return redirect('/login')
+
+    if request.method == 'POST':
+        form = auth.Recover(request.POST)
+        context['form']['data'] = array_except(dict(form.data), ['csrfmiddlewaretoken'])
+        if form.is_valid():
+            if form.cleaned_data.get('password') != form.cleaned_data.get('password_conf'):
+                context['form']['errors'] = {'password': 'Password Unequal', 'password_conf': 'Password Unequal'}
+                return render(request, 'app/recover.html', context)
+            else:
+                account = User.objects.filter(id=recover_data.user_id).first()
+                if account is not None:
+                    account.password = make_password(form.cleaned_data.get('password'))
+                    account.save()
+                    callback = pickle.dumps({
+                        'message': {'alert': [{'msg': 'Registration Success', 'level': 'success'}]},
+                        'form': {'data': {'email': account.email}}
+                    })
+                    recover_data.delete()
+                    messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
+                    return redirect('/login')
+                else:
+                    context['message']['alert'] = [{'msg': 'Account not found', 'level': 'danger'}]
+                    return render(request, 'app/login.html', context)
+        else:
+            context['form']['errors'] = dict(form.errors)
+            return render(request, 'app/recover.html', context)
+    else:
+        context['form']['data']['token'] = token
+        return render(request, 'app/recover.html', context)
+
+
 def dologin(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
