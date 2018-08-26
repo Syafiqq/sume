@@ -55,7 +55,7 @@ def login(request):
                 return redirect(
                     request.POST.get('next') if (request.POST.get('next') and request.POST.get('next') != "") else '/')
             else:
-                context['form']['errors'] = {'email': 'Account does not exists.'}
+                context['message']['notification'] = [{'msg': 'Account does not exists', 'level': 'info'}]
                 return render(request, 'app/login.html', context)
         else:
             context['form']['errors'] = dict(form.errors)
@@ -77,7 +77,7 @@ def register(request):
                 context['form']['errors'] = {'password': 'Password Unequal', 'password_conf': 'Password Unequal'}
                 return render(request, 'app/register.html', context)
             elif len(User.objects.filter(email=form.cleaned_data.get('email'))) > 0:
-                context['form']['errors'] = {'email': 'Email exists'}
+                context['message']['notification'] = [{'msg': 'Email exists', 'level': 'info'}]
                 return render(request, 'app/register.html', context)
             else:
                 account = User(username=form.cleaned_data.get('username'),
@@ -86,7 +86,7 @@ def register(request):
                 try:
                     account.save()
                 except IntegrityError:
-                    context['form']['errors'] = {'username': 'Username is already taken'}
+                    context['message']['notification'] = [{'msg': 'Username is already taken', 'level': 'info'}]
                     return render(request, 'app/register.html', context)
                 callback = pickle.dumps({
                     'message': {
@@ -141,17 +141,17 @@ def forgot(request):
                     try:
                         send_mail(subject, message, from_email, [form.cleaned_data.get('email')], html_message=message)
                     except BadHeaderError:
-                        context['form']['errors'] = {'email': 'Server Error, Try Again'}
+                        context['message']['alert'] = [{'msg': 'Server Error, Try Again', 'level': 'danger'}]
                         return render(request, 'app/login.html', context)
                     context['message']['custom'] = {
                         'recover_success': 'Your recover form has been sent to your email account'}
                     context['form']['data']['email'] = ''
                     return render(request, 'app/login.html', context)
                 else:
-                    context['form']['errors'] = {'email': 'Server Error, Try Again'}
+                    context['message']['alert'] = [{'msg': 'Server Error, Try Again', 'level': 'danger'}]
                     return render(request, 'app/login.html', context)
             else:
-                context['form']['errors'] = {'email': 'Account does not exists.'}
+                context['message']['notification'] = [{'msg': 'Account does not exists', 'level': 'info'}]
                 return render(request, 'app/login.html', context)
         else:
             context['form']['errors'] = dict(form.errors)
