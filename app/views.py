@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 
 from app.app.forms import auth
 from app.app.utils.arrayutil import array_except, array_merge
-from app.app.utils.commonutil import fetch_message
+from app.app.utils.commonutil import fetch_message, initialize_form_context
 from app.app.utils.custom.decorators import login_required
 from .forms import LoginForm
 from .models import Dokumen
@@ -31,11 +31,11 @@ def index(request):
 
 
 def login(request):
-    context = fetch_message(request)
+    context = array_merge(initialize_form_context(), fetch_message(request))
 
     if request.method == 'POST':
         form = auth.Login(request.POST)
-        context = array_merge(context, array_except(dict(form.data), 'csrfmiddlewaretoken'))
+        context['form']['data'] = array_except(dict(form.data), ['csrfmiddlewaretoken'])
         if form.is_valid():
             user_data = authenticate(request,
                                      username=form.cleaned_data.get('email'),
@@ -52,29 +52,29 @@ def login(request):
                 return redirect(
                     request.POST.get('next') if (request.POST.get('next') and request.POST.get('next') != "") else '/')
             else:
-                context['errors'] = {'email': 'Account does not exists.'}
+                context['form']['errors'] = {'email': 'Account does not exists.'}
                 return render(request, 'app/login.html', context)
         else:
-            context['errors'] = dict(form.errors)
+            context['form']['errors'] = dict(form.errors)
             return render(request, 'app/login.html', context)
     else:
         if request.GET.get('next') and request.GET.get('next') != "":
-            context['next'] = request.GET.get('next')
+            context['form']['data']['next'] = request.GET.get('next')
         return render(request, 'app/login.html', context)
 
 
 def register(request):
-    context = fetch_message(request)
+    context = array_merge(initialize_form_context(), fetch_message(request))
 
     if request.method == 'POST':
         form = auth.Register(request.POST)
-        context = array_merge(context, array_except(dict(form.data), 'csrfmiddlewaretoken'))
+        context['form']['data'] = array_except(dict(form.data), ['csrfmiddlewaretoken'])
         if form.is_valid():
             if form.cleaned_data.get('password') != form.cleaned_data.get('password_conf'):
-                context['errors'] = {'password': 'Password Unequal', 'password_conf': 'Password Unequal'}
+                context['form']['errors'] = {'password': 'Password Unequal', 'password_conf': 'Password Unequal'}
                 return render(request, 'app/register.html', context)
             elif len(User.objects.filter(email=form.cleaned_data.get('email'))) > 0:
-                context['errors'] = {'email': 'Email exists'}
+                context['form']['errors'] = {'email': 'Email exists'}
                 return render(request, 'app/register.html', context)
             else:
                 account = User(username=form.cleaned_data.get('username'),
@@ -83,7 +83,7 @@ def register(request):
                 try:
                     account.save()
                 except IntegrityError:
-                    context['errors'] = {'username': 'Username is already taken'}
+                    context['form']['errors'] = {'username': 'Username is already taken'}
                     return render(request, 'app/register.html', context)
                 callback = pickle.dumps({
                     'message': {
@@ -91,15 +91,16 @@ def register(request):
                             {'msg': 'Registration Success', 'level': 'success'}
                         ]
                     },
-                    'data': {
-                        'email': form.cleaned_data.get('email'),
-                        'password': form.cleaned_data.get('password')
+                    'form': {
+                        'data': {
+                            'email': form.cleaned_data.get('email'),
+                        }
                     }
                 })
                 messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
                 return redirect('/login')
         else:
-            context['errors'] = dict(form.errors)
+            context['form']['errors'] = dict(form.errors)
             return render(request, 'app/register.html', context)
     else:
         return render(request, 'app/register.html', context)
