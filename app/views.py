@@ -7,7 +7,6 @@ from django.contrib.auth import authenticate, login as do_login
 # from filetransfers.api import serve_file
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
-from django.core.mail import send_mail
 from django.db import IntegrityError
 from django.http import HttpResponse, BadHeaderError
 from django.shortcuts import get_object_or_404, render, redirect
@@ -27,7 +26,6 @@ logger = logging.getLogger('debug')
 # from filetransfers.api import serve_file
 
 
-@login_required(login_url='/login')
 def index(request):
     context = {}
     return render(request, 'app/index.html', context)
