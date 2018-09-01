@@ -126,7 +126,7 @@ def forgot(request):
                 else:
                     ResetPassword.objects.create(token=token, created_at=now(), user_id=account.id)
                 subject = 'Password Recover Request'
-                message = f"""
+                message = """
                 <doctype html>
                 <html>
                     <head>
