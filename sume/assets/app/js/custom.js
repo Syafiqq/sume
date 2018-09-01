@@ -207,6 +207,10 @@ $(document).ready(function () {
         $("#loginform").slideUp();
         $("#recoverform").fadeIn();
     });
+    $('#to-login').on("click", function () {
+        $("#recoverform").hide();
+        $("#loginform").show();
+    });
 
     /* ================================================================= 
         Update 1.5

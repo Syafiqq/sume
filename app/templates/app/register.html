@@ -14,59 +14,59 @@
                 </a>
                 <h3 class="box-title m-t-40 m-b-0">Register Now</h3>
                 <small>Create your account and enjoy</small>
-                {% if errors.username %}
+                {% if form.errors.username %}
                     <div class="form-group m-t-20 has-error">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required name="username" placeholder="Username" value="{{ username|first_or_default:"" }}">
-                            <span class="help-block">{{ errors.username|first_or_default:"" }}</span>
+                            <input class="form-control" type="text" required name="username" placeholder="Username" value="{{ form.data.username|first_or_default:"" }}">
+                            <span class="help-block">{{ form.errors.username|first_or_default:"" }}</span>
                         </div>
                     </div>
                 {% else %}
                     <div class="form-group m-t-20">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required name="username" placeholder="Username" value="{{ username|first_or_default:"" }}">
+                            <input class="form-control" type="text" required name="username" placeholder="Username" value="{{ form.data.username|first_or_default:"" }}">
                         </div>
                     </div>
                 {% endif %}
-                {% if errors.email %}
+                {% if form.errors.email %}
                     <div class="form-group has-error">
                         <div class="col-xs-12">
-                            <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ email|first_or_default:"" }}">
-                            <span class="help-block">{{ errors.email|first_or_default:"" }}</span>
+                            <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ form.data.email|first_or_default:"" }}">
+                            <span class="help-block">{{ form.errors.email|first_or_default:"" }}</span>
                         </div>
                     </div>
                 {% else %}
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ email|first_or_default:"" }}">
+                            <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ form.data.email|first_or_default:"" }}">
                         </div>
                     </div>
                 {% endif %}
-                {% if errors.password %}
+                {% if form.errors.password %}
                     <div class="form-group has-error">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" required name="password" placeholder="Password" value="{{ password|first_or_default:"" }}">
-                            <span class="help-block">{{ errors.password|first_or_default:"" }}</span>
+                            <input class="form-control" type="password" required name="password" placeholder="Password" value="{{ form.data.password|first_or_default:"" }}">
+                            <span class="help-block">{{ form.errors.password|first_or_default:"" }}</span>
                         </div>
                     </div>
                 {% else %}
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" required name="password" placeholder="Password" value="{{ password|first_or_default:"" }}">
+                            <input class="form-control" type="password" required name="password" placeholder="Password" value="{{ form.data.password|first_or_default:"" }}">
                         </div>
                     </div>
                 {% endif %}
-                {% if errors.password_conf %}
+                {% if form.errors.password_conf %}
                     <div class="form-group has-error">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" required name="password_conf" placeholder="Password" value="{{ password_conf|first_or_default:"" }}">
-                            <span class="help-block">{{ errors.password_conf|first_or_default:"" }}</span>
+                            <input class="form-control" type="password" required name="password_conf" placeholder="Password" value="{{ form.data.password_conf|first_or_default:"" }}">
+                            <span class="help-block">{{ form.errors.password_conf|first_or_default:"" }}</span>
                         </div>
                     </div>
                 {% else %}
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" required name="password_conf" placeholder="Confirm Password" value="{{ password_conf|first_or_default:"" }}">
+                            <input class="form-control" type="password" required name="password_conf" placeholder="Confirm Password" value="{{ form.data.password_conf|first_or_default:"" }}">
                         </div>
                     </div>
                 {% endif %}

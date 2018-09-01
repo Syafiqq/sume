@@ -11,3 +11,13 @@ class Register(forms.Form):
     email = forms.EmailField()
     password = forms.CharField()
     password_conf = forms.CharField()
+
+
+class Forgot(forms.Form):
+    email = forms.EmailField()
+
+
+class Recover(forms.Form):
+    token = forms.CharField()
+    password = forms.CharField()
+    password_conf = forms.CharField()
