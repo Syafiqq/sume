@@ -7,10 +7,10 @@
             <form class="form-horizontal form-material" id="recoverform" action="/recover" method="POST" style="display: initial">
                 {% csrf_token %}
                 <a href="javascript:void(0)" class="text-center db">
-                    <img src="/static/app/plugins/images/admin-logo-dark.png"
+                    <img src="/static/admin/plugins/images/admin-logo-dark.png"
                          alt="Home"/>
                     <br/>
-                    <img src="/static/app/plugins/images/admin-text-dark.png"
+                    <img src="/static/admin/plugins/images/admin-text-dark.png"
                          alt="Home"/>
                 </a>
                 <input type="hidden" name="token" value="{{ form.data.token|first_or_default:"" }}">
