@@ -2,7 +2,7 @@
 {% load arraytag %}
 {% block content %}
     {{ result }}
-    <div class="login-box login-sidebar">
+    <div class="login-box login-sidebar" style="overflow-y: auto">
         <div class="white-box">
             {% if form.data.forgot_concern %}
                 <form class="form-horizontal form-material" id="loginform" action="/login" method="POST" style="display: none">
