@@ -4,12 +4,6 @@
     {{ result }}
     <div class="login-box login-sidebar" style="overflow-y: auto">
         <div class="white-box">
-            {% if form.data.forgot_concern %}
-                <form class="form-horizontal form-material" id="loginform" action="/login" method="POST" style="display: none">
-            {% else %}
-                <form class="form-horizontal form-material" id="loginform" action="/login" method="POST" style="display:initial">
-            {% endif %}
-            {% csrf_token %}
             <a href="javascript:void(0)" class="text-center db">
                 <img src="/static/app/plugins/images/admin-logo-dark.png"
                      alt="Home"/>
@@ -17,6 +11,12 @@
                 <img src="/static/app/plugins/images/admin-text-dark.png"
                      alt="Home"/>
             </a>
+            {% if form.data.forgot_concern %}
+                <form class="form-horizontal form-material" id="loginform" action="/login" method="POST" style="display: none">
+            {% else %}
+                <form class="form-horizontal form-material" id="loginform" action="/login" method="POST" style="display:initial">
+            {% endif %}
+            {% csrf_token %}
             <input type="hidden" name="next" value="{{ form.data.next|first_or_default:"" }}">
             {% if form.errors.email %}
                 <div class="form-group has-error m-t-40">
