@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login as do_login
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from django.http import HttpResponse, BadHeaderError
+from django.http import HttpResponse, BadHeaderError, Http404
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.crypto import get_random_string
 from django.utils.timezone import now
@@ -28,7 +28,7 @@ logger = logging.getLogger('debug')
 
 def index(request):
     context = {}
-    return render(request, 'app/index.html', context)
+    raise Http404("Poll does not exist")
 
 
 def login(request):
