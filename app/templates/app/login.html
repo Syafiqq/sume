@@ -11,6 +11,15 @@
                 <img src="/static/app/plugins/images/admin-text-dark.png"
                      alt="Home"/>
             </a>
+            {% if message.notification %}
+                <div class="row">
+                    <div class="col-md-12" style="padding: 16px 16px 0 16px">
+                        {% for notif in message.notification %}
+                            <div class="alert alert-{{ notif.level }}">{{ notif.msg }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
             {% if form.data.forgot_concern %}
                 <form class="form-horizontal form-material" id="loginform" action="/login" method="POST" style="display: none">
             {% else %}
@@ -19,14 +28,14 @@
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ form.data.next|first_or_default:"" }}">
             {% if form.errors.email %}
-                <div class="form-group has-error m-t-40">
+                <div class="form-group has-error m-t-20">
                     <div class="col-xs-12">
                         <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ form.data.email|first_or_default:"" }}">
                         <span class="help-block">{{ form.errors.email|first_or_default:"" }}</span>
                     </div>
                 </div>
             {% else %}
-                <div class="form-group m-t-40">
+                <div class="form-group m-t-20">
                     <div class="col-xs-12">
                         <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ form.data.email|first_or_default:"" }}">
                     </div>
