@@ -2,7 +2,7 @@
 {% load arraytag %}
 {% block content %}
     {{ result }}
-    <div class="login-box login-sidebar">
+    <div class="login-box login-sidebar" style="overflow-y: auto">
         <div class="white-box">
             <form class="form-horizontal form-material" id="recoverform" action="/recover" method="POST" style="display: initial">
                 {% csrf_token %}
