@@ -1,5 +1,6 @@
 {% extends "layout/base-login.html" %}
 {% load arraytag %}
+{% load jsontag %}
 {% block content %}
     {{ result }}
     <div class="login-box login-sidebar" style="overflow-y: auto">
@@ -129,4 +130,7 @@
             </form>
         </div>
     </div>
+    <script type="text/javascript">
+        var c_msg_alrt = {{ message.alert|dump_json_array|safe }};
+    </script>
 {% endblock %}
