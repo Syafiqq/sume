@@ -16,7 +16,10 @@
                 <div class="row">
                     <div class="col-md-12" style="padding: 16px 16px 0 16px">
                         {% for notif in message.notification %}
-                            <div class="alert alert-{{ notif.level }}">{{ notif.msg }}</div>
+                            <div class="alert alert-{{ notif.level }} alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                {{ notif.msg }}
+                            </div>
                         {% endfor %}
                     </div>
                 </div>
