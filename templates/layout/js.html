@@ -81,3 +81,25 @@
 </script>
 <!--Style Switcher -->
 <script src="/static/app/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+<script type="text/javascript">
+    function simpleToastCall(arr)
+    {
+        for (var i = 0; i < arr.length; i++)
+        {
+            var msg = arr[i];
+            $.toast({
+                heading: ' ',
+                text: 'msg' in msg ? msg.msg : '',
+                position: 'top-right',
+                loaderBg: '#ff6849',
+                icon: 'level' in msg ? msg.level : 'info',
+                hideAfter: 5000
+            });
+        }
+    }
+
+    if (c_msg_alrt)
+    {
+        simpleToastCall(c_msg_alrt);
+    }
+</script>
