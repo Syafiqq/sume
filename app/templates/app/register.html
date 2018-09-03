@@ -10,7 +10,19 @@
                 <img
                         src="/static/app/plugins/images/admin-text-dark.png" alt="Home"/>
             </a>
-            <h3 class="box-title m-t-40 m-b-0">Register Now</h3>
+            {% if message.notification %}
+                <div class="row">
+                    <div class="col-md-12" style="padding: 16px 16px 0 16px">
+                        {% for notif in message.notification %}
+                            <div class="alert alert-{{ notif.level }} alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                {{ notif.msg }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            <h3 class="box-title m-t-10 m-b-0">Register Now</h3>
             <small>Create your account and enjoy</small>
             <form class="form-horizontal form-material" id="registerform" action="/register" method="POST">
                 {% csrf_token %}
