@@ -1,7 +1,7 @@
 # Create your tests here.
 from django.test import TestCase
 
-from app.database.seeder import UserSeeder
+from seeder.database.seeder import UserSeeder
 
 
 class UserSeederTest(TestCase):
