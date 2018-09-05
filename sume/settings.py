@@ -38,6 +38,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'sume-deploy.herokuapp.com']
 INSTALLED_APPS = [
     'django_seed',
     'app.apps.AppConfig',
+    'seeder.apps.SeederConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
