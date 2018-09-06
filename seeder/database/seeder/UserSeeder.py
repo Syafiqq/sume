@@ -12,8 +12,6 @@ def seed():
         'password': lambda x: make_password('secret'),
         'is_superuser': lambda x: True
     })
-    seeder.execute()
-
     seeder.add_entity(User, 5, {
         'username': lambda x: seeder.faker.name(),
         'email': lambda x: seeder.faker.safe_email(),
