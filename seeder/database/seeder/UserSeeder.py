@@ -6,12 +6,14 @@ from django_seed import Seed
 def seed():
     seeder = Seed.seeder()
 
-    seeder.add_entity(User, 1, {
-        'username': lambda x: 'root',
-        'email': lambda x: 'root@mail.com',
-        'password': lambda x: make_password('secret'),
-        'is_superuser': lambda x: True
-    })
+    if not User.objects.filter(email='root@mail.com').exists():
+        seeder.add_entity(User, 1, {
+            'username': lambda x: 'root',
+            'email': lambda x: 'root@mail.com',
+            'password': lambda x: make_password('secret'),
+            'is_superuser': lambda x: True
+        })
+
     seeder.add_entity(User, 5, {
         'username': lambda x: seeder.faker.name(),
         'email': lambda x: seeder.faker.safe_email(),
