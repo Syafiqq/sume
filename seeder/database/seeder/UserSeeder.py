@@ -1,23 +1,40 @@
+import logging
+
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import User
-from django_seed import Seed
+from django.contrib.auth.models import User, Group
+from django.db import connection
+
+logger = logging.getLogger('debug')
 
 
 def seed():
-    seeder = Seed.seeder()
+    with connection.cursor() as cursor:
+        cursor.execute('TRUNCATE TABLE public.auth_user RESTART IDENTITY CASCADE')
 
     if not User.objects.filter(email='root@mail.com').exists():
-        seeder.add_entity(User, 1, {
-            'username': lambda x: 'root',
-            'email': lambda x: 'root@mail.com',
-            'password': lambda x: make_password('secret'),
-            'is_superuser': lambda x: True
-        })
-
-    seeder.add_entity(User, 5, {
-        'username': lambda x: seeder.faker.name(),
-        'email': lambda x: seeder.faker.safe_email(),
-        'password': lambda x: make_password('secret'),
-        'is_superuser': lambda x: False
-    })
-    seeder.execute()
+        root = Group.objects.filter(name='root').first()
+        ids = User.objects.create(
+            username='root',
+            email='root@mail.com',
+            password=make_password('secret'),
+            is_superuser=False,
+        )
+        ids.groups.add(root)
+    if not User.objects.filter(email='student@mail.com').exists():
+        student = Group.objects.filter(name='student').first()
+        ids = User.objects.create(
+            username='student',
+            email='student@mail.com',
+            password=make_password('secret'),
+            is_superuser=False,
+        )
+        ids.groups.add(student)
+    if not User.objects.filter(email='organization@mail.com').exists():
+        organization = Group.objects.filter(name='organization').first()
+        ids = User.objects.create(
+            username='organization',
+            email='organization@mail.com',
+            password=make_password('secret'),
+            is_superuser=False,
+        )
+        ids.groups.add(organization)
