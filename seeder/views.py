@@ -3,10 +3,11 @@ import datetime
 
 from django.http import HttpResponse
 
-from seeder.database.seeder import UserSeeder
+from seeder.database.seeder import UserSeeder, GroupSeeder
 
 
 def index(request):
+    GroupSeeder.seed()
     UserSeeder.seed()
 
     now = datetime.datetime.now()
