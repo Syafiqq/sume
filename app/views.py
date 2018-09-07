@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as do_login
 # from filetransfers.api import serve_file
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.db import IntegrityError
 from django.http import HttpResponse, BadHeaderError, Http404
 from django.shortcuts import get_object_or_404, render, redirect
@@ -38,20 +38,28 @@ def login(request):
         form = auth.Login(request.POST)
         context['form']['data'] = array_except(dict(form.data), ['csrfmiddlewaretoken'])
         if form.is_valid():
-            user_data = authenticate(request,
-                                     username=form.cleaned_data.get('email'),
-                                     password=form.cleaned_data.get('password'))
+            user_data: User = authenticate(request,
+                                           username=form.cleaned_data.get('email'),
+                                           password=form.cleaned_data.get('password'))
             if user_data is not None:
-                do_login(request, user_data)
-                callback = pickle.dumps({
-                    'message': {
-                        'notification': [
-                            {'msg': 'Login Success', 'level': 'success'}
-                        ]
-                    }})
-                messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
-                return redirect(
-                    request.POST.get('next') if (request.POST.get('next') and request.POST.get('next') != "") else '/')
+                group: Group = user_data.groups.first()
+                if group is not None:
+                    do_login(request, user_data)
+                    from app.app.utils.sess_util import GROUP_ID
+                    request.session[GROUP_ID] = group.id
+                    callback = pickle.dumps({
+                        'message': {
+                            'notification': [
+                                {'msg': 'Login Success', 'level': 'success'}
+                            ]
+                        }})
+                    messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
+                    return redirect(
+                        request.POST.get('next') if (
+                                request.POST.get('next') and request.POST.get('next') != "") else ('/' + group.name))
+                else:
+                    context['message']['notification'] = [{'msg': 'Your account is not activated yet', 'level': 'info'}]
+                    return render(request, 'app/login.html', context)
             else:
                 context['message']['notification'] = [{'msg': 'Account does not exists', 'level': 'info'}]
                 return render(request, 'app/login.html', context)
