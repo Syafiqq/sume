@@ -19,7 +19,8 @@ def seed():
             password=make_password('secret'),
             is_superuser=False,
         )
-        ids.groups.add(root)
+        for group in Group.objects.all():
+            ids.groups.add(group)
     if not User.objects.filter(email='student@mail.com').exists():
         student = Group.objects.filter(name='student').first()
         ids = User.objects.create(
