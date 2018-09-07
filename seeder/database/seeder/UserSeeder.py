@@ -12,7 +12,6 @@ def seed():
         cursor.execute('TRUNCATE TABLE public.auth_user RESTART IDENTITY CASCADE')
 
     if not User.objects.filter(email='root@mail.com').exists():
-        root = Group.objects.filter(name='root').first()
         ids = User.objects.create(
             username='root',
             email='root@mail.com',
