@@ -1,6 +1,6 @@
 from django.contrib.auth.models import Group
 
-groups = ['root', 'student', 'organization']
+groups = ['student', 'organization']
 
 
 def seed():
