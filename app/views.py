@@ -16,7 +16,7 @@ from django.utils.timezone import now
 from app.app.forms import auth
 from app.app.utils.arrayutil import array_except, array_merge
 from app.app.utils.commonutil import fetch_message, initialize_form_context, base_url
-from app.app.utils.custom.decorators import login_required
+from app.app.utils.custom.decorators import login_required, auth_unneeded
 from .forms import LoginForm
 from .models import Dokumen, ResetPassword
 
@@ -31,6 +31,7 @@ def index(request):
     raise Http404("Poll does not exist")
 
 
+@auth_unneeded()
 def login(request):
     context = array_merge(initialize_form_context(), fetch_message(request))
 
@@ -68,6 +69,7 @@ def login(request):
         return render(request, 'app/login.html', context)
 
 
+@auth_unneeded()
 def register(request):
     context = array_merge(initialize_form_context(), fetch_message(request))
 
@@ -109,6 +111,7 @@ def register(request):
         return render(request, 'app/register.html', context)
 
 
+@auth_unneeded()
 def forgot(request):
     context = array_merge(initialize_form_context(), fetch_message(request))
 
@@ -168,6 +171,7 @@ def forgot(request):
         return redirect('/login')
 
 
+@auth_unneeded()
 def recover(request):
     context = array_merge(initialize_form_context(), fetch_message(request))
     token = request.GET.get('token') if request.GET.get('token') and request.GET.get('token') else request.POST.get(
