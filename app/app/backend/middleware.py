@@ -9,7 +9,7 @@ class RecordUrlMiddleware:
     def __call__(self, request):
         # Code to be executed for each request before
         # the view (and later middleware) are called.
-        recorded = request.build_absolute_uri()
+        recorded = request.get_full_path()
         response = self.get_response(request)
         request.session[LAST_URL_PATH] = recorded
         # Code to be executed for each request/response after
