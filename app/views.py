@@ -47,12 +47,8 @@ def login(request):
                     do_login(request, user_data)
                     from app.app.utils.sess_util import GROUP_ID
                     request.session[GROUP_ID] = group.id
-                    callback = pickle.dumps({
-                        'message': {
-                            'notification': [
-                                {'msg': 'Login Success', 'level': 'success'}
-                            ]
-                        }})
+                    callback = pickle.dumps(
+                        {'message': {'notification': [{'msg': 'Login Success', 'level': 'success'}]}})
                     messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
                     return redirect(
                         request.POST.get('next') if (

@@ -47,12 +47,8 @@ def user_passes_test(test_func, login_url=None, redirect_field_name=REDIRECT_FIE
                 path = request.get_full_path()
             from django.contrib.auth.views import redirect_to_login
 
-            callback = pickle.dumps({
-                'message': {
-                    'notification': [
-                        {'msg': 'You must Login to gain access', 'level': 'info'}
-                    ]
-                }})
+            callback = pickle.dumps(
+                {'message': {'notification': [{'msg': 'You must Login to gain access', 'level': 'info'}]}})
             messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
             return redirect_to_login(
                 path, resolved_login_url, redirect_field_name)
