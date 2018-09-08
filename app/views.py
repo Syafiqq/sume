@@ -86,28 +86,26 @@ def register(request):
                 context['message']['notification'] = [{'msg': 'Email exists', 'level': 'info'}]
                 return render(request, 'app/register.html', context)
             else:
-                account = User(username=form.cleaned_data.get('username'),
-                               email=form.cleaned_data.get('email'),
-                               password=make_password(form.cleaned_data.get('password')))
-                try:
-                    account.save()
-                except IntegrityError:
-                    context['message']['notification'] = [{'msg': 'Username is already taken', 'level': 'info'}]
+                group: Group = Group.objects.filter(name=form.cleaned_data.get('role')).first()
+                if group is not None:
+                    account: User = User(username=form.cleaned_data.get('username'),
+                                         email=form.cleaned_data.get('email'),
+                                         password=make_password(form.cleaned_data.get('password')))
+                    try:
+                        account.save()
+                        account.groups.add(group)
+                    except IntegrityError:
+                        context['message']['notification'] = [{'msg': 'Username is already taken', 'level': 'info'}]
+                        return render(request, 'app/register.html', context)
+                    callback = pickle.dumps({
+                        'message': {'alert': [{'msg': 'Registration Success', 'level': 'success'}]},
+                        'form': {'data': {'email': form.cleaned_data.get('email'), }}
+                    })
+                    messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
+                    return redirect('/login')
+                else:
+                    context['form']['errors'] = {'role': 'Role is invalid'}
                     return render(request, 'app/register.html', context)
-                callback = pickle.dumps({
-                    'message': {
-                        'alert': [
-                            {'msg': 'Registration Success', 'level': 'success'}
-                        ]
-                    },
-                    'form': {
-                        'data': {
-                            'email': form.cleaned_data.get('email'),
-                        }
-                    }
-                })
-                messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
-                return redirect('/login')
         else:
             context['form']['errors'] = dict(form.errors)
             return render(request, 'app/register.html', context)
