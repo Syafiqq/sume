@@ -83,6 +83,38 @@
                         </div>
                     </div>
                 {% endif %}
+                {% if form.errors.role %}
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <label class="control-label">Pick Your Role :</label>
+                            <div class="radio has-error  ">
+                                <input id="student-role" class="form-control" required type="radio" name="role" value="{{ form.data.role|first_or_default:"" }}">
+                                <label for="student-role">Student</label>
+                            </div>
+                            <div class="radio has-error  ">
+                                <input id="organization-role" class="form-control" required type="radio" name="role" value="{{ form.data.role|first_or_default:"" }}">
+                                <label for="organization-role">Organization</label>
+                            </div>
+                            <div class="has-error">
+                                <span class="help-block">{{ form.errors.role|first_or_default:"" }}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <label class="control-label">Pick Your Role :</label>
+                            <div class="radio">
+                                <input id="student-role" class="form-control" required type="radio" name="role" value="{{ form.data.role|first_or_default:"" }}">
+                                <label for="student-role">Student</label>
+                            </div>
+                            <div class="radio">
+                                <input id="organization-role" class="form-control" required type="radio" name="role" value="{{ form.data.role|first_or_default:"" }}">
+                                <label for="organization-role">Organization</label>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
                 <div class="form-group">
                     <div class="col-md-12">
                         <div class="checkbox checkbox-primary p-t-0">
