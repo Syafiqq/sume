@@ -38,6 +38,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'sume-deploy.herokuapp.com']
 INSTALLED_APPS = [
     'django_seed',
     'app.apps.AppConfig',
+    'seeder.apps.SeederConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'app.app.backend.middleware.RecordUrlMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = [

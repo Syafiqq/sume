@@ -6,10 +6,9 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as do_login
 # from filetransfers.api import serve_file
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import User
-from django.core.mail import send_mail
+from django.contrib.auth.models import User, Group
 from django.db import IntegrityError
-from django.http import HttpResponse, BadHeaderError
+from django.http import HttpResponse, BadHeaderError, Http404
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.crypto import get_random_string
 from django.utils.timezone import now
@@ -17,7 +16,7 @@ from django.utils.timezone import now
 from app.app.forms import auth
 from app.app.utils.arrayutil import array_except, array_merge
 from app.app.utils.commonutil import fetch_message, initialize_form_context, base_url
-from app.app.utils.custom.decorators import login_required
+from app.app.utils.custom.decorators import login_required, auth_unneeded
 from .forms import LoginForm
 from .models import Dokumen, ResetPassword
 
@@ -27,12 +26,12 @@ logger = logging.getLogger('debug')
 # from filetransfers.api import serve_file
 
 
-@login_required(login_url='/login')
 def index(request):
     context = {}
-    return render(request, 'app/index.html', context)
+    raise Http404("Poll does not exist")
 
 
+@auth_unneeded()
 def login(request):
     context = array_merge(initialize_form_context(), fetch_message(request))
 
@@ -40,20 +39,24 @@ def login(request):
         form = auth.Login(request.POST)
         context['form']['data'] = array_except(dict(form.data), ['csrfmiddlewaretoken'])
         if form.is_valid():
-            user_data = authenticate(request,
-                                     username=form.cleaned_data.get('email'),
-                                     password=form.cleaned_data.get('password'))
+            user_data: User = authenticate(request,
+                                           username=form.cleaned_data.get('email'),
+                                           password=form.cleaned_data.get('password'))
             if user_data is not None:
-                do_login(request, user_data)
-                callback = pickle.dumps({
-                    'message': {
-                        'notification': [
-                            {'msg': 'Login Success', 'level': 'success'}
-                        ]
-                    }})
-                messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
-                return redirect(
-                    request.POST.get('next') if (request.POST.get('next') and request.POST.get('next') != "") else '/')
+                group: Group = user_data.groups.first()
+                if group is not None:
+                    do_login(request, user_data)
+                    from app.app.utils.sess_util import GROUP_ID
+                    request.session[GROUP_ID] = group.id
+                    callback = pickle.dumps(
+                        {'message': {'notification': [{'msg': 'Login Success', 'level': 'success'}]}})
+                    messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
+                    return redirect(
+                        request.POST.get('next') if (
+                                request.POST.get('next') and request.POST.get('next') != "") else ('/' + group.name))
+                else:
+                    context['message']['notification'] = [{'msg': 'Your account is not activated yet', 'level': 'info'}]
+                    return render(request, 'app/login.html', context)
             else:
                 context['message']['notification'] = [{'msg': 'Account does not exists', 'level': 'info'}]
                 return render(request, 'app/login.html', context)
@@ -66,6 +69,7 @@ def login(request):
         return render(request, 'app/login.html', context)
 
 
+@auth_unneeded()
 def register(request):
     context = array_merge(initialize_form_context(), fetch_message(request))
 
@@ -80,28 +84,26 @@ def register(request):
                 context['message']['notification'] = [{'msg': 'Email exists', 'level': 'info'}]
                 return render(request, 'app/register.html', context)
             else:
-                account = User(username=form.cleaned_data.get('username'),
-                               email=form.cleaned_data.get('email'),
-                               password=make_password(form.cleaned_data.get('password')))
-                try:
-                    account.save()
-                except IntegrityError:
-                    context['message']['notification'] = [{'msg': 'Username is already taken', 'level': 'info'}]
+                group: Group = Group.objects.filter(name=form.cleaned_data.get('role')).first()
+                if group is not None:
+                    account: User = User(username=form.cleaned_data.get('username'),
+                                         email=form.cleaned_data.get('email'),
+                                         password=make_password(form.cleaned_data.get('password')))
+                    try:
+                        account.save()
+                        account.groups.add(group)
+                    except IntegrityError:
+                        context['message']['notification'] = [{'msg': 'Username is already taken', 'level': 'info'}]
+                        return render(request, 'app/register.html', context)
+                    callback = pickle.dumps({
+                        'message': {'alert': [{'msg': 'Registration Success', 'level': 'success'}]},
+                        'form': {'data': {'email': form.cleaned_data.get('email'), }}
+                    })
+                    messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
+                    return redirect('/login')
+                else:
+                    context['form']['errors'] = {'role': 'Role is invalid'}
                     return render(request, 'app/register.html', context)
-                callback = pickle.dumps({
-                    'message': {
-                        'alert': [
-                            {'msg': 'Registration Success', 'level': 'success'}
-                        ]
-                    },
-                    'form': {
-                        'data': {
-                            'email': form.cleaned_data.get('email'),
-                        }
-                    }
-                })
-                messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
-                return redirect('/login')
         else:
             context['form']['errors'] = dict(form.errors)
             return render(request, 'app/register.html', context)
@@ -109,6 +111,7 @@ def register(request):
         return render(request, 'app/register.html', context)
 
 
+@auth_unneeded()
 def forgot(request):
     context = array_merge(initialize_form_context(), fetch_message(request))
 
@@ -168,6 +171,7 @@ def forgot(request):
         return redirect('/login')
 
 
+@auth_unneeded()
 def recover(request):
     context = array_merge(initialize_form_context(), fetch_message(request))
     token = request.GET.get('token') if request.GET.get('token') and request.GET.get('token') else request.POST.get(

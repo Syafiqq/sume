@@ -1,19 +1,32 @@
 {% extends "layout/base-login.html" %}
 {% load arraytag %}
+{% load jsontag %}
 {% block content %}
     <div class="login-box login-sidebar" style="overflow-y: auto">
         <div class="white-box">
+            <a href="javascript:void(0)" class="text-center db">
+                <img src="/static/app/plugins/images/admin-logo-dark.png"
+                     alt="Home"/>
+                <br/>
+                <img
+                        src="/static/app/plugins/images/admin-text-dark.png" alt="Home"/>
+            </a>
+            {% if message.notification %}
+                <div class="row">
+                    <div class="col-md-12" style="padding: 16px 16px 0 16px">
+                        {% for notif in message.notification %}
+                            <div class="alert alert-{{ notif.level }} alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                {{ notif.msg }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            <h3 class="box-title m-t-10 m-b-0">Register Now</h3>
+            <small>Create your account and enjoy</small>
             <form class="form-horizontal form-material" id="registerform" action="/register" method="POST">
                 {% csrf_token %}
-                <a href="javascript:void(0)" class="text-center db">
-                    <img src="/static/admin/plugins/images/admin-logo-dark.png"
-                         alt="Home"/>
-                    <br/>
-                    <img
-                            src="/static/admin/plugins/images/admin-text-dark.png" alt="Home"/>
-                </a>
-                <h3 class="box-title m-t-40 m-b-0">Register Now</h3>
-                <small>Create your account and enjoy</small>
                 {% if form.errors.username %}
                     <div class="form-group m-t-20 has-error">
                         <div class="col-xs-12">
@@ -70,6 +83,38 @@
                         </div>
                     </div>
                 {% endif %}
+                {% if form.errors.role %}
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <label class="control-label">Pick Your Role :</label>
+                            <div class="radio has-error  ">
+                                <input id="student-role" class="form-control" required type="radio" name="role" value="student">
+                                <label for="student-role">Student</label>
+                            </div>
+                            <div class="radio has-error  ">
+                                <input id="organization-role" class="form-control" required type="radio" name="role" value="organization">
+                                <label for="organization-role">Organization</label>
+                            </div>
+                            <div class="has-error">
+                                <span class="help-block">{{ form.errors.role|first_or_default:"" }}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <label class="control-label">Pick Your Role :</label>
+                            <div class="radio">
+                                <input id="student-role" class="form-control" required type="radio" name="role" value="student">
+                                <label for="student-role">Student</label>
+                            </div>
+                            <div class="radio">
+                                <input id="organization-role" class="form-control" required type="radio" name="role" value="organization">
+                                <label for="organization-role">Organization</label>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
                 <div class="form-group">
                     <div class="col-md-12">
                         <div class="checkbox checkbox-primary p-t-0">
@@ -99,4 +144,7 @@
             </form>
         </div>
     </div>
+    <script type="text/javascript">
+        var c_msg_alrt = {{ message.alert|dump_json_array|safe }};
+    </script>
 {% endblock %}

@@ -1,28 +1,41 @@
 {% extends "layout/base-login.html" %}
 {% load arraytag %}
+{% load jsontag %}
 {% block content %}
     {{ result }}
-    <div class="login-box login-sidebar">
+    <div class="login-box login-sidebar" style="overflow-y: auto">
         <div class="white-box">
+            <a href="javascript:void(0)" class="text-center db">
+                <img src="/static/app/plugins/images/admin-logo-dark.png"
+                     alt="Home"/>
+                <br/>
+                <img src="/static/app/plugins/images/admin-text-dark.png"
+                     alt="Home"/>
+            </a>
+            {% if message.notification %}
+                <div class="row">
+                    <div class="col-md-12" style="padding: 16px 16px 0 16px">
+                        {% for notif in message.notification %}
+                            <div class="alert alert-{{ notif.level }} alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                {{ notif.msg }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
             <form class="form-horizontal form-material" id="recoverform" action="/recover" method="POST" style="display: initial">
                 {% csrf_token %}
-                <a href="javascript:void(0)" class="text-center db">
-                    <img src="/static/admin/plugins/images/admin-logo-dark.png"
-                         alt="Home"/>
-                    <br/>
-                    <img src="/static/admin/plugins/images/admin-text-dark.png"
-                         alt="Home"/>
-                </a>
                 <input type="hidden" name="token" value="{{ form.data.token|first_or_default:"" }}">
                 {% if form.errors.password %}
-                    <div class="form-group has-error m-t-40">
+                    <div class="form-group has-error m-t-20">
                         <div class="col-xs-12">
                             <input class="form-control" type="password" required name="password" placeholder="Password" value="{{ form.data.password|first_or_default:"" }}">
                             <span class="help-block">{{ form.errors.password|first_or_default:"" }}</span>
                         </div>
                     </div>
                 {% else %}
-                    <div class="form-group m-t-40">
+                    <div class="form-group m-t-20">
                         <div class="col-xs-12">
                             <input class="form-control" type="password" required name="password" placeholder="Password" value="{{ form.data.password|first_or_default:"" }}">
                         </div>
@@ -52,4 +65,7 @@
             </form>
         </div>
     </div>
+    <script type="text/javascript">
+        var c_msg_alrt = {{ message.alert|dump_json_array|safe }};
+    </script>
 {% endblock %}
