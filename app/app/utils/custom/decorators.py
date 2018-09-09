@@ -89,7 +89,7 @@ def auth_passes_test(test_func, login_url=None, redirect_field_name=REDIRECT_FIE
 
             from app.app.utils.sess_util import GROUP_ID, LAST_URL_PATH
             group_id = request.session.get(GROUP_ID, 0)
-            group: Group = Group.objects.filter(id=group_id).first()
+            group = Group.objects.filter(id=group_id).first()
             group_url_callback = '/' if group is None else ('/' + group.name)
             group_url_callback = group_url_callback if group_url_callback != request.get_full_path() else '/'
             last_url = request.session.get(LAST_URL_PATH, group_url_callback)

@@ -3,7 +3,7 @@ import logging
 import pickle
 
 from django.contrib import messages
-from django.contrib.auth import authenticate, login as do_login
+from django.contrib.auth import authenticate, login as do_login, logout
 # from filetransfers.api import serve_file
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User, Group
@@ -25,11 +25,11 @@ logger = logging.getLogger('debug')
 
 # from filetransfers.api import serve_file
 
-
+@login_required(login_url='/login')
 def index(request):
     context = {}
-    raise Http404("Poll does not exist")
-
+    # raise Http404("Poll does not exist")
+    return render(request, 'app/index.html', context)
 
 @auth_unneeded()
 def login(request):
@@ -39,11 +39,11 @@ def login(request):
         form = auth.Login(request.POST)
         context['form']['data'] = array_except(dict(form.data), ['csrfmiddlewaretoken'])
         if form.is_valid():
-            user_data: User = authenticate(request,
+            user_data = authenticate(request,
                                            username=form.cleaned_data.get('email'),
                                            password=form.cleaned_data.get('password'))
             if user_data is not None:
-                group: Group = user_data.groups.first()
+                group = user_data.groups.first()
                 if group is not None:
                     do_login(request, user_data)
                     from app.app.utils.sess_util import GROUP_ID
@@ -84,9 +84,9 @@ def register(request):
                 context['message']['notification'] = [{'msg': 'Email exists', 'level': 'info'}]
                 return render(request, 'app/register.html', context)
             else:
-                group: Group = Group.objects.filter(name=form.cleaned_data.get('role')).first()
+                group = Group.objects.filter(name=form.cleaned_data.get('role')).first()
                 if group is not None:
-                    account: User = User(username=form.cleaned_data.get('username'),
+                    account = User(username=form.cleaned_data.get('username'),
                                          email=form.cleaned_data.get('email'),
                                          password=make_password(form.cleaned_data.get('password')))
                     try:
@@ -218,6 +218,10 @@ def recover(request):
         context['form']['data']['token'] = token
         return render(request, 'app/recover.html', context)
 
+
+def logout_view(request):
+    logout(request)
+    return render(request, 'app/login.html')
 
 def dologin(request):
     if request.method == 'POST':
