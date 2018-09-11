@@ -8,9 +8,6 @@ logger = logging.getLogger('debug')
 
 
 def seed():
-    with connection.cursor() as cursor:
-        cursor.execute('TRUNCATE TABLE public.auth_user RESTART IDENTITY CASCADE')
-
     if not User.objects.filter(email='root@mail.com').exists():
         ids = User.objects.create(
             username='root',
