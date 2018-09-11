@@ -225,26 +225,6 @@ def logout_view(request):
     return redirect('/login')
 
 
-def dologin(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            user = authenticate(request, username=form.cleaned_data['username'], password=form.cleaned_data['password'])
-            if user is not None:
-                login(request, user)
-                data = {
-                    'username': user.username,
-                }
-                return redirect('/')
-            else:
-                return render(request, 'app/login.html', {'form': form})
-                # Return an 'invalid login' error message.
-                # Return an 'invalid login' error message.
-    else:
-        form = LoginForm()
-    return render(request, 'app/login.html', {'form': form})
-
-
 @login_required(login_url='/login')
 def kelas(request):
     latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
