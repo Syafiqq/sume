@@ -4,8 +4,6 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User, Group
 from django.db import connection
 
-logger = logging.getLogger('debug')
-
 
 def truncate():
     with connection.cursor() as cursor:
