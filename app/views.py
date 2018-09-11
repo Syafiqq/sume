@@ -221,6 +221,8 @@ def recover(request):
 
 @login_required(login_url='/login')
 def logout_view(request):
+    callback = pickle.dumps({'message': {'notification': [{'msg': 'Logout Success', 'level': 'success'}]}})
+    messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
     logout(request)
     return redirect('/login')
 
