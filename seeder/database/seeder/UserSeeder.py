@@ -7,6 +7,11 @@ from django.db import connection
 logger = logging.getLogger('debug')
 
 
+def truncate():
+    with connection.cursor() as cursor:
+        cursor.execute('TRUNCATE TABLE public.auth_user RESTART IDENTITY CASCADE')
+
+
 def seed():
     if not User.objects.filter(email='root@mail.com').exists():
         ids = User.objects.create(
