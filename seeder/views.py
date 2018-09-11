@@ -7,6 +7,9 @@ from seeder.database.seeder import UserSeeder, GroupSeeder
 
 
 def index(request):
+    UserSeeder.truncate()
+    GroupSeeder.truncate()
+
     GroupSeeder.seed()
     UserSeeder.seed()
 
