@@ -1,7 +1,10 @@
 import codecs
 import logging
 import pickle
-
+from app.app.forms import auth
+from app.app.utils.arrayutil import array_except, array_merge
+from app.app.utils.commonutil import fetch_message, initialize_form_context, base_url
+from app.app.utils.custom.decorators import login_required, auth_unneeded
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as do_login, logout
 # from filetransfers.api import serve_file
@@ -13,10 +16,6 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.crypto import get_random_string
 from django.utils.timezone import now
 
-from app.app.forms import auth
-from app.app.utils.arrayutil import array_except, array_merge
-from app.app.utils.commonutil import fetch_message, initialize_form_context, base_url
-from app.app.utils.custom.decorators import login_required, auth_unneeded
 from .forms import LoginForm
 from .models import Dokumen, ResetPassword
 
@@ -31,6 +30,7 @@ def index(request):
     # raise Http404("Poll does not exist")
     return render(request, 'app/index.html', context)
 
+
 @auth_unneeded()
 def login(request):
     context = array_merge(initialize_form_context(), fetch_message(request))
@@ -40,8 +40,8 @@ def login(request):
         context['form']['data'] = array_except(dict(form.data), ['csrfmiddlewaretoken'])
         if form.is_valid():
             user_data = authenticate(request,
-                                           username=form.cleaned_data.get('email'),
-                                           password=form.cleaned_data.get('password'))
+                                     username=form.cleaned_data.get('email'),
+                                     password=form.cleaned_data.get('password'))
             if user_data is not None:
                 group = user_data.groups.first()
                 if group is not None:
@@ -87,8 +87,8 @@ def register(request):
                 group = Group.objects.filter(name=form.cleaned_data.get('role')).first()
                 if group is not None:
                     account = User(username=form.cleaned_data.get('username'),
-                                         email=form.cleaned_data.get('email'),
-                                         password=make_password(form.cleaned_data.get('password')))
+                                   email=form.cleaned_data.get('email'),
+                                   password=make_password(form.cleaned_data.get('password')))
                     try:
                         account.save()
                         account.groups.add(group)
@@ -219,9 +219,11 @@ def recover(request):
         return render(request, 'app/recover.html', context)
 
 
+@login_required(login_url='/login')
 def logout_view(request):
     logout(request)
-    return render(request, 'app/login.html')
+    return redirect('/login')
+
 
 def dologin(request):
     if request.method == 'POST':
