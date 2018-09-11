@@ -1,6 +1,12 @@
 from django.contrib.auth.models import Group
+from django.db import connection
 
 groups = ['student', 'organization']
+
+
+def truncate():
+    with connection.cursor() as cursor:
+        cursor.execute('TRUNCATE TABLE public.auth_group RESTART IDENTITY CASCADE')
 
 
 def seed():
