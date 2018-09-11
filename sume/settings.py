@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django_seed',
     'app.apps.AppConfig',
     'seeder.apps.SeederConfig',
+    'organization.apps.OrganizationConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
