@@ -254,7 +254,11 @@ def kelas(request):
 
 @login_required(login_url='/login')
 def user(request):
-    context = {}
+    users = User.objects.all()
+    context = {
+        'users': users,
+        'groups': users[0].groups.all()[0]
+    }
     return render(request, 'app/user.html', context)
 
 

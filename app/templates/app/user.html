@@ -94,18 +94,18 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                {% for user in users %}
                                 <tr>
-                                    <td>1</td>
+                                    <td>{{user.id}}</td>
                                     <td>
                                         <a href="contact-detail.html"><img src="/static/admin/plugins/images/users/genu.jpg"
-                                                                           alt="user" class="img-circle"/> Genelia
-                                            Deshmukh</a>
+                                                                           alt="user" class="img-circle"/> {{user.username}}</a>
                                     </td>
-                                    <td>genelia@gmail.com</td>
+                                    <td>{{user.email}}</td>
                                     <td>+123 456 789</td>
-                                    <td><span class="label label-danger">Designer</span></td>
+                                    <td><span class="label label-danger">{{groups.name}}</span></td>
                                     <td>23</td>
-                                    <td>12-10-2014</td>
+                                    <td>{{user.date_joined}}</td>
                                     <td>
                                         <button type="button"
                                                 class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn"
@@ -114,6 +114,7 @@
                                         </button>
                                     </td>
                                 </tr>
+                                {% endfor %}
                                 <tr>
                                     <td>2</td>
                                     <td>
