@@ -253,11 +253,29 @@ def kelas(request):
 
 
 @login_required(login_url='/login')
-def user(request):
-    users = User.objects.all()
+def user(request, group_id=-1):
+    groups = Group.objects.all()
+    i=0
+    for group in groups:
+        groups[i].count = group.user_set.count()
+        i+=1
+
+    if group_id == -1:
+        users = User.objects.all()
+        i = 0
+        for user in users:
+            users[i].group = user.groups.all()
+            i+=1
+    else:
+        group = Group.objects.get(pk = group_id)
+        users = group.user_set.all()
+        i = 0
+        for user in users:
+            users[i].group = user.groups.all()
+            i+=1
     context = {
         'users': users,
-        'groups': users[0].groups.all()[0]
+        'groups': groups
     }
     return render(request, 'app/user.html', context)
 

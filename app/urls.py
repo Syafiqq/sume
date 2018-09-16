@@ -11,7 +11,8 @@ urlpatterns = [
     path('register', views.register, name='register'),
     path('forgot', views.forgot, name='forgot'),
     path('recover', views.recover, name='recover'),
-    path('user', views.user, name='user'),
+    path('user/', views.user, name='user'),
+    path('user/<int:group_id>/', views.user, name='usergroup'),
     path('kelas', views.kelas, name='kelas'),
     path('admin', views.admin, name='admin'),
     # ex: /polls/5/
