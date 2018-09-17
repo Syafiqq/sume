@@ -258,18 +258,18 @@ def user(request, group_id=-1):
     groups = Group.objects.all()
     i=0
     for group in groups:
-        groups[i].count = group.user_set.count()
+        groups[i].count = group.user_set.filter(Q(is_staff=False) | Q(is_superuser=False)).count()
         i+=1
 
     if group_id == -1:
-        users = User.objects.all()
+        users = User.objects.filter(Q(is_staff=False) | Q(is_superuser=False))
         i = 0
         for user in users:
             users[i].group = user.groups.all()
             i+=1
     else:
         group = Group.objects.get(pk = group_id)
-        users = group.user_set.all()
+        users = group.user_set.filter(Q(is_staff=False) | Q(is_superuser=False))
         i = 0
         for user in users:
             users[i].group = user.groups.all()
@@ -284,7 +284,8 @@ def user(request, group_id=-1):
 @login_required(login_url='/login')
 def admin(request, mode_admin = -1):
 
-    staff = User.objects.filter(is_staff=True).count()
+    all = User.objects.filter(is_staff=True).count()
+    staff = User.objects.filter(is_staff=True, is_superuser=False).count()
     superuser = User.objects.filter(is_superuser=True).count()
 
     if mode_admin == -1:
@@ -299,7 +300,8 @@ def admin(request, mode_admin = -1):
     context = {
         'users': users,
         'jumlah_staff':staff,
-        'jumlah_superuser':superuser
+        'jumlah_superuser':superuser,
+        'jumlah_semua':all
     }
     return render(request, 'app/admin.html', context)
 
