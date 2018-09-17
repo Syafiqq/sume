@@ -68,7 +68,13 @@
                             <input type="text" id="demo-input-search2" placeholder="search contacts"
                                    class="form-control">
                         </div>
-                        <h3>Admin List </h3></div>
+                        <h3>Admin List
+                            <button type="button" class="btn btn-info btn-rounded" data-toggle="modal"
+                                    data-target="#add-contact">Add New Admin
+                            </button>
+                        </h3>
+
+                    </div>
                     <div class="clearfix"></div>
                     <div class="scrollable">
                         <div class="table-responsive">
@@ -116,11 +122,6 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <td colspan="2">
-                                        <button type="button" class="btn btn-info btn-rounded" data-toggle="modal"
-                                                data-target="#add-contact">Add New Admin
-                                        </button>
-                                    </td>
                                     <div id="add-contact" class="modal fade in" tabindex="-1" role="dialog"
                                          aria-labelledby="myModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
