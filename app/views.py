@@ -316,3 +316,9 @@ def openfile(request, question_id):
     response['Content-Disposition'] = 'attachment; filename=%s' % filename
 
     return response
+
+@login_required(login_url='/login')
+def statistik(request):
+    context = {
+    }
+    return render(request, 'app/statistik.html', context)
