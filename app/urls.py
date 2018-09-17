@@ -15,6 +15,7 @@ urlpatterns = [
     path('user/<int:group_id>/', views.user, name='usergroup'),
     path('kelas', views.kelas, name='kelas'),
     path('admin', views.admin, name='admin'),
+    path('admin/<int:mode_admin>/', views.admin),
     # ex: /polls/5/
     path('detail/<int:question_id>/', views.detail, name='detail'),
     # ex: /polls/5/results/

@@ -12,6 +12,7 @@ from django.http import HttpResponse, BadHeaderError, Http404
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.crypto import get_random_string
 from django.utils.timezone import now
+from django.db.models import Q
 
 from app.app.forms import auth
 from app.app.utils.arrayutil import array_except, array_merge
@@ -281,10 +282,24 @@ def user(request, group_id=-1):
 
 
 @login_required(login_url='/login')
-def admin(request):
-    latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
+def admin(request, mode_admin = -1):
+
+    staff = User.objects.filter(is_staff=True).count()
+    superuser = User.objects.filter(is_superuser=True).count()
+
+    if mode_admin == -1:
+        users = User.objects.filter(Q(is_staff=True) | Q(is_superuser=True))
+    elif mode_admin == 1:
+        users = User.objects.filter(is_staff=True, is_superuser = False)
+    elif mode_admin == 2:
+        users = User.objects.filter(is_superuser=True)
+    else:
+        users = {}
+
     context = {
-        'latest_dokumen_list': latest_dokumen_list,
+        'users': users,
+        'jumlah_staff':staff,
+        'jumlah_superuser':superuser
     }
     return render(request, 'app/admin.html', context)
 
