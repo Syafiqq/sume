@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User
-from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
 from django.db import models
 
@@ -21,3 +20,10 @@ class ResetPassword(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     token = models.CharField(max_length=80)
     created_at = models.DateTimeField()
+
+class Kelas(models.Model):
+    namakelas = models.CharField(max_length=200)
+    keterangan = models.TextField()
+    members = models.ManyToManyField(User)
+    start = models.DateTimeField()
+    end = models.DateTimeField()

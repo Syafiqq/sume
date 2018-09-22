@@ -14,6 +14,7 @@ urlpatterns = [
     path('user/', views.user, name='user'),
     path('user/<int:group_id>/', views.user, name='usergroup'),
     path('kelas', views.kelas, name='kelas'),
+    path('newclass', views.kelasbaru, name='kelasbaru'),
     path('admin', views.admin, name='admin'),
     path('admin/<int:mode_admin>/', views.admin),
     # ex: /polls/5/

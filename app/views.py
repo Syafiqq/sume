@@ -252,6 +252,14 @@ def kelas(request):
     }
     return render(request, 'app/kelas.html', context)
 
+@login_required(login_url='/login')
+def kelasbaru(request):
+    latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
+    context = {
+        'latest_dokumen_list': latest_dokumen_list,
+    }
+    return render(request, 'app/kelasbaru.html', context)
+
 
 @login_required(login_url='/login')
 def user(request, group_id=-1):
