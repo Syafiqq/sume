@@ -19,7 +19,7 @@ from app.app.utils.arrayutil import array_except, array_merge
 from app.app.utils.commonutil import fetch_message, initialize_form_context, base_url
 from app.app.utils.custom.decorators import login_required, auth_unneeded
 from .forms import LoginForm
-from .models import Dokumen, ResetPassword
+from .models import Dokumen, ResetPassword, Kelas
 
 logger = logging.getLogger('debug')
 
@@ -254,9 +254,14 @@ def kelas(request):
 
 @login_required(login_url='/login')
 def kelasbaru(request):
-    latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
+    users = User.objects.filter(Q(is_staff=False) | Q(is_superuser=False))
+    staff = User.objects.filter(is_staff=True, is_superuser = False)
+    admin = User.objects.filter(is_superuser=True)
+
     context = {
-        'latest_dokumen_list': latest_dokumen_list,
+        'users': users,
+        'staffs': staff,
+        'admins': admin,
     }
     return render(request, 'app/kelasbaru.html', context)
 
