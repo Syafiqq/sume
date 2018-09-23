@@ -6,8 +6,10 @@
             <div class="card-body wizard-content">
                 <h4 class="card-title">Create a Class</h4>
                 <h6 class="card-subtitle">You must add class details and members</h6>
-                <form action="#" class="validation-wizard wizard-circle m-t-40">
+                <form action="/newclass" method="POST" class="validation-wizard wizard-circle m-t-40">
                     <!-- Step 1 -->
+                    {% csrf_token %}
+                    {% load widget_tweaks %}
                     <h6>Class</h6>
                     <section>
                         <div class="row">
@@ -16,7 +18,7 @@
                                     <label for="wfirstName2"> Name Class :
                                         <span class="danger">*</span>
                                     </label>
-                                    <input type="text" class="form-control required" id="wfirstName2" name="firstName">
+                                    {% render_field form.name class="form-control required" id="wfirstName2"%}
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -24,23 +26,23 @@
                                     <label for="wlastName2"> Description :
                                         <span class="danger">*</span>
                                     </label>
-                                    <input type="text" class="form-control required" id="wlastName2" name="lastName">
+                                    {% render_field form.deskripsi class="form-control required" id="wlastName2"%}
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="wdate1"> Start Date :
+                                    <label for="startdate"> Start Date :
                                         <span class="danger">*</span>
                                     </label>
-                                    <input type="date" class="form-control" id="wdate1">
+                                    {% render_field form.startdate type="date" class="form-control required" id="startdate"%}
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="wdate2"> End Date :</label>
-                                    <input type="date" class="form-control" id="wdate2">
+                                    <label for="enddate"> End Date :</label>
+                                    {% render_field form.enddate type="date" class="form-control required" id="enddate"%}
                                 </div>
                             </div>
                         </div>
@@ -51,24 +53,25 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="members">Members :</label>
-                                    <select id="members" class="select2 m-b-10 select2-multiple" multiple="multiple"
+                                    <label for="staffs">Staff :</label>
+                                    <select id="staffs" name="staffs" class="select2 m-b-10 select2-multiple required"
+                                            multiple="multiple"
                                             data-placeholder="Choose" style="width: 100%;">
-                                        <optgroup label="Admin">
-                                            {% for admin in admins %}
-                                            <option value="{{admin.id}}">{{admin.username}}</option>
-                                            {% endfor %}
-                                        </optgroup>
-                                        <optgroup label="Staff">
-                                            {% for staff in staffs %}
-                                            <option value="{{admin.id}}">{{staff.username}}</option>
-                                            {% endfor %}
-                                        </optgroup>
-                                        <optgroup label="User">
-                                            {% for user in users %}
-                                            <option value="{{admin.id}}">{{user.username}}</option>
-                                            {% endfor %}
-                                        </optgroup>
+                                        {% for staff in staffs %}
+                                        <option value="{{staff.id}}">{{staff.username}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="members">Members :</label>
+                                    <select id="members" name="members" class="select2 m-b-10 select2-multiple required"
+                                            multiple="multiple"
+                                            data-placeholder="Choose" style="width: 100%;">
+                                        {% for user in users %}
+                                        <option value="{{user.id}}">{{user.username}}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
@@ -79,4 +82,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

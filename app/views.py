@@ -14,7 +14,7 @@ from django.utils.crypto import get_random_string
 from django.utils.timezone import now
 from django.db.models import Q
 
-from app.app.forms import auth
+from app.app.forms import auth, formKelas
 from app.app.utils.arrayutil import array_except, array_merge
 from app.app.utils.commonutil import fetch_message, initialize_form_context, base_url
 from app.app.utils.custom.decorators import login_required, auth_unneeded
@@ -32,6 +32,7 @@ def index(request):
     # raise Http404("Poll does not exist")
     return render(request, 'app/index.html', context)
 
+
 @auth_unneeded()
 def login(request):
     context = array_merge(initialize_form_context(), fetch_message(request))
@@ -41,8 +42,8 @@ def login(request):
         context['form']['data'] = array_except(dict(form.data), ['csrfmiddlewaretoken'])
         if form.is_valid():
             user_data = authenticate(request,
-                                           username=form.cleaned_data.get('email'),
-                                           password=form.cleaned_data.get('password'))
+                                     username=form.cleaned_data.get('email'),
+                                     password=form.cleaned_data.get('password'))
             if user_data is not None:
                 group = user_data.groups.first()
                 if group is not None:
@@ -88,8 +89,8 @@ def register(request):
                 group = Group.objects.filter(name=form.cleaned_data.get('role')).first()
                 if group is not None:
                     account = User(username=form.cleaned_data.get('username'),
-                                         email=form.cleaned_data.get('email'),
-                                         password=make_password(form.cleaned_data.get('password')))
+                                   email=form.cleaned_data.get('email'),
+                                   password=make_password(form.cleaned_data.get('password')))
                     try:
                         account.save()
                         account.groups.add(group)
@@ -224,24 +225,39 @@ def logout_view(request):
     logout(request)
     return render(request, 'app/login.html')
 
-def dologin(request):
+
+def create_class(request):
     if request.method == 'POST':
-        form = LoginForm(request.POST)
+        print("kesini")
+        form = formKelas.BuatKelas(request.POST)
         if form.is_valid():
-            user = authenticate(request, username=form.cleaned_data['username'], password=form.cleaned_data['password'])
-            if user is not None:
-                login(request, user)
-                data = {
-                    'username': user.username,
-                }
-                return redirect('/')
-            else:
-                return render(request, 'app/login.html', {'form': form})
-                # Return an 'invalid login' error message.
-                # Return an 'invalid login' error message.
+            print("masuk")
+            name = form.cleaned_data.get('name')
+            deskripsi = form.cleaned_data.get('deskripsi')
+            members = form.cleaned_data.get('members')
+            staffs = form.cleaned_data.get('staffs')
+            startdate = form.cleaned_data.get('startdate')
+            enddate = form.cleaned_data.get('enddate')
+
+
+
+            # new_kelas = Kelas()
+            # if user is not None:
+            #     login(request, user)
+            #     data = {
+            #         'username': user.username,
+            #     }
+            #     return redirect('/')
+            # else:
+            #     return render(request, 'app/login.html', {'form': form})
+            #     # Return an 'invalid login' error message.
+            #     # Return an 'invalid login' error message.
+        else:
+            print("failed")
     else:
-        form = LoginForm()
-    return render(request, 'app/login.html', {'form': form})
+        print("failed2")
+        form = kelas.BuatKelas()
+    return render(request, 'app/kelasbaru.html', {'form': form})
 
 
 @login_required(login_url='/login')
@@ -252,16 +268,39 @@ def kelas(request):
     }
     return render(request, 'app/kelas.html', context)
 
+
 @login_required(login_url='/login')
 def kelasbaru(request):
-    users = User.objects.filter(Q(is_staff=False) | Q(is_superuser=False))
-    staff = User.objects.filter(is_staff=True, is_superuser = False)
-    admin = User.objects.filter(is_superuser=True)
+    if request.method == 'POST':
+        form = formKelas.BuatKelas(request.POST)
 
+        if form.is_valid():
+            name = form.cleaned_data.get('name')
+            deskripsi = form.cleaned_data.get('deskripsi')
+            members = form.cleaned_data.get('members')
+            staffs = form.cleaned_data.get('staffs')
+            startdate = form.cleaned_data.get('startdate')
+            enddate = form.cleaned_data.get('enddate')
+
+            new_kelas = Kelas(namakelas=name, keterangan=deskripsi, start=startdate, end=enddate)
+            new_kelas.save()
+            anggota1 = User.objects.get(pk=members)
+            new_kelas.members.add(anggota1)
+            anggota2 = User.objects.get(pk=staffs)
+            new_kelas.members.add(anggota2)
+        else:
+            print("failed")
+    else:
+        print("failed2")
+        form = formKelas.BuatKelas()
+
+
+    users = User.objects.filter(is_staff=False, is_superuser=False)
+    staff = User.objects.filter(is_staff=True, is_superuser=False)
     context = {
         'users': users,
         'staffs': staff,
-        'admins': admin,
+        'form': form
     }
     return render(request, 'app/kelasbaru.html', context)
 
@@ -269,24 +308,24 @@ def kelasbaru(request):
 @login_required(login_url='/login')
 def user(request, group_id=-1):
     groups = Group.objects.all()
-    i=0
+    i = 0
     for group in groups:
         groups[i].count = group.user_set.filter(Q(is_staff=False) | Q(is_superuser=False)).count()
-        i+=1
+        i += 1
 
     if group_id == -1:
         users = User.objects.filter(Q(is_staff=False) | Q(is_superuser=False))
         i = 0
         for user in users:
             users[i].group = user.groups.all()
-            i+=1
+            i += 1
     else:
-        group = Group.objects.get(pk = group_id)
+        group = Group.objects.get(pk=group_id)
         users = group.user_set.filter(Q(is_staff=False) | Q(is_superuser=False))
         i = 0
         for user in users:
             users[i].group = user.groups.all()
-            i+=1
+            i += 1
     context = {
         'users': users,
         'groups': groups
@@ -295,8 +334,7 @@ def user(request, group_id=-1):
 
 
 @login_required(login_url='/login')
-def admin(request, mode_admin = -1):
-
+def admin(request, mode_admin=-1):
     all = User.objects.filter(is_staff=True).count()
     staff = User.objects.filter(is_staff=True, is_superuser=False).count()
     superuser = User.objects.filter(is_superuser=True).count()
@@ -304,7 +342,7 @@ def admin(request, mode_admin = -1):
     if mode_admin == -1:
         users = User.objects.filter(Q(is_staff=True) | Q(is_superuser=True))
     elif mode_admin == 1:
-        users = User.objects.filter(is_staff=True, is_superuser = False)
+        users = User.objects.filter(is_staff=True, is_superuser=False)
     elif mode_admin == 2:
         users = User.objects.filter(is_superuser=True)
     else:
@@ -312,9 +350,9 @@ def admin(request, mode_admin = -1):
 
     context = {
         'users': users,
-        'jumlah_staff':staff,
-        'jumlah_superuser':superuser,
-        'jumlah_semua':all
+        'jumlah_staff': staff,
+        'jumlah_superuser': superuser,
+        'jumlah_semua': all
     }
     return render(request, 'app/admin.html', context)
 
@@ -328,7 +366,6 @@ def detail(request, question_id):
         'latest_dokumen_list': latest_dokumen_list,
     }
     return render(request, 'app/detail.html', context)
-
 
 
 def results(request, question_id):
@@ -346,6 +383,7 @@ def openfile(request, question_id):
     response['Content-Disposition'] = 'attachment; filename=%s' % filename
 
     return response
+
 
 @login_required(login_url='/login')
 def statistik(request):
