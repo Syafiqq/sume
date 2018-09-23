@@ -27,3 +27,4 @@ class Kelas(models.Model):
     members = models.ManyToManyField(User)
     start = models.DateTimeField()
     end = models.DateTimeField()
+    dokumen = models.ManyToManyField(Dokumen)

@@ -18,16 +18,17 @@
                     </tr>
                     </thead>
                     <tbody>
+                    {% for kelas in kelas_list %}
                     <tr>
-                        <td class="text-center">1</td>
-                        <td>SKRIPSI
-                            <br/><span class="text-muted">Teknik Informatika</span></td>
-                        <td><span class="counter text-info" style="font-size: 20px">601</span>
-                            </td>
+                        <td class="text-center">{{kelas.id}}</td>
+                        <td>{{kelas.namakelas}}
+                            <br/><span class="text-muted">{{kelas.keterangan}}</span></td>
+                        <td><span class="counter text-info" style="font-size: 20px">{{kelas.jumlahmember}}</span>
+                        </td>
                         <td><span class="counter text-success" style="font-size: 20px">1872</span></td>
-                        <td>15 Mar 1988
+                        <td>{{kelas.start}}
                             <br/><span class="text-muted">10: 55 AM</span></td>
-                        <td>18 Mar 1989
+                        <td>{{kelas.end}}
                             <br/><span class="text-muted">13: 25 AM</span>
                         </td>
                         <td>
@@ -41,6 +42,7 @@
                                     class="ti-upload"></i></button>
                         </td>
                     </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>

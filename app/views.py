@@ -228,9 +228,14 @@ def logout_view(request):
 
 @login_required(login_url='/login')
 def kelas(request):
-    latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
+    latest_kelas_list = Kelas.objects.order_by('-end')[:5]
+    i = 0
+    for kelas in latest_kelas_list:
+        latest_kelas_list[i].jumlahmember = kelas.members.count()
+        i+=1
+
     context = {
-        'latest_dokumen_list': latest_dokumen_list,
+        'kelas_list': latest_kelas_list,
     }
     return render(request, 'app/kelas.html', context)
 
