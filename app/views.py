@@ -226,40 +226,6 @@ def logout_view(request):
     return render(request, 'app/login.html')
 
 
-def create_class(request):
-    if request.method == 'POST':
-        print("kesini")
-        form = formKelas.BuatKelas(request.POST)
-        if form.is_valid():
-            print("masuk")
-            name = form.cleaned_data.get('name')
-            deskripsi = form.cleaned_data.get('deskripsi')
-            members = form.cleaned_data.get('members')
-            staffs = form.cleaned_data.get('staffs')
-            startdate = form.cleaned_data.get('startdate')
-            enddate = form.cleaned_data.get('enddate')
-
-
-
-            # new_kelas = Kelas()
-            # if user is not None:
-            #     login(request, user)
-            #     data = {
-            #         'username': user.username,
-            #     }
-            #     return redirect('/')
-            # else:
-            #     return render(request, 'app/login.html', {'form': form})
-            #     # Return an 'invalid login' error message.
-            #     # Return an 'invalid login' error message.
-        else:
-            print("failed")
-    else:
-        print("failed2")
-        form = kelas.BuatKelas()
-    return render(request, 'app/kelasbaru.html', {'form': form})
-
-
 @login_required(login_url='/login')
 def kelas(request):
     latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
@@ -284,14 +250,15 @@ def kelasbaru(request):
 
             new_kelas = Kelas(namakelas=name, keterangan=deskripsi, start=startdate, end=enddate)
             new_kelas.save()
-            anggota1 = User.objects.get(pk=members)
-            new_kelas.members.add(anggota1)
-            anggota2 = User.objects.get(pk=staffs)
-            new_kelas.members.add(anggota2)
+            for member in members:
+                anggota1 = User.objects.get(pk=member)
+                new_kelas.members.add(anggota1)
+            for staff in staffs:
+                anggota2 = User.objects.get(pk=staff)
+                new_kelas.members.add(anggota2)
         else:
-            print("failed")
+            print("form not valid")
     else:
-        print("failed2")
         form = formKelas.BuatKelas()
 
 

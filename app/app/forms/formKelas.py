@@ -18,7 +18,7 @@ class BuatKelas(forms.Form):
 
     name = forms.CharField(max_length=200)
     deskripsi = forms.CharField()
-    members = forms.ChoiceField(choices=pilihan1)
-    staffs = forms.ChoiceField(choices=pilihan2)
+    members = forms.MultipleChoiceField(choices=pilihan1)
+    staffs = forms.MultipleChoiceField(choices=pilihan2)
     startdate = forms.DateField()
     enddate = forms.DateField()
