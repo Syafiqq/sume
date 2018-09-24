@@ -13,4 +13,4 @@ def index(request):
     if request.method == 'POST':
         pass
     else:
-        return render(request, '_root.html', context)
+        return render(request, 'index.html', context)
