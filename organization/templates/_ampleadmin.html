@@ -7,27 +7,16 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/static/admin/plugins/images/favicon.png">
 {% endblock %}
 {% block head-css-pre %}
+    <!-- Bootstrap Core CSS -->
     <link href="/static/admin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
     <link href="/static/admin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
-    <!-- Dropzone css -->
-    <link href="/static/admin/plugins/bower_components/dropzone-master/dist/dropzone.css" rel="stylesheet" type="text/css"/>
-    <!-- toast CSS -->
-    <link href="/static/admin/plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
-    <!-- Footable CSS -->
-    <link href="/static/admin/plugins/bower_components/footable/css/footable.bootstrap.min.css" rel="stylesheet">
-    <!-- chartist CSS -->
-    <link href="/static/admin/plugins/bower_components/chartist-js/dist/chartist.min.css" rel="stylesheet">
-    <link href="/static/admin/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css"
-          rel="stylesheet">
-    <!-- Vector CSS -->
-    <link href="/static/admin/plugins/bower_components/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>
     <!-- animation CSS -->
     <link href="/static/admin/css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="/static/admin/css/style.css" rel="stylesheet">
     <!-- color CSS -->
-    <link href="/static/admin/css/colors/megna-dark.css" id="theme" rel="stylesheet">
+    <link href="/static/admin/css/colors/blue-dark.css" id="theme" rel="stylesheet">
 {% endblock %}
 {% block head-js-pre %}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -38,7 +27,6 @@
 <![endif]-->
 {% endblock %}
 {% block body-js-lower-pre %}
-    <!-- jQuery -->
     <script src="/static/admin/plugins/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="/static/admin/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -48,100 +36,10 @@
     <script src="/static/admin/js/jquery.slimscroll.js"></script>
     <!--Wave Effects -->
     <script src="/static/admin/js/waves.js"></script>
-    <script src="/static/admin/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
-    <script src="/static/admin/js/toastr.js"></script>
-    <script type="text/javascript">
-        //Alerts
-        $(".myadmin-alert .closed").click(function (event) {
-            $(this).parents(".myadmin-alert").fadeToggle(350);
-            return false;
-        });
-        /* Click to close */
-        $(".myadmin-alert-click").click(function (event) {
-            $(this).fadeToggle(350);
-            return false;
-        });
-        $(".showtop").click(function () {
-            $(".alerttop").fadeToggle(350);
-        });
-        $(".showtop2").click(function () {
-            $(".alerttop2").fadeToggle(350);
-        });
-        /** Alert Position Bottom  **/
-        $(".showbottom").click(function () {
-            $(".alertbottom").fadeToggle(350);
-        });
-        $(".showbottom2").click(function () {
-            $(".alertbottom2").fadeToggle(350);
-        });
-        /** Alert Position Top Left  **/
-        $("#showtopleft").click(function () {
-            $("#alerttopleft").fadeToggle(350);
-        });
-        /** Alert Position Top Right  **/
-        $("#showtopright").click(function () {
-            $("#alerttopright").fadeToggle(350);
-        });
-        /** Alert Position Bottom Left  **/
-        $("#showbottomleft").click(function () {
-            $("#alertbottomleft").fadeToggle(350);
-        });
-        /** Alert Position Bottom Right  **/
-        $("#showbottomright").click(function () {
-            $("#alertbottomright").fadeToggle(350);
-        });
-
-    </script>
-    <!-- Footable -->
-    <script src="/static/admin/plugins/bower_components/moment/moment.js"></script>
-    <script src="/static/admin/plugins/bower_components/footable/js/footable.min.js"></script>
-    <!-- Vector map JavaScript -->
-    <script src="/static/admin/plugins/bower_components/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
-    <script src="/static/admin/plugins/bower_components/vectormap/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="/static/admin/plugins/bower_components/vectormap/jquery-jvectormap-in-mill.js"></script>
-    <script src="/static/admin/plugins/bower_components/vectormap/jquery-jvectormap-us-aea-en.js"></script>
-    <!-- chartist chart -->
-    <script src="/static/admin/plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
-    <script src="/static/admin/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
-    <!-- sparkline chart JavaScript -->
-    <script src="/static/admin/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
-    <script src="/static/admin/plugins/bower_components/jquery-sparkline/jquery.charts-sparkline.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="/static/admin/js/custom.min.js"></script>
-    <script src="/static/admin/js/dashboard3.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script>
-        // Row Toggler
-        // -----------------------------------------------------------------
-        $('#demo-foo-addrow').footable();
-
-
-    </script>
     <!--Style Switcher -->
     <script src="/static/admin/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
-    <script type="text/javascript">
-        function simpleToastCall(arr)
-        {
-            for (var i = 0; i < arr.length; i++)
-            {
-                var msg = arr[i];
-                $.toast({
-                    heading: ' ',
-                    text: 'msg' in msg ? msg.msg : '',
-                    position: 'top-right',
-                    loaderBg: '#ff6849',
-                    icon: 'level' in msg ? msg.level : 'info',
-                    hideAfter: 5000
-                });
-            }
-        }
-
-        if (c_msg_alrt)
-        {
-            simpleToastCall(c_msg_alrt);
-        }
-    </script>
 {% endblock %}
 {% block body-property %}
     <body class="fix-sidebar">
