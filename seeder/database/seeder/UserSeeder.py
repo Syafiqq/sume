@@ -21,7 +21,7 @@ def seed():
         for group in Group.objects.all():
             ids.groups.add(group)
     if not User.objects.filter(email='student@mail.com').exists():
-        student = Group.objects.filter(name='student').first()
+        student = Group.objects.filter(name='Student').first()
         ids = User.objects.create(
             username='student',
             email='student@mail.com',
@@ -30,7 +30,7 @@ def seed():
         )
         ids.groups.add(student)
     if not User.objects.filter(email='organization@mail.com').exists():
-        organization = Group.objects.filter(name='organization').first()
+        organization = Group.objects.filter(name='Organization').first()
         ids = User.objects.create(
             username='organization',
             email='organization@mail.com',

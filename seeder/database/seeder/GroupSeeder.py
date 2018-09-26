@@ -1,7 +1,7 @@
 from django.contrib.auth.models import Group
 from django.db import connection
 
-groups = ['student', 'organization']
+groups = ['Student', 'Organization']
 
 
 def truncate():

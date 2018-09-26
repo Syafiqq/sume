@@ -15,9 +15,14 @@ from django.http import HttpResponse, BadHeaderError, Http404
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.crypto import get_random_string
 from django.utils.timezone import now
+from django.db.models import Q
 
+from app.app.forms import auth, formKelas
+from app.app.utils.arrayutil import array_except, array_merge
+from app.app.utils.commonutil import fetch_message, initialize_form_context, base_url
+from app.app.utils.custom.decorators import login_required, auth_unneeded
 from .forms import LoginForm
-from .models import Dokumen, ResetPassword
+from .models import Dokumen, ResetPassword, Kelas
 
 logger = logging.getLogger('debug')
 
@@ -229,30 +234,121 @@ def logout_view(request):
 
 @login_required(login_url='/login')
 def kelas(request):
-    latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
+    latest_kelas_list = Kelas.objects.order_by('-end')[:5]
+    i = 0
+    for kelas in latest_kelas_list:
+        latest_kelas_list[i].jumlahmember = kelas.members.count()
+        i+=1
+
     context = {
-        'latest_dokumen_list': latest_dokumen_list,
+        'kelas_list': latest_kelas_list,
     }
     return render(request, 'app/kelas.html', context)
 
 
 @login_required(login_url='/login')
-def user(request):
-    context = {}
+def kelasbaru(request):
+    if request.method == 'POST':
+        form = formKelas.BuatKelas(request.POST)
+
+        if form.is_valid():
+            name = form.cleaned_data.get('name')
+            deskripsi = form.cleaned_data.get('deskripsi')
+            members = form.cleaned_data.get('members')
+            staffs = form.cleaned_data.get('staffs')
+            startdate = form.cleaned_data.get('startdate')
+            enddate = form.cleaned_data.get('enddate')
+
+            new_kelas = Kelas(namakelas=name, keterangan=deskripsi, start=startdate, end=enddate)
+            new_kelas.save()
+            for member in members:
+                anggota1 = User.objects.get(pk=member)
+                new_kelas.members.add(anggota1)
+            for staff in staffs:
+                anggota2 = User.objects.get(pk=staff)
+                new_kelas.members.add(anggota2)
+        else:
+            print("form not valid")
+    else:
+        form = formKelas.BuatKelas()
+
+
+    users = User.objects.filter(is_staff=False, is_superuser=False)
+    staff = User.objects.filter(is_staff=True, is_superuser=False)
+    context = {
+        'users': users,
+        'staffs': staff,
+        'form': form
+    }
+    return render(request, 'app/kelasbaru.html', context)
+
+
+@login_required(login_url='/login')
+def user(request, group_id=-1):
+    groups = Group.objects.all()
+    i = 0
+    for group in groups:
+        groups[i].count = group.user_set.filter(Q(is_staff=False) | Q(is_superuser=False)).count()
+        i += 1
+
+    if group_id == -1:
+        users = User.objects.filter(Q(is_staff=False) | Q(is_superuser=False))
+        i = 0
+        for user in users:
+            users[i].group = user.groups.all()
+            i += 1
+    else:
+        group = Group.objects.get(pk=group_id)
+        users = group.user_set.filter(Q(is_staff=False) | Q(is_superuser=False))
+        i = 0
+        for user in users:
+            users[i].group = user.groups.all()
+            i += 1
+    context = {
+        'users': users,
+        'groups': groups
+    }
     return render(request, 'app/user.html', context)
 
 
 @login_required(login_url='/login')
-def admin(request):
-    latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
+def admin(request, mode_admin=-1):
+    all = User.objects.filter(is_staff=True).count()
+    staff = User.objects.filter(is_staff=True, is_superuser=False).count()
+    superuser = User.objects.filter(is_superuser=True).count()
+
+    if mode_admin == -1:
+        users = User.objects.filter(Q(is_staff=True) | Q(is_superuser=True))
+    elif mode_admin == 1:
+        users = User.objects.filter(is_staff=True, is_superuser=False)
+    elif mode_admin == 2:
+        users = User.objects.filter(is_superuser=True)
+    else:
+        users = {}
+
     context = {
-        'latest_dokumen_list': latest_dokumen_list,
+        'users': users,
+        'jumlah_staff': staff,
+        'jumlah_superuser': superuser,
+        'jumlah_semua': all
     }
     return render(request, 'app/admin.html', context)
 
 
 @login_required(login_url='/login')
-def detail(request, question_id):
+def detailkelas(request, kelas_id):
+    # dokumen = get_object_or_404(Dokumen, pk=question_id)
+    # return serve_file(request, dokumen.filenya)
+    kelas = Kelas.objects.get(pk=kelas_id)
+    kelas.jumlahmember = kelas.members.count()
+    kelas.jumlahdokumen = kelas.dokumen.count()
+    context = {
+        'kelas': kelas,
+    }
+    return render(request, 'app/detail.html', context)
+
+@login_required(login_url='/login')
+def editkelas(request, question_id):
     # dokumen = get_object_or_404(Dokumen, pk=question_id)
     # return serve_file(request, dokumen.filenya)
     latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
@@ -260,8 +356,6 @@ def detail(request, question_id):
         'latest_dokumen_list': latest_dokumen_list,
     }
     return render(request, 'app/detail.html', context)
-
-
 
 def results(request, question_id):
     response = "You're looking at the results of question %s."
@@ -278,3 +372,10 @@ def openfile(request, question_id):
     response['Content-Disposition'] = 'attachment; filename=%s' % filename
 
     return response
+
+
+@login_required(login_url='/login')
+def statistik(request):
+    context = {
+    }
+    return render(request, 'app/statistik.html', context)
