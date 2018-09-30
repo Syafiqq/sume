@@ -54,7 +54,7 @@ def login(request):
                     messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
                     return redirect(
                         request.POST.get('next') if (
-                                request.POST.get('next') and request.POST.get('next') != "") else ('/' + group.name))
+                                request.POST.get('next') and request.POST.get('next') != "") else '/')
                 else:
                     context['message']['notification'] = [{'msg': 'Your account is not activated yet', 'level': 'info'}]
                     return render(request, 'app/login.html', context)
