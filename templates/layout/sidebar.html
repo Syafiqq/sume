@@ -1,57 +1,88 @@
+{% load viewtag %}
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav slimscrollsidebar">
         <div class="sidebar-head">
             <h3><span class="fa-fw open-close"><i class="ti-menu hidden-xs"></i><i
-                    class="ti-close visible-xs"></i></span> <span class="hide-menu">Navigation</span></h3></div>
+                    class="ti-close visible-xs"></i></span>
+                <span class="hide-menu">Navigation</span>
+            </h3>
+        </div>
         <ul class="nav" id="side-menu">
-            <li class="user-pro">
-                <a href="javascript:void(0)" class="waves-effect"><img
-                        src="/static/admin/plugins/images/users/varun.jpg"
-                        alt="user-img" class="img-circle"> <span
-                        class="hide-menu"> Steve Gection<span class="fa arrow"></span></span>
+            <li>
+                <a href="javascript:void(0);" class="waves-effect {{ menu.lv1|is_same_menu:'dashboard' }}">
+                    <i class="mdi mdi-av-timer fa-fw"
+                       data-icon="v"></i>
+                    <span class="hide-menu">
+                        Dashboard
+                    </span>
                 </a>
-                <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                    <li><a href="javascript:void(0)"><i class="ti-user"></i> <span
-                            class="hide-menu">My Profile</span></a></li>
-                    <li><a href="javascript:void(0)"><i class="ti-wallet"></i> <span class="hide-menu">My Balance</span></a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" class="waves-effect {{ menu.lv1|is_same_menu:'master' }}">
+                    <i class="mdi mdi-account-outline fa-fw"
+                       data-icon="v"></i>
+                    <span class="hide-menu"> Master <span
+                            class="fa arrow"></span> </span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a class="{{ menu.lv2|is_same_menu:'master_user' }}" href="/user">
+                            <i class="fa-fw">U</i>
+                            <span class="hide-menu">User</span>
+                        </a>
                     </li>
-                    <li><a href="javascript:void(0)"><i class="ti-email"></i> <span class="hide-menu">Inbox</span></a>
+                    <li>
+                        <a class="{{ menu.lv2|is_same_menu:'master_admin' }}" href="/admin">
+                            <i class="fa-fw">A</i>
+                            <span
+                                    class="hide-menu">Admin</span>
+                        </a>
                     </li>
-                    <li><a href="javascript:void(0)"><i class="ti-settings"></i> <span
-                            class="hide-menu">Account Setting</span></a></li>
-                    <li><a href="javascript:void(0)"><i class="fa fa-power-off"></i> <span
-                            class="hide-menu">Logout</span></a></li>
                 </ul>
             </li>
-            <li><a href="/" class="waves-effect active"><i class="mdi mdi-av-timer fa-fw"
-                                                           data-icon="v"></i> <span class="hide-menu"> Dashboard <span
-                    class="fa arrow"></span> <span
-                    class="label label-rouded label-inverse pull-right">4</span></span></a>
-            </li>
-            <li><a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-cart-outline fa-fw"
-                                                                      data-icon="v"></i> <span class="hide-menu"> Master <span
-                    class="fa arrow"></span> </span></a>
+            <li>
+                <a href="javascript:void(0)" class="waves-effect {{ menu.lv1|is_same_menu:'kelas' }}">
+                    <i class="mdi mdi-content-copy fa-fw"
+                       data-icon="v"></i>
+                    <span class="hide-menu"> Class <span
+                            class="fa arrow"></span> </span>
+                </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="/user"><i class="fa-fw">U</i><span class="hide-menu">User</span></a></li>
-                    <li><a href="/admin"><i class="fa-fw">A</i><span
-                            class="hide-menu">Admin</span></a></li>
+                    <li>
+                        <a class="{{ menu.lv2|is_same_menu:'kelas_new' }}" href="javascript:void(0)">
+                            <i class="fa-fw">NC</i>
+                            <span class="hide-menu">New Class</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="{{ menu.lv2|is_same_menu:'kelas_manage' }}" href="javascript:void(0)">
+                            <i class="fa-fw">MC</i>
+                            <span
+                                    class="hide-menu">Manage Class</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
-            <li><a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-content-copy fa-fw"
-                                                         data-icon="v"></i> <span class="hide-menu"> Class <span
-                    class="fa arrow"></span> </span></a>
+            <li>
+                <a href="javascript:void(0)" class="waves-effect {{ menu.lv1|is_same_menu:'server' }}">
+                    <i class="mdi mdi-settings fa-fw"></i>
+                    <span
+                            class="hide-menu">Server</span>
+                </a>
                 <ul class="nav nav-second-level">
-                    <li><a href="/newclass"><i class="fa-fw">NC</i><span class="hide-menu">New Class</span></a></li>
-                    <li><a href="/kelas"><i class="fa-fw">MC</i><span
-                            class="hide-menu">Manage Class</span></a></li>
-                </ul>
-            </li>
-            <li><a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-settings fa-fw"></i> <span
-                    class="hide-menu">Server</span></a>
-                <ul class="nav nav-second-level">
-                    <li><a href="/statistik"><i class="fa-fw">ST</i><span class="hide-menu">Statistik</span></a></li>
-                    <li><a href="product-orders.html"><i class="fa-fw">SE</i><span
-                            class="hide-menu">Setting</span></a></li>
+                    <li>
+                        <a class="{{ menu.lv2|is_same_menu:'server_statistik' }}" href="javascript:void(0)">
+                            <i class="fa-fw">ST</i>
+                            <span class="hide-menu">Statistik</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="{{ menu.lv2|is_same_menu:'server_setting' }}" href="javascript:void(0)">
+                            <i class="fa-fw">SE</i>
+                            <span
+                                    class="hide-menu">Setting</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>
