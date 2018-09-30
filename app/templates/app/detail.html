@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-9 col-lg-9 col-sm-7">
         <div class="panel panel-info">
-            <div class="panel-heading"> {{kelas.jumlahdokumen}} Dokumen </div>
+            <div class="panel-heading"> {{kelas.jumlahdokumen}} Dokumen</div>
             <div class="panel-wrapper collapse in" aria-expanded="true">
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -27,21 +27,34 @@
                                     <h5 class="font-500">{{dokumen}}</h5>
                                 </td>
                                 <td width="150" align="center" class="font-500">
-                                    <span class="counter text-danger" style="font-size: 20px">{{dokumen.plagiat}}%</span>
+                                    <span class="counter text-danger"
+                                          style="font-size: 20px">{{dokumen.plagiat}}%</span>
                                 </td>
                                 <td width="150" align="center" class="font-500">
                                     <span class="counter text-warning" style="font-size: 20px">{{dokumen.typo}}%</span>
                                 </td>
-                                <td width="100" align="center"><span class="label label-info m-r-10">{{dokumen.state}}</span></td>
+                                <td width="100" align="center"><span
+                                        class="label label-info m-r-10">{{dokumen.state}}</span></td>
                             </tr>
                             {% endfor %}
+                            {% if kelas.jumlahdokumen == 0 %}
+                                <tr>
+                                    <td width="150" class="font-500">
+                                        Tidak ada dokumen
+                                    </td>
+                                </tr>
+                            {% endif %}
                             </tbody>
                         </table>
                         <hr>
-                        <button class="btn btn-danger pull-right"><i class="fa fa fa-shopping-cart"></i> Upload
-                        </button>
-                        <button class="btn btn-default btn-outline"><i class="fa fa-arrow-left"></i> Back
-                        </button>
+                        <a href="/kelas/{{kelas.id}}/upload">
+                            <div class="btn btn-info pull-right"> Upload
+                            </div>
+                        </a>
+                        <a href="/kelas">
+                            <div class="btn btn-default btn-outline"><i class="fa fa-arrow-left"></i> Back
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
