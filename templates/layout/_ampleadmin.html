@@ -36,6 +36,8 @@
     <script src="/static/admin/js/toastr.js"></script>
     <script src="/static/admin/js/custom.min.js"></script>
     <script src="/static/admin/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+{% endblock %}
+{% block body-js-lower-post %}
     <script type="text/javascript">
         function simpleToastCall(arr)
         {
@@ -52,10 +54,7 @@
                 });
             }
         }
-    </script>
-{% endblock %}
-{% block body-js-lower-post %}
-    <script>
+
         if (c_msg_alrt)
         {
             simpleToastCall(c_msg_alrt);
