@@ -1,6 +1,6 @@
 {% extends "layout/_ampleadmin.html" %}
 {% block ampleadmin-css-addon %}
-    {{ block.parent }}
+    {{ block.super }}
     <link href="/static/admin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
     <link href="/static/admin/plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
     <link href="/static/admin/plugins/bower_components/chartist-js/dist/chartist.min.css" rel="stylesheet">
@@ -27,6 +27,7 @@
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
         {% block ampleadmin-content-navbar %}
+            {% include "layout/nav.html" %}
         {% endblock ampleadmin-content-navbar %}
         <!-- ============================================================== -->
         <!-- End Top Navigation -->
@@ -34,34 +35,38 @@
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
         {% block ampleadmin-content-sidebar %}
+            {% include "layout/sidebar.html" %}
         {% endblock ampleadmin-content-sidebar %}
         <!-- ============================================================== -->
         <!-- End Left Sidebar -->
         <!-- ============================================================== -->
         <!-- Page Content -->
         <!-- ============================================================== -->
-        {% block ampleadmin-content-main %}
-        {% endblock ampleadmin-content-main %}
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                {% block ampleadmin-content-breadcrumb %}
+                {% endblock ampleadmin-content-breadcrumb %}
+                {% block ampleadmin-content-main %}
+                {% endblock ampleadmin-content-main %}
+            </div>
+            {% block ampleadmin-content-footer %}
+                <footer class="footer text-center"> 2017 &copy; Ampleadmin brought to you by themedesigner.in</footer>
+            {% endblock ampleadmin-content-footer %}
+        </div>
+
         <!-- ============================================================== -->
         <!-- End Page Content -->
         <!-- ============================================================== -->
     </div>
 {% endblock body-content %}
 {% block body-js-lower-pre %}
-    {{ block.parent }}
+    {{ block.super }}
     <script src="/static/admin/plugins/bower_components/raphael/raphael-min.js"></script>
-    <script src="/static/admin/plugins/bower_components/morrisjs/morris.js"></script>
-    <script src="/static/admin/plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
-    <script src="/static/admin/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
-    <script src="/static/admin/plugins/bower_components/moment/moment.js"></script>
-    <script src='/static/admin/plugins/bower_components/calendar/dist/fullcalendar.min.js'></script>
-    <script src="/static/admin/plugins/bower_components/calendar/dist/cal-init.js"></script>
     <script src="/static/admin/js/custom.min.js"></script>
-    <script src="/static/admin/js/dashboard1.js"></script>
     <script src="/static/admin/js/cbpFWTabs.js"></script>
 {% endblock %}
 {% block body-js-lower-post %}
-    {{ block.parent }}
+    {{ block.super }}
     <script type="text/javascript">
         (function () {
             [].slice.call(document.querySelectorAll('.sttabs')).forEach(function (el) {
