@@ -265,6 +265,8 @@ def user(request, group_id=-1):
 
 @login_required(login_url='/login')
 def admin(request, mode_admin=-1):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+
     all = User.objects.filter(is_staff=True).count()
     staff = User.objects.filter(is_staff=True, is_superuser=False).count()
     superuser = User.objects.filter(is_superuser=True).count()
@@ -278,11 +280,15 @@ def admin(request, mode_admin=-1):
     else:
         users = {}
 
-    context = {
+    context['data']['master'] = {
         'users': users,
         'jumlah_staff': staff,
         'jumlah_superuser': superuser,
         'jumlah_semua': all
+    }
+    context['menu'] = {
+        'lv1': 'master',
+        'lv2': 'master_admin'
     }
     return render(request, 'app/admin.html', context)
 
