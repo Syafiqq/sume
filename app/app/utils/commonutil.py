@@ -31,7 +31,8 @@ def initialize_form_context():
             'alert': {},
             'custom': {}
         },
-        'data': {}
+        'data': {},
+        'menu': {}
     }
 
 
