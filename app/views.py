@@ -231,6 +231,8 @@ def logout_view(request):
 # == User Management ===============================================================================
 @login_required(login_url='/login')
 def user(request, group_id=-1):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+
     groups = Group.objects.all()
     i = 0
     for group in groups:
@@ -250,7 +252,7 @@ def user(request, group_id=-1):
         for user in users:
             users[i].group = user.groups.all()
             i += 1
-    context = {
+    context['data']['master'] = {
         'users': users,
         'groups': groups
     }
@@ -288,7 +290,7 @@ def kelas(request):
     i = 0
     for kelas in latest_kelas_list:
         latest_kelas_list[i].jumlahmember = kelas.members.count()
-        i+=1
+        i += 1
 
     context = {
         'kelas_list': latest_kelas_list,
@@ -321,7 +323,6 @@ def kelasbaru(request):
             print("form not valid")
     else:
         form = formKelas.BuatKelas()
-
 
     users = User.objects.filter(is_staff=False, is_superuser=False)
     staff = User.objects.filter(is_staff=True, is_superuser=False)
