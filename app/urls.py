@@ -17,15 +17,11 @@ urlpatterns = [
     path('newclass', views.kelasbaru, name='kelasbaru'),
     path('admin', views.admin, name='admin'),
     path('admin/<int:mode_admin>/', views.admin),
-    # ex: /polls/5/
     path('kelas/<int:kelas_id>/detail', views.detailkelas, name='detailkelas'),
     path('kelas/<int:kelas_id>/edit', views.editkelas, name='editkelas'),
     path('kelas/<int:kelas_id>/upload', views.upload_dokumen, name='upload_dokumen'),
     path('kelas/<int:kelas_id>/view_doc/<int:dokumen_id>', views.view_dokumen, name='upload_dokumen'),
-    # ex: /polls/5/results/
     path('<int:question_id>/results/', views.results, name='results'),
-    # ex: /polls/5/vote/
     path('<int:question_id>/vote/', views.vote, name='vote'),
-
     path('statistik', views.statistik, name='statistik'),
 ]
