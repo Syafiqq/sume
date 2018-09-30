@@ -256,6 +256,10 @@ def user(request, group_id=-1):
         'users': users,
         'groups': groups
     }
+    context['menu'] = {
+        'lv1': 'master',
+        'lv2': 'master_user'
+    }
     return render(request, 'app/user.html', context)
 
 
