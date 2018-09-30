@@ -143,8 +143,8 @@
     </section>
 {% endblock %}
 {% block body-js-lower-pre %}
-    {{ block.super }}
     <script type="text/javascript">
         var c_msg_alrt = {{ message.alert|dump_json_array|safe }};
     </script>
+    {{ block.super }}
 {% endblock %}
