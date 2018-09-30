@@ -8,9 +8,12 @@ from django.db import models
 class Dokumen(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     nama_file = models.CharField(max_length=200)
-    pub_date = models.DateTimeField(verbose_name='date published')
+    pub_date = models.DateTimeField(auto_now_add=True)
     filenya = models.FileField(upload_to='dokumen/%Y/%m/%d/',
-                               validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
+                               validators=[FileExtensionValidator(allowed_extensions=['pdf', 'doc', 'docx'])])
+    plagiat = models.IntegerField(default=0)
+    typo = models.IntegerField(default=0)
+    state = models.CharField(default="In Queue", max_length=100)
 
     def __str__(self):
         return self.nama_file

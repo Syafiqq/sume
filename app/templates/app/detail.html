@@ -3,92 +3,44 @@
 <div class="row">
     <div class="col-md-9 col-lg-9 col-sm-7">
         <div class="panel panel-info">
-            <div class="panel-heading"> Your Cart (5 items)</div>
+            <div class="panel-heading"> {{kelas.jumlahdokumen}} Dokumen </div>
             <div class="panel-wrapper collapse in" aria-expanded="true">
                 <div class="panel-body">
                     <div class="table-responsive">
                         <table class="table product-overview">
                             <thead>
                             <tr>
-                                <th>Image</th>
-                                <th>Product info</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th style="text-align:center">Total</th>
-                                <th style="text-align:center">Action</th>
+                                <th>Date</th>
+                                <th>User</th>
+                                <th>Dokumen</th>
+                                <th style="text-align:center">Plagiarism %</th>
+                                <th style="text-align:center">Typo %</th>
+                                <th style="text-align:center">State</th>
                             </tr>
                             </thead>
                             <tbody>
+                            {% for dokumen in documents %}
                             <tr>
-                                <td width="150"><img src="/static/admin/plugins/images/chair.jpg" alt="iMac" width="80"></td>
-                                <td width="550">
-                                    <h5 class="font-500">Rounded Chair</h5>
-                                    <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by
-                                        injected humour, or randomised words which don't look</p>
+                                <td width="120">{{dokumen.pub_date}}</td>
+                                <td width="100">{{dokumen.user}}</td>
+                                <td width="300">
+                                    <h5 class="font-500">{{dokumen}}</h5>
                                 </td>
-                                <td>$153</td>
-                                <td width="70">
-                                    <input type="text" class="form-control" placeholder="1">
+                                <td width="150" align="center" class="font-500">
+                                    <span class="counter text-danger" style="font-size: 20px">{{dokumen.plagiat}}%</span>
                                 </td>
-                                <td width="150" align="center" class="font-500">$153</td>
-                                <td align="center"><a href="javascript:void(0)" class="text-inverse" title=""
-                                                      data-toggle="tooltip" data-original-title="Delete"><i
-                                        class="ti-trash text-dark"></i></a></td>
+                                <td width="150" align="center" class="font-500">
+                                    <span class="counter text-warning" style="font-size: 20px">{{dokumen.typo}}%</span>
+                                </td>
+                                <td width="100" align="center"><span class="label label-info m-r-10">{{dokumen.state}}</span></td>
                             </tr>
-                            <tr>
-                                <td><img src="/static/admin/plugins/images/chair2.jpg" alt="iMac" width="80"></td>
-                                <td>
-                                    <h5 class="font-500">Rounded Chair</h5>
-                                    <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by
-                                        injected humour, or randomised words which don't look</p>
-                                </td>
-                                <td>$153</td>
-                                <td>
-                                    <input type="text" class="form-control" placeholder="1">
-                                </td>
-                                <td class="font-500" align="center">$153</td>
-                                <td align="center"><a href="javascript:void(0)" class="text-inverse" title=""
-                                                      data-toggle="tooltip" data-original-title="Delete"><i
-                                        class="ti-trash text-dark"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td><img src="/static/admin/plugins/images/chair3.jpg" alt="iMac" width="80"></td>
-                                <td>
-                                    <h5 class="font-500">Rounded Chair</h5>
-                                    <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by
-                                        injected humour, or randomised words which don't look</p>
-                                </td>
-                                <td>$153</td>
-                                <td>
-                                    <input type="text" class="form-control" placeholder="1">
-                                </td>
-                                <td class="font-500" align="center">$153</td>
-                                <td align="center"><a href="javascript:void(0)" class="text-inverse" title=""
-                                                      data-toggle="tooltip" data-original-title="Delete"><i
-                                        class="ti-trash text-dark"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td><img src="/static/admin/plugins/images/chair4.jpg" alt="iMac" width="80"></td>
-                                <td>
-                                    <h5 class="font-500">Rounded Chair</h5>
-                                    <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by
-                                        injected humour, or randomised words which don't look</p>
-                                </td>
-                                <td>$153</td>
-                                <td>
-                                    <input type="text" class="form-control" placeholder="1">
-                                </td>
-                                <td class="font-500" align="center">$153</td>
-                                <td align="center"><a href="javascript:void(0)" class="text-inverse" title=""
-                                                      data-toggle="tooltip" data-original-title="Delete"><i
-                                        class="ti-trash text-dark"></i></a></td>
-                            </tr>
+                            {% endfor %}
                             </tbody>
                         </table>
                         <hr>
-                        <button class="btn btn-danger pull-right"><i class="fa fa fa-shopping-cart"></i> Checkout
+                        <button class="btn btn-danger pull-right"><i class="fa fa fa-shopping-cart"></i> Upload
                         </button>
-                        <button class="btn btn-default btn-outline"><i class="fa fa-arrow-left"></i> Continue shopping
+                        <button class="btn btn-default btn-outline"><i class="fa fa-arrow-left"></i> Back
                         </button>
                     </div>
                 </div>
@@ -103,8 +55,7 @@
             <h2>{{kelas.jumlahmember}} Member</h2>
             <h2>{{kelas.jumlahdokumen}} Dokumen</h2>
             <hr>
-            <button class="btn btn-success">Checkout</button>
-            <button class="btn btn-default btn-outline">Cancel</button>
+            <button class="btn btn-success">Edit Class</button>
         </div>
     </div>
     <div class="col-md-3 col-lg-3 col-sm-5">

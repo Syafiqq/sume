@@ -20,6 +20,7 @@ urlpatterns = [
     # ex: /polls/5/
     path('kelas/<int:kelas_id>/detail', views.detailkelas, name='detailkelas'),
     path('kelas/<int:kelas_id>/edit', views.editkelas, name='editkelas'),
+    path('kelas/<int:kelas_id>/upload', views.upload_dokumen, name='upload_dokumen'),
     # ex: /polls/5/results/
     path('<int:question_id>/results/', views.results, name='results'),
     # ex: /polls/5/vote/

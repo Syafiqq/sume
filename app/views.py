@@ -1,6 +1,7 @@
 import codecs
 import logging
 import pickle
+import datetime
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as do_login, logout
@@ -14,7 +15,7 @@ from django.utils.crypto import get_random_string
 from django.utils.timezone import now
 from django.db.models import Q
 
-from app.app.forms import auth, formKelas
+from app.app.forms import auth, formKelas, formUploadDokumen
 from app.app.utils.arrayutil import array_except, array_merge
 from app.app.utils.commonutil import fetch_message, initialize_form_context, base_url
 from app.app.utils.custom.decorators import login_required, auth_unneeded
@@ -232,6 +233,7 @@ def kelas(request):
     i = 0
     for kelas in latest_kelas_list:
         latest_kelas_list[i].jumlahmember = kelas.members.count()
+        latest_kelas_list[i].jumlahdokumen = kelas.dokumen.count()
         i+=1
 
     context = {
@@ -275,7 +277,6 @@ def kelasbaru(request):
         'form': form
     }
     return render(request, 'app/kelasbaru.html', context)
-
 
 @login_required(login_url='/login')
 def user(request, group_id=-1):
@@ -336,20 +337,48 @@ def detailkelas(request, kelas_id):
     kelas = Kelas.objects.get(pk=kelas_id)
     kelas.jumlahmember = kelas.members.count()
     kelas.jumlahdokumen = kelas.dokumen.count()
+    documents = kelas.dokumen.all()
     context = {
         'kelas': kelas,
+        'documents': documents
     }
     return render(request, 'app/detail.html', context)
 
 @login_required(login_url='/login')
-def editkelas(request, question_id):
+def editkelas(request, kelas_id):
     # dokumen = get_object_or_404(Dokumen, pk=question_id)
     # return serve_file(request, dokumen.filenya)
     latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
     context = {
         'latest_dokumen_list': latest_dokumen_list,
     }
-    return render(request, 'app/detail.html', context)
+    return render(request, 'app/edit_kelas.html', context)
+
+@login_required(login_url='/login')
+def upload_dokumen(request, kelas_id):
+    if request.method == 'POST':
+        form = formUploadDokumen.UploadDokumen(request.POST, request.FILES)
+
+        if form.is_valid():
+            name = form.cleaned_data.get('name')
+            filenya = form.cleaned_data.get('file_upload')
+            current_user = request.user
+            user = User.objects.get(pk=current_user.id)
+
+            new_dokumen = Dokumen(user=user, nama_file=name, filenya=filenya)
+            new_dokumen.save()
+
+            kelas = Kelas.objects.get(pk=kelas_id)
+            kelas.dokumen.add(new_dokumen)
+        else:
+            print("form not valid %s" % form.errors)
+    else:
+        form = formUploadDokumen.UploadDokumen()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'app/upload_dokumen.html', context)
 
 def results(request, question_id):
     response = "You're looking at the results of question %s."
