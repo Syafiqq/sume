@@ -23,14 +23,14 @@ from .forms import LoginForm
 from .models import Dokumen, ResetPassword, Kelas
 
 logger = logging.getLogger('debug')
+from filetransfers.api import serve_file
 
-
-# from filetransfers.api import serve_file
 
 @login_required(login_url='/login')
 def index(request):
-    context = {}
-    # raise Http404("Poll does not exist")
+    context = {
+
+    }
     return render(request, 'app/index.html', context)
 
 
@@ -346,8 +346,6 @@ def detailkelas(request, kelas_id):
 
 @login_required(login_url='/login')
 def editkelas(request, kelas_id):
-    # dokumen = get_object_or_404(Dokumen, pk=question_id)
-    # return serve_file(request, dokumen.filenya)
     latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
     context = {
         'latest_dokumen_list': latest_dokumen_list,
@@ -402,3 +400,9 @@ def statistik(request):
     context = {
     }
     return render(request, 'app/statistik.html', context)
+
+@login_required(login_url='/login')
+def view_dokumen(request, kelas_id, dokumen_id):
+    kelas = get_object_or_404(Kelas, pk=kelas_id)
+    dokumen = get_object_or_404(kelas.dokumen, pk=dokumen_id)
+    return serve_file(request, dokumen.filenya)

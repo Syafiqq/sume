@@ -147,14 +147,14 @@
             <li class="dropdown">
                 <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="javascript:void(0)"> <img
                         src="/static/admin/plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b
-                        class="hidden-xs">Steave</b><span class="caret"></span> </a>
+                        class="hidden-xs">{{user.username}}</b><span class="caret"></span> </a>
                 <ul class="dropdown-menu dropdown-user animated flipInY">
                     <li>
                         <div class="dw-user-box">
                             <div class="u-img"><img src="/static/admin/plugins/images/users/varun.jpg" alt="user"/></div>
                             <div class="u-text">
-                                <h4>Steave Jobs</h4>
-                                <p class="text-muted">varun@gmail.com</p><a href="profile.html"
+                                <h4>{{user.username}}</h4>
+                                <p class="text-muted">{{user.email}}</p><a href="profile.html"
                                                                             class="btn btn-rounded btn-danger btn-sm">View
                                 Profile</a></div>
                         </div>
@@ -166,7 +166,7 @@
                     <li role="separator" class="divider"></li>
                     <li><a href="javascript:void(0)"><i class="ti-settings"></i> Account Setting</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="logout"><i class="fa fa-power-off"></i> Logout</a></li>
+                    <li><a href="/logout"><i class="fa fa-power-off"></i> Logout</a></li>
                 </ul>
                 <!-- /.dropdown-user -->
             </li>

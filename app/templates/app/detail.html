@@ -24,7 +24,7 @@
                                 <td width="120">{{dokumen.pub_date}}</td>
                                 <td width="100">{{dokumen.user}}</td>
                                 <td width="300">
-                                    <h5 class="font-500">{{dokumen}}</h5>
+                                    <a href="/kelas/{{kelas.id}}/view_doc/{{dokumen.id}}" target="_blank"><h5 class="font-500">{{dokumen}}</h5></a>
                                 </td>
                                 <td width="150" align="center" class="font-500">
                                     <span class="counter text-danger"
@@ -68,7 +68,7 @@
             <h2>{{kelas.jumlahmember}} Member</h2>
             <h2>{{kelas.jumlahdokumen}} Dokumen</h2>
             <hr>
-            <button class="btn btn-success">Edit Class</button>
+            <a href="/kelas/{{kelas.id}}/edit"><div class="btn btn-success">Edit Class</div></a>
         </div>
     </div>
     <div class="col-md-3 col-lg-3 col-sm-5">
