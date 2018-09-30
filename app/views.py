@@ -1,34 +1,29 @@
 import codecs
 import logging
 import pickle
-from app.app.forms import auth
-from app.app.utils.arrayutil import array_except, array_merge
-from app.app.utils.commonutil import fetch_message, initialize_form_context, base_url
-from app.app.utils.custom.decorators import login_required, auth_unneeded
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as do_login, logout
 # from filetransfers.api import serve_file
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User, Group
 from django.db import IntegrityError
-from django.http import HttpResponse, BadHeaderError, Http404
-from django.shortcuts import get_object_or_404, render, redirect
+from django.db.models import Q
+from django.http import BadHeaderError
+from django.shortcuts import render, redirect
 from django.utils.crypto import get_random_string
 from django.utils.timezone import now
-from django.db.models import Q
 
 from app.app.forms import auth, formKelas
 from app.app.utils.arrayutil import array_except, array_merge
-from app.app.utils.commonutil import fetch_message, initialize_form_context, base_url
+from app.app.utils.commonutil import fetch_message, initialize_form_context
 from app.app.utils.custom.decorators import login_required, auth_unneeded
-from .forms import LoginForm
 from .models import Dokumen, ResetPassword, Kelas
 
 logger = logging.getLogger('debug')
 
 
-# from filetransfers.api import serve_file
-
+# == Landing Page ===============================================================================
 @login_required(login_url='/login')
 def index(request):
     context = {}
@@ -36,6 +31,7 @@ def index(request):
     return render(request, 'app/index.html', context)
 
 
+# == Authentication ===============================================================================
 @auth_unneeded()
 def login(request):
     context = array_merge(initialize_form_context(), fetch_message(request))
@@ -232,57 +228,7 @@ def logout_view(request):
     return redirect('/login')
 
 
-@login_required(login_url='/login')
-def kelas(request):
-    latest_kelas_list = Kelas.objects.order_by('-end')[:5]
-    i = 0
-    for kelas in latest_kelas_list:
-        latest_kelas_list[i].jumlahmember = kelas.members.count()
-        i+=1
-
-    context = {
-        'kelas_list': latest_kelas_list,
-    }
-    return render(request, 'app/kelas.html', context)
-
-
-@login_required(login_url='/login')
-def kelasbaru(request):
-    if request.method == 'POST':
-        form = formKelas.BuatKelas(request.POST)
-
-        if form.is_valid():
-            name = form.cleaned_data.get('name')
-            deskripsi = form.cleaned_data.get('deskripsi')
-            members = form.cleaned_data.get('members')
-            staffs = form.cleaned_data.get('staffs')
-            startdate = form.cleaned_data.get('startdate')
-            enddate = form.cleaned_data.get('enddate')
-
-            new_kelas = Kelas(namakelas=name, keterangan=deskripsi, start=startdate, end=enddate)
-            new_kelas.save()
-            for member in members:
-                anggota1 = User.objects.get(pk=member)
-                new_kelas.members.add(anggota1)
-            for staff in staffs:
-                anggota2 = User.objects.get(pk=staff)
-                new_kelas.members.add(anggota2)
-        else:
-            print("form not valid")
-    else:
-        form = formKelas.BuatKelas()
-
-
-    users = User.objects.filter(is_staff=False, is_superuser=False)
-    staff = User.objects.filter(is_staff=True, is_superuser=False)
-    context = {
-        'users': users,
-        'staffs': staff,
-        'form': form
-    }
-    return render(request, 'app/kelasbaru.html', context)
-
-
+# == User Management ===============================================================================
 @login_required(login_url='/login')
 def user(request, group_id=-1):
     groups = Group.objects.all()
@@ -335,6 +281,58 @@ def admin(request, mode_admin=-1):
     return render(request, 'app/admin.html', context)
 
 
+# == Class Management ===============================================================================
+@login_required(login_url='/login')
+def kelas(request):
+    latest_kelas_list = Kelas.objects.order_by('-end')[:5]
+    i = 0
+    for kelas in latest_kelas_list:
+        latest_kelas_list[i].jumlahmember = kelas.members.count()
+        i+=1
+
+    context = {
+        'kelas_list': latest_kelas_list,
+    }
+    return render(request, 'app/kelas.html', context)
+
+
+@login_required(login_url='/login')
+def kelasbaru(request):
+    if request.method == 'POST':
+        form = formKelas.BuatKelas(request.POST)
+
+        if form.is_valid():
+            name = form.cleaned_data.get('name')
+            deskripsi = form.cleaned_data.get('deskripsi')
+            members = form.cleaned_data.get('members')
+            staffs = form.cleaned_data.get('staffs')
+            startdate = form.cleaned_data.get('startdate')
+            enddate = form.cleaned_data.get('enddate')
+
+            new_kelas = Kelas(namakelas=name, keterangan=deskripsi, start=startdate, end=enddate)
+            new_kelas.save()
+            for member in members:
+                anggota1 = User.objects.get(pk=member)
+                new_kelas.members.add(anggota1)
+            for staff in staffs:
+                anggota2 = User.objects.get(pk=staff)
+                new_kelas.members.add(anggota2)
+        else:
+            print("form not valid")
+    else:
+        form = formKelas.BuatKelas()
+
+
+    users = User.objects.filter(is_staff=False, is_superuser=False)
+    staff = User.objects.filter(is_staff=True, is_superuser=False)
+    context = {
+        'users': users,
+        'staffs': staff,
+        'form': form
+    }
+    return render(request, 'app/kelasbaru.html', context)
+
+
 @login_required(login_url='/login')
 def detailkelas(request, kelas_id):
     # dokumen = get_object_or_404(Dokumen, pk=question_id)
@@ -346,6 +344,7 @@ def detailkelas(request, kelas_id):
         'kelas': kelas,
     }
     return render(request, 'app/detail.html', context)
+
 
 @login_required(login_url='/login')
 def editkelas(request, question_id):
