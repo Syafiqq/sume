@@ -35,3 +35,5 @@ whitenoise==4.0b4
 django-filetransfers
 django-widget-tweaks==1.4.2
 django_seed
+six==1.11.0
+pdftotext

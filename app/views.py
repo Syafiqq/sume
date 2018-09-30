@@ -2,6 +2,7 @@ import codecs
 import logging
 import pickle
 import datetime
+import pdftotext
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as do_login, logout
@@ -405,4 +406,14 @@ def statistik(request):
 def view_dokumen(request, kelas_id, dokumen_id):
     kelas = get_object_or_404(Kelas, pk=kelas_id)
     dokumen = get_object_or_404(kelas.dokumen, pk=dokumen_id)
+
+    with open(dokumen.filenya.path, "rb") as f:
+        pdf = pdftotext.PDF(f)
+    print(len(pdf))
+
+    # for page in pdf:
+    #     print(page)
+
+    print("".join(pdf))
+
     return serve_file(request, dokumen.filenya)
