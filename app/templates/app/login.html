@@ -1,138 +1,149 @@
-{% extends "layout/base-login.html" %}
+{% extends "layout/_ampleadmin-auth.html" %}
 {% load arraytag %}
 {% load jsontag %}
-{% block content %}
-    {{ result }}
-    <div class="login-box login-sidebar" style="overflow-y: auto">
-        <div class="white-box">
-            <a href="javascript:void(0)" class="text-center db">
-                <img src="/static/admin/plugins/images/admin-logo-dark.png"
-                     alt="Home"/>
-                <br/>
-                <img src="/static/admin/plugins/images/admin-text-dark.png"
-                     alt="Home"/>
-            </a>
-            {% if message.notification %}
-                <div class="row">
-                    <div class="col-md-12" style="padding: 16px 16px 0 16px">
-                        {% for notif in message.notification %}
-                            <div class="alert alert-{{ notif.level }} alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                {{ notif.msg }}
-                            </div>
-                        {% endfor %}
+{% block head-title %}
+    <title>Login</title>
+{% endblock %}
+{% block head-description %}
+    <meta name="description" content="Login">
+{% endblock %}
+{% block body-content %}
+    <section id="wrapper" class="login-register">
+        {{ result }}
+        <div class="login-box login-sidebar" style="overflow-y: auto">
+            <div class="white-box">
+                <a href="javascript:void(0)" class="text-center db">
+                    <img src="/static/admin/plugins/images/admin-logo-dark.png"
+                         alt="Home"/>
+                    <br/>
+                    <img src="/static/admin/plugins/images/admin-text-dark.png"
+                         alt="Home"/>
+                </a>
+                {% if message.notification %}
+                    <div class="row">
+                        <div class="col-md-12" style="padding: 16px 16px 0 16px">
+                            {% for notif in message.notification %}
+                                <div class="alert alert-{{ notif.level }} alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    {{ notif.msg }}
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
-            {% endif %}
-            {% if form.data.forgot_concern %}
-                <form class="form-horizontal form-material" id="loginform" action="/login" method="POST" style="display: none">
-            {% else %}
-                <form class="form-horizontal form-material" id="loginform" action="/login" method="POST" style="display:initial">
-            {% endif %}
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ form.data.next|first_or_default:"" }}">
-            {% if form.errors.email %}
-                <div class="form-group has-error m-t-20">
-                    <div class="col-xs-12">
-                        <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ form.data.email|first_or_default:"" }}">
-                        <span class="help-block">{{ form.errors.email|first_or_default:"" }}</span>
+                {% endif %}
+                {% if form.data.forgot_concern %}
+                    <form class="form-horizontal form-material" id="loginform" action="/login" method="POST" style="display: none">
+                {% else %}
+                    <form class="form-horizontal form-material" id="loginform" action="/login" method="POST" style="display:initial">
+                {% endif %}
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ form.data.next|first_or_default:"" }}">
+                {% if form.errors.email %}
+                    <div class="form-group has-error m-t-20">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="email" name="email" placeholder="Email" value="{{ form.data.email|first_or_default:"" }}">
+                            <span class="help-block">{{ form.errors.email|first_or_default:"" }}</span>
+                        </div>
                     </div>
-                </div>
-            {% else %}
-                <div class="form-group m-t-20">
-                    <div class="col-xs-12">
-                        <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ form.data.email|first_or_default:"" }}">
+                {% else %}
+                    <div class="form-group m-t-20">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="email" name="email" placeholder="Email" value="{{ form.data.email|first_or_default:"" }}">
+                        </div>
                     </div>
-                </div>
-            {% endif %}
-            {% if form.errors.password %}
-                <div class="form-group has-error m-t-40">
-                    <div class="col-xs-12">
-                        <input class="form-control" type="password" required name="password" placeholder="Password" value="{{ form.data.password|first_or_default:"" }}">
-                        <span class="help-block">{{ form.errors.password|first_or_default:"" }}</span>
+                {% endif %}
+                {% if form.errors.password %}
+                    <div class="form-group has-error m-t-40">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="password" name="password" placeholder="Password" value="{{ form.data.password|first_or_default:"" }}">
+                            <span class="help-block">{{ form.errors.password|first_or_default:"" }}</span>
+                        </div>
                     </div>
-                </div>
-            {% else %}
-                <div class="form-group m-t-40">
-                    <div class="col-xs-12">
-                        <input class="form-control" type="password" required name="password" placeholder="Password" value="{{ form.data.password|first_or_default:"" }}">
+                {% else %}
+                    <div class="form-group m-t-40">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="password" name="password" placeholder="Password" value="{{ form.data.password|first_or_default:"" }}">
+                        </div>
                     </div>
-                </div>
-            {% endif %}
-            <div class="form-group">
-                <div class="col-md-12">
-                    <a href="javascript:void(0)" id="to-recover" class="text-dark pull-right">
-                        <i
-                                class="fa fa-lock m-r-5"></i>
-                        Forgot password?
-                    </a>
-                </div>
-            </div>
-            <div class="form-group text-center m-t-20">
-                <div class="col-xs-12">
-                    <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">
-                        Log In
-                    </button>
-                </div>
-            </div>
-            <div class="form-group m-b-0">
-                <div class="col-sm-12 text-center">
-                    <p>Don't have an account?
-                        <a href="register" class="text-primary m-l-5">
-                            <b>Sign Up</b>
+                {% endif %}
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <a href="javascript:void(0)" id="to-recover" class="text-dark pull-right">
+                            <i
+                                    class="fa fa-lock m-r-5"></i>
+                            Forgot password?
                         </a>
-                    </p>
-                </div>
-            </div>
-            </form>
-            {% if form.data.forgot_concern %}
-                <form class="form-horizontal form-material" id="recoverform" action="/forgot" method="POST" style="display:initial">
-            {% else %}
-                <form class="form-horizontal form-material" id="recoverform" action="/forgot" method="POST" style="display: none">
-            {% endif %}
-            {% csrf_token %}
-            <div class="form-group ">
-                <div class="col-xs-12">
-                    <h3>Recover Password</h3>
-                    {% if message.custom.recover_success %}
-                        <h4 class="text-success">{{ message.custom.recover_success|first_or_default:"" }}</h4>
-                    {% else %}
-                        <p class="text-muted">Enter your Email and instructions will be sent to you! </p>
-                    {% endif %}
-                </div>
-            </div>
-            {% if form.errors.email %}
-                <div class="form-group has-error m-t-40">
-                    <div class="col-xs-12">
-                        <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ form.data.email|first_or_default:"" }}">
-                        <span class="help-block">{{ form.errors.email|first_or_default:"" }}</span>
                     </div>
                 </div>
-            {% else %}
-                <div class="form-group m-t-40">
+                <div class="form-group text-center m-t-20">
                     <div class="col-xs-12">
-                        <input class="form-control" type="email" required name="email" placeholder="Email" value="{{ form.data.email|first_or_default:"" }}">
+                        <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">
+                            Log In
+                        </button>
                     </div>
                 </div>
-            {% endif %}
-            <div class="form-group text-center m-t-20">
-                <div class="col-xs-12">
-                    <button class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light"
-                            type="submit">Reset
-                    </button>
+                <div class="form-group m-b-0">
+                    <div class="col-sm-12 text-center">
+                        <p>Don't have an account?
+                            <a href="register" class="text-primary m-l-5">
+                                <b>Sign Up</b>
+                            </a>
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12">
-                    <a href="javascript:void(0)" id="to-login" class="text-dark pull-right">
-                        <i class="fa fa-lock m-r-5"></i>
-                        Login?
-                    </a>
+                </form>
+                {% if form.data.forgot_concern %}
+                    <form class="form-horizontal form-material" id="recoverform" action="/forgot" method="POST" style="display:initial">
+                {% else %}
+                    <form class="form-horizontal form-material" id="recoverform" action="/forgot" method="POST" style="display: none">
+                {% endif %}
+                {% csrf_token %}
+                <div class="form-group ">
+                    <div class="col-xs-12">
+                        <h3>Recover Password</h3>
+                        {% if message.custom.recover_success %}
+                            <h4 class="text-success">{{ message.custom.recover_success|first_or_default:"" }}</h4>
+                        {% else %}
+                            <p class="text-muted">Enter your Email and instructions will be sent to you! </p>
+                        {% endif %}
+                    </div>
                 </div>
+                {% if form.errors.email %}
+                    <div class="form-group has-error m-t-40">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="email" name="email" placeholder="Email" value="{{ form.data.email|first_or_default:"" }}">
+                            <span class="help-block">{{ form.errors.email|first_or_default:"" }}</span>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="form-group m-t-40">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="email" name="email" placeholder="Email" value="{{ form.data.email|first_or_default:"" }}">
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="form-group text-center m-t-20">
+                    <div class="col-xs-12">
+                        <button class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light"
+                                type="submit">Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <a href="javascript:void(0)" id="to-login" class="text-dark pull-right">
+                            <i class="fa fa-lock m-r-5"></i>
+                            Login?
+                        </a>
+                    </div>
+                </div>
+                </form>
             </div>
-            </form>
         </div>
-    </div>
+    </section>
+{% endblock %}
+{% block body-js-lower-pre %}
+    {{ block.super }}
     <script type="text/javascript">
         var c_msg_alrt = {{ message.alert|dump_json_array|safe }};
     </script>
