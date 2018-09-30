@@ -1,0 +1,69 @@
+{% extends "layout/_root.html" %}
+{% block head-meta %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="filkom">
+{% endblock %}
+{% block head-property %}
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/admin/plugins/images/favicon.png">
+{% endblock %}
+{% block head-css-pre %}
+    <link href="/static/admin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/admin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <link href="/static/admin/plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
+    <link href="/static/admin/css/animate.css" rel="stylesheet">
+    <link href="/static/admin/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/admin/plugins/bower_components/custom-select/dist/css/select2.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/admin/plugins/bower_components/switchery/dist/switchery.min.css" rel="stylesheet"/>
+    <link href="/static/admin/plugins/bower_components/bootstrap-select/bootstrap-select.min.css" rel="stylesheet"/>
+    <link href="/static/admin/plugins/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet"/>
+    <link href="/static/admin/plugins/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet"/>
+    <link href="/static/admin/plugins/bower_components/multiselect/css/multi-select.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/admin/css/style.css" rel="stylesheet">
+    <link href="/static/admin/css/colors/megna-dark.css" id="theme" rel="stylesheet">{% endblock %}
+{% block head-js-pre %}
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+{% endblock %}
+{% block body-js-lower-pre %}
+    <script src="/static/admin/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/static/admin/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/static/admin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <script src="/static/admin/js/jquery.slimscroll.js"></script>
+    <script src="/static/admin/js/waves.js"></script>
+    <script src="/static/admin/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+    <script src="/static/admin/js/toastr.js"></script>
+    <script src="/static/admin/js/custom.min.js"></script>
+    <script src="/static/admin/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+    <script type="text/javascript">
+        function simpleToastCall(arr)
+        {
+            for (var i = 0; i < arr.length; i++)
+            {
+                var msg = arr[i];
+                $.toast({
+                    heading: ' ',
+                    text: 'msg' in msg ? msg.msg : '',
+                    position: 'top-right',
+                    loaderBg: '#ff6849',
+                    icon: 'level' in msg ? msg.level : 'info',
+                    hideAfter: 5000
+                });
+            }
+        }
+
+        if (c_msg_alrt)
+        {
+            simpleToastCall(c_msg_alrt);
+        }
+    </script>
+{% endblock %}
+{% block body-property %}
+    {{ block.super }}
+    <div class="preloader">
+        <div class="cssload-speeding-wheel"></div>
+    </div>
+{% endblock %}
