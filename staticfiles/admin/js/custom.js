@@ -9,6 +9,7 @@ $(document).ready(function () {
 
     $(function () {
         $(".preloader").fadeOut();
+        $('#side-menu').metisMenu();
     });
 
     /* ===== Theme Settings ===== */
