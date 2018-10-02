@@ -361,13 +361,19 @@ def kelasbaru(request):
 
 @login_required(login_url='/login')
 def detailkelas(request, kelas_id):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+
     # dokumen = get_object_or_404(Dokumen, pk=question_id)
     # return serve_file(request, dokumen.filenya)
     kelas = Kelas.objects.get(pk=kelas_id)
     kelas.jumlahmember = kelas.members.count()
     kelas.jumlahdokumen = kelas.dokumen.count()
-    context = {
-        'kelas': kelas,
+    context['data']['kelas'] = {
+        'detail': kelas,
+    }
+    context['menu'] = {
+        'lv1': 'kelas',
+        'lv2': 'kelas_list'
     }
     return render(request, 'app/detail.html', context)
 
