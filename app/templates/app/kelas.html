@@ -1,52 +1,90 @@
-{% extends "layout/base.html" %}
-{% block content %}
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel">
-            <div class="panel-heading">MANAGE CLASS</div>
-            <div class="table-responsive">
-                <table class="table table-hover manage-u-table">
-                    <thead>
-                    <tr>
-                        <th width="70" class="text-center">#</th>
-                        <th>CLASS</th>
-                        <th>MEMBERS</th>
-                        <th>DOCUMENTS</th>
-                        <th>START DATE</th>
-                        <th>END DATE</th>
-                        <th width="300">MANAGE</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for kelas in kelas_list %}
-                    <tr>
-                        <td class="text-center">{{kelas.id}}</td>
-                        <td>{{kelas.namakelas}}
-                            <br/><span class="text-muted">{{kelas.keterangan}}</span></td>
-                        <td><span class="counter text-info" style="font-size: 20px">{{kelas.jumlahmember}}</span>
-                        </td>
-                        <td><span class="counter text-success" style="font-size: 20px">1872</span></td>
-                        <td>{{kelas.start}}
-                            <br/><span class="text-muted">10: 55 AM</span></td>
-                        <td>{{kelas.end}}
-                            <br/><span class="text-muted">13: 25 AM</span>
-                        </td>
-                        <td>
-                            <a href="kelas/{{kelas.id}}/detail" type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5"><i
-                                    class="ti-key"></i></a>
-                            <button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5"><i
-                                    class="ti-trash"></i></button>
-                            <a href="kelas/{{kelas.id}}/edit" type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5"><i
-                                    class="ti-pencil-alt"></i></a>
-                            <button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-20"><i
-                                    class="ti-upload"></i></button>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+{% extends "layout/_ampleadmin-admin.html" %}
+{% block head-title %}
+    <title>User</title>
+{% endblock %}
+{% block head-description %}
+    <meta name="description" content="User">
+{% endblock %}
+{% block ampleadmin-content-breadcrumb %}
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Kelas</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="javascript:void(0)">Kelas</a>
+                </li>
+                <li class="active">List</li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+{% endblock ampleadmin-content-breadcrumb %}
+{% block ampleadmin-content-main %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-heading">MANAGE CLASS</div>
+                <div class="table-responsive">
+                    <table class="table table-hover manage-u-table">
+                        <thead>
+                        <tr>
+                            <th width="70" class="text-center">#</th>
+                            <th>CLASS</th>
+                            <th>MEMBERS</th>
+                            <th>DOCUMENTS</th>
+                            <th>START DATE</th>
+                            <th>END DATE</th>
+                            <th width="300">MANAGE</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for kelas in data.kelas.list %}
+                            <tr>
+                                <td class="text-center">{{ kelas.id }}</td>
+                                <td>{{ kelas.namakelas }}
+                                    <br/>
+                                    <span class="text-muted">{{ kelas.keterangan }}</span>
+                                </td>
+                                <td>
+                                    <span class="counter text-info" style="font-size: 20px">{{ kelas.jumlahmember }}</span>
+                                </td>
+                                <td>
+                                    <span class="counter text-success" style="font-size: 20px">1872</span>
+                                </td>
+                                <td>{{ kelas.start }}
+                                    <br/>
+                                    <span class="text-muted">10: 55 AM</span>
+                                </td>
+                                <td>{{ kelas.end }}
+                                    <br/>
+                                    <span class="text-muted">13: 25 AM</span>
+                                </td>
+                                <td>
+                                    <a href="kelas/{{ kelas.id }}/detail" type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5">
+                                        <i
+                                                class="ti-key"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5">
+                                        <i
+                                                class="ti-trash"></i>
+                                    </button>
+                                    <a href="kelas/{{ kelas.id }}/edit" type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5">
+                                        <i
+                                                class="ti-pencil-alt"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-20">
+                                        <i
+                                                class="ti-upload"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
