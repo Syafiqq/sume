@@ -407,6 +407,9 @@ def openfile(request, question_id):
 
 @login_required(login_url='/login')
 def statistik(request):
-    context = {
+    context = array_merge(initialize_form_context(), fetch_message(request))
+    context['menu'] = {
+        'lv1': 'server',
+        'lv2': 'server_statistik'
     }
     return render(request, 'app/statistik.html', context)
