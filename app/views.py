@@ -296,14 +296,20 @@ def admin(request, mode_admin=-1):
 # == Class Management ===============================================================================
 @login_required(login_url='/login')
 def kelas(request):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+
     latest_kelas_list = Kelas.objects.order_by('-end')[:5]
     i = 0
     for kelas in latest_kelas_list:
         latest_kelas_list[i].jumlahmember = kelas.members.count()
         i += 1
 
-    context = {
-        'kelas_list': latest_kelas_list,
+    context['data']['kelas'] = {
+        'list': latest_kelas_list,
+    }
+    context['menu'] = {
+        'lv1': 'kelas',
+        'lv2': 'kelas_list'
     }
     return render(request, 'app/kelas.html', context)
 
