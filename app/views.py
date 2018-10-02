@@ -302,6 +302,7 @@ def kelas(request):
     i = 0
     for kelas in latest_kelas_list:
         latest_kelas_list[i].jumlahmember = kelas.members.count()
+        latest_kelas_list[i].jumlahdokumen = kelas.dokumen.count()
         i += 1
 
     context['data']['kelas'] = {
