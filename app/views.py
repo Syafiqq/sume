@@ -316,9 +316,14 @@ def kelas(request):
 
 @login_required(login_url='/login')
 def kelasbaru(request):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+    context['menu'] = {
+        'lv1': 'kelas',
+        'lv2': 'kelas_newclass'
+    }
     if request.method == 'POST':
         form = formKelas.BuatKelas(request.POST)
-
+        context['form']['data'] = array_except(dict(form.data), ['csrfmiddlewaretoken'])
         if form.is_valid():
             name = form.cleaned_data.get('name')
             deskripsi = form.cleaned_data.get('deskripsi')
@@ -335,19 +340,22 @@ def kelasbaru(request):
             for staff in staffs:
                 anggota2 = User.objects.get(pk=staff)
                 new_kelas.members.add(anggota2)
+            context['message']['notification'] = [{'msg': 'Pembuatan kelas berhasil', 'level': 'info'}]
+            return render(request, 'app/kelasbaru.html', context)
         else:
-            print("form not valid")
+            context['form']['errors'] = dict(form.errors)
+            return render(request, 'app/kelasbaru.html', context)
     else:
         form = formKelas.BuatKelas()
+        users = User.objects.filter(is_staff=False, is_superuser=False)
+        staff = User.objects.filter(is_staff=True, is_superuser=False)
+        context['data']['kelas'] = {
+            'users': users,
+            'staffs': staff,
+        }
+        context['form']['data'] = form
 
-    users = User.objects.filter(is_staff=False, is_superuser=False)
-    staff = User.objects.filter(is_staff=True, is_superuser=False)
-    context = {
-        'users': users,
-        'staffs': staff,
-        'form': form
-    }
-    return render(request, 'app/kelasbaru.html', context)
+        return render(request, 'app/kelasbaru.html', context)
 
 
 @login_required(login_url='/login')
