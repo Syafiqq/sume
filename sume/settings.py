@@ -128,6 +128,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'storage')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # STATIC_URL = '/static/'
@@ -138,6 +139,7 @@ STATICFILES_DIRS = (
 
 STATIC_HOST = 'https://sume-deploy.herokuapp.com' if not DEBUG else ''
 STATIC_URL = STATIC_HOST + '/static/'
+MEDIA_URL = STATIC_HOST + '/assets/'
 
 LOGGING = {
     'version': 1,
