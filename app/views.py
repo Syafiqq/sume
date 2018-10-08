@@ -10,8 +10,8 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User, Group
 from django.db import IntegrityError
 from django.db.models import Q
-from django.http import BadHeaderError
-from django.shortcuts import render, redirect
+from django.http import BadHeaderError, Http404
+from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.crypto import get_random_string
 from django.utils.timezone import now
 from filetransfers.api import serve_file
@@ -381,14 +381,24 @@ def detailkelas(request, kelas_id):
 
 
 @login_required(login_url='/login')
-def editkelas(request, question_id):
-    # dokumen = get_object_or_404(Dokumen, pk=question_id)
-    # return serve_file(request, dokumen.filenya)
-    latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
-    context = {
-        'latest_dokumen_list': latest_dokumen_list,
+def editkelas(request, kelas_id):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+    context['menu'] = {
+        'lv1': 'kelas',
+        'lv2': 'kelas_list'
     }
-    return render(request, 'app/detail.html', context)
+    if request.method == 'POST':
+        raise Http404("Please complete this")
+    else:
+        form = formKelas.BuatKelas()
+        users = User.objects.filter(is_staff=False, is_superuser=False)
+        staff = User.objects.filter(is_staff=True, is_superuser=False)
+        context['data']['kelas'] = {
+            'users': users,
+            'staffs': staff,
+        }
+        context['form']['data'] = form
+    return render(request, 'app/edit_kelas.html', context)
 
 def results(request, question_id):
     response = "You're looking at the results of question %s."
