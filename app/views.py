@@ -368,8 +368,10 @@ def detailkelas(request, kelas_id):
     kelas = Kelas.objects.get(pk=kelas_id)
     kelas.jumlahmember = kelas.members.count()
     kelas.jumlahdokumen = kelas.dokumen.count()
+    documents = kelas.dokumen.all()
     context['data']['kelas'] = {
         'detail': kelas,
+        'documents': documents
     }
     context['menu'] = {
         'lv1': 'kelas',
