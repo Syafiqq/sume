@@ -345,9 +345,37 @@ def detailkelas(request, kelas_id):
 
 @login_required(login_url='/login')
 def editkelas(request, kelas_id):
-    latest_dokumen_list = Dokumen.objects.order_by('-pub_date')[:5]
+    if request.method == 'POST':
+        form = formKelas.BuatKelas(request.POST)
+
+        if form.is_valid():
+            name = form.cleaned_data.get('name')
+            deskripsi = form.cleaned_data.get('deskripsi')
+            members = form.cleaned_data.get('members')
+            staffs = form.cleaned_data.get('staffs')
+            startdate = form.cleaned_data.get('startdate')
+            enddate = form.cleaned_data.get('enddate')
+
+            new_kelas = Kelas(namakelas=name, keterangan=deskripsi, start=startdate, end=enddate)
+            new_kelas.save()
+            for member in members:
+                anggota1 = User.objects.get(pk=member)
+                new_kelas.members.add(anggota1)
+            for staff in staffs:
+                anggota2 = User.objects.get(pk=staff)
+                new_kelas.members.add(anggota2)
+        else:
+            print("form not valid")
+    else:
+        form = formKelas.BuatKelas()
+
+
+    users = User.objects.filter(is_staff=False, is_superuser=False)
+    staff = User.objects.filter(is_staff=True, is_superuser=False)
     context = {
-        'latest_dokumen_list': latest_dokumen_list,
+        'users': users,
+        'staffs': staff,
+        'form': form
     }
     return render(request, 'app/edit_kelas.html', context)
 
