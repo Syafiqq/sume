@@ -16,7 +16,7 @@ from django.utils.crypto import get_random_string
 from django.utils.timezone import now
 from filetransfers.api import serve_file
 
-from app.app.forms import auth, formKelas
+from app.app.forms import auth, formKelas, formUploadDokumen
 from app.app.utils.arrayutil import array_except, array_merge
 from app.app.utils.commonutil import fetch_message, initialize_form_context
 from app.app.utils.custom.decorators import login_required, auth_unneeded
@@ -399,6 +399,35 @@ def editkelas(request, kelas_id):
         }
         context['form']['data'] = form
     return render(request, 'app/edit_kelas.html', context)
+
+
+@login_required(login_url='/login')
+def upload_dokumen(request, kelas_id):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+    context['menu'] = {
+        'lv1': 'kelas',
+        'lv2': 'kelas_list'
+    }
+    if request.method == 'POST':
+        form = formUploadDokumen.UploadDokumen(request.POST, request.FILES)
+
+        if form.is_valid():
+            name = form.cleaned_data.get('name')
+            filenya = form.cleaned_data.get('file_upload')
+            current_user = request.user
+            user = User.objects.get(pk=current_user.id)
+
+            new_dokumen = Dokumen(user=user, nama_file=name, filenya=filenya)
+            new_dokumen.save()
+
+            kelas = Kelas.objects.get(pk=kelas_id)
+            kelas.dokumen.add(new_dokumen)
+        else:
+            print("form not valid %s" % form.errors)
+        return render(request, 'app/upload_dokumen.html', context)
+    else:
+        context['form']['data'] = formUploadDokumen.UploadDokumen()
+        return render(request, 'app/upload_dokumen.html', context)
 
 def results(request, question_id):
     response = "You're looking at the results of question %s."
