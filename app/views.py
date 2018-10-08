@@ -28,7 +28,7 @@ logger = logging.getLogger('debug')
 # == Landing Page ===============================================================================
 @login_required(login_url='/login')
 def index(request):
-    return redirect('/login')
+    raise Http404("Please make landiing page first")
 
 
 # == Authentication ===============================================================================
