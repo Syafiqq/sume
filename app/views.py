@@ -6,7 +6,6 @@ import pdftotext
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as do_login, logout
-# from filetransfers.api import serve_file
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User, Group
 from django.db import IntegrityError
@@ -24,7 +23,6 @@ from .forms import LoginForm
 from .models import Dokumen, ResetPassword, Kelas
 
 logger = logging.getLogger('debug')
-from filetransfers.api import serve_file
 
 
 @login_required(login_url='/login')
@@ -57,7 +55,7 @@ def login(request):
                     messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
                     return redirect(
                         request.POST.get('next') if (
-                                request.POST.get('next') and request.POST.get('next') != "") else ('/' + group.name))
+                                request.POST.get('next') and request.POST.get('next') != "") else ('/'))
                 else:
                     context['message']['notification'] = [{'msg': 'Your account is not activated yet', 'level': 'info'}]
                     return render(request, 'app/login.html', context)
