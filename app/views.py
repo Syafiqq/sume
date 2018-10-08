@@ -1,5 +1,6 @@
 import codecs
 import logging
+import pdftotext
 import pickle
 
 from django.contrib import messages
@@ -13,6 +14,7 @@ from django.http import BadHeaderError
 from django.shortcuts import render, redirect
 from django.utils.crypto import get_random_string
 from django.utils.timezone import now
+from filetransfers.api import serve_file
 
 from app.app.forms import auth, formKelas
 from app.app.utils.arrayutil import array_except, array_merge
@@ -26,9 +28,7 @@ logger = logging.getLogger('debug')
 # == Landing Page ===============================================================================
 @login_required(login_url='/login')
 def index(request):
-    context = {}
-    # raise Http404("Poll does not exist")
-    return render(request, 'app/index.html', context)
+    return redirect('/login')
 
 
 # == Authentication ===============================================================================
