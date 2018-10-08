@@ -422,9 +422,14 @@ def upload_dokumen(request, kelas_id):
 
             kelas = Kelas.objects.get(pk=kelas_id)
             kelas.dokumen.add(new_dokumen)
+            callback = pickle.dumps({
+                'message': {'alert': [{'msg': 'Upload Success', 'level': 'success'}]},
+            })
+            messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
+            return redirect('/kelas/{}/detail'.format(kelas_id))
         else:
-            print("form not valid %s" % form.errors)
-        return render(request, 'app/upload_dokumen.html', context)
+            context['form']['errors'] = dict(form.errors)
+            return render(request, 'app/upload_dokumen.html', context)
     else:
         context['form']['data'] = formUploadDokumen.UploadDokumen()
         return render(request, 'app/upload_dokumen.html', context)
