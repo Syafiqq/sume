@@ -4,6 +4,12 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User, Group
 from django.db import connection
 
+users = [
+    User(id=1, username='root', email='root@mail.com', password=make_password('secret'), is_superuser=False),
+    User(id=2, username='student', email='student@mail.com', password=make_password('secret'), is_superuser=False),
+    User(id=3, username='organization', email='organization@mail.com', password=make_password('secret'), is_superuser=False)
+]
+
 
 def truncate():
     with connection.cursor() as cursor:
@@ -11,30 +17,6 @@ def truncate():
 
 
 def seed():
-    if not User.objects.filter(email='root@mail.com').exists():
-        ids = User.objects.create(
-            username='root',
-            email='root@mail.com',
-            password=make_password('secret'),
-            is_superuser=False,
-        )
-        for group in Group.objects.all():
-            ids.groups.add(group)
-    if not User.objects.filter(email='student@mail.com').exists():
-        student = Group.objects.filter(name='Student').first()
-        ids = User.objects.create(
-            username='student',
-            email='student@mail.com',
-            password=make_password('secret'),
-            is_superuser=False,
-        )
-        ids.groups.add(student)
-    if not User.objects.filter(email='organization@mail.com').exists():
-        organization = Group.objects.filter(name='Organization').first()
-        ids = User.objects.create(
-            username='organization',
-            email='organization@mail.com',
-            password=make_password('secret'),
-            is_superuser=False,
-        )
-        ids.groups.add(organization)
+    for user in users:
+        if not User.objects.filter(id=user.id).exists():
+            user.save()
