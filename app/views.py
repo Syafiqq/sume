@@ -434,21 +434,14 @@ def upload_dokumen(request, kelas_id):
         context['form']['data'] = formUploadDokumen.UploadDokumen()
         return render(request, 'app/upload_dokumen.html', context)
 
-def results(request, question_id):
-    response = "You're looking at the results of question %s."
-    return HttpResponse(response % question_id)
 
-
-def vote(request, question_id):
-    return HttpResponse("You're voting on question %s." % question_id)
-
-
-def openfile(request, question_id):
-    filename = Dokumen.filenya.name.split('/')[-1]
-    response = HttpResponse(object_name.file, content_type='text/plain')
-    response['Content-Disposition'] = 'attachment; filename=%s' % filename
-
-    return response
+@login_required(login_url='/login')
+def view_dokumen(request, kelas_id, dokumen_id):
+    kelas = get_object_or_404(Kelas, pk=kelas_id)
+    dokumen = get_object_or_404(kelas.dokumen, pk=dokumen_id)
+    with open(dokumen.filenya.path, "rb") as f:
+        pdf = pdftotext.PDF(f)
+    return serve_file(request, dokumen.filenya)
 
 
 @login_required(login_url='/login')
