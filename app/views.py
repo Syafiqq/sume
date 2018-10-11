@@ -417,6 +417,7 @@ def editkelas(request, kelas_id):
         users = User.objects.filter(is_staff=False, is_superuser=False)
         staff = User.objects.filter(is_staff=True, is_superuser=False)
         context['data']['kelas'] = {
+            'kelas_id': kelas_id,
             'users': users,
             'staffs': staff,
         }
