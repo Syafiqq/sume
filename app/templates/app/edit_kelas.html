@@ -36,7 +36,7 @@
                     <div class="panel-body">
                         <h4 class="card-title">Edit a Class</h4>
                         <h6 class="card-subtitle">You must add class details and members</h6>
-                        <form action="/newclass" method="POST" class="validation-wizard wizard-circle m-t-40">
+                        <form action="/kelas/{{ data.kelas.kelas_id }}/edit" method="POST" class="validation-wizard wizard-circle m-t-40">
                             {% csrf_token %}
                             {% load widget_tweaks %}
                             <div class="form-body">
