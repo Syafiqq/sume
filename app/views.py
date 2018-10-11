@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login as do_login, logout
 # from filetransfers.api import serve_file
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User, Group
+from django.core.mail import send_mail
 from django.db import IntegrityError
 from django.db.models import Q
 from django.http import BadHeaderError, Http404
@@ -388,7 +389,29 @@ def editkelas(request, kelas_id):
         'lv2': 'kelas_list'
     }
     if request.method == 'POST':
-        raise Http404("Please complete this")
+        form = formKelas.BuatKelas(request.POST)
+        context['form']['data'] = array_except(dict(form.data), ['csrfmiddlewaretoken'])
+        if form.is_valid():
+            name = form.cleaned_data.get('name')
+            deskripsi = form.cleaned_data.get('deskripsi')
+            members = form.cleaned_data.get('members')
+            staffs = form.cleaned_data.get('staffs')
+            startdate = form.cleaned_data.get('startdate')
+            enddate = form.cleaned_data.get('enddate')
+
+            new_kelas = Kelas(namakelas=name, keterangan=deskripsi, start=startdate, end=enddate)
+            new_kelas.save()
+            for member in members:
+                anggota1 = User.objects.get(pk=member)
+                new_kelas.members.add(anggota1)
+            for staff in staffs:
+                anggota2 = User.objects.get(pk=staff)
+                new_kelas.members.add(anggota2)
+            context['message']['notification'] = [{'msg': 'Pembuatan kelas berhasil', 'level': 'info'}]
+            return render(request, 'app/edit_kelas.html', context)
+        else:
+            context['form']['errors'] = dict(form.errors)
+            return render(request, 'app/edit_kelas.html', context)
     else:
         form = formKelas.BuatKelas()
         users = User.objects.filter(is_staff=False, is_superuser=False)
