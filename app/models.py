@@ -24,6 +24,7 @@ class ResetPassword(models.Model):
     token = models.CharField(max_length=80)
     created_at = models.DateTimeField()
 
+
 class Kelas(models.Model):
     namakelas = models.CharField(max_length=200)
     keterangan = models.TextField()

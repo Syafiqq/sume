@@ -1,83 +1,108 @@
-{% extends "layout/base.html" %}
-{% block content %}
-<div class="row">
-    <div class="col-md-9 col-lg-9 col-sm-7">
-        <div class="panel panel-info">
-            <div class="panel-heading"> {{kelas.jumlahdokumen}} Dokumen</div>
-            <div class="panel-wrapper collapse in" aria-expanded="true">
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table product-overview">
-                            <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>User</th>
-                                <th>Dokumen</th>
-                                <th style="text-align:center">Plagiarism %</th>
-                                <th style="text-align:center">Typo %</th>
-                                <th style="text-align:center">State</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for dokumen in documents %}
-                            <tr>
-                                <td width="120">{{dokumen.pub_date}}</td>
-                                <td width="100">{{dokumen.user}}</td>
-                                <td width="300">
-                                    <a href="/kelas/{{kelas.id}}/view_doc/{{dokumen.id}}" target="_blank"><h5 class="font-500">{{dokumen}}</h5></a>
-                                </td>
-                                <td width="150" align="center" class="font-500">
-                                    <span class="counter text-danger"
-                                          style="font-size: 20px">{{dokumen.plagiat}}%</span>
-                                </td>
-                                <td width="150" align="center" class="font-500">
-                                    <span class="counter text-warning" style="font-size: 20px">{{dokumen.typo}}%</span>
-                                </td>
-                                <td width="100" align="center"><span
-                                        class="label label-info m-r-10">{{dokumen.state}}</span></td>
-                            </tr>
-                            {% endfor %}
-                            {% if kelas.jumlahdokumen == 0 %}
+{% extends "layout/_ampleadmin-admin.html" %}
+{% block head-title %}
+    <title>Detail Kelas</title>
+{% endblock %}
+{% block head-description %}
+    <meta name="description" content="Detail Kelas">
+{% endblock %}
+{% block ampleadmin-content-breadcrumb %}
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Kelas</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="javascript:void(0)">Kelas</a>
+                </li>
+                <li>
+                    <a href="/kelas">List</a>
+                </li>
+                <li class="active">Detail</li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+{% endblock ampleadmin-content-breadcrumb %}
+{% block ampleadmin-content-main %}
+    <div class="row">
+        <div class="col-md-9 col-lg-9 col-sm-7">
+            <div class="panel panel-info">
+                <div class="panel-heading"> {{ data.kelas.detail.jumlahdokumen }} Dokumen</div>
+                <div class="panel-wrapper collapse in" aria-expanded="true">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table product-overview">
+                                <thead>
                                 <tr>
-                                    <td width="150" class="font-500">
-                                        Tidak ada dokumen
-                                    </td>
+                                    <th>Date</th>
+                                    <th>User</th>
+                                    <th>Dokumen</th>
+                                    <th style="text-align:center">Plagiarism %</th>
+                                    <th style="text-align:center">Typo %</th>
+                                    <th style="text-align:center">State</th>
                                 </tr>
-                            {% endif %}
-                            </tbody>
-                        </table>
-                        <hr>
-                        <a href="/kelas/{{kelas.id}}/upload">
-                            <div class="btn btn-info pull-right"> Upload
-                            </div>
-                        </a>
-                        <a href="/kelas">
-                            <div class="btn btn-default btn-outline"><i class="fa fa-arrow-left"></i> Back
-                            </div>
-                        </a>
+                                </thead>
+                                <tbody>
+                                {% for dokumen in data.kelas.documents %}
+                                    <tr>
+                                        <td width="120">{{ dokumen.pub_date }}</td>
+                                        <td width="100">{{ dokumen.user }}</td>
+                                        <td width="300">
+                                            <a href="/kelas/{{ data.kelas.detail.id }}/view_doc/{{ dokumen.id }}" target="_blank">
+                                                <h5 class="font-500">{{ dokumen }}</h5></a>
+                                        </td>
+                                        <td width="150" align="center" class="font-500">
+                                    <span class="counter text-danger"
+                                          style="font-size: 20px">{{ dokumen.plagiat }}%</span>
+                                        </td>
+                                        <td width="150" align="center" class="font-500">
+                                            <span class="counter text-warning" style="font-size: 20px">{{ dokumen.typo }}%</span>
+                                        </td>
+                                        <td width="100" align="center"><span
+                                                class="label label-info m-r-10">{{ dokumen.state }}</span>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                {% if data.kelas.detail.jumlahdokumen == 0 %}
+                                    <tr>
+                                        <td width="150" class="font-500">
+                                            Tidak ada dokumen
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                            <hr>
+                            <a href="/kelas/{{ data.kelas.detail.id }}/upload">
+                                <div class="btn btn-info pull-right"> Upload
+                                </div>
+                            </a>
+                            <a href="/kelas">
+                                <div class="btn btn-default btn-outline">
+                                    <i class="fa fa-arrow-left"></i>
+                                    Back
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-3 col-lg-3 col-sm-5">
-        <div class="white-box">
-            <h3 class="box-title">{{kelas.namakelas}}</h3>
-            {{kelas.keterangan}}
-            <hr>
-            <h2>{{kelas.jumlahmember}} Member</h2>
-            <h2>{{kelas.jumlahdokumen}} Dokumen</h2>
-            <hr>
-            <a href="/kelas/{{kelas.id}}/edit"><div class="btn btn-success">Edit Class</div></a>
+        <div class="col-md-3 col-lg-3 col-sm-5">
+            <div class="white-box">
+                <h3 class="box-title">{{ data.kelas.detail.namakelas }}</h3>
+                {{ data.kelas.detail.keterangan }}
+                <hr>
+                <h2>{{ data.kelas.detail.jumlahmember }} Member</h2>
+                <h2>{{ data.kelas.detail.jumlahdokumen }} Dokumen</h2>
+                <hr>
+                <a href="/kelas/{{ data.kelas.detail.id }}/edit">
+                    <div class="btn btn-success">Edit Class</div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3 col-lg-3 col-sm-5">
         </div>
     </div>
-    <div class="col-md-3 col-lg-3 col-sm-5">
-        <div class="white-box">
-            <h3 class="box-title">For Any Support</h3>
-            <hr>
-            <h4><i class="ti-mobile"></i> 9998979695 (Toll Free)</h4>
-            <small>Please contact with us if you have any questions. We are avalible 24h.</small>
-        </div>
-    </div>
-</div>
 {% endblock %}

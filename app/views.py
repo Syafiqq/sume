@@ -1,38 +1,38 @@
 import codecs
 import logging
-import pickle
-import datetime
 import pdftotext
+import pickle
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as do_login, logout
+# from filetransfers.api import serve_file
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User, Group
+from django.core.mail import send_mail
 from django.db import IntegrityError
-from django.http import HttpResponse, BadHeaderError, Http404
+from django.db.models import Q
+from django.http import BadHeaderError, Http404
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.crypto import get_random_string
 from django.utils.timezone import now
-from django.db.models import Q
+from filetransfers.api import serve_file
 
 from app.app.forms import auth, formKelas, formUploadDokumen
 from app.app.utils.arrayutil import array_except, array_merge
-from app.app.utils.commonutil import fetch_message, initialize_form_context, base_url
+from app.app.utils.commonutil import fetch_message, initialize_form_context
 from app.app.utils.custom.decorators import login_required, auth_unneeded
-from .forms import LoginForm
 from .models import Dokumen, ResetPassword, Kelas
 
 logger = logging.getLogger('debug')
 
 
+# == Landing Page ===============================================================================
 @login_required(login_url='/login')
 def index(request):
-    context = {
-
-    }
-    return render(request, 'app/index.html', context)
+    raise Http404("Please make landiing page first")
 
 
+# == Authentication ===============================================================================
 @auth_unneeded()
 def login(request):
     context = array_merge(initialize_form_context(), fetch_message(request))
@@ -55,7 +55,7 @@ def login(request):
                     messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
                     return redirect(
                         request.POST.get('next') if (
-                                request.POST.get('next') and request.POST.get('next') != "") else ('/'))
+                                request.POST.get('next') and request.POST.get('next') != "") else '/')
                 else:
                     context['message']['notification'] = [{'msg': 'Your account is not activated yet', 'level': 'info'}]
                     return render(request, 'app/login.html', context)
@@ -221,64 +221,19 @@ def recover(request):
         return render(request, 'app/recover.html', context)
 
 
+@login_required(login_url='/login')
 def logout_view(request):
+    callback = pickle.dumps({'message': {'notification': [{'msg': 'Logout Success', 'level': 'success'}]}})
+    messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
     logout(request)
-    return render(request, 'app/login.html')
+    return redirect('/login')
 
 
-@login_required(login_url='/login')
-def kelas(request):
-    latest_kelas_list = Kelas.objects.order_by('-end')[:5]
-    i = 0
-    for kelas in latest_kelas_list:
-        latest_kelas_list[i].jumlahmember = kelas.members.count()
-        latest_kelas_list[i].jumlahdokumen = kelas.dokumen.count()
-        i+=1
-
-    context = {
-        'kelas_list': latest_kelas_list,
-    }
-    return render(request, 'app/kelas.html', context)
-
-
-@login_required(login_url='/login')
-def kelasbaru(request):
-    if request.method == 'POST':
-        form = formKelas.BuatKelas(request.POST)
-
-        if form.is_valid():
-            name = form.cleaned_data.get('name')
-            deskripsi = form.cleaned_data.get('deskripsi')
-            members = form.cleaned_data.get('members')
-            staffs = form.cleaned_data.get('staffs')
-            startdate = form.cleaned_data.get('startdate')
-            enddate = form.cleaned_data.get('enddate')
-
-            new_kelas = Kelas(namakelas=name, keterangan=deskripsi, start=startdate, end=enddate)
-            new_kelas.save()
-            for member in members:
-                anggota1 = User.objects.get(pk=member)
-                new_kelas.members.add(anggota1)
-            for staff in staffs:
-                anggota2 = User.objects.get(pk=staff)
-                new_kelas.members.add(anggota2)
-        else:
-            print("form not valid")
-    else:
-        form = formKelas.BuatKelas()
-
-
-    users = User.objects.filter(is_staff=False, is_superuser=False)
-    staff = User.objects.filter(is_staff=True, is_superuser=False)
-    context = {
-        'users': users,
-        'staffs': staff,
-        'form': form
-    }
-    return render(request, 'app/kelasbaru.html', context)
-
+# == User Management ===============================================================================
 @login_required(login_url='/login')
 def user(request, group_id=-1):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+
     groups = Group.objects.all()
     i = 0
     for group in groups:
@@ -298,15 +253,21 @@ def user(request, group_id=-1):
         for user in users:
             users[i].group = user.groups.all()
             i += 1
-    context = {
+    context['data']['master'] = {
         'users': users,
         'groups': groups
+    }
+    context['menu'] = {
+        'lv1': 'master',
+        'lv2': 'master_user'
     }
     return render(request, 'app/user.html', context)
 
 
 @login_required(login_url='/login')
 def admin(request, mode_admin=-1):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+
     all = User.objects.filter(is_staff=True).count()
     staff = User.objects.filter(is_staff=True, is_superuser=False).count()
     superuser = User.objects.filter(is_superuser=True).count()
@@ -320,34 +281,51 @@ def admin(request, mode_admin=-1):
     else:
         users = {}
 
-    context = {
+    context['data']['master'] = {
         'users': users,
         'jumlah_staff': staff,
         'jumlah_superuser': superuser,
         'jumlah_semua': all
     }
+    context['menu'] = {
+        'lv1': 'master',
+        'lv2': 'master_admin'
+    }
     return render(request, 'app/admin.html', context)
 
 
+# == Class Management ===============================================================================
 @login_required(login_url='/login')
-def detailkelas(request, kelas_id):
-    # dokumen = get_object_or_404(Dokumen, pk=question_id)
-    # return serve_file(request, dokumen.filenya)
-    kelas = Kelas.objects.get(pk=kelas_id)
-    kelas.jumlahmember = kelas.members.count()
-    kelas.jumlahdokumen = kelas.dokumen.count()
-    documents = kelas.dokumen.all()
-    context = {
-        'kelas': kelas,
-        'documents': documents
+def kelas(request):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+
+    latest_kelas_list = Kelas.objects.order_by('-end')[:5]
+    i = 0
+    for kelas in latest_kelas_list:
+        latest_kelas_list[i].jumlahmember = kelas.members.count()
+        latest_kelas_list[i].jumlahdokumen = kelas.dokumen.count()
+        i += 1
+
+    context['data']['kelas'] = {
+        'list': latest_kelas_list,
     }
-    return render(request, 'app/detail.html', context)
+    context['menu'] = {
+        'lv1': 'kelas',
+        'lv2': 'kelas_list'
+    }
+    return render(request, 'app/kelas.html', context)
+
 
 @login_required(login_url='/login')
-def editkelas(request, kelas_id):
+def kelasbaru(request):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+    context['menu'] = {
+        'lv1': 'kelas',
+        'lv2': 'kelas_newclass'
+    }
     if request.method == 'POST':
         form = formKelas.BuatKelas(request.POST)
-
+        context['form']['data'] = array_except(dict(form.data), ['csrfmiddlewaretoken'])
         if form.is_valid():
             name = form.cleaned_data.get('name')
             deskripsi = form.cleaned_data.get('deskripsi')
@@ -364,23 +342,96 @@ def editkelas(request, kelas_id):
             for staff in staffs:
                 anggota2 = User.objects.get(pk=staff)
                 new_kelas.members.add(anggota2)
+            context['message']['notification'] = [{'msg': 'Pembuatan kelas berhasil', 'level': 'info'}]
+            return render(request, 'app/kelasbaru.html', context)
         else:
-            print("form not valid")
+            context['form']['errors'] = dict(form.errors)
+            return render(request, 'app/kelasbaru.html', context)
     else:
         form = formKelas.BuatKelas()
+        users = User.objects.filter(is_staff=False, is_superuser=False)
+        staff = User.objects.filter(is_staff=True, is_superuser=False)
+        context['data']['kelas'] = {
+            'users': users,
+            'staffs': staff,
+        }
+        context['form']['data'] = form
+
+        return render(request, 'app/kelasbaru.html', context)
 
 
-    users = User.objects.filter(is_staff=False, is_superuser=False)
-    staff = User.objects.filter(is_staff=True, is_superuser=False)
-    context = {
-        'users': users,
-        'staffs': staff,
-        'form': form
+@login_required(login_url='/login')
+def detailkelas(request, kelas_id):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+
+    # dokumen = get_object_or_404(Dokumen, pk=question_id)
+    # return serve_file(request, dokumen.filenya)
+    kelas = Kelas.objects.get(pk=kelas_id)
+    kelas.jumlahmember = kelas.members.count()
+    kelas.jumlahdokumen = kelas.dokumen.count()
+    documents = kelas.dokumen.all()
+    context['data']['kelas'] = {
+        'detail': kelas,
+        'documents': documents
     }
+    context['menu'] = {
+        'lv1': 'kelas',
+        'lv2': 'kelas_list'
+    }
+    return render(request, 'app/detail.html', context)
+
+
+@login_required(login_url='/login')
+def editkelas(request, kelas_id):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+    context['menu'] = {
+        'lv1': 'kelas',
+        'lv2': 'kelas_list'
+    }
+    if request.method == 'POST':
+        form = formKelas.BuatKelas(request.POST)
+        context['form']['data'] = array_except(dict(form.data), ['csrfmiddlewaretoken'])
+        if form.is_valid():
+            name = form.cleaned_data.get('name')
+            deskripsi = form.cleaned_data.get('deskripsi')
+            members = form.cleaned_data.get('members')
+            staffs = form.cleaned_data.get('staffs')
+            startdate = form.cleaned_data.get('startdate')
+            enddate = form.cleaned_data.get('enddate')
+
+            new_kelas = Kelas(namakelas=name, keterangan=deskripsi, start=startdate, end=enddate)
+            new_kelas.save()
+            for member in members:
+                anggota1 = User.objects.get(pk=member)
+                new_kelas.members.add(anggota1)
+            for staff in staffs:
+                anggota2 = User.objects.get(pk=staff)
+                new_kelas.members.add(anggota2)
+            context['message']['notification'] = [{'msg': 'Pembuatan kelas berhasil', 'level': 'info'}]
+            return render(request, 'app/edit_kelas.html', context)
+        else:
+            context['form']['errors'] = dict(form.errors)
+            return render(request, 'app/edit_kelas.html', context)
+    else:
+        form = formKelas.BuatKelas()
+        users = User.objects.filter(is_staff=False, is_superuser=False)
+        staff = User.objects.filter(is_staff=True, is_superuser=False)
+        context['data']['kelas'] = {
+            'kelas_id': kelas_id,
+            'users': users,
+            'staffs': staff,
+        }
+        context['form']['data'] = form
     return render(request, 'app/edit_kelas.html', context)
+
 
 @login_required(login_url='/login')
 def upload_dokumen(request, kelas_id):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+    context['menu'] = {
+        'lv1': 'kelas',
+        'lv2': 'kelas_list'
+    }
     if request.method == 'POST':
         form = formUploadDokumen.UploadDokumen(request.POST, request.FILES)
 
@@ -395,51 +446,33 @@ def upload_dokumen(request, kelas_id):
 
             kelas = Kelas.objects.get(pk=kelas_id)
             kelas.dokumen.add(new_dokumen)
+            callback = pickle.dumps({
+                'message': {'alert': [{'msg': 'Upload Success', 'level': 'success'}]},
+            })
+            messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
+            return redirect('/kelas/{}/detail'.format(kelas_id))
         else:
-            print("form not valid %s" % form.errors)
+            context['form']['errors'] = dict(form.errors)
+            return render(request, 'app/upload_dokumen.html', context)
     else:
-        form = formUploadDokumen.UploadDokumen()
+        context['form']['data'] = formUploadDokumen.UploadDokumen()
+        return render(request, 'app/upload_dokumen.html', context)
 
-    context = {
-        'form': form
-    }
-    return render(request, 'app/upload_dokumen.html', context)
-
-def results(request, question_id):
-    response = "You're looking at the results of question %s."
-    return HttpResponse(response % question_id)
-
-
-def vote(request, question_id):
-    return HttpResponse("You're voting on question %s." % question_id)
-
-
-def openfile(request, question_id):
-    filename = Dokumen.filenya.name.split('/')[-1]
-    response = HttpResponse(object_name.file, content_type='text/plain')
-    response['Content-Disposition'] = 'attachment; filename=%s' % filename
-
-    return response
-
-
-@login_required(login_url='/login')
-def statistik(request):
-    context = {
-    }
-    return render(request, 'app/statistik.html', context)
 
 @login_required(login_url='/login')
 def view_dokumen(request, kelas_id, dokumen_id):
     kelas = get_object_or_404(Kelas, pk=kelas_id)
     dokumen = get_object_or_404(kelas.dokumen, pk=dokumen_id)
-
     with open(dokumen.filenya.path, "rb") as f:
         pdf = pdftotext.PDF(f)
-    print(len(pdf))
-
-    # for page in pdf:
-    #     print(page)
-
-    print("".join(pdf))
-
     return serve_file(request, dokumen.filenya)
+
+
+@login_required(login_url='/login')
+def statistik(request):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+    context['menu'] = {
+        'lv1': 'server',
+        'lv2': 'server_statistik'
+    }
+    return render(request, 'app/statistik.html', context)

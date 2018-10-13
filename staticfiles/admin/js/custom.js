@@ -9,6 +9,7 @@ $(document).ready(function () {
 
     $(function () {
         $(".preloader").fadeOut();
+        $('#side-menu').metisMenu();
     });
 
     /* ===== Theme Settings ===== */
@@ -206,6 +207,10 @@ $(document).ready(function () {
     $('#to-recover').on("click", function () {
         $("#loginform").slideUp();
         $("#recoverform").fadeIn();
+    });
+    $('#to-login').on("click", function () {
+        $("#recoverform").hide();
+        $("#loginform").show();
     });
 
     /* ================================================================= 
