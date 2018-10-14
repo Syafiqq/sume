@@ -183,3 +183,5 @@ EMAIL_HOST = env.str('EMAIL_HOST', None)
 EMAIL_HOST_USER = env.str('EMAIL_HOST_USER', None)
 EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD', None)
 EMAIL_PORT = env.int('EMAIL_PORT', 0)
+
+CELERY_BROKER_URL = 'amqp://localhost'
