@@ -29,4 +29,6 @@ urlpatterns = [
     path('kelas/<int:kelas_id>/view_doc/<int:dokumen_id>', views.view_dokumen, name='upload_dokumen'),
 
     path('statistik', views.statistik, name='statistik'),
+
+    path('sleep/<int:length>', views.simulate_sleep, name='simulate_sleep'),
 ]

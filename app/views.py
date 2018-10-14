@@ -11,7 +11,7 @@ from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
 from django.db import IntegrityError
 from django.db.models import Q
-from django.http import BadHeaderError, Http404
+from django.http import BadHeaderError, Http404, HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.crypto import get_random_string
 from django.utils.timezone import now
@@ -476,3 +476,10 @@ def statistik(request):
         'lv2': 'server_statistik'
     }
     return render(request, 'app/statistik.html', context)
+
+
+def simulate_sleep(request, length):
+    from .tasks import simulate_sleep as _simulate
+    _simulate.delay(length)
+    html = "<html><body>It is now %s.</body></html>" % now
+    return HttpResponse(html)
