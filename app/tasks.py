@@ -10,7 +10,7 @@ def simulate_sleep(length=5):
     return 'Finishing simulate sleep in {} second[s]'.format(length)
 
 
-@shared_task
+@shared_task(ignore_result=True)
 def proceed_document(doc: Dokumen):
     import numpy
     import random
