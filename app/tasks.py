@@ -9,7 +9,7 @@ def simulate_sleep(length=5):
 
 
 @shared_task(ignore_result=True)
-def proceed_document(doc):
+def proceed_document(doc_id):
     import numpy
     import random
     from dlnn.Dlnn import Dlnn
