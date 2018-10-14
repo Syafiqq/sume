@@ -15,6 +15,7 @@ def proceed_document(doc_id):
     from dlnn.Dlnn import Dlnn
     from dlnn.Dlnn import DLNN_DEFAULT_CONFIG
     dlnn = Dlnn(**DLNN_DEFAULT_CONFIG)
+    # Todo : Load Dokumen by id (doc_id) [Dokumen.objects.filter(id=doc_id).first()]
     # Todo : Load pdf
     f1 = random.randint(50, 250)  # Todo : f1 = cari fitur 1 [calculate_feature_1()]
     f2 = random.randint(50, 250)  # Todo : f2 = cari fitur 2 [calculate_feature_2()]
