@@ -1,7 +1,5 @@
 from celery import shared_task
 
-from app.models import Dokumen
-
 
 @shared_task
 def simulate_sleep(length=5):
@@ -11,7 +9,7 @@ def simulate_sleep(length=5):
 
 
 @shared_task(ignore_result=True)
-def proceed_document(doc: Dokumen):
+def proceed_document(doc):
     import numpy
     import random
     from dlnn.Dlnn import Dlnn
