@@ -1,4 +1,3 @@
-from app.models import Dokumen
 from app.tasks import simulate_sleep, proceed_document
 from app.tests.testcase import OTestCase
 
@@ -14,8 +13,8 @@ class QueueTaskTest(OTestCase):
 
     def test_dlnn_main_thread(self):
         self.assertIsNone(None)
-        proceed_document(Dokumen())
+        proceed_document(1)
 
     def test_dlnn_background_thread(self):
         self.assertIsNone(None)
-        proceed_document.delay(Dokumen())
+        proceed_document.delay(1)
