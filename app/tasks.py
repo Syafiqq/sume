@@ -24,5 +24,5 @@ def proceed_document(doc_id):
     network = dlnn.get_model()
     result = network.predict(numpy.array([[f1, f2, f3, f4]]), batch_size=1)
     class_data = result.argmax(axis=1)[0]
-    print("Class Data {}".format(class_data))
+    # print("Class Data {}".format(class_data))
     # Todo : masukkan class_data sebagai hasil kelas data [mappingkan dengan kelas seharusnya] [zero based indexing]
