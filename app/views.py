@@ -2,6 +2,7 @@ import codecs
 import logging
 import pdftotext
 import pickle
+import nltk
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as do_login, logout
@@ -22,6 +23,9 @@ from app.app.utils.arrayutil import array_except, array_merge
 from app.app.utils.commonutil import fetch_message, initialize_form_context
 from app.app.utils.custom.decorators import login_required, auth_unneeded
 from .models import Dokumen, ResetPassword, Kelas
+
+# fitur
+from spellchecker import SpellChecker
 
 logger = logging.getLogger('debug')
 
@@ -443,6 +447,7 @@ def upload_dokumen(request, kelas_id):
 
             new_dokumen = Dokumen(user=user, nama_file=name, filenya=filenya)
             new_dokumen.save()
+            proses_perhitungan_fitur2(new_dokumen.pk)
 
             kelas = Kelas.objects.get(pk=kelas_id)
             kelas.dokumen.add(new_dokumen)
@@ -463,8 +468,7 @@ def upload_dokumen(request, kelas_id):
 def view_dokumen(request, kelas_id, dokumen_id):
     kelas = get_object_or_404(Kelas, pk=kelas_id)
     dokumen = get_object_or_404(kelas.dokumen, pk=dokumen_id)
-    with open(dokumen.filenya.path, "rb") as f:
-        pdf = pdftotext.PDF(f)
+    proses_perhitungan_fitur2(dokumen_id)
     return serve_file(request, dokumen.filenya)
 
 
@@ -476,3 +480,23 @@ def statistik(request):
         'lv2': 'server_statistik'
     }
     return render(request, 'app/statistik.html', context)
+
+
+def proses_perhitungan_fitur2(dokumen_id):
+    dokumen = get_object_or_404(Dokumen, pk=dokumen_id)
+    spell = SpellChecker()
+    with open(dokumen.filenya.path, "rb") as f:
+        pdf = pdftotext.PDF(f)
+        text = "".join(pdf)
+        tokens = nltk.word_tokenize(text, preserve_line=True)
+        misspelled = spell.unknown(tokens)
+        jumlah = len(misspelled)
+        dokumen.fitur2 = jumlah
+        dokumen.save()
+        for word in misspelled:
+            print("misspelled : "+word)
+            # Get the one `most likely` answer
+            print("most likely : " +spell.correction(word))
+            # Get a list of `likely` options
+            print("likely options : ")
+            print(spell.candidates(word))

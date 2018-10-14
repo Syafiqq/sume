@@ -38,8 +38,10 @@
                                     <th>Date</th>
                                     <th>User</th>
                                     <th>Dokumen</th>
-                                    <th style="text-align:center">Plagiarism %</th>
-                                    <th style="text-align:center">Typo %</th>
+                                    <th style="text-align:center">Fitur 1</th>
+                                    <th style="text-align:center">Fitur 2</th>
+                                    <th style="text-align:center">Fitur 3</th>
+                                    <th style="text-align:center">Fitur 4</th>
                                     <th style="text-align:center">State</th>
                                 </tr>
                                 </thead>
@@ -54,10 +56,16 @@
                                         </td>
                                         <td width="150" align="center" class="font-500">
                                     <span class="counter text-danger"
-                                          style="font-size: 20px">{{ dokumen.plagiat }}%</span>
+                                          style="font-size: 20px">{{ dokumen.fitur1 }}</span>
                                         </td>
                                         <td width="150" align="center" class="font-500">
-                                            <span class="counter text-warning" style="font-size: 20px">{{ dokumen.typo }}%</span>
+                                            <span class="counter text-warning" style="font-size: 20px">{{ dokumen.fitur2 }}</span>
+                                        </td>
+                                        <td width="150" align="center" class="font-500">
+                                            <span class="counter text-danger" style="font-size: 20px">{{ dokumen.fitur3 }}</span>
+                                        </td>
+                                        <td width="150" align="center" class="font-500">
+                                            <span class="counter text-warning" style="font-size: 20px">{{ dokumen.fitur4 }}</span>
                                         </td>
                                         <td width="100" align="center"><span
                                                 class="label label-info m-r-10">{{ dokumen.state }}</span>
