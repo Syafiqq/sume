@@ -1,11 +1,10 @@
 from spellchecker import SpellChecker
 
 spell = SpellChecker(distance=1)
-spell.word_frequency.load_text_file('/home/daneswara/Django/app/fitur/id_full.txt')
-spell.word_frequency.lo
+spell.word_frequency.load_text_file('./id_full.txt')
 
 # find those words that may be misspelled
-misspelled = spell.unknown(['salahs', 'danes', 'apa', 'kok', 'iiya', 'bagaaimana'])
+misspelled = spell.unknown(['kmhgjk', 'danesssss', 'aaaaapaaaa', 'koooook', 'iiya', 'bagaaimana'])
 
 for word in misspelled:
     # Get the one `most likely` answer
