@@ -13,6 +13,10 @@ class Dokumen(models.Model):
                                validators=[FileExtensionValidator(allowed_extensions=['pdf', 'doc', 'docx'])])
     plagiat = models.IntegerField(default=0)
     typo = models.IntegerField(default=0)
+    fitur1 = models.IntegerField(default=0)
+    fitur2 = models.IntegerField(default=0)
+    fitur3 = models.IntegerField(default=0)
+    fitur4 = models.IntegerField(default=0)
     state = models.CharField(default="In Queue", max_length=100)
 
     def __str__(self):
