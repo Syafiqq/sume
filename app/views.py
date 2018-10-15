@@ -22,6 +22,7 @@ from app.app.forms import auth, formKelas, formUploadDokumen
 from app.app.utils.arrayutil import array_except, array_merge
 from app.app.utils.commonutil import fetch_message, initialize_form_context
 from app.app.utils.custom.decorators import login_required, auth_unneeded
+from app.tasks import proceed_document
 from .models import Dokumen, ResetPassword, Kelas
 
 # fitur
@@ -447,7 +448,7 @@ def upload_dokumen(request, kelas_id):
 
             new_dokumen = Dokumen(user=user, nama_file=name, filenya=filenya)
             new_dokumen.save()
-            proses_perhitungan_fitur2(new_dokumen.pk)
+            proceed_document(new_dokumen.id)
 
             kelas = Kelas.objects.get(pk=kelas_id)
             kelas.dokumen.add(new_dokumen)

@@ -557,3 +557,12 @@ class DlnnFunctionalTest(TestCase):
         layer_name = 'elm_3_dense_2'
         self.assertTrue(
             numpy.allclose(w_12_c[0], network.get_layer(layer_name).get_weights()[0], rtol=1e-6))
+
+    def test_testing(self):
+        self.assertTrue(True)
+        from dlnn.Dlnn import Dlnn
+        from dlnn.Dlnn import DLNN_DEFAULT_CONFIG
+        dlnn = Dlnn(**DLNN_DEFAULT_CONFIG)
+        network = dlnn.get_model()
+        result = network.predict(corpus_data[0].reshape((1, corpus_data.shape[1])), batch_size=corpus_data.shape[0])
+        print(result.argmax(axis=1))
