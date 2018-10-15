@@ -448,7 +448,7 @@ def upload_dokumen(request, kelas_id):
 
             new_dokumen = Dokumen(user=user, nama_file=name, filenya=filenya)
             new_dokumen.save()
-            proceed_document.
+            proceed_document(new_dokumen.pk)
 
             kelas = Kelas.objects.get(pk=kelas_id)
             kelas.dokumen.add(new_dokumen)

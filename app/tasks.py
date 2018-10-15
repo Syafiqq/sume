@@ -65,5 +65,6 @@ def proceed_document(dokumen_id):
     # print("Class Data {}".format(class_data))
     # Todo : masukkan class_data sebagai hasil kelas data [mappingkan dengan kelas seharusnya] [zero based indexing]
 
+    dokumen.kualitas = class_data
     dokumen.state = "Done"
     dokumen.save()
