@@ -2,8 +2,8 @@ import codecs
 import logging
 import pdftotext
 import pickle
-import nltk
 
+import nltk
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as do_login, logout
 # from filetransfers.api import serve_file
@@ -17,6 +17,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.crypto import get_random_string
 from django.utils.timezone import now
 from filetransfers.api import serve_file
+# fitur
+from spellchecker import SpellChecker
 
 from app.app.forms import auth, formKelas, formUploadDokumen
 from app.app.utils.arrayutil import array_except, array_merge
@@ -24,9 +26,6 @@ from app.app.utils.commonutil import fetch_message, initialize_form_context
 from app.app.utils.custom.decorators import login_required, auth_unneeded
 from app.tasks import proceed_document
 from .models import Dokumen, ResetPassword, Kelas
-
-# fitur
-from spellchecker import SpellChecker
 
 logger = logging.getLogger('debug')
 
@@ -60,7 +59,7 @@ def login(request):
                     messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
                     return redirect(
                         request.POST.get('next') if (
-                                request.POST.get('next') and request.POST.get('next') != "") else '/')
+                                request.POST.get('next') and request.POST.get('next') != "") else '/user')
                 else:
                     context['message']['notification'] = [{'msg': 'Your account is not activated yet', 'level': 'info'}]
                     return render(request, 'app/login.html', context)
@@ -387,6 +386,14 @@ def detailkelas(request, kelas_id):
 
 
 @login_required(login_url='/login')
+def process_document(request, kelas_id):
+    ids = Dokumen.objects.filter(kelas__id=kelas_id).values_list('id', flat=True)
+    for idk in ids:
+        proceed_document.delay(idk)
+    return redirect('/kelas/{}/detail'.format(kelas_id))
+
+
+@login_required(login_url='/login')
 def editkelas(request, kelas_id):
     context = array_merge(initialize_form_context(), fetch_message(request))
     context['menu'] = {
@@ -448,10 +455,10 @@ def upload_dokumen(request, kelas_id):
 
             new_dokumen = Dokumen(user=user, nama_file=name, filenya=filenya)
             new_dokumen.save()
-            proceed_document.delay(new_dokumen.pk)
 
             kelas = Kelas.objects.get(pk=kelas_id)
             kelas.dokumen.add(new_dokumen)
+            proceed_document.delay(new_dokumen.id)
             callback = pickle.dumps({
                 'message': {'alert': [{'msg': 'Upload Success', 'level': 'success'}]},
             })
@@ -469,7 +476,7 @@ def upload_dokumen(request, kelas_id):
 def view_dokumen(request, kelas_id, dokumen_id):
     kelas = get_object_or_404(Kelas, pk=kelas_id)
     dokumen = get_object_or_404(kelas.dokumen, pk=dokumen_id)
-    proses_perhitungan_fitur2(dokumen_id)
+    # proses_perhitungan_fitur2(dokumen_id)
     return serve_file(request, dokumen.filenya)
 
 
@@ -495,9 +502,9 @@ def proses_perhitungan_fitur2(dokumen_id):
         dokumen.fitur2 = jumlah
         dokumen.save()
         for word in misspelled:
-            print("misspelled : "+word)
+            print("misspelled : " + word)
             # Get the one `most likely` answer
-            print("most likely : " +spell.correction(word))
+            print("most likely : " + spell.correction(word))
             # Get a list of `likely` options
             print("likely options : ")
             print(spell.candidates(word))
