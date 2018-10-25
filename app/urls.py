@@ -26,6 +26,7 @@ urlpatterns = [
     path('kelas/<int:kelas_id>/detail', views.detailkelas, name='detailkelas'),
     path('kelas/<int:kelas_id>/edit', views.editkelas, name='editkelas'),
     path('kelas/<int:kelas_id>/upload', views.upload_dokumen, name='upload_dokumen'),
+    path('kelas/<int:kelas_id>/proceed', views.process_document, name='proceed_document'),
     path('kelas/<int:kelas_id>/view_doc/<int:dokumen_id>', views.view_dokumen, name='upload_dokumen'),
 
     path('statistik', views.statistik, name='statistik'),
