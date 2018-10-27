@@ -36,10 +36,13 @@ logger = logging.getLogger('debug')
 @login_required(login_url='/login')
 def index(request):
     date_now = datetime.datetime.today()
-    new_docs = Dokumen.objects.filter(pub_date__year=date_now.year, pub_date__month=date_now.month, pub_date__day=date_now.day).count()
+    new_docs = Dokumen.objects.filter(pub_date__year=date_now.year, pub_date__month=date_now.month,
+                                      pub_date__day=date_now.day).count()
     all_docs = Dokumen.objects.all().count()
     users = User.objects.filter(is_staff=False, is_superuser=False).count()
     kelas = Kelas.objects.all().count()
+    task = Dokumen.objects.filter(~Q(state="Done"))
+    jumlah_task = Dokumen.objects.filter(~Q(state="Done")).count()
     context = array_merge(initialize_form_context(), fetch_message(request))
     context['menu'] = {
         'lv1': 'Dashboard',
@@ -49,6 +52,8 @@ def index(request):
         'all_docs': all_docs,
         'users': users,
         'kelas': kelas,
+        'task': task,
+        'jumlah_task': jumlah_task,
     }
     return render(request, 'app/index.html', context)
 
@@ -482,10 +487,13 @@ def upload_dokumen(request, kelas_id):
 
 
 @login_required(login_url='/login')
-def view_dokumen(request, kelas_id, dokumen_id):
-    kelas = get_object_or_404(Kelas, pk=kelas_id)
-    dokumen = get_object_or_404(kelas.dokumen, pk=dokumen_id)
-    proses_perhitungan_fitur2(dokumen_id)
+def view_dokumen(request, dokumen_id, kelas_id=-1):
+    if (kelas_id == -1):
+        dokumen = get_object_or_404(Dokumen, pk=dokumen_id)
+    else:
+        kelas = get_object_or_404(Kelas, pk=kelas_id)
+        dokumen = get_object_or_404(kelas.dokumen, pk=dokumen_id)
+
     return serve_file(request, dokumen.filenya)
 
 
@@ -511,9 +519,9 @@ def proses_perhitungan_fitur2(dokumen_id):
         dokumen.fitur2 = jumlah
         dokumen.save()
         for word in misspelled:
-            print("misspelled : "+word)
+            print("misspelled : " + word)
             # Get the one `most likely` answer
-            print("most likely : " +spell.correction(word))
+            print("most likely : " + spell.correction(word))
             # Get a list of `likely` options
             print("likely options : ")
             print(spell.candidates(word))
