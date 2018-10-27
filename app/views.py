@@ -442,8 +442,10 @@ def editkelas(request, kelas_id):
         form = formKelas.BuatKelas()
         users = User.objects.filter(is_staff=False, is_superuser=False)
         staff = User.objects.filter(is_staff=True, is_superuser=False)
+        kls = Kelas.objects.get(pk=kelas_id)
         context['data']['kelas'] = {
             'kelas_id': kelas_id,
+            'kls': kls,
             'users': users,
             'staffs': staff,
         }
@@ -495,6 +497,38 @@ def view_dokumen(request, dokumen_id, kelas_id=-1):
         dokumen = get_object_or_404(kelas.dokumen, pk=dokumen_id)
 
     return serve_file(request, dokumen.filenya)
+
+
+@login_required(login_url='/login')
+def hapus_kelas(request, kelas_id):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+    context['menu'] = {
+        'lv1': 'kelas',
+        'lv2': 'kelas_list'
+    }
+    # hapus = Kelas.objects.delete(pk=kelas_id)
+    hapus = False;
+    if hapus:
+        context['data']['notifikasi'] = {
+            'noted': "Kelas berhasil dihapus",
+            'type': 'success',
+        }
+    else:
+        context['data']['notifikasi'] = {
+            'noted': "Kelas gagal dihapus",
+            'type': 'error',
+        }
+    latest_kelas_list = Kelas.objects.order_by('-end')[:5]
+    i = 0
+    for kelas in latest_kelas_list:
+        latest_kelas_list[i].jumlahmember = kelas.members.count()
+        latest_kelas_list[i].jumlahdokumen = kelas.dokumen.count()
+        i += 1
+
+    context['data']['kelas'] = {
+        'list': latest_kelas_list,
+    }
+    return render(request, 'app/kelas.html', context)
 
 
 @login_required(login_url='/login')
