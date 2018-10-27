@@ -3,6 +3,7 @@ import logging
 import pdftotext
 import pickle
 import nltk
+import datetime
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as do_login, logout
@@ -34,7 +35,22 @@ logger = logging.getLogger('debug')
 # == Landing Page ===============================================================================
 @login_required(login_url='/login')
 def index(request):
-    raise Http404("Please make landiing page first")
+    date_now = datetime.datetime.today()
+    new_docs = Dokumen.objects.filter(pub_date__year=date_now.year, pub_date__month=date_now.month, pub_date__day=date_now.day).count()
+    all_docs = Dokumen.objects.all().count()
+    users = User.objects.filter(is_staff=False, is_superuser=False).count()
+    kelas = Kelas.objects.all().count()
+    context = array_merge(initialize_form_context(), fetch_message(request))
+    context['menu'] = {
+        'lv1': 'Dashboard',
+    }
+    context['data'] = {
+        'new_docs': new_docs,
+        'all_docs': all_docs,
+        'users': users,
+        'kelas': kelas,
+    }
+    return render(request, 'app/index.html', context)
 
 
 # == Authentication ===============================================================================
