@@ -1,3 +1,5 @@
+import os
+
 import psycopg2
 
 from nlp.config import config
@@ -8,7 +10,7 @@ def connect():
     conn = None
     try:
         # read connection parameters
-        params = config()
+        params = config(filename=os.path.dirname(os.path.realpath(__file__)) + '/env.ini')
 
         # connect to the PostgreSQL server
         print('Connecting to the PostgreSQL database...')
