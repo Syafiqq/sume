@@ -32,6 +32,18 @@
         <div class="col-12">
             <div class="white-box">
                 <div class="card-body wizard-content">
+                    {% if message.notification %}
+                    <div class="row">
+                        <div class="col-md-12" style="padding: 16px 16px 0 16px">
+                            {% for notif in message.notification %}
+                                <div class="alert alert-{{ notif.level }} alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    {{ notif.msg }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
                     <h4 class="card-title">Create a Class</h4>
                     <h6 class="card-subtitle">You must add class details and members</h6>
                     <form action="/newclass" method="POST" class="validation-wizard wizard-circle m-t-40">
@@ -84,7 +96,7 @@
                                         <select id="staffs" name="staffs" class="select2 m-b-10 select2-multiple required"
                                                 multiple="multiple"
                                                 data-placeholder="Choose" style="width: 100%;">
-                                            {% for staff in data.kelas.staff %}
+                                            {% for staff in data.kelas.staffs %}
                                                 <option value="{{ staff.id }}">{{ staff.username }}</option>
                                             {% endfor %}
                                         </select>

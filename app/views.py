@@ -425,24 +425,50 @@ def editkelas(request, kelas_id):
             startdate = form.cleaned_data.get('startdate')
             enddate = form.cleaned_data.get('enddate')
 
-            new_kelas = Kelas(namakelas=name, keterangan=deskripsi, start=startdate, end=enddate)
-            new_kelas.save()
+            kelas = Kelas.objects.get(pk=kelas_id)
+            kelas.namakelas = name
+            kelas.keterangan = deskripsi
+            kelas.start = startdate
+            kelas.end = enddate
+            # new_kelas = Kelas(namakelas=name, keterangan=deskripsi, start=startdate, end=enddate)
+            kelas.save()
             for member in members:
                 anggota1 = User.objects.get(pk=member)
-                new_kelas.members.add(anggota1)
+                kelas.members.add(anggota1)
             for staff in staffs:
                 anggota2 = User.objects.get(pk=staff)
-                new_kelas.members.add(anggota2)
-            context['message']['notification'] = [{'msg': 'Pembuatan kelas berhasil', 'level': 'info'}]
+                kelas.members.add(anggota2)
+            context['form']['data'] = form
+            context['message']['notification'] = [{'msg': 'Edit kelas berhasil', 'level': 'info'}]
             return render(request, 'app/edit_kelas.html', context)
         else:
             context['form']['errors'] = dict(form.errors)
+            context['message']['notification'] = [{'msg': 'Edit kelas gagal', 'level': 'danger'}]
             return render(request, 'app/edit_kelas.html', context)
     else:
         form = formKelas.BuatKelas()
         users = User.objects.filter(is_staff=False, is_superuser=False)
         staff = User.objects.filter(is_staff=True, is_superuser=False)
         kls = Kelas.objects.get(pk=kelas_id)
+        # members = User.objects.filter()
+        # temp = []
+        # for staf in staff:
+        #     print(kls.namakelas)
+        #     for mem in kls.members:
+        #         print("tes")
+        #         if staf.id in mem.id:
+        #             print("ok")
+        #             temp[0].status = True
+        #             temp[0].staf = staf
+        #             print("wah")
+        #         else:
+        #             print("tes")
+        #             temp[1].status = False
+        #             temp[1].staf = staf
+        #             print("loh")
+        #
+        # print(temp)
+
         context['data']['kelas'] = {
             'kelas_id': kelas_id,
             'kls': kls,

@@ -30,6 +30,18 @@
 {% block ampleadmin-content-main %}
     <div class="row" id="validation">
         <div class="col-md-12">
+            {% if message.notification %}
+                <div class="row">
+                    <div class="col-md-12" style="padding: 16px 16px 0 16px">
+                        {% for notif in message.notification %}
+                            <div class="alert alert-{{ notif.level }} alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                {{ notif.msg }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
             <div class="panel panel-info">
                 <div class="panel-heading"> Edit Class</div>
                 <div class="panel-wrapper collapse in" aria-expanded="true">
@@ -45,14 +57,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Name Class</label>
-                                            {% render_field form.data.name class="form-control required" id="firstName" value="{{data.kelas.kelas_id}}"%}
+                                            {% render_field form.data.name class="form-control required" id="firstName" value=data.kelas.kls.namakelas%}
                                         </div>
                                     </div>
                                     <!--/span-->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Description</label>
-                                            {% render_field form.data.deskripsi class="form-control required" id="lastName" %}
+                                            {% render_field form.data.deskripsi class="form-control required" id="lastName" value=data.kelas.kls.keterangan%}
                                         </div>
                                     </div>
                                     <!--/span-->
@@ -63,14 +75,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Start Date</label>
-                                            {% render_field form.data.startdate type="date" class="form-control required" id="startdate" %}
+                                            {% render_field form.data.startdate type="date" class="form-control required" id="startdate" value=data.kelas.kls.start%}
                                         </div>
                                     </div>
                                     <!--/span-->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">End Date</label>
-                                            {% render_field form.data.enddate type="date" class="form-control required" id="enddate" %}
+                                            {% render_field form.data.enddate type="date" class="form-control required" id="enddate" value=data.kelas.kls.end%}
                                         </div>
                                     </div>
                                     <!--/span-->
@@ -84,8 +96,12 @@
                                                     class="select2 m-b-10 select2-multiple required"
                                                     multiple="multiple"
                                                     data-placeholder="Choose" style="width: 100%;">
-                                                {% for staff in data.kelas.staff %}
-                                                    <option value="{{ staff.id }}">{{ staff.username }}</option>
+                                                {% for staff in data.kelas.staffs %}
+                                                    {% if staff.status %}
+                                                    <option value="{{ staff.staf.id }}" selected>{{ staff.staf.username }}</option>
+                                                    {% else %}
+                                                    <option value="{{ staff.staf.id }}">{{ staff.staf.username }}</option>
+                                                    {% endif %}
                                                 {% endfor %}
                                             </select>
                                         </div>
