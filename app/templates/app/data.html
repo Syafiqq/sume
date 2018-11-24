@@ -32,26 +32,32 @@
                             <table class="table product-overview">
                                 <thead>
                                 <tr>
-                                    <th>Nama</th>
-                                    <th>Dokumen</th>
+                                    <th>Data</th>
                                     <th style="text-align:center">Dataset</th>
+                                    <th style="text-align:center">Data Latih</th>
+                                    <th style="text-align:center">Data Uji</th>
                                     <th style="text-align:center">Operasi</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for dokumen in data.kelas.documents %}
+                                {% for data in dataset.data %}
                                     <tr>
-                                        <td width="120">{{ dataset.data.namafile }}</td>
                                         <td width="300">
                                             <a href="/kelas/{{ data.kelas.detail.id }}/view_doc/{{ dokumen.id }}" target="_blank">
-                                                <h5 class="font-500">{{ dataset.data.url_file }}</h5></a>
+                                                <h5 class="font-500">{{ data.namafile }}</h5></a>
                                         </td>
                                         <td width="150" align="center" class="font-500">
                                     <span class="counter text-danger"
-                                          style="font-size: 20px">{{ dataset.data.is_dataset }}</span>
+                                          style="font-size: 16px">{{ data.is_dataset }}</span>
                                         </td>
                                         <td width="150" align="center" class="font-500">
-                                            <span class="counter text-warning" style="font-size: 20px">{{ dokumen.fitur2 }}</span>
+                                            <span class="counter text-warning" style="font-size: 16px">{{ data.datalatih }}</span>
+                                        </td>
+                                        <td width="150" align="center" class="font-500">
+                                            <span class="counter text-warning" style="font-size: 16px">{{ data.datauji }}</span>
+                                        </td>
+                                        <td width="150" align="center" class="font-500">
+                                            <span style="font-size: 16px">Delete</span>
                                         </td>
                                     </tr>
                                 {% endfor %}
