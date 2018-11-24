@@ -57,7 +57,9 @@
                                             <span class="counter text-warning" style="font-size: 16px">{{ data.datauji }}</span>
                                         </td>
                                         <td width="150" align="center" class="font-500">
-                                            <span style="font-size: 16px">Delete</span>
+                                            <a href="/data/edit_data/{{ data.id }}">
+                                                <span style="font-size: 16px">Edit</span>
+                                            </a>
                                         </td>
                                     </tr>
                                 {% endfor %}

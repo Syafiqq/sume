@@ -566,6 +566,7 @@ def statistik(request):
     }
     return render(request, 'app/statistik.html', context)
 
+
 @login_required(login_url='/login')
 def data_latih(request):
     context = array_merge(initialize_form_context(), fetch_message(request))
@@ -580,6 +581,7 @@ def data_latih(request):
         'jumlah': jdatalatih
     }
     return render(request, 'app/data.html', context)
+
 
 @login_required(login_url='/login')
 def data_uji(request):
@@ -596,17 +598,19 @@ def data_uji(request):
     }
     return render(request, 'app/data.html', context)
 
+
 @login_required(login_url='/login')
 def view_data(request, data_id):
     data = get_object_or_404(Data, pk=data_id)
     return serve_file(request, data.url_file)
+
 
 @login_required(login_url='/login')
 def data_upload(request):
     context = array_merge(initialize_form_context(), fetch_message(request))
     context['menu'] = {
         'lv1': 'data',
-        'lv2': 'data_uji'
+        'lv2': 'data_upload'
     }
     if request.method == 'POST':
         form = formUploadData.UploadData(request.POST, request.FILES)
@@ -618,8 +622,8 @@ def data_upload(request):
             is_dataset = form.cleaned_data.get('is_dataset')
             url_file = form.cleaned_data.get('url_file')
 
-
-            new_data = Data(namafile=namafile, datalatih=datalatih, datauji=datauji, is_dataset=is_dataset, url_file=url_file)
+            new_data = Data(namafile=namafile, datalatih=datalatih, datauji=datauji, is_dataset=is_dataset,
+                            url_file=url_file)
             new_data.save()
 
             callback = pickle.dumps({
@@ -633,6 +637,52 @@ def data_upload(request):
     else:
         context['form']['data'] = formUploadData.UploadData()
         return render(request, 'app/upload_dataset.html', context)
+
+
+@login_required(login_url='/login')
+def edit_data(request, data_id):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+    context['menu'] = {
+        'lv1': 'data',
+        'lv2': 'edit_data'
+    }
+    if request.method == 'POST':
+        form = formUploadData.EditData(request.POST, request.FILES)
+
+        if form.is_valid():
+            namafile = form.cleaned_data.get('namafile')
+            datalatih = form.cleaned_data.get('datalatih')
+            datauji = form.cleaned_data.get('datauji')
+            is_dataset = form.cleaned_data.get('is_dataset')
+            url_file = form.cleaned_data.get('url_file')
+
+            data = get_object_or_404(Data, pk=data_id)
+            data.namafile = namafile
+            data.datalatih = datalatih
+            data.datauji = datauji
+            data.is_dataset = is_dataset
+            if url_file:
+                data.url_file = url_file
+
+            data.save()
+
+            callback = pickle.dumps({
+                'message': {'alert': [{'msg': 'Edit Success', 'level': 'success'}]},
+            })
+            messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
+            return redirect('/data/edit_data/{}'.format(data_id))
+        else:
+            context['form']['errors'] = dict(form.errors)
+            return render(request, 'app/edit_dataset.html', context)
+    else:
+        data = get_object_or_404(Data, pk=data_id)
+        context['dataset'] = {
+            'data': data,
+            'data_id': data_id
+        }
+        context['form']['data'] = formUploadData.EditData()
+        return render(request, 'app/edit_dataset.html', context)
+
 
 def proses_perhitungan_fitur2(dokumen_id):
     dokumen = get_object_or_404(Dokumen, pk=dokumen_id)
