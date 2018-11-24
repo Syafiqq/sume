@@ -4,7 +4,10 @@ from celery import shared_task
 from django.shortcuts import get_object_or_404
 from .models import Dokumen
 from spellchecker import SpellChecker
-
+from .metode import levenshtein
+from django.conf import settings
+from nltk.corpus import stopwords
+import re
 
 @shared_task
 def simulate_sleep(length=5):
@@ -30,23 +33,69 @@ def proceed_document(dokumen_id):
         pdf = pdftotext.PDF(f)
         text = "".join(pdf)
 
-    f1 = random.randint(50, 250)  # Todo : f1 = cari fitur 1 [calculate_feature_1()]
+    # pecah kalimat menjadi kata kata
+    text = text.lower() # Converting to lowercase
+    cleanr = re.compile('<.*?>')
+    sentence = re.sub(cleanr, ' ', text)        #Removing HTML tags
+    sentence = re.sub(r'[?|!|\'|"|#]',r'',sentence)
+    sentence = re.sub(r'[.|,|)|(|\|/]',r' ',sentence) #Removing Punctuations
+
+    tokens = nltk.word_tokenize(sentence, preserve_line=True)
+
+    # Fitur 1 - cek salah ketik Bahasa Indonesia
+    salah_ketik_indo = 0
+    salah_ketik_english = 0
+    url_stopword = set(stopwords.words('indonesian'))
+    url_katadasar = settings.STATIC_ROOT+'/admin/db_text/kata-dasar-all.txt'
+    url_stopword_en = set(stopwords.words('english'))
+
+    # db_stopword = open(url_stopword,"r")
+    db_katadasar = open(url_katadasar,"r")
+    # db_stopword_en = open(url_stopword_en,"r")
+
+    # stopword = db_stopword.read().split('\n')
+    katadasar = db_katadasar.read().split('\n')
+    # stopword_en = db_stopword_en.read().split('\n')
+
+    for token in tokens:
+        salah = True
+        if(token in url_stopword):
+            salah = False
+        else:
+            if token in katadasar:
+                salah = False
+        if salah:
+            print("kata \""+token+"\" salah")
+            salah_ketik_indo += 1
+        else:
+            print("kata \""+token+"\" betul")
+
+    f1 = salah_ketik_indo
     dokumen.fitur1 = f1
     dokumen.save()
 
     # Todo : f2 = cari fitur 2 [calculate_feature_2()]
-    tokens = nltk.word_tokenize(text, preserve_line=True)
-    misspelled = spell.unknown(tokens)
-    jumlah = len(misspelled)
-    dokumen.fitur2 = jumlah
-    f2 = jumlah
-    for word in misspelled:
-        print("misspelled : " + word)
-        # Get the one `most likely` answer
-        print("most likely : " + spell.correction(word))
-        # Get a list of `likely` options
-        print("likely options : ")
-        print(spell.candidates(word))
+    for token in tokens:
+        salah = True
+        if(token in url_stopword_en):
+            salah = False
+        if salah:
+            print("kata \""+token+"\" salah")
+            salah_ketik_english += 1
+        else:
+            print("kata \""+token+"\" betul")
+
+    # misspelled = spell.unknown(tokens)
+    # jumlah = len(misspelled)
+    f2 = salah_ketik_english
+    dokumen.fitur2 = f2
+    # for word in misspelled:
+    #     print("misspelled : " + word)
+    #     # Get the one `most likely` answer
+    #     print("most likely : " + spell.correction(word))
+    #     # Get a list of `likely` options
+    #     print("likely options : ")
+    #     print(spell.candidates(word))
 
     dokumen.save()
 
