@@ -24,6 +24,7 @@ urlpatterns = [
     path('data_latih', views.data_latih, name='data_latih'),
     path('data_uji', views.data_uji, name='data_uji'),
     path('data/upload', views.data_upload, name='data_upload'),
+    path('data/view_data/<int:data_id>', views.view_data, name='view_data'),
 
     # Class Management
     path('kelas', views.kelas, name='kelas'),

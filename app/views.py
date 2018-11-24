@@ -597,6 +597,11 @@ def data_uji(request):
     return render(request, 'app/data.html', context)
 
 @login_required(login_url='/login')
+def view_data(request, data_id):
+    data = get_object_or_404(Data, pk=data_id)
+    return serve_file(request, data.url_file)
+
+@login_required(login_url='/login')
 def data_upload(request):
     context = array_merge(initialize_form_context(), fetch_message(request))
     context['menu'] = {
