@@ -20,6 +20,11 @@ urlpatterns = [
     path('admin', views.admin, name='admin'),
     path('admin/<int:mode_admin>/', views.admin),
 
+    # Data
+    path('data_latih', views.data_latih, name='data_latih'),
+    path('data_uji', views.data_uji, name='data_uji'),
+    path('data/upload', views.data_upload, name='data_upload'),
+
     # Class Management
     path('kelas', views.kelas, name='kelas'),
     path('newclass', views.kelasbaru, name='kelasbaru'),

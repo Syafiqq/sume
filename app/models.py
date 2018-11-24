@@ -37,3 +37,11 @@ class Kelas(models.Model):
     start = models.DateTimeField()
     end = models.DateTimeField()
     dokumen = models.ManyToManyField(Dokumen)
+
+class Data(models.Model):
+    namafile = models.CharField(max_length=200)
+    datalatih = models.BooleanField(default=True)
+    datauji = models.BooleanField(default=False)
+    is_dataset = models.BooleanField(default=True)
+    url_file = models.FileField(upload_to='data/%Y/%m/%d/',
+                               validators=[FileExtensionValidator(allowed_extensions=['pdf'])])

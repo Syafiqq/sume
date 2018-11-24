@@ -1,0 +1,70 @@
+{% extends "layout/_ampleadmin-admin.html" %}
+{% load widget_tweaks %}
+{% block head-title %}
+    <title>Upload Dokumen</title>
+{% endblock %}
+{% block head-description %}
+    <meta name="description" content="Upload Dokumen">
+{% endblock %}
+{% block ampleadmin-content-breadcrumb %}
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Upload Dataset</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="javascript:void(0)">Data</a>
+                </li>
+                <li class="active">Upload</li>
+            </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+{% endblock ampleadmin-content-breadcrumb %}
+{% block ampleadmin-content-main %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h3 class="box-title m-b-0">Upload Dataset Baru</h3>
+                <p class="text-muted m-b-30 font-13"></p>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <form action="" method="POST" data-toggle="validator" enctype="multipart/form-data" data-ajax="false">
+                            {% csrf_token %}
+                            {% load widget_tweaks %}
+                            <div class="form-group">
+                                <label for="namafile">Nama File</label>
+                                {% render_field form.data.namafile class="form-control" id="namafile" placeholder="Enter File Name" %}
+                            </div>
+                            <div class="form-group">
+                                <center><label for="datalatih">Data Latih</label></center>
+                                {% render_field form.data.datalatih class="form-control" id="datalatih" %}
+                            </div>
+                            <div class="form-group">
+                                <center><label for="datauji">Data Uji</label></center>
+                                {% render_field form.data.datauji class="form-control" id="datauji" %}
+                            </div>
+                            <div class="form-group">
+                                <center><label for="is_dataset">Merupakan Dataset</label></center>
+                                {% render_field form.data.is_dataset class="form-control" id="is_dataset" %}
+                            </div>
+                            <div class="form-group">
+                                <label for="input-file-now">Upload dokumen anda (pdf)</label>
+                                {% render_field form.data.url_file class="dropify" id="input-file-now" %}
+                            </div>
+                            <!--<div class="form-group">-->
+                            <!--<div class="checkbox checkbox-success">-->
+                            <!--<input id="checkbox1" type="checkbox" required>-->
+                            <!--<label for="checkbox1"> Saya memastikan dokumen yang saya upload adalah dokumen saya sendiri </label>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
+                            <a href="/kelas" class="btn btn-inverse waves-effect waves-light">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

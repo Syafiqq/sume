@@ -19,12 +19,12 @@ from django.utils.crypto import get_random_string
 from django.utils.timezone import now
 from filetransfers.api import serve_file
 
-from app.app.forms import auth, formKelas, formUploadDokumen
+from app.app.forms import auth, formKelas, formUploadDokumen, formUploadData
 from app.app.utils.arrayutil import array_except, array_merge
 from app.app.utils.commonutil import fetch_message, initialize_form_context
 from app.app.utils.custom.decorators import login_required, auth_unneeded
 from app.tasks import proceed_document
-from .models import Dokumen, ResetPassword, Kelas
+from .models import Dokumen, ResetPassword, Kelas, Data
 
 # fitur
 from spellchecker import SpellChecker
@@ -566,6 +566,68 @@ def statistik(request):
     }
     return render(request, 'app/statistik.html', context)
 
+@login_required(login_url='/login')
+def data_latih(request):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+    datalatih = Data.objects.filter(datalatih=True)
+    jdatalatih = Data.objects.filter(datalatih=True).count()
+    context['menu'] = {
+        'lv1': 'data',
+        'lv2': 'data_latih'
+    }
+    context['dataset'] = {
+        'data': datalatih,
+        'jumlah': jdatalatih
+    }
+    return render(request, 'app/data.html', context)
+
+@login_required(login_url='/login')
+def data_uji(request):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+    datauji = Data.objects.filter(datauji=True)
+    jdatauji = Data.objects.filter(datauji=True).count()
+    context['menu'] = {
+        'lv1': 'data',
+        'lv2': 'data_uji'
+    }
+    context['dataset'] = {
+        'data': datauji,
+        'jumlah': jdatauji
+    }
+    return render(request, 'app/data.html', context)
+
+@login_required(login_url='/login')
+def data_upload(request):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+    context['menu'] = {
+        'lv1': 'data',
+        'lv2': 'data_uji'
+    }
+    if request.method == 'POST':
+        form = formUploadData.UploadData(request.POST, request.FILES)
+
+        if form.is_valid():
+            namafile = form.cleaned_data.get('namafile')
+            datalatih = form.cleaned_data.get('datalatih')
+            datauji = form.cleaned_data.get('datauji')
+            is_dataset = form.cleaned_data.get('is_dataset')
+            url_file = form.cleaned_data.get('url_file')
+
+
+            new_data = Data(namafile=namafile, datalatih=datalatih, datauji=datauji, is_dataset=is_dataset, url_file=url_file)
+            new_data.save()
+
+            callback = pickle.dumps({
+                'message': {'alert': [{'msg': 'Upload Success', 'level': 'success'}]},
+            })
+            messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
+            return redirect('/data/upload')
+        else:
+            context['form']['errors'] = dict(form.errors)
+            return render(request, 'app/upload_dataset.html', context)
+    else:
+        context['form']['data'] = formUploadData.UploadData()
+        return render(request, 'app/upload_dataset.html', context)
 
 def proses_perhitungan_fitur2(dokumen_id):
     dokumen = get_object_or_404(Dokumen, pk=dokumen_id)
