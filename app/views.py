@@ -689,6 +689,14 @@ def pengujian(request):
         'lv1': 'data',
         'lv2': 'edit_data'
     }
+    return render(request, 'app/pengujian.html', context)
+
+def proses_pengujian(request):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+    context['menu'] = {
+        'lv1': 'data',
+        'lv2': 'edit_data'
+    }
     jml_pengujian = 10
     gap_data = 10
     testing_apps.delay(jml_pengujian, gap_data)
