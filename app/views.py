@@ -23,7 +23,7 @@ from app.app.forms import auth, formKelas, formUploadDokumen, formUploadData
 from app.app.utils.arrayutil import array_except, array_merge
 from app.app.utils.commonutil import fetch_message, initialize_form_context
 from app.app.utils.custom.decorators import login_required, auth_unneeded
-from app.tasks import proceed_document
+from app.tasks import proceed_document, testing_apps
 from .models import Dokumen, ResetPassword, Kelas, Data
 
 # fitur
@@ -683,6 +683,17 @@ def edit_data(request, data_id):
         context['form']['data'] = formUploadData.EditData()
         return render(request, 'app/edit_dataset.html', context)
 
+def pengujian(request):
+    context = array_merge(initialize_form_context(), fetch_message(request))
+    context['menu'] = {
+        'lv1': 'data',
+        'lv2': 'edit_data'
+    }
+    jml_pengujian = 10
+    gap_data = 10
+    testing_apps.delay(jml_pengujian, gap_data)
+
+    return render(request, 'app/pengujian.html', context)
 
 def proses_perhitungan_fitur2(dokumen_id):
     dokumen = get_object_or_404(Dokumen, pk=dokumen_id)

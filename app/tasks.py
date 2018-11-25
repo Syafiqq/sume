@@ -2,7 +2,7 @@ import pdftotext
 import nltk
 from celery import shared_task
 from django.shortcuts import get_object_or_404
-from .models import Dokumen
+from .models import Dokumen, Data
 from spellchecker import SpellChecker
 from .metode import levenshtein
 from django.conf import settings
@@ -117,3 +117,64 @@ def proceed_document(dokumen_id):
     dokumen.kualitas = class_data
     dokumen.state = "Done"
     dokumen.save()
+
+@shared_task(ignore_result=True)
+def testing_apps(jml_pengujian, gap_data):
+    f1 = [[]]
+    for x in range(jml_pengujian):
+        jml_uji = (100 - 50) / gap_data
+        dlatih = 100
+        duji = 0
+        for y in range(jml_uji):
+            dlatih -= gap_data
+            duji += gap_data
+
+            dataset = Data.objects.filter(is_dataset=True)
+            jml_dataset = Data.objects.filter(is_dataset=True).count()
+            jml_data_latih = int(jml_dataset * dlatih / 100)
+            i = 0
+            for data in dataset:
+                i += 1
+                # Todo : Load pdf
+                with open(data.url_file.path, "rb") as f:
+                    pdf = pdftotext.PDF(f)
+                    text = "".join(pdf)
+
+                # Todo : Normalisasi
+                # pecah kalimat menjadi kata kata
+                text = text.lower() # Converting to lowercase
+                cleanr = re.compile('<.*?>')
+                sentence = re.sub(cleanr, ' ', text)        #Removing HTML tags
+                sentence = re.sub(r'[?|!|\'|"|#]',r'',sentence)
+                sentence = re.sub(r'[.|,|)|(|\|/]',r' ',sentence) #Removing Punctuations
+
+                if i <= jml_data_latih:
+                    datalatih = "".join(sentence)
+                else:
+                    datauji = "".join(sentence)
+
+            token_datalatih = nltk.word_tokenize(datauji, preserve_line=True)
+            token_datauji = nltk.word_tokenize(datauji, preserve_line=True)
+
+            # Fitur 1 - cek salah ketik Bahasa Indonesia
+            salah_ketik_indo = 0
+            salah_ketik_english = 0
+
+            for token in token_datauji:
+                salah = True
+                if(token in token_datalatih):
+                    salah = False
+                if salah:
+                    print("kata \""+token+"\" salah")
+                    salah_ketik_indo += 1
+                else:
+                    print("kata \""+token+"\" betul")
+
+            f1[x][y] = salah_ketik_indo
+
+    # Todo : f2 = cari fitur 2 [calculate_feature_2()]
+
+    for x in f1:
+        for y in x:
+            print(str(y))
+        print("\n")

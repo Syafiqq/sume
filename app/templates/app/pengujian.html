@@ -1,0 +1,87 @@
+{% extends "layout/_ampleadmin-admin.html" %}
+{% block head-title %}
+<title>Detail Kelas</title>
+{% endblock %}
+{% block head-description %}
+<meta name="description" content="Detail Kelas">
+{% endblock %}
+{% block ampleadmin-content-breadcrumb %}
+<div class="row bg-title">
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Kelas</h4>
+    </div>
+    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        <ol class="breadcrumb">
+            <li>
+                <a href="javascript:void(0)">Data</a>
+            </li>
+            <li class="active">{{menu.lv2}}</li>
+        </ol>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+{% endblock ampleadmin-content-breadcrumb %}
+{% block ampleadmin-content-main %}
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12">
+        <div class="panel panel-info">
+            <div class="panel-heading"> {{ dataset.jumlah }} Dokumen</div>
+            <div class="panel-wrapper collapse in" aria-expanded="true">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table product-overview">
+                            <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th style="text-align:center">Dataset</th>
+                                <th style="text-align:center">Data Latih</th>
+                                <th style="text-align:center">Data Uji</th>
+                                <th style="text-align:center">Operasi</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for data in dataset.data %}
+                            <tr>
+                                <td width="300">
+                                    <a href="/data/view_data/{{ data.id }}" target="_blank">
+                                        <h5 class="font-500">{{ data.namafile }}</h5></a>
+                                </td>
+                                <td width="150" align="center" class="font-500">
+                                    <span class="counter text-danger"
+                                          style="font-size: 16px">{{ data.is_dataset }}</span>
+                                </td>
+                                <td width="150" align="center" class="font-500">
+                                    <span class="counter text-warning"
+                                          style="font-size: 16px">{{ data.datalatih }}</span>
+                                </td>
+                                <td width="150" align="center" class="font-500">
+                                    <span class="counter text-warning" style="font-size: 16px">{{ data.datauji }}</span>
+                                </td>
+                                <td width="150" align="center" class="font-500">
+                                    <a href="/data/edit_data/{{ data.id }}">
+                                        <span style="font-size: 16px">Edit</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% if dataset.jumlah == 0 %}
+                            <tr>
+                                <td width="150" class="font-500">
+                                    Tidak ada dokumen
+                                </td>
+                            </tr>
+                            {% endif %}
+                            </tbody>
+                        </table>
+                        <hr>
+                        <a href="/pengujian/proses">
+                            <div class="btn btn-info pull-right"> Proses Pengujian
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
