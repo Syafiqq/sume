@@ -32,35 +32,40 @@
                         <table class="table product-overview">
                             <thead>
                             <tr>
-                                <th>Data</th>
-                                <th style="text-align:center">Dataset</th>
-                                <th style="text-align:center">Data Latih</th>
-                                <th style="text-align:center">Data Uji</th>
-                                <th style="text-align:center">Operasi</th>
+                                <th>Perbandingan Data</th>
+                                <th style="text-align:center">Fitur 1</th>
+                                <th style="text-align:center">Fitur 2</th>
+                                <th style="text-align:center">Fitur 3</th>
+                                <th style="text-align:center">Fitur 4</th>
+                                <th style="text-align:center">Fitur 5</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {% for data in dataset.data %}
+                            {% for data in hasil.pengujian %}
                             <tr>
-                                <td width="300">
+                                <td width="150">
                                     <a href="/data/view_data/{{ data.id }}" target="_blank">
-                                        <h5 class="font-500">{{ data.namafile }}</h5></a>
+                                        <h5 class="font-500">{{ data.perbandingan }}</h5></a>
                                 </td>
                                 <td width="150" align="center" class="font-500">
                                     <span class="counter text-danger"
-                                          style="font-size: 16px">{{ data.is_dataset }}</span>
+                                          style="font-size: 16px">{{ data.fitur1 }}</span>
                                 </td>
                                 <td width="150" align="center" class="font-500">
                                     <span class="counter text-warning"
-                                          style="font-size: 16px">{{ data.datalatih }}</span>
+                                          style="font-size: 16px">{{ data.fitur2 }}</span>
                                 </td>
                                 <td width="150" align="center" class="font-500">
-                                    <span class="counter text-warning" style="font-size: 16px">{{ data.datauji }}</span>
+                                    <span class="counter text-danger"
+                                          style="font-size: 16px">{{ data.fitur3 }}</span>
                                 </td>
                                 <td width="150" align="center" class="font-500">
-                                    <a href="/data/edit_data/{{ data.id }}">
-                                        <span style="font-size: 16px">Edit</span>
-                                    </a>
+                                    <span class="counter text-warning"
+                                          style="font-size: 16px">{{ data.fitur4 }}</span>
+                                </td>
+                                <td width="150" align="center" class="font-500">
+                                    <span class="counter text-danger"
+                                          style="font-size: 16px">{{ data.fitur5 }}</span>
                                 </td>
                             </tr>
                             {% endfor %}

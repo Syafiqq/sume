@@ -24,7 +24,7 @@ from app.app.utils.arrayutil import array_except, array_merge
 from app.app.utils.commonutil import fetch_message, initialize_form_context
 from app.app.utils.custom.decorators import login_required, auth_unneeded
 from app.tasks import proceed_document, testing_apps
-from .models import Dokumen, ResetPassword, Kelas, Data
+from .models import Dokumen, ResetPassword, Kelas, Data, Pengujian
 
 # fitur
 from spellchecker import SpellChecker
@@ -689,6 +689,12 @@ def pengujian(request):
         'lv1': 'data',
         'lv2': 'edit_data'
     }
+    cek = Pengujian.objects.all().count()
+    if(cek > 0):
+        hasil = Pengujian.objects.all()
+        context['hasil'] = {
+            'pengujian': hasil,
+        }
     return render(request, 'app/pengujian.html', context)
 
 def proses_pengujian(request):
@@ -699,8 +705,14 @@ def proses_pengujian(request):
     }
     jml_pengujian = 10
     gap_data = 10
-    testing_apps.delay(jml_pengujian, gap_data)
+    testing_apps.delay(gap_data)
 
+    cek = Pengujian.objects.all().count()
+    if(cek > 0):
+        hasil = Pengujian.objects.all()
+        context['hasil'] = {
+            'pengujian': hasil,
+        }
     return render(request, 'app/pengujian.html', context)
 
 def proses_perhitungan_fitur2(dokumen_id):

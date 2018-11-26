@@ -2,7 +2,7 @@ import pdftotext
 import nltk
 from celery import shared_task
 from django.shortcuts import get_object_or_404
-from .models import Dokumen, Data
+from .models import Dokumen, Data, Pengujian
 from spellchecker import SpellChecker
 from .metode import levenshtein
 from django.conf import settings
@@ -119,62 +119,160 @@ def proceed_document(dokumen_id):
     dokumen.save()
 
 @shared_task(ignore_result=True)
-def testing_apps(jml_pengujian, gap_data):
+def testing_apps(gap_data):
     f1 = [[]]
-    for x in range(jml_pengujian):
-        jml_uji = (100 - 50) / gap_data
-        dlatih = 100
-        duji = 0
-        for y in range(jml_uji):
-            dlatih -= gap_data
-            duji += gap_data
 
-            dataset = Data.objects.filter(is_dataset=True)
-            jml_dataset = Data.objects.filter(is_dataset=True).count()
-            jml_data_latih = int(jml_dataset * dlatih / 100)
-            i = 0
-            for data in dataset:
-                i += 1
-                # Todo : Load pdf
-                with open(data.url_file.path, "rb") as f:
-                    pdf = pdftotext.PDF(f)
-                    text = "".join(pdf)
+    dataset = Data.objects.filter(is_dataset=True)
+    x = 0
+    for data in dataset:
+        x += 1
+        print("data ke"+str(x))
+        # Todo : Load pdf
+        with open(data.url_file.path, "rb") as f:
+            pdf = pdftotext.PDF(f)
+            text = "".join(pdf)
 
-                # Todo : Normalisasi
-                # pecah kalimat menjadi kata kata
-                text = text.lower() # Converting to lowercase
-                cleanr = re.compile('<.*?>')
-                sentence = re.sub(cleanr, ' ', text)        #Removing HTML tags
-                sentence = re.sub(r'[?|!|\'|"|#]',r'',sentence)
-                sentence = re.sub(r'[.|,|)|(|\|/]',r' ',sentence) #Removing Punctuations
+        # Todo : Normalisasi
+        # pecah kalimat menjadi kata kata
+        text = text.lower() # Converting to lowercase
+        cleanr = re.compile('<.*?>')
+        sentence = re.sub(cleanr, ' ', text)        #Removing HTML tags
+        sentence = re.sub(r'[?|!|\'|"|#]',r'',sentence)
+        sentence = re.sub(r'[.|,|)|(|\|/]',r' ',sentence) #Removing Punctuations
 
-                if i <= jml_data_latih:
-                    datalatih = "".join(sentence)
-                else:
-                    datauji = "".join(sentence)
+        data_pdf = "".join(sentence)
+        token_data_pdf = nltk.word_tokenize(data_pdf, preserve_line=True)
 
-            token_datalatih = nltk.word_tokenize(datauji, preserve_line=True)
-            token_datauji = nltk.word_tokenize(datauji, preserve_line=True)
+        # Fitur 1 - cek salah ketik Bahasa Indonesia
+        url_dic_indo = settings.STATIC_ROOT+'/admin/db_text/kamus_indonesia.txt'
+        kamus_indonesia = open(url_dic_indo,"r")
+        katadasar = kamus_indonesia.read().split('\n')
+        for i in range(len(katadasar)):
+            katadasar[i] = katadasar[i].split("/")[0]
 
-            # Fitur 1 - cek salah ketik Bahasa Indonesia
-            salah_ketik_indo = 0
-            salah_ketik_english = 0
+        salah_ketik_indo = 0
+        for token in token_data_pdf:
+            if token not in katadasar:
+                salah_ketik_indo+=1
 
-            for token in token_datauji:
-                salah = True
-                if(token in token_datalatih):
-                    salah = False
-                if salah:
-                    print("kata \""+token+"\" salah")
-                    salah_ketik_indo += 1
-                else:
-                    print("kata \""+token+"\" betul")
+        # Fitur 2 - cek salah ketik Bahasa Inggris
+        salah_ketik_english = 0
+        url_dic_en = settings.STATIC_ROOT+'/admin/db_text/kamus_english.txt'
+        kamus_inggris = open(url_dic_en,"r")
+        katadasar_en = kamus_inggris.read().split('\n')
+        for i in range(len(katadasar_en)):
+            katadasar_en[i] = katadasar_en[i].split("/")[0]
 
-            f1[x][y] = salah_ketik_indo
+        salah_ketik_indo = 0
+        for token in token_data_pdf:
+            if token not in katadasar_en:
+                salah_ketik_english+=1
 
-    # Todo : f2 = cari fitur 2 [calculate_feature_2()]
+        cek = Pengujian.objects.all().count()
+        if(cek == 0):
+            new_hasil1 = Pengujian(perbandingan = "90:10", fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
+            new_hasil1.save()
+            new_hasil2 = Pengujian(perbandingan = "80:20", fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
+            new_hasil2.save()
+            new_hasil3 = Pengujian(perbandingan = "70:30", fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
+            new_hasil3.save()
+            new_hasil4 = Pengujian(perbandingan = "60:40", fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
+            new_hasil4.save()
+            new_hasil5 = Pengujian(perbandingan = "50:50", fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
+            new_hasil5.save()
+        else:
+            hasil = Pengujian.objects.all()
+            for data in hasil:
+                data.fitur1 = salah_ketik_indo
+                data.fitur2 = salah_ketik_english
+                data.save()
 
-    for x in f1:
-        for y in x:
-            print(str(y))
-        print("\n")
+    # # for x in range(jml_pengujian):
+    # jml_uji = (100 - 50) / gap_data
+    # dlatih = 100
+    # duji = 0
+    #
+    # for y in range(int(jml_uji)):
+    #     print("tes ke"+str(y))
+    #     dlatih -= gap_data
+    #     duji += gap_data
+    #
+    #     dataset = Data.objects.filter(is_dataset=True)
+    #     jml_dataset = Data.objects.filter(is_dataset=True).count()
+    #     jml_data_latih = int(jml_dataset * dlatih / 100)
+    #     print("data latih"+str(jml_data_latih))
+    #     i = 0
+    #     for data in dataset:
+    #         i += 1
+    #         # Todo : Load pdf
+    #         with open(data.url_file.path, "rb") as f:
+    #             pdf = pdftotext.PDF(f)
+    #             text = "".join(pdf)
+    #
+    #         # Todo : Normalisasi
+    #         # pecah kalimat menjadi kata kata
+    #         text = text.lower() # Converting to lowercase
+    #         cleanr = re.compile('<.*?>')
+    #         sentence = re.sub(cleanr, ' ', text)        #Removing HTML tags
+    #         sentence = re.sub(r'[?|!|\'|"|#]',r'',sentence)
+    #         sentence = re.sub(r'[.|,|)|(|\|/]',r' ',sentence) #Removing Punctuations
+    #
+    #         if i <= jml_data_latih:
+    #             datalatih = "".join(sentence)
+    #         else:
+    #             datauji = "".join(sentence)
+    #
+    #     token_datalatih = nltk.word_tokenize(datalatih, preserve_line=True)
+    #     token_datauji = nltk.word_tokenize(datauji, preserve_line=True)
+    #
+    #     # Fitur 1 - cek salah ketik Bahasa Indonesia
+    #     url_dic_indo = settings.STATIC_ROOT+'/admin/db_text/kamus_indonesia.txt'
+    #     kamus_indonesia = open(url_dic_indo,"r")
+    #     katadasar = kamus_indonesia.read().split('\n')
+    #     for i in len(katadasar):
+    #         katadasar[i] = katadasar[i].split("/")[0]
+    #
+    #     salah_ketik_indo = 0
+    #     for token in token_datalatih:
+    #         if token not in katadasar:
+    #             salah_ketik_indo+=1
+    #
+    #     for token in token_datauji:
+    #         if token not in katadasar:
+    #             salah_ketik_indo+=1
+    #
+    #     # Fitur 2 - cek salah ketik Bahasa Inggris
+    #     salah_ketik_english = 0
+    #     url_dic_en = settings.STATIC_ROOT+'/admin/db_text/kamus_indonesia.txt'
+    #     kamus_inggris = open(url_dic_en,"r")
+    #     katadasar_en = kamus_inggris.read().split('\n')
+    #     for i in len(katadasar_en):
+    #         katadasar_en[i] = katadasar_en[i].split("/")[0]
+    #
+    #     salah_ketik_indo = 0
+    #     for token in token_datalatih:
+    #         if token not in katadasar_en:
+    #             salah_ketik_english+=1
+    #
+    #     for token in token_datauji:
+    #         if token not in katadasar_en:
+    #             salah_ketik_english+=1
+    #
+    #     # for token in token_datauji:
+    #     #     salah = True
+    #     #     if(token in token_datalatih):
+    #     #         salah = False
+    #     #     if salah:
+    #     #         print("kata \""+token+"\" salah")
+    #     #         salah_ketik_indo += 1
+    #     #     else:
+    #     #         print("kata \""+token+"\" betul")
+    #
+    #     f1[y][0] = salah_ketik_indo
+    #     f1[y][1] = salah_ketik_english
+    #
+    #
+    # for x in f1:
+    #     for y in x:
+    #         print(str(y))
+    #     print("\n")

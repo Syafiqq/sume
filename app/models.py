@@ -45,3 +45,11 @@ class Data(models.Model):
     is_dataset = models.BooleanField(default=True)
     url_file = models.FileField(upload_to='data/%Y/%m/%d/',
                                validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
+
+class Pengujian(models.Model):
+    perbandingan = models.CharField(max_length=200, default="100%")
+    fitur1 = models.IntegerField(default=0)
+    fitur2 = models.IntegerField(default=0)
+    fitur3 = models.IntegerField(default=0)
+    fitur4 = models.IntegerField(default=0)
+    fitur5 = models.IntegerField(default=0)
