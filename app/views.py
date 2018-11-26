@@ -713,7 +713,7 @@ def proses_pengujian(request):
         context['hasil'] = {
             'pengujian': hasil,
         }
-    return render(request, 'app/pengujian.html', context)
+    return redirect('/pengujian')
 
 def proses_perhitungan_fitur2(dokumen_id):
     dokumen = get_object_or_404(Dokumen, pk=dokumen_id)

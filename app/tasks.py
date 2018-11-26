@@ -122,6 +122,9 @@ def proceed_document(dokumen_id):
 def testing_apps(gap_data):
     f1 = [[]]
 
+    cek = Pengujian.objects.all()
+    for a in cek:
+        a.delete()
     dataset = Data.objects.filter(is_dataset=True)
     x = 0
     for data in dataset:
@@ -156,36 +159,36 @@ def testing_apps(gap_data):
                 salah_ketik_indo+=1
 
         # Fitur 2 - cek salah ketik Bahasa Inggris
-        salah_ketik_english = 0
         url_dic_en = settings.STATIC_ROOT+'/admin/db_text/kamus_english.txt'
         kamus_inggris = open(url_dic_en,"r")
         katadasar_en = kamus_inggris.read().split('\n')
         for i in range(len(katadasar_en)):
             katadasar_en[i] = katadasar_en[i].split("/")[0]
 
-        salah_ketik_indo = 0
+        salah_ketik_english = 0
         for token in token_data_pdf:
             if token not in katadasar_en:
                 salah_ketik_english+=1
 
-        cek = Pengujian.objects.all().count()
-        if(cek == 0):
-            new_hasil1 = Pengujian(perbandingan = "90:10", fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
-            new_hasil1.save()
-            new_hasil2 = Pengujian(perbandingan = "80:20", fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
-            new_hasil2.save()
-            new_hasil3 = Pengujian(perbandingan = "70:30", fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
-            new_hasil3.save()
-            new_hasil4 = Pengujian(perbandingan = "60:40", fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
-            new_hasil4.save()
-            new_hasil5 = Pengujian(perbandingan = "50:50", fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
-            new_hasil5.save()
-        else:
-            hasil = Pengujian.objects.all()
-            for data in hasil:
-                data.fitur1 = salah_ketik_indo
-                data.fitur2 = salah_ketik_english
-                data.save()
+        new_hasil = Pengujian(perbandingan = str(x), fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
+        new_hasil.save()
+        # if(cek == 0):
+        #     new_hasil1 = Pengujian(perbandingan = "90:10", fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
+        #     new_hasil1.save()
+        #     new_hasil2 = Pengujian(perbandingan = "80:20", fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
+        #     new_hasil2.save()
+        #     new_hasil3 = Pengujian(perbandingan = "70:30", fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
+        #     new_hasil3.save()
+        #     new_hasil4 = Pengujian(perbandingan = "60:40", fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
+        #     new_hasil4.save()
+        #     new_hasil5 = Pengujian(perbandingan = "50:50", fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
+        #     new_hasil5.save()
+        # else:
+        #     hasil = Pengujian.objects.all()
+        #     for data in hasil:
+        #         data.fitur1 = salah_ketik_indo
+        #         data.fitur2 = salah_ketik_english
+        #         data.save()
 
     # # for x in range(jml_pengujian):
     # jml_uji = (100 - 50) / gap_data
