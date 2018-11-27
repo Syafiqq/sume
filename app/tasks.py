@@ -170,7 +170,10 @@ def testing_apps(gap_data):
             if token not in katadasar_en:
                 salah_ketik_english+=1
 
-        new_hasil = Pengujian(perbandingan = str(x), fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
+        akurasi_indo = int((len(token_data_pdf)-salah_ketik_indo)/len(token_data_pdf)*100)
+        akurasi_en = int((len(token_data_pdf)-salah_ketik_english)/len(token_data_pdf)*100)
+
+        new_hasil = Pengujian(perbandingan = str(x), fitur1 = akurasi_indo, fitur2 = akurasi_en)
         new_hasil.save()
         # if(cek == 0):
         #     new_hasil1 = Pengujian(perbandingan = "90:10", fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
