@@ -10,6 +10,47 @@ from scipy.sparse import csr_matrix
 from dlnn.tests.ml.testcase import TestCase
 
 
+def calculate(d1, d2, wg=3, me=100, a=25e-3, ct=4e-1):
+    """
+    :param d1: Dokumen 1
+    :param d2: Dokumen 2
+    :param wg: Word Group, Jumlah Kata yang dikelompokkan ex : fitur 3 = 3, fitur 4 = 5
+    :param me: maksimum epoch
+    :param a: alpha
+    :param ct: treshold untuk menyatakan dua kata itu sama.
+    """
+    # Training
+    d1t = tokenize(d1)
+    d1tt = make_words(d1t, wg)
+    tagged_data = [TaggedDocument(words=word_tokenize(_d.lower()), tags=[str(i)]) for i, _d in enumerate(d1tt)]
+    max_epochs = me
+    vec_size = len(tagged_data)
+    alpha = a
+    model = Doc2Vec(size=vec_size,
+                    alpha=alpha,
+                    min_alpha=0.00025,
+                    min_count=1,
+                    dbow_words=1,
+                    dm=1)
+    model.build_vocab(tagged_data)
+    for epoch in range(max_epochs):
+        model.train(tagged_data,
+                    total_examples=model.corpus_count,
+                    epochs=model.iter)
+        model.alpha -= 0.0002
+        model.min_alpha = model.alpha
+
+    # Testing
+    d2t = tokenize(d2)
+    d2tt = make_words(d2t, wg)
+    count = 0
+    for x in d2tt:
+        sim = model.docvecs.most_similar(positive=[model.infer_vector(word_tokenize(x.lower()))])
+        xy = max(sim, key=lambda z: z[1])
+        count += 1 if xy[1] > ct else 0
+    return count, len(d2tt)
+
+
 def awesome_cossim_top(A, B, ntop, lower_bound=0):
     # force A and B as a CSR matrix.
     # If they have already been CSR, there is no overhead
@@ -137,7 +178,7 @@ box."""
     and open source."""
 
         d1t = tokenize(d1)
-        d1tt = make_words(d1t, 3)
+        d1tt = make_words(d1t, 5)
         tagged_data = [TaggedDocument(words=word_tokenize(_d.lower()), tags=[str(i)]) for i, _d in enumerate(d1tt)]
         max_epochs = 1000
         vec_size = 200
@@ -175,8 +216,8 @@ box."""
         d1t = tokenize(d1)
         d2t = tokenize(d2)
 
-        d1tt = make_words(d1t, 3)
-        d2tt = make_words(d2t, 3)
+        d1tt = make_words(d1t, 5)
+        d2tt = make_words(d2t, 5)
 
         model = Doc2Vec.load("d2v.model")
         # to find the vector of a document which is not in training data
@@ -205,3 +246,18 @@ box."""
             xy = max(sim, key=lambda z: z[1])
             count += 1 if xy[1] > 0.5 else 0
         print('%d of %d' % (count, len(d2tt)))
+
+    def test_doc_3_vec_test(self):
+        d1 = """With Django, you can take Web applications from concept to launch in a matter
+            of hours. Django takes care of much of the hassle of Web development, so you
+            can focus on writing your app without needing to reinvent the wheel. It’s free
+            and open source."""
+
+        d2 = """Django includes dozens of extras you can use to handle common Web
+            development tasks. Django takes care of user authentication, content
+            administration, site maps, RSS feeds, and many more tasks — right out of the
+            box. Django includes dozens of extras you can use to handle common Web
+    development tasks. Django takes care of user authentication, content
+    administration, site maps, RSS feeds, and many more tasks — right out of the
+    box."""
+        print('%d of %d' % (calculate(d1, d2, 3, 200, ct=5e-1)))
