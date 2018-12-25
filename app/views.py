@@ -19,7 +19,7 @@ from django.utils.crypto import get_random_string
 from django.utils.timezone import now
 from filetransfers.api import serve_file
 
-from app.app.forms import auth, formKelas, formUploadDokumen, formUploadData
+from app.app.forms import auth, formKelas, formUploadDokumen
 from app.app.utils.arrayutil import array_except, array_merge
 from app.app.utils.commonutil import fetch_message, initialize_form_context
 from app.app.utils.custom.decorators import login_required, auth_unneeded
@@ -81,7 +81,7 @@ def login(request):
                     messages.add_message(request, messages.INFO, codecs.encode(callback, "base64").decode(), 'callback')
                     return redirect(
                         request.POST.get('next') if (
-                                request.POST.get('next') and request.POST.get('next') != "") else '/')
+                                request.POST.get('next') and request.POST.get('next') != "") else '/user')
                 else:
                     context['message']['notification'] = [{'msg': 'Your account is not activated yet', 'level': 'info'}]
                     return render(request, 'app/login.html', context)
@@ -405,6 +405,14 @@ def detailkelas(request, kelas_id):
         'lv2': 'kelas_list'
     }
     return render(request, 'app/detail.html', context)
+
+
+@login_required(login_url='/login')
+def process_document(request, kelas_id):
+    ids = Dokumen.objects.filter(kelas__id=kelas_id).values_list('id', flat=True)
+    for idk in ids:
+        proceed_document.delay(idk)
+    return redirect('/kelas/{}/detail'.format(kelas_id))
 
 
 @login_required(login_url='/login')
