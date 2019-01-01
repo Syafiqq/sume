@@ -1,4 +1,5 @@
 import pdftotext
+
 import nltk
 from celery import shared_task
 from django.shortcuts import get_object_or_404
@@ -16,6 +17,21 @@ def simulate_sleep(length=5):
     return 'Finishing simulate sleep in {} second[s]'.format(length)
 
 
+def calculate_f2(text, spell):
+    tokens = nltk.word_tokenize(text, preserve_line=True)
+    misspelled = spell.unknown(tokens)
+    jumlah = len(misspelled)
+    f2 = jumlah
+    # for word in misspelled:
+    # print("misspelled : " + word)
+    # Get the one `most likely` answer
+    # print("most likely : " + spell.correction(word))
+    # Get a list of `likely` options
+    # print("likely options : ")
+    # print(spell.candidates(word))
+    return f2
+
+
 @shared_task(ignore_result=True)
 def proceed_document(dokumen_id):
     import numpy
@@ -24,7 +40,7 @@ def proceed_document(dokumen_id):
     from dlnn.Dlnn import DLNN_DEFAULT_CONFIG
     dlnn = Dlnn(**DLNN_DEFAULT_CONFIG)
     # Todo : Load Dokumen by id (doc_id) [Dokumen.objects.filter(id=doc_id).first()]
-    dokumen = get_object_or_404(Dokumen, pk=dokumen_id)
+    dokumen = Dokumen.objects.filter(id=dokumen_id).first()
     dokumen.state = "Process"
     dokumen.save()
     # Todo : Load pdf
@@ -99,11 +115,11 @@ def proceed_document(dokumen_id):
 
     dokumen.save()
 
-    f3 = random.randint(50, 250)  # Todo : f3 = cari fitur 3 [calculate_feature_3()]
+    f3 = random.randint(50, 100)  # Todo : f3 = cari Ffitur 3 [calculate_feature_3()]
     dokumen.fitur3 = f3
     dokumen.save()
 
-    f4 = random.randint(50, 250)  # Todo : f4 = cari fitur 4 [calculate_feature_4()]
+    f4 = random.randint(25, 50)  # Todo : f4 = cari fitur 4 [calculate_feature_4()]
     dokumen.fitur4 = f4
     dokumen.save()
 
@@ -113,7 +129,6 @@ def proceed_document(dokumen_id):
     class_data = result.argmax(axis=1)[0]
     # print("Class Data {}".format(class_data))
     # Todo : masukkan class_data sebagai hasil kelas data [mappingkan dengan kelas seharusnya] [zero based indexing]
-
     dokumen.kualitas = class_data
     dokumen.state = "Done"
     dokumen.save()
