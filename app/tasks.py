@@ -1,14 +1,14 @@
 import pdftotext
+import re
 
 import nltk
 from celery import shared_task
-from django.shortcuts import get_object_or_404
-from .models import Dokumen, Data, Pengujian
-from spellchecker import SpellChecker
-from .metode import levenshtein
 from django.conf import settings
 from nltk.corpus import stopwords
-import re
+from spellchecker import SpellChecker
+
+from .models import Dokumen, Data, Pengujian
+
 
 @shared_task
 def simulate_sleep(length=5):
@@ -50,11 +50,11 @@ def proceed_document(dokumen_id):
         text = "".join(pdf)
 
     # pecah kalimat menjadi kata kata
-    text = text.lower() # Converting to lowercase
+    text = text.lower()  # Converting to lowercase
     cleanr = re.compile('<.*?>')
-    sentence = re.sub(cleanr, ' ', text)        #Removing HTML tags
-    sentence = re.sub(r'[?|!|\'|"|#]',r'',sentence)
-    sentence = re.sub(r'[.|,|)|(|\|/]',r' ',sentence) #Removing Punctuations
+    sentence = re.sub(cleanr, ' ', text)  # Removing HTML tags
+    sentence = re.sub(r'[?|!|\'|"|#]', r'', sentence)
+    sentence = re.sub(r'[.|,|)|(|\|/]', r' ', sentence)  # Removing Punctuations
 
     tokens = nltk.word_tokenize(sentence, preserve_line=True)
 
@@ -62,11 +62,11 @@ def proceed_document(dokumen_id):
     salah_ketik_indo = 0
     salah_ketik_english = 0
     url_stopword = set(stopwords.words('indonesian'))
-    url_katadasar = settings.STATIC_ROOT+'/admin/db_text/kata-dasar-all.txt'
+    url_katadasar = settings.STATIC_ROOT + '/admin/db_text/kata-dasar-all.txt'
     url_stopword_en = set(stopwords.words('english'))
 
     # db_stopword = open(url_stopword,"r")
-    db_katadasar = open(url_katadasar,"r")
+    db_katadasar = open(url_katadasar, "r")
     # db_stopword_en = open(url_stopword_en,"r")
 
     # stopword = db_stopword.read().split('\n')
@@ -75,16 +75,16 @@ def proceed_document(dokumen_id):
 
     for token in tokens:
         salah = True
-        if(token in url_stopword):
+        if (token in url_stopword):
             salah = False
         else:
             if token in katadasar:
                 salah = False
         if salah:
-            print("kata \""+token+"\" salah")
+            print("kata \"" + token + "\" salah")
             salah_ketik_indo += 1
         else:
-            print("kata \""+token+"\" betul")
+            print("kata \"" + token + "\" betul")
 
     f1 = salah_ketik_indo
     dokumen.fitur1 = f1
@@ -93,13 +93,13 @@ def proceed_document(dokumen_id):
     # Todo : f2 = cari fitur 2 [calculate_feature_2()]
     for token in tokens:
         salah = True
-        if(token in url_stopword_en):
+        if (token in url_stopword_en):
             salah = False
         if salah:
-            print("kata \""+token+"\" salah")
+            print("kata \"" + token + "\" salah")
             salah_ketik_english += 1
         else:
-            print("kata \""+token+"\" betul")
+            print("kata \"" + token + "\" betul")
 
     # misspelled = spell.unknown(tokens)
     # jumlah = len(misspelled)
@@ -115,7 +115,7 @@ def proceed_document(dokumen_id):
 
     dokumen.save()
 
-    f3 = random.randint(50, 100)  # Todo : f3 = cari Ffitur 3 [calculate_feature_3()]
+    f3 = calculate_feature_3(dokumen_id);
     dokumen.fitur3 = f3
     dokumen.save()
 
@@ -133,6 +133,7 @@ def proceed_document(dokumen_id):
     dokumen.state = "Done"
     dokumen.save()
 
+
 @shared_task(ignore_result=True)
 def testing_apps(gap_data):
     f1 = [[]]
@@ -144,7 +145,7 @@ def testing_apps(gap_data):
     x = 0
     for data in dataset:
         x += 1
-        print("data ke"+str(x))
+        print("data ke" + str(x))
         # Todo : Load pdf
         with open(data.url_file.path, "rb") as f:
             pdf = pdftotext.PDF(f)
@@ -152,18 +153,18 @@ def testing_apps(gap_data):
 
         # Todo : Normalisasi
         # pecah kalimat menjadi kata kata
-        text = text.lower() # Converting to lowercase
+        text = text.lower()  # Converting to lowercase
         cleanr = re.compile('<.*?>')
-        sentence = re.sub(cleanr, ' ', text)        #Removing HTML tags
-        sentence = re.sub(r'[?|!|\'|"|#]',r'',sentence)
-        sentence = re.sub(r'[.|,|)|(|\|/]',r' ',sentence) #Removing Punctuations
+        sentence = re.sub(cleanr, ' ', text)  # Removing HTML tags
+        sentence = re.sub(r'[?|!|\'|"|#]', r'', sentence)
+        sentence = re.sub(r'[.|,|)|(|\|/]', r' ', sentence)  # Removing Punctuations
 
         data_pdf = "".join(sentence)
         token_data_pdf = nltk.word_tokenize(data_pdf, preserve_line=True)
 
         # Fitur 1 - cek salah ketik Bahasa Indonesia
-        url_dic_indo = settings.STATIC_ROOT+'/admin/db_text/kamus_indonesia.txt'
-        kamus_indonesia = open(url_dic_indo,"r")
+        url_dic_indo = settings.STATIC_ROOT + '/admin/db_text/kamus_indonesia.txt'
+        kamus_indonesia = open(url_dic_indo, "r")
         katadasar = kamus_indonesia.read().split('\n')
         for i in range(len(katadasar)):
             katadasar[i] = katadasar[i].split("/")[0]
@@ -171,11 +172,11 @@ def testing_apps(gap_data):
         salah_ketik_indo = 0
         for token in token_data_pdf:
             if token not in katadasar:
-                salah_ketik_indo+=1
+                salah_ketik_indo += 1
 
         # Fitur 2 - cek salah ketik Bahasa Inggris
-        url_dic_en = settings.STATIC_ROOT+'/admin/db_text/kamus_english.txt'
-        kamus_inggris = open(url_dic_en,"r")
+        url_dic_en = settings.STATIC_ROOT + '/admin/db_text/kamus_english.txt'
+        kamus_inggris = open(url_dic_en, "r")
         katadasar_en = kamus_inggris.read().split('\n')
         for i in range(len(katadasar_en)):
             katadasar_en[i] = katadasar_en[i].split("/")[0]
@@ -183,12 +184,12 @@ def testing_apps(gap_data):
         salah_ketik_english = 0
         for token in token_data_pdf:
             if token not in katadasar_en:
-                salah_ketik_english+=1
+                salah_ketik_english += 1
 
-        akurasi_indo = int((len(token_data_pdf)-salah_ketik_indo)/len(token_data_pdf)*100)
-        akurasi_en = int((len(token_data_pdf)-salah_ketik_english)/len(token_data_pdf)*100)
+        akurasi_indo = int((len(token_data_pdf) - salah_ketik_indo) / len(token_data_pdf) * 100)
+        akurasi_en = int((len(token_data_pdf) - salah_ketik_english) / len(token_data_pdf) * 100)
 
-        new_hasil = Pengujian(perbandingan = str(x), fitur1 = akurasi_indo, fitur2 = akurasi_en)
+        new_hasil = Pengujian(perbandingan=str(x), fitur1=akurasi_indo, fitur2=akurasi_en)
         new_hasil.save()
         # if(cek == 0):
         #     new_hasil1 = Pengujian(perbandingan = "90:10", fitur1 = salah_ketik_indo, fitur2 = salah_ketik_english)
