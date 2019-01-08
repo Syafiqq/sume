@@ -32,10 +32,50 @@ def calculate_f2(text, spell):
     return f2
 
 
+def to_text(path):
+    with open(path, "rb") as f:
+        pdf = pdftotext.PDF(f)
+        text = "".join(pdf)
+        return text
+
+
+def calculate_feature_3(doc_id):
+    from dlnn.tests.stringmatching.TestStringMatching import calculate
+    # get target document
+    target = to_text(Dokumen.objects.filter(id=doc_id).first().filenya.path)
+    sources = []
+    for i in range(1, 6):  # Acuan dokumen id 1 - 5
+        sources.append(to_text(Dokumen.objects.filter(id=i).first().filenya.path))
+
+    accumulation = 0
+    for source in sources:
+        sc, lc = calculate(target, source, 3, 200, ct=5e-1)
+        accumulation += sc
+        # kalo mau model rasio bisa pakai yang dibawah ini
+        # accumulation += int(round(sc * 1.0 / lc))
+    return accumulation
+
+
+def calculate_feature_4(doc_id):
+    from dlnn.tests.stringmatching.TestStringMatching import calculate
+    # get target document
+    target = to_text(Dokumen.objects.filter(id=doc_id).first().filenya.path)
+    sources = []
+    for i in range(1, 6):  # Acuan dokumen id 1 - 5
+        sources.append(to_text(Dokumen.objects.filter(id=i).first().filenya.path))
+
+    accumulation = 0
+    for source in sources:
+        sc, lc = calculate(target, source, 5, 200, ct=5e-1)
+        accumulation += sc
+        # kalo mau model rasio bisa pakai yang dibawah ini
+        # accumulation += int(round(sc * 1.0 / lc))
+    return accumulation
+
+
 @shared_task(ignore_result=True)
 def proceed_document(dokumen_id):
     import numpy
-    import random
     from dlnn.Dlnn import Dlnn
     from dlnn.Dlnn import DLNN_DEFAULT_CONFIG
     dlnn = Dlnn(**DLNN_DEFAULT_CONFIG)
@@ -115,11 +155,11 @@ def proceed_document(dokumen_id):
 
     dokumen.save()
 
-    f3 = calculate_feature_3(dokumen_id);
+    f3 = calculate_feature_3(dokumen_id)
     dokumen.fitur3 = f3
     dokumen.save()
 
-    f4 = random.randint(25, 50)  # Todo : f4 = cari fitur 4 [calculate_feature_4()]
+    f4 = calculate_feature_4(dokumen_id)
     dokumen.fitur4 = f4
     dokumen.save()
 
