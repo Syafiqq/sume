@@ -1693,6 +1693,17 @@ repos = [
 ]
 
 
+def get_text(url):
+    try:
+        req = requests.get(url)
+        html = req.text
+        soup = BeautifulSoup(html, "html5lib")
+        type(soup)
+        return soup.find("div", {'class': 'article-abstract'}).find('p').get_text()
+    except:
+        return None
+
+
 class TestWordScrapping(TestCase):
     def test_word_scrapping1(self):
         url = 'http://j-ptiik.ub.ac.id/index.php/j-ptiik/article/view/7'
@@ -1710,3 +1721,9 @@ class TestWordScrapping(TestCase):
         type(soup)
         print(soup.find("div", {'class': 'article-abstract'}).find('p').get_text())
         pass
+
+    def test_word_scrapping3(self):
+        text = get_text(repos[0])
+        self.assertIsNotNone(text)
+        text = get_text('https://google.co.id')
+        self.assertIsNone(text)
