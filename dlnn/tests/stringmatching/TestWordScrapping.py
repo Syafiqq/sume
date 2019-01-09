@@ -1702,3 +1702,11 @@ class TestWordScrapping(TestCase):
         type(soup)
         print(soup.find("div", {'class': 'article-abstract'}))
         pass
+
+    def test_word_scrapping2(self):
+        req = requests.get(repos[0])
+        html = req.text
+        soup = BeautifulSoup(html, "html5lib")
+        type(soup)
+        print(soup.find("div", {'class': 'article-abstract'}).find('p').get_text())
+        pass
