@@ -73,6 +73,24 @@ def calculate_feature_4(doc_id):
     return accumulation
 
 
+def calculate_feature_34(doc_id):
+    from dlnn.tests.stringmatching.TestStringMatching import calculate
+    # get target document
+    target = to_text(Dokumen.objects.filter(id=doc_id).first().filenya.path)
+    sources = []
+    for i in range(1, 6):  # Acuan dokumen id 1 - 5
+        sources.append(to_text(Dokumen.objects.filter(id=i).first().filenya.path))
+
+    a1 = 0
+    a2 = 0
+    for source in sources:
+        sc1, _ = calculate(target, source, 3, 200, ct=5e-1)
+        sc2, _ = calculate(target, source, 5, 200, ct=5e-1)
+        a1 += sc1
+        a2 += sc2
+    return a1, a2
+
+
 def calculate_feature_5(doc_id):
     from dlnn.tests.stringmatching.TestStringMatching import calculate
     from dlnn.tests.stringmatching.TestWordScrapping import get_text
@@ -113,6 +131,28 @@ def calculate_feature_6(doc_id):
         # kalo mau model rasio bisa pakai yang dibawah ini
         # accumulation += int(round(sc * 1.0 / lc))
     return accumulation
+
+
+def calculate_feature_56(doc_id):
+    from dlnn.tests.stringmatching.TestStringMatching import calculate
+    from dlnn.tests.stringmatching.TestWordScrapping import get_text
+    from dlnn.tests.stringmatching.TestWordScrapping import repos
+    # get target document
+    target = to_text(Dokumen.objects.filter(id=doc_id).first().filenya.path)
+    sources = []
+    for i in range(1, 6):  # Acuan dokumen id 1 - 5
+        text = get_text(repos[i])
+        if text is not None:
+            sources.append(text)
+
+    a1 = 0
+    a2 = 0
+    for source in sources:
+        sc1, _ = calculate(target, source, 3, 200, ct=5e-1)
+        sc2, _ = calculate(target, source, 5, 200, ct=5e-1)
+        a1 += sc1
+        a2 += sc2
+    return a1, a2
 
 
 @shared_task(ignore_result=True)
@@ -197,19 +237,13 @@ def proceed_document(dokumen_id):
 
     dokumen.save()
 
-    f3 = calculate_feature_3(dokumen_id)
+    f3, f4 = calculate_feature_34(dokumen_id)
     dokumen.fitur3 = f3
-    dokumen.save()
-
-    f4 = calculate_feature_4(dokumen_id)
     dokumen.fitur4 = f4
     dokumen.save()
 
-    f5 = calculate_feature_5(dokumen_id)
+    f5, f6 = calculate_feature_56(dokumen_id)
     dokumen.fitur5 = f5
-    dokumen.save()
-
-    f6 = calculate_feature_6(dokumen_id)
     dokumen.fitur6 = f6
     dokumen.save()
 
