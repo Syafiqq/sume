@@ -39,40 +39,6 @@ def to_text(path):
         return text
 
 
-def calculate_feature_3(doc_id):
-    from dlnn.tests.stringmatching.TestStringMatching import calculate
-    # get target document
-    target = to_text(Dokumen.objects.filter(id=doc_id).first().filenya.path)
-    sources = []
-    for i in range(1, 6):  # Acuan dokumen id 1 - 5
-        sources.append(to_text(Dokumen.objects.filter(id=i).first().filenya.path))
-
-    accumulation = 0
-    for source in sources:
-        sc, lc = calculate(target, source, 3, 200, ct=5e-1)
-        accumulation += sc
-        # kalo mau model rasio bisa pakai yang dibawah ini
-        # accumulation += int(round(sc * 1.0 / lc))
-    return accumulation
-
-
-def calculate_feature_4(doc_id):
-    from dlnn.tests.stringmatching.TestStringMatching import calculate
-    # get target document
-    target = to_text(Dokumen.objects.filter(id=doc_id).first().filenya.path)
-    sources = []
-    for i in range(1, 6):  # Acuan dokumen id 1 - 5
-        sources.append(to_text(Dokumen.objects.filter(id=i).first().filenya.path))
-
-    accumulation = 0
-    for source in sources:
-        sc, lc = calculate(target, source, 5, 200, ct=5e-1)
-        accumulation += sc
-        # kalo mau model rasio bisa pakai yang dibawah ini
-        # accumulation += int(round(sc * 1.0 / lc))
-    return accumulation
-
-
 def calculate_feature_34(doc_id):
     from dlnn.tests.stringmatching.TestStringMatching import calculate
     # get target document
@@ -88,49 +54,9 @@ def calculate_feature_34(doc_id):
         sc2, _ = calculate(target, source, 5, 200, ct=5e-1)
         a1 += sc1
         a2 += sc2
+        # kalo mau model rasio bisa pakai yang dibawah ini
+        # accumulation += int(round(sc * 1.0 / lc))
     return a1, a2
-
-
-def calculate_feature_5(doc_id):
-    from dlnn.tests.stringmatching.TestStringMatching import calculate
-    from dlnn.tests.stringmatching.TestWordScrapping import get_text
-    from dlnn.tests.stringmatching.TestWordScrapping import repos
-    # get target document
-    target = to_text(Dokumen.objects.filter(id=doc_id).first().filenya.path)
-    sources = []
-    for i in range(1, 6):  # Acuan dokumen id 1 - 5
-        text = get_text(repos[i])
-        if text is not None:
-            sources.append(text)
-
-    accumulation = 0
-    for source in sources:
-        sc, lc = calculate(target, source, 3, 200, ct=5e-1)
-        accumulation += sc
-        # kalo mau model rasio bisa pakai yang dibawah ini
-        # accumulation += int(round(sc * 1.0 / lc))
-    return accumulation
-
-
-def calculate_feature_6(doc_id):
-    from dlnn.tests.stringmatching.TestStringMatching import calculate
-    from dlnn.tests.stringmatching.TestWordScrapping import get_text
-    from dlnn.tests.stringmatching.TestWordScrapping import repos
-    # get target document
-    target = to_text(Dokumen.objects.filter(id=doc_id).first().filenya.path)
-    sources = []
-    for i in range(1, 6):  # Acuan dokumen id 1 - 5
-        text = get_text(repos[i])
-        if text is not None:
-            sources.append(text)
-
-    accumulation = 0
-    for source in sources:
-        sc, lc = calculate(target, source, 5, 200, ct=5e-1)
-        accumulation += sc
-        # kalo mau model rasio bisa pakai yang dibawah ini
-        # accumulation += int(round(sc * 1.0 / lc))
-    return accumulation
 
 
 def calculate_feature_56(doc_id):
@@ -152,6 +78,8 @@ def calculate_feature_56(doc_id):
         sc2, _ = calculate(target, source, 5, 200, ct=5e-1)
         a1 += sc1
         a2 += sc2
+        # kalo mau model rasio bisa pakai yang dibawah ini
+        # accumulation += int(round(sc * 1.0 / lc))
     return a1, a2
 
 
